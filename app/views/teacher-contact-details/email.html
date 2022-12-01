@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know the personal email address of the person you are referring?" if isEmployer else "Do you know the email address of the person you are referring?" %}
+
+{% block content %}
+  {% set email %}
+    {{ govukInput({
+      label: {
+        text: "Email address",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.teacher-contact-details.email'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--l govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: email
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-contact-details.know-email',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s email address"
+      }
+    }
+  }) }}
+{% endblock %}

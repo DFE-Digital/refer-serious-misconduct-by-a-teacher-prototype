@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know their teacher reference number (TRN)?" %}
+
+{% block content %}
+  {% set trn %}
+    {{ govukInput({
+      label: {
+        text: "Teacher reference number",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.teacher-details.trn'
+    }) }}
+  {% endset %}
+
+  {% set hint %}
+    <p>A TRN is 7 digits long, for example 4567814.</p>
+    <!-- It’s previously been known as a QTS, GTC, DfE, DfES and DCSF number. -->
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    hint: {
+      html: hint
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: trn
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-details.know-trn',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s TRN"
+      }
+    }
+  }) }}
+{% endblock %}

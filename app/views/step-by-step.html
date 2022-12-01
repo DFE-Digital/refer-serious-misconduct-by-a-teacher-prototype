@@ -1,0 +1,141 @@
+{% extends "layouts/default.html" %}
+{% set signedIn = false %}
+{% set serviceUrl = '/report/start' %}
+{% set serviceName = 'Stop someone teaching in England' %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Stop someone teaching in England: step-by-step
+    </h1>
+    <p>
+      The Teaching Regulation Agency (TRA) is responsible for investigating allegations of serious teacher misconduct in England. If necessary, it can stop individuals from teaching.
+    </p>
+    <p>
+      There's a different process if you’re in <a href="#">Wales</a>, <a href="#">Scotland</a> or <a href="#">Northern Ireland</a>.
+    </p>
+    <p>
+      There’s separate information about <a href="#">what to expect if you’re a teacher who has been accused of serious misconduct</a>.
+    </p>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div data-module="appstepnav"id="step-by-step-navigation" class="app-step-nav js-hidden app-step-nav--large" data-show-text="Show" data-hide-text="Hide" data-show-all-text="Show all steps" data-hide-all-text="Hide all steps">
+      <ol class="app-step-nav__steps">
+        {% set stepNumber = 1 %}
+        {% set stepTitle = 'Report your concerns locally' %}
+        {% set stepHtml %}
+          <p>If you’re a member of the public, share your concerns with ​​the school, chair of governors or your local council before contacting TRA.</p>
+          <p>If you’re an employer, follow your organisation’s internal disciplinary procedures first.</p>
+        {% endset %}
+        {% include "report/_step.html" %}
+
+        {% set stepNumber = 2 %}
+        {% set stepTitle = 'Check if TRA will deal with the allegation' %}
+        {% set stepHtml %}
+          <p>If you’re not satisfied with the response to your allegation, or you think the misconduct is serious enough that the person should no longer teach, check if the matter can be dealt with by TRA.</p>
+          <p>Serious misconduct is unacceptable behaviour that:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>falls significantly short of the standards expected of a teacher</li>
+            <li>brings the teaching profession into disrepute</li>
+            <li>affects the way someone performs their teaching role</li>
+          </ul>
+          <p>If the person is convicted of a relevant offence at any time, this is also serious misconduct.</p>
+          <p>See <a href="#">who you can refer to TRA</a>.</p>
+        {% endset %}
+        {% include "report/_step.html" %}
+
+        {% set stepNumber = 3 %}
+        {% set stepTitle = 'Refer the teacher to TRA' %}
+        {% set stepHtml %}
+          <p>You can use the <a href="/report/start">Refer a teacher for serious misconduct service</a> or complete and return a downloadable form. There’s a <a href="#">form for employers</a> and a <a href="#">form for members of the public</a>.</p>
+
+          <p>You’ll need to provide evidence where possible.</p>
+        {% endset %}
+        {% include "report/_step.html" %}
+
+        {% set stepNumber = 4 %}
+        {% set stepTitle = 'Wait to hear back from TRA' %}
+        {% set stepHtml %}
+          <p>Once TRA have reviewed the referral, they’ll let you know what happens next. TRA could tell you they:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>need more information to decide whether to investigate the case</li>
+            <li>will not investigate the case because it’s outside their remit</li>
+            <li>will not investigate the case because it does not have the potential to result in a prohibition order</li>
+            <li>will launch a formal investigation</li>
+          </ul>
+
+          <p>TRA might also consider imposing an interim prohibition order. This prevents the individual from teaching until the case has concluded.</p>
+        {% endset %}
+        {% include "report/_step.html" %}
+
+        {% set stepNumber = 5 %}
+        {% set stepTitle = 'If TRA decide to investigate, they’ll send a copy of the allegations to the teacher' %}
+        {% set stepHtml %}
+          <p>Once TRA has gathered the information they need, they’ll share the allegations with the teacher and ask them to respond within 28 days. They might also appoint a legal firm to help with the investigation.</p>
+        {% endset %}
+        {% include "report/_step.html" %}
+
+        {% set stepNumber = 6 %}
+        {% set stepTitle = 'TRA decide whether there is a case to answer' %}
+        {% set stepHtml %}
+          <p>Once the deadline for a response from the teacher has passed, a TRA decision maker will consider the case. They’ll take into account all the evidence gathered during the investigation.</p>
+
+          <p>If the decision maker concludes that the misconduct is not serious enough, or that there’s no case to answer, they’ll discontinue the case.</p>
+
+          <p>If TRA believe there’s enough evidence to consider making a prohibition order, they’ll arrange a professional conduct panel meeting or a hearing. The panel is made up of 3 independent people who are not employed by TRA or the Department for Education (DfE).</p>
+        {% endset %}
+        {% include "report/_step.html" %}
+
+        {% set stepNumber = 7 %}
+        {% set stepTitle = 'A professional conduct panel meeting or hearing takes place' %}
+        {% set stepHtml %}
+          <h3 class="govuk-heading-s">If there’s a meeting</h3>
+
+          <p>If the teacher has admitted to the allegations and requested a meeting, the panel will meet in private to consider the case, assisted by a legal adviser. There are no witnesses and the presenting officer and teacher do not attend.</p>
+
+          <p>A <a href="#">public notice of a meeting is published on GOV.UK</a> two weeks in advance.</p>
+
+          <h3 class="govuk-heading-s">If there’s a hearing</h3>
+
+          <p>Hearings are attended by:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>panel members</li>
+            <li>a presenting officer, who is a lawyer and presents the case on behalf of TRA</li>
+            <li>a lawyer who advises the panel members</li>
+            <li>the person accused of serious misconduct</li>
+            <li>a representative for the teacher</li>
+            <li>witnesses</li>
+            <li>TRA staff</li>
+          </ul>
+
+          <p>Members of the public, including the press, can attend both virtual and in-person hearings as observers. If you want to attend, <a href="#">you need to register</a> at least three working days before the hearing.</p>
+
+          <p>A <a href="#">public notice of a hearing is published on GOV.UK</a> two weeks in advance.</p>
+        {% endset %}
+        {% include "report/_step.html" %}
+
+        {% set stepNumber = 8 %}
+        {% set stepTitle = 'TRA confirm the outcome of the meeting or hearing' %}
+        {% set stepHtml %}
+          <p>If the professional conduct panel makes a finding of serious misconduct, they’ll make a recommendation about whether a teacher should no longer teach. The decision is then made by a senior TRA official on behalf of the Secretary of State for Education.</p>
+
+          <p>The person who submitted the original referral will normally be informed in writing within 3 working days of the decision being made, but this may take longer.</p>
+
+          <p>If there’s a finding of serious misconduct, <a href="#">a document summarising the outcome will be published online</a> within 2 weeks.</p>
+
+          <p>Teachers have 28 days to appeal prohibition orders at the High Court.</p>
+        {% endset %}
+        {% include "report/_step.html" %}
+      </ol>
+    </div>
+  </div>
+</div>
+{% endblock %}

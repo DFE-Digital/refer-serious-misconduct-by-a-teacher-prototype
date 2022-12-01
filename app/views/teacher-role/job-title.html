@@ -1,0 +1,21 @@
+{% extends "layouts/main.html" %}
+{% set title = "What was their job title?" if hasLeftJob else "What’s their job title?" %}
+
+{% block content %}
+  {{ govukInput({
+    label: {
+      text: title,
+      classes: "govuk-label--xl",
+      isPageHeading: true
+    },
+    hint: {
+      text: 'For example, ‘Teacher’'
+    },
+    decorate: 'report.teacher-role.job-title',
+    validate: {
+      presence: {
+        message: "Enter their job title"
+      }
+    }
+  }) }}
+{% endblock %}

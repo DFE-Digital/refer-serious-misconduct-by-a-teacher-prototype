@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+{% set title = "You can refer someone who does unsupervised teaching work" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibility/jurisdiction"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  <p>Unsupervised teaching work is:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>planning and preparing lessons and courses for pupils</li>
+    <li>delivering lessons to pupils</li>
+    <li>assessing the development, progress and attainment of pupils</li>
+    <li>reporting on the development, progress and attainment of pupils</li>
+  </ul>
+
+  {{ govukRadios({
+    idPrefix: "[report][eligibility][teacher-unsupervised]",
+    name: "[report][eligibility][teacher-unsupervised]",
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        text: "Does this person carry out unsupervised teaching work?"
+      }
+    },
+    items: [
+      {
+        text: "Yes, they do unsupervised teaching work"
+      },
+      {
+        text: "No"
+      },
+      {
+        text: "I’m not sure",
+        conditional: {
+          html: "<p>If you’re not sure, please continue to report your allegation and the Teaching Regulation Agency will assess it.</p>"
+        }
+      }
+    ]
+  }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

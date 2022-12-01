@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+{% set title = "Does the allegation involve serious misconduct?" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  <p>Serious misconduct is unacceptable behaviour that:</p>
+  <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+    <li>falls significantly short of the standards expected of a teacher </li>
+    <li>brings the teaching profession into disrepute</li>
+    <li>affects the way someone performs their teaching role</li>
+  </ul>
+
+  <p>If the person is convicted of a relevant offence at any time, this is also serious misconduct.</p>
+
+  {% set examples %}
+    <p>Examples might include:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>committing a criminal offence that results in imprisonment (including a suspended sentence)</li>
+      <li>violence</li>
+      <li>terrorism</li>
+      <li>inappropriate sexual activity</li>
+      <li>voyeurism (including upskirting)</li>
+      <li>revenge pornography (sharing private, sexual materials, either photos or videos, of another person without their consent)</li>
+      <li>sexual communication with a child</li>
+      <li>viewing, taking, making, possessing, distributing or publishing any indecent photograph or image of a child (or permitting any such activity)</li>
+      <li>child cruelty and/or neglect</li>
+      <li>controlling or coercive behaviour</li>
+      <li>harassing and/or stalking</li>
+      <li>intolerance and/or hatred on the grounds of race, religion, sexual orientation or any of the other protected characteristics</li>
+      <li>possessing, supplying or producing class A, B or C drugs</li>
+      <li>fraud or serious dishonesty</li>
+      <li>theft from a person or other serious theft</li>
+      <li>arson and other major criminal damage</li>
+      <li>possession of prohibited firearms, knives or other weapons</li>
+      <li>serious offences where alcohol or drugs are involved</li>
+    </ul>
+  {% endset %}
+
+  {{ govukDetails({
+    summaryText: "Show examples of serious misconduct and relevant offences",
+    html: examples
+  }) }}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        text: "Is the allegation about serious misconduct?"
+      }
+    },
+    items: [
+      {
+        text: "Yes"
+      },
+      {
+        text: "No"
+      },
+      {
+        text: "I’m not sure",
+        conditional: {
+          html: "<p>If you’re not sure, you should continue to make a referral and TRA will assess it.</p>"
+        }
+      }
+    ],
+    decorate: 'report.eligibility.serious',
+    validate: {
+      presence: {
+        message: "Tell us if the allegation is about a teacher in England"
+      }
+    }
+  }) }}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+{% set title = file.filename %}
+
+{% block content %}
+  <h1 class="govuk-heading-l">
+    <span class="govuk-caption-l">Your uploaded file</span>
+    {{ title }}
+  </h1>
+  {% set other %}
+    {{ govukInput({
+      label: {
+        text: "Explain what this document is",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.documentation.uploaded-files.' + fileId + '.other-type'
+    }) }}
+  {% endset %}
+
+  {{ govukCheckboxes({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        text: "Select all the categories that describe this file" | noOrphans | safe
+      }
+    },
+    items: [
+      { text: "CV" },
+      { text: "References" },
+      { text: "Job application" },
+      { text: "Job offer" },
+      { text: "Job description, role requirement or person specification" },
+      { text: "File notes concerning conduct, behaviour, attitude" },
+      { text: "Statements made by the person you’re referring" },
+      { text: "Documents of internal investigations and outcomes" },
+      { text: "Documentation of any past disciplinary action and complaints" },
+      { text: "Police investigation and reports" },
+      { text: "Local authority investigation reports or documents" },
+      { text: "Reports from other bodies or agencies" },
+      { text: "Signed witness statements" },
+      { text: "Dismissal, resignation or redeployment letters" },
+      { text: "Interview reports relating to the allegation" },
+      { text: "Minutes of strategy meetings" },
+      {
+        text: "Other",
+        conditional: {
+          html: other
+        }
+      }
+    ] if isEmployer else [
+      { text: "Complaint made to the school" },
+      { text: "Correspondence to or from school" },
+      { text: "School complaint policy" },
+      { text: "Complaint made to the police" },
+      { text: "Complaint made to the local authority or any other agency or body" },
+      { text: "Signed witness statements" },
+      {
+        text: "Other",
+        conditional: {
+          html: other
+        }
+      }
+    ],
+    decorate: 'report.documentation.uploaded-files.' + fileId + '.type'
+  }) }}
+{% endblock %}

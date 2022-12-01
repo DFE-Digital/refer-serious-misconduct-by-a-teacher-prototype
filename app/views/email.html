@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set title = "What is your email address?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        {{ govukInput({
+          id: "[report][email]",
+          name: "[report][email]",
+          label: {
+            text: title,
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            html: '<p>Use your email address to return at any time.</p>'
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

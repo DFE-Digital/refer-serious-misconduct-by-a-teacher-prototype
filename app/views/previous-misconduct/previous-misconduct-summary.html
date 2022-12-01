@@ -1,0 +1,27 @@
+{% extends "layouts/main.html" %}
+{% set title = "Give a summary of previous allegations" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>A good summary will help TRA to respond quickly.</p>
+
+  {{ govukTextarea({
+    label: {
+      text: "Summary of previous allegations",
+      classes: "govuk-label--m govuk-!-margin-top-6"
+    },
+    hint: {
+      text: ''
+    },
+    decorate: 'report.previous-misconduct.previous-misconduct-summary',
+    rows: 5,
+    validate: {
+      presence: {
+        message: "Tell us about the previous misconduct"
+      }
+    }
+  }) }}
+{% endblock %}

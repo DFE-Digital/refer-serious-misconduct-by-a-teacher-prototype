@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your allegation of serious misconduct" %}
+{% set buttonText = "Review and send" %}
+{% block pageNavigation %}{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  {{ xGovukTaskList({
+    sections: [{
+      titleText: "About you",
+      items: [{
+        text: "Your details",
+        href: taskHref('report.your-details', '/report/your-details/name', '/report/your-details/check-answers'),
+        tag: taskTag('report.your-details')
+      }, {
+        text: "Your organisation",
+        href: taskHref('report.your-organisation', '/report/your-organisation/name', '/report/your-organisation/check-answers'),
+        tag: taskTag('report.your-organisation')
+      }] if isEmployer else [{
+        text: "Your details",
+        href: taskHref('report.your-details', '/report/your-details/dont-worry', '/report/your-details/check-answers'),
+        tag: taskTag('report.your-details')
+      }]
+    }, {
+      titleText: "About the person you are referring",
+      items: [{
+        text: "Personal details",
+        href: taskHref('report.teacher-details', '/report/teacher/name', '/report/teacher/check-answers'),
+        tag: taskTag('report.teacher-details')
+      }, {
+        text: "Contact details",
+        href: taskHref('report.teacher-contact-details', '/report/teacher-contact-details/email', '/report/teacher-contact-details/check-answers'),
+        tag: taskTag('report.teacher-contact-details')
+      }, {
+        text: "About their role",
+        href: taskHref('report.teacher-role', ('/report/teacher-role/start-date' if isEmployer else '/report/teacher-role/job-title'), '/report/teacher-role/check-answers'),
+        tag: taskTag('report.teacher-role')
+      }]
+    }, {
+      titleText: "The allegation",
+      items: [{
+        text: "Details of the allegation",
+        href: taskHref('report.allegation', '/report/allegation/allegation', '/report/allegation/check-answers'),
+        tag: taskTag('report.allegation')
+      }, {
+        text: "Previous allegations",
+        href: taskHref('report.previous-misconduct', '/report/previous-misconduct/any-previous', '/report/previous-misconduct/check-answers'),
+        tag: taskTag('report.previous-misconduct')
+      }, {
+        text: "Evidence and supporting information",
+        href: taskHref('report.documentation', '/report/documentation/anything-to-upload', '/report/documentation/check-answers'),
+        tag: taskTag('report.documentation')
+      }] if isEmployer else [{
+        text: "Details of the allegation",
+        href: taskHref('report.allegation', '/report/allegation/already-considered', '/report/allegation/check-answers'),
+        tag: taskTag('report.allegation')
+      }, {
+        text: "Evidence and supporting information",
+        href: taskHref('report.documentation', '/report/documentation/anything-to-upload', '/report/documentation/check-answers'),
+        tag: taskTag('report.documentation')
+      }]
+    }]
+  }) }}
+{% endblock %}
+
+{% block afterForm %}
+  {% set html %}
+    <p>
+      You can delete your draft:<br />
+      <a href="/report/delete">Delete your draft referral</a>
+    </p>
+    <p>
+      Drafts are automatically deleted after 6 months of no activity. We’ll send you an email before deleting it.
+    </p>
+  {% endset %}
+
+  {{ govukDetails({
+    summaryText: "I don’t want to continue",
+    html: html
+  }) }}
+{% endblock %}

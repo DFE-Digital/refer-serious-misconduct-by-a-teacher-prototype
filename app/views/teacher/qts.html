@@ -1,0 +1,34 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do they have qualified teacher status (QTS)?" %}
+
+{% block content %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes, they have QTS",
+        value: "Yes"
+      },
+      {
+        text: "No, they do not have QTS",
+        value: "No"
+      },
+      {
+        text: "I don’t know",
+        value: "Not known"
+      }
+    ],
+    decorate: 'report.teacher-details.qts',
+    validate: {
+      presence: {
+        message: "Tell us if they have qualified teacher status (QTS)"
+      }
+    }
+  }) }}
+{% endblock %}

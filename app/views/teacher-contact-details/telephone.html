@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know their main contact number?" %}
+
+{% block content %}
+  {% set homeNumber %}
+    {{ govukInput({
+      label: {
+        text: "Main contact number",
+        classes: "govuk-label--s"
+      },
+      classes: 'govuk-input--width-20',
+      decorate: 'report.teacher-contact-details.main-contact'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: homeNumber
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-contact-details.telephone',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s main contact number"
+      }
+    }
+  }) }}
+{% endblock %}

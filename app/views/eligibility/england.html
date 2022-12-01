@@ -1,0 +1,34 @@
+{% extends "layouts/main.html" %}
+{% set areTheyTeacher = data.report.eligibility['are-they-teacher'] == 'Yes' %}
+{% set title = "Were they employed in England at the time the alleged misconduct took place?" if areTheyTeacher else "Were they employed in England at the time the alleged misconduct took place?" %}
+
+{% block content %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--l",
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes"
+      },
+      {
+        text: "No"
+      },
+      {
+        text: "I’m not sure",
+        conditional: {
+          html: "<p>If you’re not sure, you should continue to make a referral and TRA will assess it.</p>"
+        }
+      }
+    ],
+    decorate: 'report.eligibility.teacher-in-england',
+    validate: {
+      presence: {
+        message: "Tell us if the allegation is about a teacher in England"
+      }
+    }
+  }) }}
+{% endblock %}

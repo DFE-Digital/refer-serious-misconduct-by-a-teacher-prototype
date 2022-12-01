@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know their National Insurance number?" %}
+
+{% block content %}
+  {% set nino %}
+    {{ govukInput({
+      label: {
+        text: "National Insurance number",
+        classes: "govuk-label--s"
+      },
+      hint: {
+        text: "For example, ‘QQ 12 34 56 C’"
+      },
+      decorate: 'report.teacher-details.nino'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: nino
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-details.know-nino',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s National Insurance number"
+      }
+    }
+  }) }}
+{% endblock %}

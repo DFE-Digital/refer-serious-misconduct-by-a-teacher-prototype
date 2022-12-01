@@ -1,0 +1,20 @@
+{% extends "layouts/main.html" %}
+{% set buttonText = "Continue" %}
+{% set title = "How your personal details will be used" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+
+  <p>We will ask for your:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>name</li>
+    <li>email address</li>
+    <li>telephone number</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">Your name will be shared</h2>
+
+  <p>If TRA decides to investigate this case, your name will be shared with the person you are referring and their employer. The teacher has a right to know who referred them.</p>
+
+  <p class="govuk-!-margin-bottom-6">Your contact details will not be shared. TRA will only use these to contact you about this case.</p>
+{% endblock %}

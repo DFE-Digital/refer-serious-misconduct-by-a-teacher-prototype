@@ -1,0 +1,32 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know if they are teaching somewhere else?" %}
+
+{% block content %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes, they are teaching somewhere else",
+        value: "Yes"
+      },
+      {
+        text: "No, they are not teaching somewhere else"
+      },
+      {
+        text: "I don’t know"
+      }
+    ],
+    decorate: 'report.teacher-role.teaching-elsewhere',
+    validate: {
+      presence: {
+        message: "Tell us if they are teaching somewhere else"
+      }
+    }
+  }) }}
+{% endblock %}

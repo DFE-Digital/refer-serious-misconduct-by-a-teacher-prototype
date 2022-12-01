@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know where they are teaching?" %}
+
+{% block content %}
+  {% set otherEmployer %}
+    {{ govukInput({
+      label: {
+        text: "Organisation name",
+        classes: "govuk-label--s"
+      },
+      classes: "govuk-!-margin-bottom-6",
+      decorate: 'report.teacher-role.other-employer.address.name',
+      validate: {
+        presence: {
+          message: "Enter an organisation name"
+        }
+      }
+    }) }}
+
+    {% call govukFieldset({
+      legend: {
+        text: "Organisation address",
+        classes: "govuk-fieldset__legend--s"
+      }
+    }) %}
+      {{ govukInput({
+        label: {
+          text: 'Address line 1'
+        },
+        decorate: 'report.teacher-role.other-employer.address.line-1',
+        autocomplete: "address-line1"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: 'Address line 2 (optional)'
+        },
+        decorate: 'report.teacher-role.other-employer.address.line-2',
+        autocomplete: "address-line2"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Town or city"
+        },
+        classes: "govuk-!-width-two-thirds",
+        decorate: 'report.teacher-role.other-employer.address.town',
+        autocomplete: "address-level2"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Postcode"
+        },
+        classes: "govuk-input--width-10",
+        decorate: 'report.teacher-role.other-employer.address.postcode',
+        autocomplete: "postal-code"
+      }) }}
+    {% endcall %}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: otherEmployer
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-role.know-other-employer',
+    validate: {
+      presence: {
+        message: "Tell us if you know where they are teaching"
+      }
+    }
+  }) }}
+{% endblock %}

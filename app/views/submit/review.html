@@ -1,0 +1,29 @@
+{% extends "layouts/main.html" %}
+{% set title = "Check your answers before continuing" %}
+{% set gridClass = "govuk-grid-column-full" %}
+
+{% block beforeForm %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+    </div>
+  </div>
+
+  <h2 class="govuk-heading-l">1. About you</h2>
+  {% include '../your-details/_summary-card.html' %}
+  {% if isEmployer %}
+    {% include '../your-organisation/_summary-card.html' %}
+  {% endif %}
+
+  <h2 class="govuk-heading-l">2. About the person you are referring</h2>
+  {% include '../teacher/_summary-card.html' %}
+  {% include '../teacher-contact-details/_summary-card.html' %}
+  {% include '../teacher-role/_summary-card.html' %}
+
+  <h2 class="govuk-heading-l">3. The allegation</h2>
+  {% include '../allegation/_summary-card.html' %}
+  {% if isEmployer %}
+    {% include '../previous-misconduct/_summary-card.html' %}
+  {% endif %}
+  {% include '../documentation/_summary-card.html' %}
+{% endblock %}

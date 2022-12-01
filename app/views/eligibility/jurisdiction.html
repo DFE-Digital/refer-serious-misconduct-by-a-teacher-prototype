@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+{% set title = "Is the allegation about a teacher?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/who"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">{{ title }}</h1>
+
+  {% set examples %}
+    <p>You can only refer a teacher if they’ve been engaged in unsupervised teaching work, such as:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>planning and preparing lessons and courses for pupils</li>
+      <li>delivering lessons to pupils</li>
+      <li>assessing the development, progress and attainment of pupils</li>
+      <li>reporting on the development, progress and attainment of pupils</li>
+    </ul>
+    <p>This can include teaching that happened in person or online.</p>
+  {% endset %}
+
+  {{ govukDetails({
+    summaryText: "Who is considered to be a teacher?",
+    html: examples
+  }) }}
+
+  {{ govukRadios({
+    idPrefix: "[report][eligibility][are-they-teacher]",
+    name: "[report][eligibility][are-they-teacher]",
+    hint: {
+      html: teacher
+    },
+    items: [
+      {
+        text: "Yes"
+      },
+      {
+        text: "No"
+      },
+      {
+        text: "I’m not sure"
+      }
+    ]
+  }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

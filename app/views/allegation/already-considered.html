@@ -1,0 +1,36 @@
+{% extends "layouts/main.html" %}
+{% set title = "Tell us how this complaint has been considered" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>Tell us the local procedures you followed, for example:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>a complaint to the headteacher</li>
+    <li>a complaint to the chair of governors</li>
+    <li>a complaint to the local authority</li>
+  </ul>
+
+  <p>What were the outcomes?</p>
+
+  <p>Has the complaint been made to any other organisation, such as the police? If so, give details.</p>
+
+  <p>Give dates.</p>
+
+  {{ govukTextarea({
+    label: {
+      text: "Details of how this complaint has been considered",
+      classes: "govuk-label--m govuk-!-margin-top-6"
+    },
+    decorate: 'report.allegation.already-considered',
+    rows: 20,
+    validate: {
+      presence: {
+        message: "Tell us how this complaint has already been considered"
+      }
+    }
+  }) }}
+
+{% endblock %}

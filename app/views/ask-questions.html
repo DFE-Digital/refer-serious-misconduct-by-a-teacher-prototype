@@ -1,0 +1,14 @@
+{% extends "layouts/wizard.html" %}
+{% set title = "We’ll ask you some questions to help find your TRN" if data.features.apiUnavailable.on else "We’ll ask you some questions to help find your TRN" %}
+
+{% block beforeForm %}
+<h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  {% if data.features.apiUnavailable.on %}
+    <p class="govuk-!-margin-bottom-6">We’ll ask for your name, date of birth and National Insurance number. If you do not have your National Insurance number available, we may ask some follow-up questions.</p>
+  {% else %}
+    <p class="govuk-!-margin-bottom-6">
+      We’ll ask for your name, date of birth and National Insurance number. If we do not find your TRN based on these details, we may ask some follow-up questions.
+    </p>
+  {% endif %}
+{% endblock %}

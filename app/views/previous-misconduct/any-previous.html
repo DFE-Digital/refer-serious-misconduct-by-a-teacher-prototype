@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+{% set title = "Has there been any previous misconduct, disciplinary action or complaints?" %}
+
+{% block content %}
+  {% set hint %}
+    <p>This includes:</p>
+
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+      <li>internal investigations</li>
+      <li>disciplinary action by your organisation</li>
+      <li>reports to the Teaching Regulation Agency, National College for Teaching and Leadership, Teaching Agency or General Teaching Council for England</li>
+    </ul>
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    hint: {
+      html: hint
+    },
+    items: [
+      {
+        text: "Yes"
+      },
+      {
+        text: "No"
+      },
+      {
+        text: "I don’t know"
+      }
+    ],
+    decorate: 'report.previous-misconduct.any-previous',
+    validate: {
+      presence: {
+        message: "Tell us if there has been any previous misconduct"
+      }
+    }
+  }) }}
+{% endblock %}

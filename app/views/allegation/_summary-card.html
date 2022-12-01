@@ -1,0 +1,54 @@
+{{ xGovukSummaryCard({
+  classes: "govuk-!-margin-bottom-9",
+  titleText: "What happened",
+  rows: decorateRows([
+    {
+      key: "How this complaint has been considered",
+      value: {
+        html: d('report.allegation.already-considered') | nl2br
+      },
+      href: "/report/allegation/already-considered"
+    } if isPublic,
+    {
+      key: "Detailed account",
+      value: {
+        html: d('report.allegation.allegation') | nl2br
+      },
+      href: "/report/allegation/allegation"
+    } if isPublic or d("report.allegation.how-tell") == "describe",
+    {
+      key: "Detailed account",
+      value: {
+        html: '<a href="#">investigation.pdf</a>'
+      },
+      href: "/report/allegation/allegation",
+      condition: {
+        data: "report.allegation.how-tell",
+        value: "upload"
+      }
+    },
+    {
+      key: "Detailed account",
+      value: {
+        html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
+      },
+      href: "/report/allegation/allegation",
+      condition: {
+        data: "report.allegation.how-tell",
+        value: "later"
+      }
+    },
+    {
+      key: "Summary",
+      value: {
+        html: d('report.allegation.allegation-summary') | nl2br
+      },
+      href: "/report/allegation/allegation-summary"
+    },
+    {
+      key: "Have you told DBS?",
+      data: 'report.allegation.dbs',
+      href: "/report/allegation/dbs"
+    } if isEmployer
+  ])
+}) }}

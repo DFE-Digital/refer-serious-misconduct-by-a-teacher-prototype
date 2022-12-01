@@ -1,0 +1,13 @@
+{% extends "layouts/main.html" %}
+{% set title = "What is your name?" %}
+
+{% block content %}
+  {{ govukInput({
+    label: {
+      text: title,
+      isPageHeading: true,
+      classes: "govuk-label--xl"
+    },
+    decorate: 'report.your-details.name'
+  }) }}
+{% endblock %}

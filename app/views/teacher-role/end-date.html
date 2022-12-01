@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+{% set title = "Are they still employed in that job?" %}
+
+{% block content %}
+  {% set endDate %}
+    {{ govukDateInput({
+      fieldset: {
+        legend: {
+          classes: "govuk-fieldset__legend--s",
+          text: "When did they leave this job?"
+        }
+      },
+      hint: {
+        text: "For example, 27 3 2022"
+      },
+      decorate: "report.teacher-role.end-date",
+      validate: {
+        date: {
+          message: "End date should be a valid date"
+        }
+      }
+    }) }}
+
+    {{ govukRadios({
+      fieldset: {
+        legend: {
+          classes: "govuk-fieldset__legend--s",
+          text: "How did they leave this job?"
+        }
+      },
+      items: [
+        {
+          text: "Resigned"
+        },
+        {
+          text: "Dismissed"
+        },
+        {
+          text: "Retired"
+        },
+        {
+          text: "I don't know"
+        }
+      ],
+      decorate: 'report.teacher-role.how-end-job',
+      validate: {
+        presence: {
+          message: "Tell us why they left this job"
+        }
+      }
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes"
+      },
+      {
+        text: "They are still employed but they’ve been suspended",
+        value: "Yes, but they’ve been suspended"
+      },
+      {
+        text: "No, they have left the organisation",
+        value: "No",
+        conditional: {
+          html: endDate
+        }
+      }
+    ],
+    decorate: 'report.teacher-role.still-employed',
+    validate: {
+      presence: {
+        message: "Tell us if they are still employed"
+      }
+    }
+  }) }}
+{% endblock %}

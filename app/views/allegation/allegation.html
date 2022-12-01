@@ -1,0 +1,75 @@
+{% extends "layouts/main.html" %}
+{% set title = "Give a detailed account of what happened" if isPublic else "How do you want to tell us about your allegation?" %}
+
+{% block content %}
+  {% set textarea %}
+    {{ govukTextarea({
+      label: {
+        text: title if isPublic else "Details of the allegation",
+        classes: "govuk-label--xl govuk-!-margin-top-6" if isPublic else "govuk-label--m govuk-!-margin-top-6",
+        isPageHeading: isPublic
+      },
+      hint: {
+        text: 'Include dates and locations'
+      },
+      decorate: 'report.allegation.allegation',
+      rows: 20,
+      validate: {
+        presence: {
+          message: "Tell us about the allegation"
+        }
+      }
+    }) }}
+  {% endset %}
+
+  {% set fileUpload %}
+    {{ govukFileUpload({
+      label: {
+        text: "Upload allegation details",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.allegation.allegation-file'
+    }) }}
+  {% endset %}
+
+  {% if isPublic %}
+    {{ textarea | safe }}
+  {% else %}
+    {{ govukRadios({
+      fieldset: {
+        legend: {
+          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+          isPageHeading: true,
+          text: title
+        }
+      },
+      items: [
+        {
+          text: "I’ll upload the allegation details",
+          value: "upload",
+          conditional: {
+            html: fileUpload
+          }
+        },
+        {
+          text: "I’ll give details of the allegation",
+          value: "describe",
+          conditional: {
+            html: textarea
+          }
+        },
+        {
+          text: "I’ll do this later",
+          value: "later"
+        }
+      ],
+      decorate: 'report.allegation.how-tell',
+      validate: {
+        presence: {
+          message: "Tell us about the allegation"
+        }
+      }
+    }) }}
+  {% endif %}
+
+{% endblock %}

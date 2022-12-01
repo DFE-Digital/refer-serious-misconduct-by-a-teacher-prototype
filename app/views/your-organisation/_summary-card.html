@@ -1,0 +1,23 @@
+{% set address %}
+  {% set addressPath = 'report.your-organisation.address' %}
+  {% include '../shared/_formatted-address.html' %}
+{% endset %}
+
+{{ xGovukSummaryCard({
+  classes: "govuk-!-margin-bottom-9",
+  titleText: "Your organisation",
+  rows: decorateRows([
+    {
+      key: "Organisation",
+      data: "report.your-organisation.name",
+      href: "/report/your-organisation/name"
+    },
+    {
+      key: "Address",
+      value: {
+        html: address
+      },
+      href: "/report/your-organisation/address"
+    }
+  ])
+}) }}

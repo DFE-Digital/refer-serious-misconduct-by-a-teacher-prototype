@@ -1,0 +1,19 @@
+{% if d('report.documentation.anything-to-upload') == 'No' %}
+  {{ xGovukSummaryCard({
+    classes: "govuk-!-margin-bottom-6",
+    titleText: 'Evidence',
+    rows: decorateRows([
+      {
+        key: 'Do you have anything to upload?',
+        value: 'No',
+        href: '/report/documentation/anything-to-upload'
+      }
+    ])
+  }) }}
+{% else %}
+  {{ xGovukSummaryCard({
+    classes: "govuk-!-margin-bottom-6",
+    titleText: 'Evidence',
+    rows: decorateRows(fileRows)
+  }) }}
+{% endif %}

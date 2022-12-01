@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set serviceUrl = '/report/start' %}
+{% set serviceName = 'Refer serious misconduct by a teacher' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-xl">{{ serviceName }} in England</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {{ govukWarningText({
+        html: '<a href="https://www.gov.uk/contact-police">Contact the police</a> if you think a child is in immediate danger.'
+      }) }}
+
+      <p>The Teaching Regulation Agency (TRA) will only investigate cases where the misconduct is serious enough to potentially result in a teacher being stopped from teaching (known as a ‘prohibition order’).</p>
+
+      <p>You should provide any evidence to support your allegation, for example signed witness statements or previous complaints against the teacher.</p>
+
+      <p>All cases of incompetence and less serious misconduct should be dealt with by employers.</p>
+
+      <h2 class="govuk-heading-m">How long it will take to complete your referral</h2>
+
+      <p>You should allow an hour or more to complete your referral. The time it will take depends on the case. It will be faster if you’ve prepared the evidence.</p>
+
+      {{ govukButton({
+        classes: "govuk-!-margin-top-4 govuk-!-margin-bottom-4",
+        text: "Start now",
+        href: '/email',
+        isStartButton: true
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {# {{ xGovukRelatedNavigation({
+        sections: [{
+          items: [{
+            text: "Teacher misconduct: information for teachers",
+            href: "https://www.gov.uk/government/publications/teacher-misconduct-information-for-teachers"
+          }, {
+            text: "Teacher misconduct: referring a case",
+            href: "https://www.gov.uk/guidance/teacher-misconduct-referring-a-case"
+          },
+          {
+            text: "Teacher misconduct: disciplinary procedures",
+            href: "https://www.gov.uk/government/publications/teacher-misconduct-disciplinary-procedures"
+          },
+          {
+            text: "Teacher misconduct: regulating the teaching profession",
+            href: "https://www.gov.uk/guidance/teacher-misconduct-regulating-the-teaching-profession"
+          },
+          {
+            text: "Teacher misconduct hearings: information for observers",
+            href: "https://www.gov.uk/government/publications/teacher-misconduct-information-for-observers"
+          }],
+          subsections: [{
+            title: "Collection",
+            items: [{
+              text: "Teacher misconduct",
+              href: "https://www.gov.uk/government/collections/teacher-misconduct"
+            }]
+          }]
+        }]
+      }) }} #}
+    </div>
+  </div>
+{% endblock %}

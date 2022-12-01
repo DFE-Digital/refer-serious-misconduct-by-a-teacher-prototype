@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+{% set title = "What is your organisation’s address?" %}
+
+{% block content %}
+  {% call govukFieldset({
+    legend: {
+      text: title,
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6"
+    }
+  }) %}
+    {{ govukInput({
+      label: {
+        text: 'Address line 1'
+      },
+      decorate: 'report.your-organisation.address.line-1',
+      autocomplete: "address-line1"
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: 'Address line 2 (optional)'
+      },
+      decorate: 'report.your-organisation.address.line-2',
+      autocomplete: "address-line2"
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Town or city"
+      },
+      classes: "govuk-!-width-two-thirds",
+      decorate: 'report.your-organisation.address.town',
+      autocomplete: "address-level2"
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Postcode"
+      },
+      classes: "govuk-input--width-10",
+      decorate: 'report.your-organisation.address.postcode',
+      autocomplete: "postal-code"
+    }) }}
+  {% endcall %}
+{% endblock %}

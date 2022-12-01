@@ -1,0 +1,30 @@
+{% extends "layouts/main.html" %}
+{% set title = "Summarise what happened" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>A good summary will help TRA to respond quickly.</p>
+
+  <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="400">
+    {{ govukTextarea({
+      label: {
+        text: "A summary of the allegation",
+        classes: "govuk-label--m govuk-!-margin-top-6"
+      },
+      decorate: 'report.allegation.allegation-summary',
+      rows: 5,
+      validate: {
+        presence: {
+          message: "Give us a summary of the allegation"
+        }
+      },
+      classes: "govuk-js-character-count"
+    }) }}
+    <div id="report-allegation-allegation-summary-info" class="govuk-hint govuk-character-count__message">
+      You can enter up to 400 characters
+    </div>
+  </div>
+{% endblock %}

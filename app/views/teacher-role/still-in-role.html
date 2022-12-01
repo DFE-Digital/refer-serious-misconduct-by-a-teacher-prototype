@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+{% set title = "Are they still working in that role?" %}
+
+{% block content %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes, they’re still working in that role",
+        value: "Yes"
+      },
+      {
+        text: "No, they’re not working",
+        value: "No"
+      },
+      {
+        text: "I don’t know"
+      }
+    ],
+    decorate: 'report.teacher-role.still-employed',
+    validate: {
+      presence: {
+        message: "Tell us if they are still employed"
+      }
+    }
+  }) }}
+{% endblock %}

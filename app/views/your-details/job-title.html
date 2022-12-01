@@ -1,0 +1,21 @@
+{% extends "layouts/main.html" %}
+{% set title = "What is your job title?" %}
+
+{% block content %}
+  {{ govukInput({
+    label: {
+      text: title,
+      classes: "govuk-label--xl",
+      isPageHeading: true
+    },
+    hint: {
+      text: 'For example, ‘Headteacher’'
+    },
+    decorate: 'report.your-details.job-title',
+    validate: {
+      presence: {
+        message: "Enter your job title"
+      }
+    }
+  }) }}
+{% endblock %}

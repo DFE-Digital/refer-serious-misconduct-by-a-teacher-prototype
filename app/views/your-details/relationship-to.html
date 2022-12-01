@@ -1,0 +1,21 @@
+{% extends "layouts/main.html" %}
+{% set title = "What’s your relationship to the person you are referring?" %}
+
+{% block content %}
+  {{ govukInput({
+    label: {
+      text: title,
+      classes: "govuk-label--xl",
+      isPageHeading: true
+    },
+    hint: {
+      text: 'For example, ‘They are my child’s Maths teacher’'
+    },
+    decorate: 'report.your-details.relationship-to',
+    validate: {
+      presence: {
+        message: "Enter your relationship with the person you are referring"
+      }
+    }
+  }) }}
+{% endblock %}

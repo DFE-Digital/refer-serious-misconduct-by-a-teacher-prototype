@@ -1,0 +1,17 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set title = "Your draft has been deleted" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+
+    <p>You are now signed out.</p>
+
+    <p>
+      <a href="/report/start">Return to service</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

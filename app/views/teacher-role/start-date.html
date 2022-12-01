@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know when they started their job?" %}
+
+{% block content %}
+  {% set startDate %}
+    {{ govukDateInput({
+      fieldset: {
+        legend: {
+          classes: "govuk-label--s",
+          text: "Start date"
+        }
+      },
+      hint: {
+        text: "For example, 27 3 2021"
+      },
+      decorate: "report.teacher-role.start-date",
+      validate: {
+        date: {
+          message: "Start date should be a valid date"
+        }
+      }
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    hint: {
+      html: "<p>This is the job the person had when the allegation of serious misconduct was made against them.</p>"
+    },
+    items: [
+      {
+        text: "Yes",
+        value: "Yes",
+        conditional: {
+          html: startDate
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-role.start-job',
+    validate: {
+      presence: {
+        message: "Tell us if you know their start date"
+      }
+    }
+  }) }}
+{% endblock %}

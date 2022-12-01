@@ -1,0 +1,18 @@
+{% extends "layouts/main.html" %}
+{% set title = "You uploaded " + d('report.documentation.uploaded-files') | length + " files" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>Your files:</p>
+
+  <ul class="govuk-list govuk-!-margin-bottom-6">
+    {% for id, file in d('report.documentation.uploaded-files') %}
+      <li>
+        <a href="#">{{ file.filename }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

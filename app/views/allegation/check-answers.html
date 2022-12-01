@@ -1,0 +1,26 @@
+{% extends "layouts/main.html" %}
+{% set title = "Check and confirm your answers" %}
+{% set gridClass = "govuk-grid-column-full" %}
+{% block pageNavigation %}
+  {{ govukBackLink({
+    href: paths.back
+  }) if paths.back }}
+{% endblock %}
+
+
+{% block beforeForm %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+    </div>
+  </div>
+
+  {% include '../allegation/_summary-card.html' %}
+{% endblock %}
+
+{% block content %}
+  {% set section = 'report.allegation' %}
+  {% include '../shared/_have-you-completed-section.html' %}
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know their home address?" %}
+
+{% block content %}
+  {% set address %}
+    {% call govukFieldset({
+      legend: {
+        text: "What is their address?",
+        classes: "govuk-fieldset__legend--m"
+      }
+    }) %}
+
+    {{ govukInput({
+      label: {
+        text: 'Address line 1'
+      },
+      decorate: 'report.teacher-contact-details.address.line-1',
+      autocomplete: "address-line1"
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: 'Address line 2 (optional)'
+      },
+      decorate: 'report.teacher-contact-details.address.line-2',
+      autocomplete: "address-line2"
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Town or city"
+      },
+      classes: "govuk-!-width-two-thirds",
+      decorate: 'report.teacher-contact-details.address.town',
+      autocomplete: "address-level2"
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Postcode"
+      },
+      classes: "govuk-input--width-10",
+      decorate: 'report.teacher-contact-details.address.postcode',
+      autocomplete: "postal-code"
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Country (optional)"
+      },
+      classes: "govuk-!-width-two-thirds",
+      decorate: 'report.teacher-contact-details.address.country',
+      autocomplete: "country"
+    }) }}
+
+    {% endcall %}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: address
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-contact-details.know-address',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s address"
+      }
+    }
+  }) }}
+{% endblock %}

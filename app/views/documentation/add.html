@@ -1,0 +1,36 @@
+{% extends "layouts/main.html" %}
+{% set title = "Upload evidence and supporting information" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  {% set examples %}
+    {% include "../shared/_examples.html" %}
+  {% endset %}
+
+  {{ govukDetails({
+    summaryText: "Examples of evidence and supporting information",
+    html: examples
+  }) }}
+
+  {{ govukFileUpload({
+    label: {
+      text: "Upload files",
+      classes: "govuk-label--m"
+    },
+    hint: {
+      html: "<p>You should make sure the file names describe the content, for example ‘signed witness statement</p><p>You can upload all file types. Each file must not exceed 25mb.</p>"
+    },
+    attributes: {
+      multiple: true
+    },
+    decorate: 'report.documentation.files'
+  }) }}
+
+  <h2 class="govuk-heading-s">Upload multiple files</h2>
+  <p>You can upload multiple files at once.</p>
+
+  <h2 class="govuk-heading-s">Do not upload explicit content</h2>
+  <p class="govuk-!-margin-bottom-6">Do not upload explicit files, for example indecent images. If your allegation mentions explicit files, we’ll ask for them when they’re needed.</p>
+
+{% endblock %}

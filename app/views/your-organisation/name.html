@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+{% set title = "What’s the name of your organisation?" %}
+
+{% block content %}
+  {% set details %}
+    {% set examples %}
+      <p>The Teaching Regulation Agency (TRA) will only consider cases of serious misconduct by teachers who are currently (or have previously been) employed or engaged at:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a school in England</li>
+        <li>a sixth form college in England</li>
+        <li>relevant youth accommodation in England</li>
+        <li>a children’s home in England</li>
+        <li>a 16 to 19 Academy</li>
+      </ul>
+      <p>TRA will not usually consider cases relating to teaching assistants, higher level teaching assistants or other support staff.</p>
+    {% endset %}
+
+    {{ govukDetails({
+      summaryText: "What organisations can we investigate?",
+      html: examples
+    }) }}
+  {% endset %}
+
+  {{ govukInput({
+    label: {
+      text: title,
+      isPageHeading: true,
+      classes: "govuk-label--xl"
+    },
+    hint: {
+      html: details
+    },
+    decorate: 'report.your-organisation.name'
+  }) }}
+{% endblock %}
