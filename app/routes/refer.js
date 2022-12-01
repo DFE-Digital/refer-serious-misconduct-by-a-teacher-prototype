@@ -29,26 +29,28 @@ module.exports = router => {
     }
   })
 
-  router.post('/documentation/add', (req, res) => {
-    const isEmployer = req.session.data.report['type-of-report'] != 'public'
-
-    if (isEmployer) {
-      req.session.data.report.documentation['uploaded-files'] = {
-        '001': { filename: 'main-investigation.pdf' },
-        '002': { filename: 'police-investigation.docx' },
-        '003': { filename: 'signed-witness-statements.pdf' },
-        '004': { filename: 'cctv-footage.mp4' }
-      }
+  router.post('/eligibility/england', (req, res) => {
+    if(req.session.data.report.eligibility['teacher-in-england'] == 'No') {
+      res.redirect('/eligibility/no-jurisdiction-england')
     } else {
-      req.session.data.report.documentation['uploaded-files'] = {
-        '001': { filename: 'school-complaint.pdf' },
-        '002': { filename: 'emails-from-school.docx' },
-        '003': { filename: 'local-authority-email.pdf' }
-      }
+      res.redirect('/eligibility/serious')
     }
+  })
 
-    redirect('somewhere')
+  router.post('/eligibility/possible-jurisdiction', (req, res) => {
+    if(req.session.data.report.eligibility['teacher-unsupervised'] == 'No') {
+      res.redirect('/eligibility/no-jurisdiction-unsupervised')
+    } else {
+      res.redirect('/eligibility/england')
+    }
+  })
 
+  router.post('/eligibility/serious', (req, res) => {
+    if(req.session.data.report.eligibility.serious == 'No') {
+      res.redirect('/eligibility/not-serious-misconduct')
+    } else {
+      res.redirect('/eligibility/you-should-know')
+    }
   })
 
 }

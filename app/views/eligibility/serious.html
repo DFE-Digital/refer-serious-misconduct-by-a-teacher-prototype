@@ -1,7 +1,17 @@
 {% extends "layouts/main.html" %}
 {% set title = "Does the allegation involve serious misconduct?" %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibility/england"
+  }) }}
+{% endblock %}
+
 {% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
   <h1 class="govuk-heading-xl">{{ title }}</h1>
 
   <p>Serious misconduct is unacceptable behaviour that:</p>
@@ -43,6 +53,8 @@
   }) }}
 
   {{ govukRadios({
+    idPrefix: "[report][eligibility][serious]",
+    name: "[report][eligibility][serious]",
     fieldset: {
       legend: {
         classes: "govuk-fieldset__legend--m",
@@ -51,23 +63,27 @@
     },
     items: [
       {
-        text: "Yes"
+        text: "Yes",
+        value: "Yes"
       },
       {
-        text: "No"
+        text: "No",
+        value: "No"
       },
       {
         text: "I’m not sure",
+        value: "I’m not sure",
         conditional: {
           html: "<p>If you’re not sure, you should continue to make a referral and TRA will assess it.</p>"
         }
       }
-    ],
-    decorate: 'report.eligibility.serious',
-    validate: {
-      presence: {
-        message: "Tell us if the allegation is about a teacher in England"
-      }
-    }
+    ]
   }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
 {% endblock %}
