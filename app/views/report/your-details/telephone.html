@@ -1,22 +1,34 @@
 {% extends "layouts/main.html" %}
 {% set title = "What is your main contact number?" %}
 
-{% block content %}
-  {{ govukInput({
-    label: {
-      text: title,
-      classes: "govuk-label--xl",
-      isPageHeading: true
-    },
-    hint: {
-      text: 'We will only use this number to contact you about your referral'
-    },
-    classes: 'govuk-input--width-20',
-    decorate: 'report.your-details.telephone',
-    validate: {
-      presence: {
-        message: "Enter your main contact number"
-      }
-    }
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/your-details/relationship-to"
   }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {{ govukInput({
+          id: "[report][your-details][telephone]",
+          name: "[report][your-details][telephone]",
+          label: {
+            text: title,
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: 'We will only use this number to contact you about your referral'
+          },
+          classes: 'govuk-input--width-20'
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}

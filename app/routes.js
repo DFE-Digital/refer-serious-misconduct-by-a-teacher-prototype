@@ -14,6 +14,7 @@ router.all('*', (req, res, next) => {
   next()
 })
 
-// Add your routes here
 require('./routes/eligibility')(router)
+
 require('./routes/report')(router)
+require('./routes/report--your-details')(router)
