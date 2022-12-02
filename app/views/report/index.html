@@ -6,127 +6,129 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+      {% if data.report['your-details']['section-completed'] %}
+        {% set yourDetailsHref = '/report/your-details/check-answers' %}
+        {% set yourDetailsStatus = data.report['your-details']['section-completed'] %}
+        {% if data.report['your-details']['section-completed'] == 'completed' %}
+          {% set yourDetailsTagColour = 'blue' %}
+        {% endif %}
+
+      {% endif %}
+
+
+      {{ appTaskList({
+        sections: [{
+          titleText: "About you",
+          items: [{
+            text: "Your details",
+            href: yourDetailsHref or '/report/your-details/name',
+            tag: {
+              colour: yourDetailsTagColour or 'grey',
+              text: yourDetailsStatus or 'Not started yet'
+            }
+          }, {
+            text: "Your organisation",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }] if isEmployer else [{
+            text: "Your details",
+            href: yourDetailsHref or '/report/your-details/dont-worry',
+            tag: {
+              colour: yourDetailsTagColour or 'grey',
+              text: yourDetailsStatus or 'Not started yet'
+            }
+          }]
+        }, {
+          titleText: "About the person you are referring",
+          items: [{
+            text: "Personal details",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }, {
+            text: "Contact details",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }, {
+            text: "About their role",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }]
+        }, {
+          titleText: "The allegation",
+          items: [{
+            text: "Details of the allegation",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }, {
+            text: "Previous allegations",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }, {
+            text: "Evidence and supporting information",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }] if isEmployer else [{
+            text: "Details of the allegation",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }, {
+            text: "Evidence and supporting information",
+            href: '#',
+            tag: {
+              colour: 'grey',
+              text: 'Not started yet'
+            }
+          }]
+        }]
+      }) }}
+
+      {% set html %}
+        <p>
+          You can delete your draft:<br />
+          <a href="/report/delete">Delete your draft referral</a>
+        </p>
+        <p>
+          Drafts are automatically deleted after 6 months of no activity. We’ll send you an email before deleting it.
+        </p>
+      {% endset %}
+
       <form method="post">
-  <h1 class="govuk-heading-xl">{{ title }}</h1>
+        {{ govukButton({
+          text: "Review and send"
+        }) }}
+      </form>
 
-  {% set aboutYouStatus = 'Not started yet' %}
-  {# {% if user.report['your-details'].name %}
-  {% else %}
-  {% endif %} #}
-
-  {{ isPublic | log}}
-  {{ isEmployer | log}}
-
-
-  {{ appTaskList({
-    sections: [{
-      titleText: "About you",
-      items: [{
-        text: "Your details",
-        href: '/report/your-details/name',
-        tag: {
-          colour: 'grey',
-          text: aboutYouStatus
-        }
-      }, {
-        text: "Your organisation",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }] if isEmployer else [{
-        text: "Your details",
-        href: '/report/your-details/dont-worry',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }]
-    }, {
-      titleText: "About the person you are referring",
-      items: [{
-        text: "Personal details",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }, {
-        text: "Contact details",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }, {
-        text: "About their role",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }]
-    }, {
-      titleText: "The allegation",
-      items: [{
-        text: "Details of the allegation",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }, {
-        text: "Previous allegations",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }, {
-        text: "Evidence and supporting information",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }] if isEmployer else [{
-        text: "Details of the allegation",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }, {
-        text: "Evidence and supporting information",
-        href: '#',
-        tag: {
-          colour: 'grey',
-          text: 'Not started yet'
-        }
-      }]
-    }]
-  }) }}
-
-  {% set html %}
-    <p>
-      You can delete your draft:<br />
-      <a href="/report/delete">Delete your draft referral</a>
-    </p>
-    <p>
-      Drafts are automatically deleted after 6 months of no activity. We’ll send you an email before deleting it.
-    </p>
-  {% endset %}
-
-  <form method="post">
-    {{ govukButton({
-      text: "Review and send"
-    }) }}
-  </form>
-
-  {{ govukDetails({
-    summaryText: "I don’t want to continue",
-    html: html
-  }) }}
+      {{ govukDetails({
+        summaryText: "I don’t want to continue",
+        html: html
+      }) }}
+    </div>
+  </div>
 {% endblock %}
 

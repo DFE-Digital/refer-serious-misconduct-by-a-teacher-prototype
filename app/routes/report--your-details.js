@@ -22,4 +22,8 @@ module.exports = router => {
     res.redirect('/report/your-details/check-answers')
   })
 
+  router.post('/report/your-details/check-answers', (req, res) => {
+    res.redirect('/report')
+  })
+
 }

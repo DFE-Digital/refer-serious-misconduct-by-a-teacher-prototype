@@ -27,9 +27,8 @@
 
   {% include '../your-details/_summary-card.html' %}
 
-  {% set section = 'report.your-details' %}
-
   <form method="post">
+    {% set name = '[report][your-details][section-completed]' %}
     {% include '../../shared/_have-you-completed-section.html' %}
     {{ govukButton({
       text: "Save and continue"

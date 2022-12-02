@@ -1,4 +1,6 @@
 {{ govukRadios({
+  idPrefix: name,
+  name: name,
   fieldset: {
     legend: {
       classes: "govuk-fieldset__legend--m",
@@ -17,11 +19,5 @@
       text: "No, I’ll come back to it later",
       value: "incomplete"
     }
-  ],
-  decorate: section + '.section-completed',
-  validate: {
-    presence: {
-      message: "Tell us if you have completed this section"
-    }
-  }
+  ]
 }) }}
