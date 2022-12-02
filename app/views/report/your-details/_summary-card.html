@@ -1,30 +1,70 @@
-{{ xGovukSummaryCard({
+{{ appSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "Your details",
-  rows: decorateRows([
+  rows: [
     {
-      key: "Your name",
-      data: "report.your-details.name",
-      href: "/report/your-details/name"
+      key: {
+        text: "Your name"
+      },
+      value: {
+        html: data.report['your-details'].name
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/your-details/name"
+        }]
+      }
     },
     {
-      key: "Email address",
-      data: "report.email"
+      key: {
+        text: "Email address"
+      },
+      value: {
+        html: data.report.email
+      }
     },
     {
-      key: "Your job title",
-      data: "report.your-details.job-title",
-      href: "/report/your-details/job-title"
+      key: {
+        text: "Your job title"
+      },
+      value: {
+        html: data.report['your-details']['job-title']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/your-details/job-title"
+        }]
+      }
     } if isEmployer,
     {
-      key: "Relationship to person",
-      data: "report.your-details.relationship-to",
-      href: "/report/your-details/relationship-to"
+      key: {
+        text: "Relationship to person"
+      },
+      value: {
+        html: data.report['your-details']['relationship-to']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/your-details/relationship-to"
+        }]
+      }
     } if isPublic,
     {
-      key: "Main contact number",
-      data: "report.your-details.telephone",
-      href: "/report/your-details/telephone"
+      key: {
+        text: "Main contact number"
+      },
+      value: {
+        html: data.report['your-details']['telephone']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/your-details/telephone"
+        }]
+      }
     }
-  ])
+  ]
 }) }}

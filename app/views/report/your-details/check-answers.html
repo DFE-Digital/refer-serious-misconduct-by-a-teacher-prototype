@@ -7,9 +7,17 @@
   }) if paths.back }}
 {% endblock %}
 
-{% block beforeForm %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report"
+  }) }}
+{% endblock %}
+
+{% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-xl">
         <span class="govuk-caption-xl">About you</span>
         {{ title }}
@@ -18,9 +26,13 @@
   </div>
 
   {% include '../your-details/_summary-card.html' %}
-{% endblock %}
 
-{% block content %}
   {% set section = 'report.your-details' %}
-  {% include '../shared/_have-you-completed-section.html' %}
+
+  <form method="post">
+    {% include '../../shared/_have-you-completed-section.html' %}
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
 {% endblock %}
