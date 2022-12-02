@@ -1,7 +1,17 @@
 {% extends "layouts/main.html" %}
 {% set title = "What completing this referral means for you" %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibility/serious"
+  }) }}
+{% endblock %}
+
 {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
   <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
 
   <p>If TRA decide to investigate this allegation, it could result in the person you’re referring being banned from teaching.</p>
@@ -13,4 +23,11 @@
   <p>Once a referral is submitted, it’s kept for 50 years.</p>
 
   <p class="govuk-!-margin-bottom-6"></p>
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}
+

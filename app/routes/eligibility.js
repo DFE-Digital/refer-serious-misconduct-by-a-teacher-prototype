@@ -53,4 +53,8 @@ module.exports = router => {
     }
   })
 
+  router.post('/eligibility/you-should-know', (req, res) => { res.redirect('/eligibility/save-as-you-go') })
+
+  router.post('/eligibility/save-as-you-go', (req, res) => { res.redirect('/report') })
+
 }
