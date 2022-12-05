@@ -64,95 +64,135 @@
         {% endif %}
       {% endif %}
 
-      {{ appTaskList({
-        sections: [{
-          titleText: "About you",
-          items: [{
-            text: "Your details",
-            href: yourDetailsHref or '/report/your-details/name',
-            tag: {
-              colour: yourDetailsTagColour or 'grey',
-              text: yourDetailsStatus or 'Not started yet'
-            }
+      {% if isEmployer %}
+        {{ appTaskList({
+          sections: [{
+            titleText: "About you",
+            items: [{
+              text: "Your details",
+              href: yourDetailsHref or '/report/your-details/name',
+              tag: {
+                colour: yourDetailsTagColour or 'grey',
+                text: yourDetailsStatus or 'Not started yet'
+              }
+            }, {
+              text: "Your organisation",
+              href: yourOrganisationHref or '/report/your-organisation/name',
+              tag: {
+                colour: yourOrganisationTagColour or 'grey',
+                text: yourOrganisationStatus or 'Not started yet'
+              }
+            }]
           }, {
-            text: "Your organisation",
-            href: yourOrganisationHref or '/report/your-organisation/name',
-            tag: {
-              colour: yourOrganisationTagColour or 'grey',
-              text: yourOrganisationStatus or 'Not started yet'
-            }
-          }] if isEmployer else [{
-            text: "Your details",
-            href: yourDetailsHref or '/report/your-details/dont-worry',
-            tag: {
-              colour: yourDetailsTagColour or 'grey',
-              text: yourDetailsStatus or 'Not started yet'
-            }
+            titleText: "About the person you are referring",
+            items: [{
+              text: "Personal details",
+              href: teacherHref or '/report/teacher/name',
+              tag: {
+                colour: teacherTagColour or 'grey',
+                text: teacherStatus or 'Not started yet'
+              }
+            }, {
+              text: "Contact details",
+              href: teacherContactDetailsHref or '/report/teacher-contact-details/email',
+              tag: {
+                colour: teacherContactDetailsTagColour or 'grey',
+                text: teacherContactDetailsStatus or 'Not started yet'
+              }
+            }, {
+              text: "About their role",
+              href: teacherRoleHref or '/report/teacher-role/start-date',
+              tag: {
+                colour: teacherRoleTagColour or 'grey',
+                text: teacherRoleStatus or 'Not started yet'
+              }
+            }]
+          }, {
+            titleText: "The allegation",
+            items: [{
+              text: "Details of the allegation",
+              href: '#',
+              tag: {
+                colour: 'grey',
+                text: 'Not started yet'
+              }
+            }, {
+              text: "Previous allegations",
+              href: previousAllegationsHref or '/report/previous-misconduct/any-previous',
+              tag: {
+                colour: previousAllegationsTagColour or 'grey',
+                text: previousAllegationsStatus or 'Not started yet'
+              }
+            }, {
+              text: "Evidence and supporting information",
+              href: documentationHref or '/report/documentation/anything-to-upload',
+              tag: {
+                colour: documentationTagColour or 'grey',
+                text: documentationStatus or 'Not started yet'
+              }
+            }]
           }]
-        }, {
-          titleText: "About the person you are referring",
-          items: [{
-            text: "Personal details",
-            href: teacherHref or '/report/teacher/name',
-            tag: {
-              colour: teacherTagColour or 'grey',
-              text: teacherStatus or 'Not started yet'
-            }
+        }) }}
+      {% else %}
+        {{ appTaskList({
+          sections: [{
+            titleText: "About you",
+            items: [{
+              text: "Your details",
+              href: yourDetailsHref or '/report/your-details/dont-worry',
+              tag: {
+                colour: yourDetailsTagColour or 'grey',
+                text: yourDetailsStatus or 'Not started yet'
+              }
+            }]
           }, {
-            text: "Contact details",
-            href: teacherContactDetailsHref or '/report/teacher-contact-details/email',
-            tag: {
-              colour: teacherContactDetailsTagColour or 'grey',
-              text: teacherContactDetailsStatus or 'Not started yet'
-            }
+            titleText: "About the person you are referring",
+            items: [{
+              text: "Personal details",
+              href: teacherHref or '/report/teacher/name',
+              tag: {
+                colour: teacherTagColour or 'grey',
+                text: teacherStatus or 'Not started yet'
+              }
+            }, {
+              text: "Contact details",
+              href: teacherContactDetailsHref or '/report/teacher-contact-details/email',
+              tag: {
+                colour: teacherContactDetailsTagColour or 'grey',
+                text: teacherContactDetailsStatus or 'Not started yet'
+              }
+            }, {
+              text: "About their role",
+              href: teacherRoleHref or '/report/teacher-role/start-date',
+              tag: {
+                colour: teacherRoleTagColour or 'grey',
+                text: teacherRoleStatus or 'Not started yet'
+              }
+            }]
           }, {
-            text: "About their role",
-            href: teacherRoleHref or '/report/teacher-role/start-date',
-            tag: {
-              colour: teacherRoleTagColour or 'grey',
-              text: teacherRoleStatus or 'Not started yet'
-            }
+            titleText: "The allegation",
+            items: [{
+              text: "Details of the allegation",
+              href: '#',
+              tag: {
+                colour: 'grey',
+                text: 'Not started yet'
+              }
+            }, {
+              text: "Evidence and supporting information",
+              href: documentationHref or '/report/documentation/anything-to-upload',
+              tag: {
+                colour: documentationTagColour or 'grey',
+                text: documentationStatus or 'Not started yet'
+              }
+            }]
           }]
-        }, {
-          titleText: "The allegation",
-          items: [{
-            text: "Details of the allegation",
-            href: '#',
-            tag: {
-              colour: 'grey',
-              text: 'Not started yet'
-            }
-          }, {
-            text: "Previous allegations",
-            href: previousAllegationsHref or '/report/previous-misconduct/any-previous',
-            tag: {
-              colour: previousAllegationsTagColour or 'grey',
-              text: previousAllegationsStatus or 'Not started yet'
-            }
-          }, {
-            text: "Evidence and supporting information",
-            href: documentationHref or '/report/documentation/anything-to-upload',
-            tag: {
-              colour: documentationTagColour or 'grey',
-              text: documentationStatus or 'Not started yet'
-            }
-          }] if isEmployer else [{
-            text: "Details of the allegation",
-            href: '#',
-            tag: {
-              colour: 'grey',
-              text: 'Not started yet'
-            }
-          }, {
-            text: "Evidence and supporting information",
-            href: documentationHref or '/report/documentation/anything-to-upload',
-            tag: {
-              colour: documentationTagColour or 'grey',
-              text: documentationStatus or 'Not started yet'
-            }
-          }]
-        }]
-      }) }}
+        }) }}
+      {% endif %}
+
+
+
+
 
       {% set html %}
         <p>
