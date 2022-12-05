@@ -1,68 +1,91 @@
 {% extends "layouts/main.html" %}
 {% set title = "What is the name of the person you’re referring?" %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report"
+  }) }}
+{% endblock %}
+
 {% block content %}
-  <h1 class="govuk-heading-xl">{{ title }}</h1>
-  <h2 class="govuk-heading-m">Why do we ask for personal information?</h2>
-  <p class="govuk-!-padding-bottom-6">We’ll use the details you provide to help us identify the correct person. This information is required by law. It will help us decide whether we need to investigate the case further, or if we need more information first.</p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <h1 class="govuk-heading-xl">{{ title }}</h1>
+        <h2 class="govuk-heading-m">Why do we ask for personal information?</h2>
+        <p class="govuk-!-padding-bottom-6">We’ll use the details you provide to help us identify the correct person. This information is required by law. It will help us decide whether we need to investigate the case further, or if we need more information first.</p>
 
-  {{ govukInput({
-    label: {
-      text: "First name",
-      classes: "govuk-label--s"
-    },
-    decorate: 'report.teacher-details.first-name'
-  }) }}
+        {{ govukInput({
+          id: "[report][teacher-details][first-name]",
+          name: "[report][teacher-details][first-name]",
+          label: {
+            text: "First name",
+            classes: "govuk-label--s"
+          },
+          value: data.report['teacher-details']['first-name']
+        }) }}
 
-  {{ govukInput({
-    label: {
-      text: "Last name",
-      classes: "govuk-label--s"
-    },
-    decorate: 'report.teacher-details.last-name'
-  }) }}
+        {{ govukInput({
+          id: "[report][teacher-details][last-name]",
+          name: "[report][teacher-details][last-name]",
+          label: {
+            text: "Last name",
+            classes: "govuk-label--s"
+          },
+          value: data.report['teacher-details']['last-name']
+        }) }}
 
-  {% set previousNameHtml %}
-    {{ govukInput({
-      label: {
-        text: "Other name",
-        classes: "govuk-label--s"
-      },
-      decorate: 'report.teacher-details.previous-name'
-    }) }}
-  {% endset %}
+        {% set previousNameHtml %}
+          {{ govukInput({
+            id: "[report][teacher-details][previous-name]",
+            name: "[report][teacher-details][previous-name]",
+            label: {
+              text: "Other name",
+              classes: "govuk-label--s"
+            },
+            value: data.report['teacher-details']['previous-name']
+          }) }}
+        {% endset %}
 
-  {% if isEmployer %}
-    {{ govukRadios({
-      fieldset: {
-        legend: {
-          classes: "govuk-fieldset__legend--m",
-          text: "Do you know them by any other name?"
-        }
-      },
-      hint: {
-        text: "For example, a nickname or professional name."
-      },
-      items: [
-        {
-          text: "Yes",
-          conditional: {
-            html: previousNameHtml
-          }
-        },
-        {
-          text: "No"
-        },
-        {
-          text: "I don’t know"
-        }
-      ],
-      decorate: 'report.teacher-details.have-previous-name',
-      validate: {
-        presence: {
-          message: "Tell us if you have a National Insurance number"
-        }
-      }
-    }) }}
-  {% endif %}
+        {% if isEmployer %}
+          {{ govukRadios({
+            idPrefix: "[report][teacher-details][have-previous-name]",
+            name: "[report][teacher-details][have-previous-name]",
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--m",
+                text: "Do you know them by any other name?"
+              }
+            },
+            hint: {
+              text: "For example, a nickname or professional name."
+            },
+            items: [
+              {
+                text: "Yes",
+                value: "Yes",
+                conditional: {
+                  html: previousNameHtml
+                }
+              },
+              {
+                text: "No",
+                value: "No"
+              },
+              {
+                text: "I don’t know",
+                value: "I don’t know"
+              }
+            ],
+            value: data.report['teacher-details']['have-previous-name']
+          }) }}
+        {% endif %}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}

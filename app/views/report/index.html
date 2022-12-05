@@ -24,6 +24,14 @@
         {% endif %}
       {% endif %}
 
+      {% if data.report['teacher-details']['section-completed'] %}
+        {% set teacherHref = '/report/teacher/check-answers' %}
+        {% set teacherStatus = data.report['teacher-details']['section-completed'] %}
+        {% if data.report['teacher-details']['section-completed'] == 'completed' %}
+          {% set teacherTagColour = 'blue' %}
+        {% endif %}
+      {% endif %}
+
 
       {{ appTaskList({
         sections: [{
@@ -54,10 +62,10 @@
           titleText: "About the person you are referring",
           items: [{
             text: "Personal details",
-            href: '#',
+            href: teacherHref or '/report/teacher/name',
             tag: {
-              colour: 'grey',
-              text: 'Not started yet'
+              colour: teacherTagColour or 'grey',
+              text: teacherStatus or 'Not started yet'
             }
           }, {
             text: "Contact details",

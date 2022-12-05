@@ -1,53 +1,90 @@
-{{ xGovukSummaryCard({
+{{ appSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "Personal details",
-  rows: decorateRows([
+  rows: [
     {
-      key: 'Name',
-      value: d('report.teacher-details.first-name') + ' ' + d('report.teacher-details.last-name'),
-      href: '/report/teacher/name'
-    },
-    {
-      key: 'Other name',
-      data: 'report.teacher-details.previous-name',
-      href: '/report/teacher/name',
-      condition: {
-        data: 'report.teacher-details.have-previous-name',
-        value: 'Yes'
-      }
-    } if isEmployer,
-    {
-      key: 'Date of birth',
-      value: (d('report.teacher-details.date-of-birth') | isoDateFromDateInput | govukDate) if d('report.teacher-details.date-of-birth.day') else 'Not known',
-      href: '/report/teacher/age',
-      condition: {
-        data: 'report.teacher-details.know-age',
-        excludedValue: 'knows-age'
+      key: {
+        html: 'Name'
+      },
+      value: {
+        html: data.report['teacher-details']['first-name'] + ' ' + data.report['teacher-details']['last-name']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher/name"
+        }]
       }
     },
     {
-      key: 'Approximate age',
-      data: 'report.teacher-details.age',
-      href: '/report/teacher/age',
-      condition: {
-        data: 'report.teacher-details.know-age',
-        value: 'knows-age'
+      key: {
+        html: 'Other name'
+      },
+      value: {
+        html: data.report['teacher-details']['previous-name']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher/name"
+        }]
       }
-    },
+    } if data.report['teacher-details']['previous-name'],
     {
-      key: 'National Insurance number',
-      value: 'Not known' if d('report.teacher-details.know-nino') == 'No' else d('report.teacher-details.nino'),
-      href: '/report/teacher/nino'
-    } if isEmployer,
+      key: {
+        html: 'Date of birth'
+      },
+      value: {
+        html: (data.report['teacher-details']['date-of-birth'] | isoDateFromDateInput | date) if (data.report['teacher-details']['date-of-birth'].day) else 'Not known'
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher/age"
+        }]
+      }
+    } if data.report['teacher-details']['know-age'] == 'knows-dob',
     {
-      key: 'Teacher reference number (TRN)',
-      value: 'Not known' if d('report.teacher-details.know-trn') == 'No' else d('report.teacher-details.trn'),
-      href: '/report/teacher/trn'
-    } if isEmployer,
+      key: {
+        html: 'National Insurance number'
+      },
+      value: {
+        html: 'Not known' if (data.report['teacher-details']['know-nino']) == 'No' else data.report['teacher-details'].nino
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher/nino"
+        }]
+      }
+    } if data.report['teacher-details']['know-nino'] == 'Yes',
     {
-      key: 'Do they have QTS?',
-      data: 'report.teacher-details.qts',
-      href: '/report/teacher/qts'
-    } if isEmployer
-  ])
+      key: {
+        html: 'Teacher reference number (TRN)'
+      },
+      value: {
+        html: 'Not known' if (data.report['teacher-details']['know-trn']) == 'No' else data.report['teacher-details'].trn
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher/trn"
+        }]
+      }
+    } if data.report['teacher-details']['know-trn'] == 'Yes',
+    {
+      key: {
+        html: 'Do they have QTS?'
+      },
+      value: {
+        html: data.report['teacher-details'].qts
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher/qts"
+        }]
+      }
+    } if data.report['teacher-details'].qts
+  ]
 }) }}

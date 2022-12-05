@@ -1,75 +1,99 @@
 {% extends "layouts/main.html" %}
 {% set title = "Do you know their date of birth?" %}
 
-{% block content %}
-
-  {% set previousNameHtml %}
-    {{ govukInput({
-      label: {
-        text: "Previous name"
-      },
-      decorate: 'report.teacher-details.previous-name'
-    }) }}
-  {% endset %}
-  {% set dob %}
-    {{ govukDateInput({
-      fieldset: {
-        legend: {
-          classes: "govuk-fieldset__legend--m",
-          text: "Date of birth"
-        }
-      },
-      hint: {
-        text: "For example, 27 3 1987"
-      },
-      decorate: "report.teacher-details.date-of-birth",
-      validate: {
-        date: {
-          message: "Date of birth should be a valid date"
-        }
-      }
-    }) }}
-  {% endset %}
-
-  {% set age %}
-    {{ govukInput({
-      label: {
-        text: "Approximate age",
-        classes: "govuk-label--s"
-      },
-      hint: {
-        text: "For example, ‘They’re in their 20s’"
-      },
-      decorate: 'report.teacher-details.age'
-    }) }}
-  {% endset %}
-
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-        isPageHeading: true,
-        text: title
-      }
-    },
-    items: [
-      {
-        text: "Yes",
-        value: "knows-dob",
-        conditional: {
-          html: dob
-        }
-      },
-      {
-        text: "No",
-        value: "knows-neither"
-      }
-    ],
-    decorate: 'report.teacher-details.know-age',
-    validate: {
-      presence: {
-        message: "Tell us if you know the teacher’s age or date of birth"
-      }
-    }
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/teacher/name"
   }) }}
 {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set dob %}
+          {{ govukDateInput({
+            idPrefix: "[report][teacher-details][date-of-birth]",
+            name: "[report][teacher-details][date-of-birth]",
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--m",
+                text: "Date of birth"
+              }
+            },
+            hint: {
+              text: "For example, 27 3 1987"
+            },
+            items: [
+              {
+                name: "[report][teacher-details][date-of-birth][day]",
+                label: "Day",
+                value: data.report['teacher-details']['date-of-birth'].day,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "[report][teacher-details][date-of-birth][month]",
+                label: "Month",
+                value: data.report['teacher-details']['date-of-birth'].month,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "[report][teacher-details][date-of-birth][year]",
+                label: "Year",
+                value: data.report['teacher-details']['date-of-birth'].year,
+                classes: "govuk-input--width-4"
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {# {% set age %}
+          {{ govukInput({
+            id: "[report][teacher-details][age]",
+            name: "[report][teacher-details][age]",
+            label: {
+              text: "Approximate age",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "For example, ‘They’re in their 20s’"
+            },
+            value: data.report['teacher-details'].age
+          }) }}
+        {% endset %} #}
+
+        {{ govukRadios({
+          idPrefix: "[report][teacher-details][know-age]",
+          name: "[report][teacher-details][know-age]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+              isPageHeading: true,
+              text: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "knows-dob",
+              conditional: {
+                html: dob
+              }
+            },
+            {
+              text: "No",
+              value: "knows-neither"
+            }
+          ],
+          value: data.report['teacher-details']['know-age']
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
