@@ -1,18 +1,34 @@
 {% extends "layouts/main.html" %}
-{% set title = "You uploaded " + d('report.documentation.uploaded-files') | length + " files" %}
+{% set title = "You uploaded " + data.report.documentation'uploaded-files' | length + " files" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report"
+  }) }}
+{% endblock %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl">
-    {{ title }}
-  </h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <h1 class="govuk-heading-xl">
+          {{ title }}
+        </h1>
 
-  <p>Your files:</p>
+        <p>Your files:</p>
 
-  <ul class="govuk-list govuk-!-margin-bottom-6">
-    {% for id, file in d('report.documentation.uploaded-files') %}
-      <li>
-        <a href="#">{{ file.filename }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+        <ul class="govuk-list govuk-!-margin-bottom-6">
+          {% for id, file in data.report.documentation['uploaded-files'] %}
+            <li>
+              <a href="#">{{ file.filename }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}

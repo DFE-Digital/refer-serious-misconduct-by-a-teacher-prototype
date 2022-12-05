@@ -1,90 +1,103 @@
 {% extends "layouts/main.html" %}
 {% set title = "Give a detailed account of previous allegations" %}
 
-{% block content %}
-  <h1 class="govuk-heading-xl">
-    {{ title }}
-  </h1>
-
-  <p>This includes previous:</p>
-
-  <ul class="govuk-list govuk-list--bullet">
-    <li>misconduct</li>
-    <li>disciplinary actions</li>
-    <li>complaints</li>
-    <li>referrals to TRA, National College for Teaching and Leadership, Teaching Agency or the General Teaching Council for England</li>
-  </ul>
-
-  <p>Tell us:</p>
-
-  <ul class="govuk-list govuk-list--bullet">
-    <li>locations and dates</li>
-    <li>what happened</li>
-    <li>what action was taken</li>
-    <li>reference numbers from previous referrals</li>
-  </ul>
-
-  {% set textarea %}
-    {{ govukTextarea({
-      label: {
-        text: "Details of previous allegations",
-        classes: "govuk-label--m govuk-!-margin-top-6"
-      },
-      decorate: 'report.previous-misconduct.previous-misconduct',
-      rows: 20,
-      validate: {
-        presence: {
-          message: "Tell us about the previous misconduct"
-        }
-      }
-    }) }}
-  {% endset %}
-
-  {% set fileUpload %}
-    {{ govukFileUpload({
-      label: {
-        text: "Upload details of previous allegations",
-        classes: "govuk-label--s"
-      },
-      decorate: 'report.previous-misconduct.previous-misconduct-file'
-    }) }}
-  {% endset %}
-
-  {{ govukRadios({
-    formGroup: {
-      classes: "govuk-!-margin-top-6"
-    },
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--m",
-        text: "How do you want to tell us about previous allegations?"
-      }
-    },
-    items: [
-      {
-        text: "I’ll upload the previous misconduct details",
-        value: "upload",
-        conditional: {
-          html: fileUpload
-        }
-      },
-      {
-        text: "I’ll give details of the previous misconduct",
-        value: "describe",
-        conditional: {
-          html: textarea
-        }
-      },
-      {
-        text: "I’ll do this later",
-        value: "later"
-      }
-    ],
-    decorate: 'report.previous-misconduct.how-tell',
-    validate: {
-      presence: {
-        message: "Tell us about the previous misconduct"
-      }
-    }
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/previous-misconduct/any-previous"
   }) }}
 {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <h1 class="govuk-heading-xl">
+          {{ title }}
+        </h1>
+
+        <p>This includes previous:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>misconduct</li>
+          <li>disciplinary actions</li>
+          <li>complaints</li>
+          <li>referrals to TRA, National College for Teaching and Leadership, Teaching Agency or the General Teaching Council for England</li>
+        </ul>
+
+        <p>Tell us:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>locations and dates</li>
+          <li>what happened</li>
+          <li>what action was taken</li>
+          <li>reference numbers from previous referrals</li>
+        </ul>
+
+        {% set textarea %}
+          {{ govukTextarea({
+            id: "[report][previous-misconduct][previous-misconduct]",
+            name: "[report][previous-misconduct][previous-misconduct]",
+            label: {
+              text: "Details of previous allegations",
+              classes: "govuk-label--m govuk-!-margin-top-6"
+            },
+            value: data.report['previous-misconduct']['previous-misconduct']
+            rows: 20
+          }) }}
+        {% endset %}
+
+        {% set fileUpload %}
+          {{ govukFileUpload({
+            id: "[report][previous-misconduct][previous-misconduct-file]",
+            name: "[report][previous-misconduct][previous-misconduct-file]",
+            label: {
+              text: "Upload details of previous allegations",
+              classes: "govuk-label--s"
+            },
+            value: data.report['previous-misconduct']['previous-misconduct-file']
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          idPrefix: "[report][previous-misconduct][previous-misconduct-file]",
+          name: "[report][previous-misconduct][previous-misconduct-file]",
+          formGroup: {
+            classes: "govuk-!-margin-top-6"
+          },
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--m",
+              text: "How do you want to tell us about previous allegations?"
+            }
+          },
+          items: [
+            {
+              text: "I’ll upload the previous misconduct details",
+              value: "upload",
+              conditional: {
+                html: fileUpload
+              }
+            },
+            {
+              text: "I’ll give details of the previous misconduct",
+              value: "describe",
+              conditional: {
+                html: textarea
+              }
+            },
+            {
+              text: "I’ll do this later",
+              value: "later"
+            }
+          ],
+          value: data.report['previous-misconduct']['how-tell']
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
