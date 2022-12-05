@@ -1,55 +1,85 @@
 {% extends "layouts/main.html" %}
 {% set title = "Do you know when they started their job?" %}
 
-{% block content %}
-  {% set startDate %}
-    {{ govukDateInput({
-      fieldset: {
-        legend: {
-          classes: "govuk-label--s",
-          text: "Start date"
-        }
-      },
-      hint: {
-        text: "For example, 27 3 2021"
-      },
-      decorate: "report.teacher-role.start-date",
-      validate: {
-        date: {
-          message: "Start date should be a valid date"
-        }
-      }
-    }) }}
-  {% endset %}
-
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-        isPageHeading: true,
-        text: title
-      }
-    },
-    hint: {
-      html: "<p>This is the job the person had when the allegation of serious misconduct was made against them.</p>"
-    },
-    items: [
-      {
-        text: "Yes",
-        value: "Yes",
-        conditional: {
-          html: startDate
-        }
-      },
-      {
-        text: "No"
-      }
-    ],
-    decorate: 'report.teacher-role.start-job',
-    validate: {
-      presence: {
-        message: "Tell us if you know their start date"
-      }
-    }
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report"
   }) }}
 {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set startDate %}
+          {{ govukDateInput({
+            id: "[report][teacher-role][start-date]",
+            name: "[report][teacher-role][start-date]",
+            fieldset: {
+              legend: {
+                classes: "govuk-label--s",
+                text: "Start date"
+              }
+            },
+            hint: {
+              text: "For example, 27 3 2021"
+            },
+            items: [
+              {
+                name: "[report][teacher-role][start-date][day]",
+                label: "Day",
+                value: data.report['teacher-role']['start-date'].day,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "[report][teacher-role][start-date][month]",
+                label: "Month",
+                value: data.report['teacher-role']['start-date'].month,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "[report][teacher-role][start-date][year]",
+                label: "Year",
+                value: data.report['teacher-role']['start-date'].year,
+                classes: "govuk-input--width-4"
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          id: "[report][teacher-role][start-job]",
+          name: "[report][teacher-role][start-job]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+              isPageHeading: true,
+              text: title
+            }
+          },
+          hint: {
+            html: "<p>This is the job the person had when the allegation of serious misconduct was made against them.</p>"
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes",
+              conditional: {
+                html: startDate
+              }
+            },
+            {
+              text: "No"
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+

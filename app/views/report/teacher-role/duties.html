@@ -1,78 +1,89 @@
 {% extends "layouts/main.html" %}
 {% set title = "Describe their main duties" if isPublic else "How do you want to tell us about their main duties?" %}
 
-{% block content %}
-  {% set duties %}
-    {% set hintHtml %}
-      <p>As far as you know, give details of the work carried out by the person you are referring.</p>
-    {% endset %}
-
-    {{ govukTextarea({
-      label: {
-        text: "Describe their main duties",
-        classes: "govuk-label--xl" if isPublic else "govuk-label--m",
-        isPageHeading: isPublic
-      },
-      hint: {
-        html: hintHtml
-      } if isPublic,
-      decorate: 'report.teacher-role.duties',
-      rows: 10 if isPublic else 20,
-      validate: {
-        presence: {
-          message: "Tell us about their main duties"
-        }
-      }
-    }) }}
-  {% endset %}
-
-  {% set jobDescription %}
-    {{ govukFileUpload({
-      label: {
-        text: "Upload job description",
-        classes: "govuk-label--s"
-      },
-      decorate: 'report.teacher-details.job-description-file'
-    }) }}
-  {% endset %}
-
-  {% if isEmployer %}
-    {{ govukRadios({
-      fieldset: {
-        legend: {
-          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-          isPageHeading: true,
-          text: title
-        }
-      },
-      items: [
-        {
-          text: "I’ll upload a job description",
-          value: "upload",
-          conditional: {
-            html: jobDescription
-          }
-        },
-        {
-          text: "I’ll describe their main duties",
-          value: "describe",
-          conditional: {
-            html: duties
-          }
-        },
-        {
-          text: "I’ll do this later",
-          value: "later"
-        }
-      ],
-      decorate: 'report.teacher-role.how-tell-job',
-      validate: {
-        presence: {
-          message: "Tell us about their main duties"
-        }
-      }
-    }) }}
-  {% else %}
-    {{ duties | safe }}
-  {% endif %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/teacher-role/school"
+  }) }}
 {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set duties %}
+          {% set hintHtml %}
+            <p>As far as you know, give details of the work carried out by the person you are referring.</p>
+          {% endset %}
+
+          {{ govukTextarea({
+            idPrefix: "[report][teacher-role][duties]",
+            name: "[report][teacher-role][duties]",
+            label: {
+              text: "Describe their main duties",
+              classes: "govuk-label--xl" if isPublic else "govuk-label--m",
+              isPageHeading: isPublic
+            },
+            hint: {
+              html: hintHtml
+            } if isPublic,
+            rows: 10 if isPublic else 20
+          }) }}
+        {% endset %}
+
+        {% set jobDescription %}
+          {{ govukFileUpload({
+            idPrefix: "[report][teacher-details][job-description-file]",
+            name: "[report][teacher-details][job-description-file]",
+            label: {
+              text: "Upload job description",
+              classes: "govuk-label--s"
+            }
+          }) }}
+        {% endset %}
+
+        {% if isEmployer %}
+          {{ govukRadios({
+            idPrefix: "[report][teacher-role][how-tell-job]",
+            name: "[report][teacher-role][how-tell-job]",
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+                isPageHeading: true,
+                text: title
+              }
+            },
+            items: [
+              {
+                text: "I’ll upload a job description",
+                value: "upload",
+                conditional: {
+                  html: jobDescription
+                }
+              },
+              {
+                text: "I’ll describe their main duties",
+                value: "describe",
+                conditional: {
+                  html: duties
+                }
+              },
+              {
+                text: "I’ll do this later",
+                value: "later"
+              }
+            ]
+          }) }}
+        {% else %}
+          {{ duties | safe }}
+        {% endif %}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

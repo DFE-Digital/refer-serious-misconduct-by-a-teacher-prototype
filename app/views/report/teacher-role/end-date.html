@@ -1,85 +1,114 @@
 {% extends "layouts/main.html" %}
 {% set title = "Are they still employed in that job?" %}
 
-{% block content %}
-  {% set endDate %}
-    {{ govukDateInput({
-      fieldset: {
-        legend: {
-          classes: "govuk-fieldset__legend--s",
-          text: "When did they leave this job?"
-        }
-      },
-      hint: {
-        text: "For example, 27 3 2022"
-      },
-      decorate: "report.teacher-role.end-date",
-      validate: {
-        date: {
-          message: "End date should be a valid date"
-        }
-      }
-    }) }}
-
-    {{ govukRadios({
-      fieldset: {
-        legend: {
-          classes: "govuk-fieldset__legend--s",
-          text: "How did they leave this job?"
-        }
-      },
-      items: [
-        {
-          text: "Resigned"
-        },
-        {
-          text: "Dismissed"
-        },
-        {
-          text: "Retired"
-        },
-        {
-          text: "I don't know"
-        }
-      ],
-      decorate: 'report.teacher-role.how-end-job',
-      validate: {
-        presence: {
-          message: "Tell us why they left this job"
-        }
-      }
-    }) }}
-  {% endset %}
-
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-        isPageHeading: true,
-        text: title
-      }
-    },
-    items: [
-      {
-        text: "Yes"
-      },
-      {
-        text: "They are still employed but they’ve been suspended",
-        value: "Yes, but they’ve been suspended"
-      },
-      {
-        text: "No, they have left the organisation",
-        value: "No",
-        conditional: {
-          html: endDate
-        }
-      }
-    ],
-    decorate: 'report.teacher-role.still-employed',
-    validate: {
-      presence: {
-        message: "Tell us if they are still employed"
-      }
-    }
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/teacher-role/start-date"
   }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set endDate %}
+          {{ govukDateInput({
+            idPrefix: "[report][teacher-role][end-date]",
+            name: "[report][teacher-role][end-date]",
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--s",
+                text: "When did they leave this job?"
+              }
+            },
+            hint: {
+              text: "For example, 27 3 2022"
+            },
+            items: [
+              {
+                name: "[report][teacher-role][end-date][day]",
+                label: "Day",
+                value: data.report['teacher-role']['end-date'].day,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "[report][teacher-role][end-date][month]",
+                label: "Month",
+                value: data.report['teacher-role']['end-date'].month,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "[report][teacher-role][end-date][year]",
+                label: "Year",
+                value: data.report['teacher-role']['end-date'].year,
+                classes: "govuk-input--width-4"
+              }
+            ]
+          }) }}
+
+          {{ govukRadios({
+            idPrefix: "[report][teacher-role][how-end-job]",
+            name: "[report][teacher-role][how-end-job]",
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--s",
+                text: "How did they leave this job?"
+              }
+            },
+            items: [
+              {
+                text: "Resigned",
+                value: "Resigned"
+              },
+              {
+                text: "Dismissed",
+                value: "Dismissed"
+              },
+              {
+                text: "Retired",
+                value: "Retired"
+              },
+              {
+                text: "I don't know",
+                value: "I don't know"
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          idPrefix: "[report][teacher-role][still-employed]",
+          name: "[report][teacher-role][still-employed]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+              isPageHeading: true,
+              text: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes"
+            },
+            {
+              text: "They are still employed but they’ve been suspended",
+              value: "Yes, but they’ve been suspended"
+            },
+            {
+              text: "No, they have left the organisation",
+              value: "No",
+              conditional: {
+                html: endDate
+              }
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}

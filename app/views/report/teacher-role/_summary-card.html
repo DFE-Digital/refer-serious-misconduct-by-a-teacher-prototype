@@ -1,5 +1,6 @@
 {% set address %}
   {{appFormattedAddress({
+    name: data.report['teacher-role'].school.address.name,
     line1: data.report['teacher-role'].school.address.line1,
     line2: data.report['teacher-role'].school.address.line2,
     town: data.report['teacher-role'].school.address.town,
@@ -24,116 +25,186 @@
   titleText: "About their role",
   rows: [
     {
-      key: "Start date",
-      value: d('report.teacher-role.start-date') | isoDateFromDateInput | date,
-      href: "/report/teacher-role/start-date"
-    } if isEmployer,
-    {
-      key: "End date",
-      value: d('report.teacher-role.end-date') | isoDateFromDateInput | date,
-      href: "/report/teacher-role/end-date",
-      condition: {
-        data: 'report.teacher-role.still-employed',
-        value: 'No'
+      key: {
+        html: 'Start date'
+      },
+      value: {
+        html: data.report['teacher-role']['start-date'] | isoDateFromDateInput | date
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/start-date"
+        }]
       }
     } if isEmployer,
     {
-      key: "How did they leave this job?",
-      data: 'report.teacher-role.how-end-job',
-      href: "/report/teacher-role/end-date",
-      condition: {
-        data: 'report.teacher-role.still-employed',
-        value: 'No'
+      key: {
+        html: 'End date'
+      },
+      value: {
+        html: data.report['teacher-role']['end-date'] | isoDateFromDateInput | date
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/end-date"
+        }]
+      }
+    } if isEmployer and data.report['teacher-role']['still-employed'] == "No",
+    {
+      key: {
+        html: 'How did they leave this job?'
+      },
+      value: {
+        html: data.report['teacher-role']['how-end-job']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/end-date"
+        }]
+      }
+    } if isEmployer and data.report['teacher-role']['still-employed'] == "No",
+    {
+      key: {
+        html: 'Are they still employed in this job?'
+      },
+      value: {
+        html: data.report['teacher-role']['still-employed']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/end-date"
+        }]
       }
     } if isEmployer,
     {
-      key: "Are they still employed in this job?",
-      data: "report.teacher-role.still-employed",
-      href: "/report/teacher-role/end-date",
-      condition: {
-        data: 'report.teacher-role.still-employed',
-        excludedValue: 'No'
+      key: {
+        html: 'Job title'
+      },
+      value: {
+        html: data.report['teacher-role']['job-title']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/job-title"
+        }]
       }
-    } if isEmployer,
-    {
-      key: "Job title",
-      data: "report.teacher-role.job-title",
-      href: "/report/teacher-role/job-title"
     },
     {
-      key: "Do they still work in this role?",
-      data: "report.teacher-role.still-employed",
-      href: "/report/teacher-role/still-in-role"
-    } if isPublic,
-    {
-      key: "Organisation",
-      value: d("report.your-organisation.name") or "The same organisation as me",
-      href: "/report/teacher-role/school",
-      condition: {
-        data: "report.teacher-role.same-organisation",
-        value: "same"
+      key: {
+        html: 'Organisation'
+      },
+      value: {
+        html: data.report['your-organisation']['name'] or "The same organisation as me"
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/school"
+        }]
       }
     } if isEmployer,
     {
-      key: "School",
+      key: {
+        html: 'School'
+      },
       value: {
         html: address
       },
-      href: "/report/teacher-role/school"
-    } if isPublic or d("report.teacher-role.same-organisation") == "different",
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/school"
+        }]
+      }
+    } if isPublic or data.report['teacher-role']['same-organisation'] == "different",
     {
-      key: "Main duties",
-      value: {
-        html: d('report.teacher-role.duties') | nl2br
+      key: {
+        html: 'Main duties'
       },
-      href: "/report/teacher-role/duties"
-    } if isPublic or d("report.teacher-role.how-tell-job") == "describe",
+      value: {
+        html: data.report['teacher-role']['duties'] | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/school"
+        }]
+      }
+    } if isPublic or data.report['teacher-role']['how-tell-job'] == "describe",
     {
-      key: "Main duties",
+      key: {
+        html: 'Main duties'
+      },
       value: {
         html: '<a href="#">job-description.pdf</a>'
       },
-      href: "/report/teacher-role/duties",
-      condition: {
-        data: "report.teacher-role.how-tell-job",
-        value: "upload"
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/duties"
+        }]
       }
-    },
+    } if data.report['teacher-role']['how-tell-job'] == "upload",
     {
-      key: "Main duties",
+      key: {
+        html: 'Main duties'
+      },
       value: {
         html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
       },
-      href: "/report/teacher-role/duties",
-      condition: {
-        data: "report.teacher-role.how-tell-job",
-        value: "later"
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/duties"
+        }]
       }
-    },
+    } if data.report['teacher-role']['how-tell-job'] == "later",
     {
-      key: "Are they teaching somewhere else?",
-      data: "report.teacher-role.teaching-elsewhere",
-      href: "/report/teacher-role/teaching-somewhere-else"
+      key: {
+        html: 'Are they teaching somewhere else?'
+      },
+      value: {
+        html: data.report['teacher-role']['teaching-elsewhere']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/teaching-somewhere-else"
+        }]
+      }
     } if hasLeftJob,
     {
-      key: "Do you know where they are teaching?",
-      data: "report.teacher-role.know-other-employer",
-      href: "/report/teacher-role/teaching-where-now",
-      condition: {
-        data: "report.teacher-role.know-other-employer",
-        value: "No"
+      key: {
+        html: 'Do you know where they are teaching?'
+      },
+      value: {
+        html: data.report['teacher-role']['know-other-employer']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/teaching-where-now"
+        }]
       }
-    } if hasLeftJob and d("report.teacher-role.teaching-elsewhere") == "Yes",
+    } if hasLeftJob and data.report['teacher-role']['teaching-elsewhere'] == "Yes",
     {
-      key: "New employer",
+      key: {
+        html: 'New employer'
+      },
       value: {
         html: newOrgAddress
       },
-      href: "/report/teacher-role/teaching-where-now",
-      condition: {
-        data: "report.teacher-role.know-other-employer",
-        value: "Yes"
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/teaching-where-now"
+        }]
       }
-    } if hasLeftJob and d("report.teacher-role.teaching-elsewhere") == "Yes"
+    } if hasLeftJob and data.report['teacher-role']['teaching-elsewhere'] == "Yes"
   ]
 }) }}

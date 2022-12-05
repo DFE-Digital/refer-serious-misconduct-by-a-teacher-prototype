@@ -97,6 +97,20 @@
               colour: teacherRoleTagColour or 'grey',
               text: teacherRoleStatus or 'Not started yet'
             }
+          }] if isEmployer else [{
+            text: "Personal details",
+            href: teacherHref or '/report/teacher/name',
+            tag: {
+              colour: teacherTagColour or 'grey',
+              text: teacherStatus or 'Not started yet'
+            }
+          }, {
+            text: "About their role",
+            href: teacherRoleHref or '/report/teacher-role/job-title',
+            tag: {
+              colour: teacherRoleTagColour or 'grey',
+              text: teacherRoleStatus or 'Not started yet'
+            }
           }]
         }, {
           titleText: "The allegation",

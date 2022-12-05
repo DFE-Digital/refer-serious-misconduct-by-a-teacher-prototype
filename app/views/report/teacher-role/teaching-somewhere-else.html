@@ -1,32 +1,44 @@
 {% extends "layouts/main.html" %}
 {% set title = "Do you know if they are teaching somewhere else?" %}
 
-{% block content %}
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-        isPageHeading: true,
-        text: title
-      }
-    },
-    items: [
-      {
-        text: "Yes, they are teaching somewhere else",
-        value: "Yes"
-      },
-      {
-        text: "No, they are not teaching somewhere else"
-      },
-      {
-        text: "I don’t know"
-      }
-    ],
-    decorate: 'report.teacher-role.teaching-elsewhere',
-    validate: {
-      presence: {
-        message: "Tell us if they are teaching somewhere else"
-      }
-    }
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/teacher-role/duties"
   }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {{ govukRadios({
+          id: "[report][teacher-role][teaching-elsewhere]",
+          name: "[report][teacher-role][teaching-elsewhere]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+              isPageHeading: true,
+              text: title
+            }
+          },
+          items: [
+            {
+              text: "Yes, they are teaching somewhere else",
+              value: "Yes"
+            },
+            {
+              text: "No, they are not teaching somewhere else"
+            },
+            {
+              text: "I don’t know"
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}
