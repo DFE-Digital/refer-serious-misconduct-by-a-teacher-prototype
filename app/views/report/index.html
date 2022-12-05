@@ -48,6 +48,14 @@
         {% endif %}
       {% endif %}
 
+      {% if data.report['allegation']['section-completed'] %}
+        {% set allegationHref = '/report/allegation/check-answers' %}
+        {% set allegationStatus = data.report['allegation']['section-completed'] %}
+        {% if data.report['allegation']['section-completed'] == 'completed' %}
+          {% set allegationTagColour = 'solid' %}
+        {% endif %}
+      {% endif %}
+
       {% if data.report['previous-misconduct']['section-completed'] %}
         {% set previousAllegationsHref = '/report/previous-misconduct/check-answers' %}
         {% set previousAllegationsStatus = data.report['previous-misconduct']['section-completed'] %}
@@ -111,10 +119,10 @@
             titleText: "The allegation",
             items: [{
               text: "Details of the allegation",
-              href: '#',
+              href: allegationHref or '/report/allegation/allegation',
               tag: {
-                colour: 'grey',
-                text: 'Not started yet'
+                colour: allegationTagColour or 'grey',
+                text: allegationStatus or 'Not started yet'
               }
             }, {
               text: "Previous allegations",
@@ -166,10 +174,10 @@
             titleText: "The allegation",
             items: [{
               text: "Details of the allegation",
-              href: '#',
+              href: allegationHref or '/report/allegation/allegation',
               tag: {
-                colour: 'grey',
-                text: 'Not started yet'
+                colour: allegationTagColour or 'grey',
+                text: allegationStatus or 'Not started yet'
               }
             }, {
               text: "Evidence and supporting information",

@@ -1,54 +1,90 @@
-{{ xGovukSummaryCard({
+{{ appSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "What happened",
-  rows: decorateRows([
+  rows: [
     {
-      key: "How this complaint has been considered",
-      value: {
-        html: d('report.allegation.already-considered') | nl2br
+      key: {
+        html: 'How this complaint has been considered'
       },
-      href: "/report/allegation/already-considered"
+      value: {
+        html: data.report['allegation']['already-considered'] | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/allegation/already-considered"
+        }]
+      }
     } if isPublic,
     {
-      key: "Detailed account",
-      value: {
-        html: d('report.allegation.allegation') | nl2br
+      key: {
+        html: 'Detailed account'
       },
-      href: "/report/allegation/allegation"
-    } if isPublic or d("report.allegation.how-tell") == "describe",
+      value: {
+        html: data.report['allegation']['allegation'] | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/allegation/allegation"
+        }]
+      }
+    } if isPublic or data.report['allegation']['how-tell'] == "describe",
     {
-      key: "Detailed account",
+      key: {
+        html: 'Detailed account'
+      },
       value: {
         html: '<a href="#">investigation.pdf</a>'
       },
-      href: "/report/allegation/allegation",
-      condition: {
-        data: "report.allegation.how-tell",
-        value: "upload"
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/allegation/allegation"
+        }]
       }
-    },
+    } if data.report['allegation']['how-tell'] == "upload",
     {
-      key: "Detailed account",
+      key: {
+        html: 'Detailed account'
+      },
       value: {
         html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
       },
-      href: "/report/allegation/allegation",
-      condition: {
-        data: "report.allegation.how-tell",
-        value: "later"
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/allegation/allegation"
+        }]
       }
-    },
+    } if data.report['allegation']['how-tell'] == "later",
     {
-      key: "Summary",
-      value: {
-        html: d('report.allegation.allegation-summary') | nl2br
+      key: {
+        html: 'Summary'
       },
-      href: "/report/allegation/allegation-summary"
-    },
+      value: {
+        html: data.report['allegation']['allegation-summary'] | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/allegation/dbs"
+        }]
+      }
+    } if isEmployer,
     {
-      key: "Have you told DBS?",
-      data: 'report.allegation.dbs',
-      href: "/report/allegation/dbs"
+      key: {
+        html: 'Have you told DBS?'
+      },
+      value: {
+        html: data.report['allegation']['dbs'] | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/allegation/dbs"
+        }]
+      }
     } if isEmployer
-  ])
+  ]
 }) }}
