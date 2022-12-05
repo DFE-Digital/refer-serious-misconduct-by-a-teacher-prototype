@@ -1,25 +1,36 @@
 {% set address %}
-  {% set addressPath = 'report.teacher-role.school.address' %}
-  {% include '../shared/_formatted-address.html' %}
+  {{appFormattedAddress({
+    line1: data.report['teacher-role'].school.address.line1,
+    line2: data.report['teacher-role'].school.address.line2,
+    town: data.report['teacher-role'].school.address.town,
+    postcode: data.report['teacher-role'].school.address.postcode,
+    country: data.report['teacher-role'].school.address.country
+  })}}
 {% endset %}
 
 {% set newOrgAddress %}
   {% set addressPath = 'report.teacher-role.other-employer.address' %}
-  {% include '../shared/_formatted-address.html' %}
+  {{appFormattedAddress({
+    line1: data.report['teacher-role']['other-employer'].address.line1,
+    line2: data.report['teacher-role']['other-employer'].address.line2,
+    town: data.report['teacher-role']['other-employer'].address.town,
+    postcode: data.report['teacher-role']['other-employer'].address.postcode,
+    country: data.report['teacher-role']['other-employer'].address.country
+  })}}
 {% endset %}
 
-{{ xGovukSummaryCard({
+{{ appSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "About their role",
-  rows: decorateRows([
+  rows: [
     {
       key: "Start date",
-      value: d('report.teacher-role.start-date') | isoDateFromDateInput | govukDate,
+      value: d('report.teacher-role.start-date') | isoDateFromDateInput | date,
       href: "/report/teacher-role/start-date"
     } if isEmployer,
     {
       key: "End date",
-      value: d('report.teacher-role.end-date') | isoDateFromDateInput | govukDate,
+      value: d('report.teacher-role.end-date') | isoDateFromDateInput | date,
       href: "/report/teacher-role/end-date",
       condition: {
         data: 'report.teacher-role.still-employed',
@@ -124,5 +135,5 @@
         value: "Yes"
       }
     } if hasLeftJob and d("report.teacher-role.teaching-elsewhere") == "Yes"
-  ])
+  ]
 }) }}

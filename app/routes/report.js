@@ -12,4 +12,16 @@ module.exports = router => {
     next()
   })
 
+  router.post('/report', (req, res) => {
+    res.redirect('/report/submit/review')
+  })
+
+  router.post('/report/submit/review', (req, res) => {
+    res.redirect('/report/submit/declaration')
+  })
+
+  router.post('/report/submit/declaration', (req, res) => {
+    res.redirect('/report/submit/confirmation')
+  })
+
 }

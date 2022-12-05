@@ -2,51 +2,62 @@
 {% set title = "Before you send your referral" %}
 {% set buttonText = "Send referral" %}
 
-{% block beforeForm %}
-  <h1 class="govuk-heading-xl">
-    {{ title }}
-  </h1>
-
-  <p>You must confirm that:</p>
-
-  <ul class="govuk-list govuk-list--bullet">
-    <li>you want TRA to investigate this allegation, which could result in the person you’re referring being stopped from teaching</li>
-    <li>all your answers are true to the best of your knowledge and belief</li>
-    <li>you give consent for this referral and any supporting documents to be shared with the person you’re referring and any employer (only your name will be shared with them)</li>
-    {% if isEmployer %}
-      <li>you have permission from the relevant third parties for any supporting documents to be shared, for example the police or DBS</li>
-    {% endif %}
-    <li>you understand that you might need to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage</li>
-  </ul>
-
-  <p>Once submitted, your referral will be kept on file for 50 years.</p>
-
-  <p>This declaration is required by law and won’t affect any existing GDPR or other workplace regulations.</p>
-
-  {{ govukCheckboxes({
-    formGroup: {
-      classes: "govuk-!-margin-top-7"
-    },
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--m",
-        text: "Do you agree to this declaration?"
-      }
-    },
-    items: [
-      {
-        text: "Yes, I agree"
-      }
-    ],
-    decorate: 'report.submit.declaration',
-    validate: {
-      presence: {
-        message: "You must agree to this declaration before continuing"
-      }
-    }
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/submit/review"
   }) }}
-
 {% endblock %}
 
 {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <h1 class="govuk-heading-xl">
+          {{ title }}
+        </h1>
+
+        <p>You must confirm that:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>you want TRA to investigate this allegation, which could result in the person you’re referring being stopped from teaching</li>
+          <li>all your answers are true to the best of your knowledge and belief</li>
+          <li>you give consent for this referral and any supporting documents to be shared with the person you’re referring and any employer (only your name will be shared with them)</li>
+          {% if isEmployer %}
+            <li>you have permission from the relevant third parties for any supporting documents to be shared, for example the police or DBS</li>
+          {% endif %}
+          <li>you understand that you might need to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage</li>
+        </ul>
+
+        <p>Once submitted, your referral will be kept on file for 50 years.</p>
+
+        <p>This declaration is required by law and won’t affect any existing GDPR or other workplace regulations.</p>
+
+        {{ govukCheckboxes({
+          idPrefix: "[report][submit][declaration]",
+          name: "[report][submit][declaration]",
+          formGroup: {
+            classes: "govuk-!-margin-top-7"
+          },
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--m",
+              text: "Do you agree to this declaration?"
+            }
+          },
+          items: [
+            {
+              text: "Yes, I agree"
+            }
+          ],
+          value: data.report.submit.declaration
+        }) }}
+
+        {{ govukButton({
+          text: "Send referral"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}
+
