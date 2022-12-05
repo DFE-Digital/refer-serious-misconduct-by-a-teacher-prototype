@@ -1,36 +1,52 @@
 {% extends "layouts/main.html" %}
 {% set title = "Upload evidence and supporting information" %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/documentation/anything-to-upload"
+  }) }}
+{% endblock %}
+
 {% block content %}
-  <h1 class="govuk-heading-xl">{{ title }}</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <h1 class="govuk-heading-xl">{{ title }}</h1>
 
-  {% set examples %}
-    {% include "../shared/_examples.html" %}
-  {% endset %}
+        {% set examples %}
+          {% include "../../shared/_examples.html" %}
+        {% endset %}
 
-  {{ govukDetails({
-    summaryText: "Examples of evidence and supporting information",
-    html: examples
-  }) }}
+        {{ govukDetails({
+          summaryText: "Examples of evidence and supporting information",
+          html: examples
+        }) }}
 
-  {{ govukFileUpload({
-    label: {
-      text: "Upload files",
-      classes: "govuk-label--m"
-    },
-    hint: {
-      html: "<p>You should make sure the file names describe the content, for example ‘signed witness statement</p><p>You can upload all file types. Each file must not exceed 25mb.</p>"
-    },
-    attributes: {
-      multiple: true
-    },
-    decorate: 'report.documentation.files'
-  }) }}
+        {{ govukFileUpload({
+          label: {
+            text: "Upload files",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            html: "<p>You should make sure the file names describe the content, for example ‘signed witness statement</p><p>You can upload all file types. Each file must not exceed 25mb.</p>"
+          },
+          attributes: {
+            multiple: true
+          },
+          decorate: 'report.documentation.files'
+        }) }}
 
-  <h2 class="govuk-heading-s">Upload multiple files</h2>
-  <p>You can upload multiple files at once.</p>
+        <h2 class="govuk-heading-s">Upload multiple files</h2>
+        <p>You can upload multiple files at once.</p>
 
-  <h2 class="govuk-heading-s">Do not upload explicit content</h2>
-  <p class="govuk-!-margin-bottom-6">Do not upload explicit files, for example indecent images. If your allegation mentions explicit files, we’ll ask for them when they’re needed.</p>
+        <h2 class="govuk-heading-s">Do not upload explicit content</h2>
+        <p class="govuk-!-margin-bottom-6">Do not upload explicit files, for example indecent images. If your allegation mentions explicit files, we’ll ask for them when they’re needed.</p>
 
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
 {% endblock %}

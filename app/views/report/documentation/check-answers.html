@@ -1,22 +1,23 @@
 {% extends "layouts/main.html" %}
 {% set title = "Check and confirm your answers" %}
-{% set anyFiles = d('report.documentation.uploaded-files') | length > 0 %}
-{% set gridClass = "govuk-grid-column-full" %}
-{% block pageNavigation %}
-  {{ govukBackLink({
-    href: paths.back
-  }) if paths.back }}
-{% endblock %}
-
+{% set anyFiles = data.report.documentation['uploaded-files'] | length > 0 %}
 
 {% set examples %}
-  {% include "../shared/_examples.html" %}
+  {% include "../../shared/_examples.html" %}
 {% endset %}
 
-{% block beforeForm %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/documentation/type/004"
+  }) }}
+{% endblock %}
+
+{% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">About you</span>
         {{ title }}
       </h1>
 
@@ -31,16 +32,13 @@
 
   {% include '../documentation/_summary-card.html' %}
 
-  {% if anyFiles %}
+  <form method="post">
+    {% set completedRadiosName = '[report][documentation][section-completed]' %}
+    {% set completedRadiosValue = data.report['documentation']['section-completed'] %}
+    {% include '../../shared/_have-you-completed-section.html' %}
     {{ govukButton({
-      text: 'Add more evidence',
-      href: '#',
-      classes: 'govuk-button--secondary govuk-!-margin-bottom-8'
+      text: "Save and continue"
     }) }}
-  {% endif %}
+  </form>
 {% endblock %}
 
-{% block content %}
-  {% set section = 'report.documentation' %}
-  {% include '../shared/_have-you-completed-section.html' %}
-{% endblock %}

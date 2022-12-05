@@ -12,7 +12,7 @@
         {% set yourDetailsHref = '/report/your-details/check-answers' %}
         {% set yourDetailsStatus = data.report['your-details']['section-completed'] %}
         {% if data.report['your-details']['section-completed'] == 'completed' %}
-          {% set yourDetailsTagColour = 'bluex' %}
+          {% set yourDetailsTagColour = 'solid' %}
         {% endif %}
       {% endif %}
 
@@ -20,7 +20,7 @@
         {% set yourOrganisationHref = '/report/your-organisation/check-answers' %}
         {% set yourOrganisationStatus = data.report['your-organisation']['section-completed'] %}
         {% if data.report['your-organisation']['section-completed'] == 'completed' %}
-          {% set yourOrganisationTagColour = 'bluex' %}
+          {% set yourOrganisationTagColour = 'solid' %}
         {% endif %}
       {% endif %}
 
@@ -28,7 +28,7 @@
         {% set teacherHref = '/report/teacher/check-answers' %}
         {% set teacherStatus = data.report['teacher-details']['section-completed'] %}
         {% if data.report['teacher-details']['section-completed'] == 'completed' %}
-          {% set teacherTagColour = 'bluex' %}
+          {% set teacherTagColour = 'solid' %}
         {% endif %}
       {% endif %}
 
@@ -36,7 +36,7 @@
         {% set teacherContactDetailsHref = '/report/teacher/check-answers' %}
         {% set teacherContactDetailsStatus = data.report['teacher-contact-details']['section-completed'] %}
         {% if data.report['teacher-contact-details']['section-completed'] == 'completed' %}
-          {% set teacherContactDetailsTagColour = 'bluex' %}
+          {% set teacherContactDetailsTagColour = 'solid' %}
         {% endif %}
       {% endif %}
 
@@ -44,10 +44,17 @@
         {% set teacherRoleHref = '/report/teacher-role/check-answers' %}
         {% set teacherRoleStatus = data.report['teacher-role']['section-completed'] %}
         {% if data.report['teacher-role']['section-completed'] == 'completed' %}
-          {% set teacherRoleTagColour = 'bluex' %}
+          {% set teacherRoleTagColour = 'solid' %}
         {% endif %}
       {% endif %}
 
+      {% if data.report['documentation']['section-completed'] %}
+        {% set documentationHref = '/report/documentation/check-answers' %}
+        {% set documentationStatus = data.report['documentation']['section-completed'] %}
+        {% if data.report['documentation']['section-completed'] == 'completed' %}
+          {% set documentationTagColour = 'solid' %}
+        {% endif %}
+      {% endif %}
 
       {{ appTaskList({
         sections: [{
@@ -116,10 +123,10 @@
             }
           }, {
             text: "Evidence and supporting information",
-            href: '#',
+            href: documentationHref or '/report/documentation/anything-to-upload',
             tag: {
-              colour: 'grey',
-              text: 'Not started yet'
+              colour: documentationTagColour or 'grey',
+              text: documentationStatus or 'Not started yet'
             }
           }] if isEmployer else [{
             text: "Details of the allegation",
@@ -130,10 +137,10 @@
             }
           }, {
             text: "Evidence and supporting information",
-            href: '#',
+            href: documentationHref or '/report/documentation/anything-to-upload',
             tag: {
-              colour: 'grey',
-              text: 'Not started yet'
+              colour: documentationTagColour or 'grey',
+              text: documentationStatus or 'Not started yet'
             }
           }]
         }]
