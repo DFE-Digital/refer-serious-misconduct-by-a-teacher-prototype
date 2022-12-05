@@ -1,63 +1,58 @@
 {% set address %}
-  {% set addressPath = 'report.teacher-contact-details.address' %}
-  {% include '../shared/_formatted-address.html' %}
+  {{appFormattedAddress({
+    line1: data.report['teacher-contact-details'].address.line1,
+    line2: data.report['teacher-contact-details'].address.line2,
+    town: data.report['teacher-contact-details'].address.town,
+    postcode: data.report['teacher-contact-details'].address.postcode,
+    country: data.report['teacher-contact-details'].address.country
+  })}}
 {% endset %}
 
-{{ xGovukSummaryCard({
+{{ appSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "Contact details",
-  rows: decorateRows([
+  rows: [
     {
-      key: "Email address",
-      value: d("report.teacher-contact-details.email") if d("report.teacher-contact-details.know-email") === "Yes" else "Not known",
-      href: "/report/teacher-contact-details/email"
-    },
-    {
-      key: "Main contact number",
-      data: "report.teacher-contact-details.main-contact",
-      href: "/report/teacher-contact-details/telephone",
-      condition: {
-        data: "report.teacher-contact-details.telephone",
-        value: "Yes"
-      }
-    },
-    {
-      key: "Mobile telephone number",
-      data: "report.teacher-contact-details.mobile-number",
-      href: "/report/teacher-contact-details/telephone",
-      condition: {
-        data: "report.teacher-contact-details.telephone",
-        value: "Mobile"
-      }
-    },
-    {
-      key: "Work telephone number",
-      data: "report.teacher-contact-details.work-number",
-      href: "/report/teacher-contact-details/telephone",
-      condition: {
-        data: "report.teacher-contact-details.telephone",
-        value: "Work"
-      }
-    },
-    {
-      key: "Telephone number",
-      value: "Not known",
-      href: "/report/teacher-contact-details/telephone",
-      condition: {
-        data: "report.teacher-contact-details.telephone",
-        value: "none"
-      }
-    },
-    {
-      key: "Address",
-      value: {
-        html: address if d('report.teacher-contact-details.know-address') === 'Yes' else 'Not known'
+      key: {
+        html: "Email address"
       },
-      href: "/report/teacher-contact-details/address",
-      conditional: {
-        data: "report.teacher-contact-details.know-address",
-        value: "Yes"
+      value: {
+        html: data.report['teacher-contact-details'].email if data.report['teacher-contact-details']['know-email'] == 'Yes' else "Not known"
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-contact-details/email"
+        }]
+      }
+    },
+    {
+      key: {
+        html: "Phone number"
+      },
+      value: {
+        html: data.report['teacher-contact-details']['main-contact'] if data.report['teacher-contact-details']['know-telephone'] == 'Yes' else "Not known"
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-contact-details/telephone"
+        }]
+      }
+    },
+    {
+      key: {
+        html: "Address"
+      },
+      value: {
+        html: address if data.report['teacher-contact-details']['know-address'] == 'Yes' else 'Not known'
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-contact-details/address"
+        }]
       }
     }
-  ])
+  ]
 }) }}

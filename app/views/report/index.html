@@ -32,6 +32,14 @@
         {% endif %}
       {% endif %}
 
+      {% if data.report['teacher-contact-details']['section-completed'] %}
+        {% set teacherContactDetailsHref = '/report/teacher/check-answers' %}
+        {% set teacherContactDetailsStatus = data.report['teacher-contact-details']['section-completed'] %}
+        {% if data.report['teacher-contact-details']['section-completed'] == 'completed' %}
+          {% set teacherContactDetailsTagColour = 'blue' %}
+        {% endif %}
+      {% endif %}
+
 
       {{ appTaskList({
         sections: [{
@@ -69,10 +77,10 @@
             }
           }, {
             text: "Contact details",
-            href: '#',
+            href: teacherContactDetailsHref or '/report/teacher-contact-details/email',
             tag: {
-              colour: 'grey',
-              text: 'Not started yet'
+              colour: teacherContactDetailsTagColour or 'grey',
+              text: teacherContactDetailsStatus or 'Not started yet'
             }
           }, {
             text: "About their role",

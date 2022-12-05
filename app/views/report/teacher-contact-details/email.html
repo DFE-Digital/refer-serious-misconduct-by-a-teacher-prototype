@@ -1,41 +1,59 @@
 {% extends "layouts/main.html" %}
 {% set title = "Do you know the personal email address of the person you are referring?" if isEmployer else "Do you know the email address of the person you are referring?" %}
 
-{% block content %}
-  {% set email %}
-    {{ govukInput({
-      label: {
-        text: "Email address",
-        classes: "govuk-label--s"
-      },
-      decorate: 'report.teacher-contact-details.email'
-    }) }}
-  {% endset %}
-
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--l govuk-!-margin-bottom-6",
-        isPageHeading: true,
-        text: title
-      }
-    },
-    items: [
-      {
-        text: "Yes",
-        conditional: {
-          html: email
-        }
-      },
-      {
-        text: "No"
-      }
-    ],
-    decorate: 'report.teacher-contact-details.know-email',
-    validate: {
-      presence: {
-        message: "Tell us if you know the teacher’s email address"
-      }
-    }
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report"
   }) }}
 {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set email %}
+          {{ govukInput({
+            id: "[report][teacher-contact-details][email]",
+            name: "[report][teacher-contact-details][email]",
+            label: {
+              text: "Email address",
+              classes: "govuk-label--s"
+            },
+            value: data.report['teacher-contact-details'].email
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          idPrefix: "[report][teacher-contact-details][know-email]",
+          name: "[report][teacher-contact-details][know-email]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l govuk-!-margin-bottom-6",
+              isPageHeading: true,
+              text: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes",
+              conditional: {
+                html: email
+              }
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+          value: data.report['teacher-contact-details']['know-email']
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
