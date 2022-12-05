@@ -1,13 +1,5 @@
 {% extends "layouts/main.html" %}
 {% set title = "Check and confirm your answers" %}
-{% set gridClass = "govuk-grid-column-full" %}
-{% block pageNavigation %}
-  {{ govukBackLink({
-    href: paths.back
-  }) if paths.back }}
-{% endblock %}
-
-
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -28,7 +20,8 @@
   {% include '../your-details/_summary-card.html' %}
 
   <form method="post">
-    {% set name = '[report][your-details][section-completed]' %}
+    {% set completedRadiosName = '[report][your-details][section-completed]' %}
+    {% set completedRadiosValue = data.report['your-details']['section-completed'] %}
     {% include '../../shared/_have-you-completed-section.html' %}
     {{ govukButton({
       text: "Save and continue"

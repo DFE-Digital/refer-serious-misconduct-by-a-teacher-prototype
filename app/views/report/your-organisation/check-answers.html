@@ -1,16 +1,16 @@
 {% extends "layouts/main.html" %}
 {% set title = "Check and confirm your answers" %}
-{% set gridClass = "govuk-grid-column-full" %}
-{% block pageNavigation %}
+
+{% block beforeContent %}
   {{ govukBackLink({
-    href: paths.back
-  }) if paths.back }}
+    text: "Back",
+    href: "/report"
+  }) }}
 {% endblock %}
 
-
-{% block beforeForm %}
+{% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-xl">
         <span class="govuk-caption-xl">About you</span>
         {{ title }}
@@ -19,9 +19,13 @@
   </div>
 
   {% include '../your-organisation/_summary-card.html' %}
-{% endblock %}
 
-{% block content %}
-  {% set section = 'report.your-organisation' %}
-  {% include '../shared/_have-you-completed-section.html' %}
+  <form method="post">
+    {% set completedRadiosName = '[report][your-organisation][section-completed]' %}
+    {% set completedRadiosValue = data.report['your-organisation']['section-completed'] %}
+    {% include '../../shared/_have-you-completed-section.html' %}
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
 {% endblock %}

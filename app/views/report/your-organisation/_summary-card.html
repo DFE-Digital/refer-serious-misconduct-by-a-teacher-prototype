@@ -1,23 +1,43 @@
 {% set address %}
-  {% set addressPath = 'report.your-organisation.address' %}
-  {% include '../shared/_formatted-address.html' %}
+  {{appFormattedAddress({
+    line1: data.report['your-organisation'].address.line1,
+    line2: data.report['your-organisation'].address.line2,
+    town: data.report['your-organisation'].address.town,
+    postcode: data.report['your-organisation'].address.postcode
+  })}}
 {% endset %}
 
-{{ xGovukSummaryCard({
+{{ appSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "Your organisation",
-  rows: decorateRows([
+  rows: [
     {
-      key: "Organisation",
-      data: "report.your-organisation.name",
-      href: "/report/your-organisation/name"
+      key: {
+        html: "Organisation"
+      },
+      value: {
+        html: data.report['your-organisation'].name
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/your-organisation/name"
+        }]
+      }
     },
     {
-      key: "Address",
+      key: {
+        html: "Address"
+      },
       value: {
         html: address
       },
-      href: "/report/your-organisation/address"
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/your-organisation/address"
+        }]
+      }
     }
-  ])
+  ]
 }) }}

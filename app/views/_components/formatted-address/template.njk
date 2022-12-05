@@ -1,0 +1,14 @@
+{% if params.name %}
+  {{ params.name }}<br />
+{% endif %}
+{{ params.line1 }}<br />
+{% if params.line2 %}
+  {{ params.line2 }}<br />
+{% endif %}
+{% if params.town %}
+  {{ params.town }}<br />
+{% endif %}
+{{ params.postcode }}
+{% if params.country %}
+  <br />{{ params.country }}
+{% endif %}

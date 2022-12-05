@@ -14,7 +14,14 @@
         {% if data.report['your-details']['section-completed'] == 'completed' %}
           {% set yourDetailsTagColour = 'blue' %}
         {% endif %}
+      {% endif %}
 
+      {% if data.report['your-organisation']['section-completed'] %}
+        {% set yourOrganisationHref = '/report/your-organisation/check-answers' %}
+        {% set yourOrganisationStatus = data.report['your-organisation']['section-completed'] %}
+        {% if data.report['your-organisation']['section-completed'] == 'completed' %}
+          {% set yourOrganisationTagColour = 'blue' %}
+        {% endif %}
       {% endif %}
 
 
@@ -30,10 +37,10 @@
             }
           }, {
             text: "Your organisation",
-            href: '#',
+            href: yourOrganisationHref or '/report/your-organisation/name',
             tag: {
-              colour: 'grey',
-              text: 'Not started yet'
+              colour: yourOrganisationTagColour or 'grey',
+              text: yourOrganisationStatus or 'Not started yet'
             }
           }] if isEmployer else [{
             text: "Your details",

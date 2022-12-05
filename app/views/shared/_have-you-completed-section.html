@@ -1,6 +1,6 @@
 {{ govukRadios({
-  idPrefix: name,
-  name: name,
+  idPrefix: completedRadiosName,
+  name: completedRadiosName,
   fieldset: {
     legend: {
       classes: "govuk-fieldset__legend--m",
@@ -19,5 +19,6 @@
       text: "No, I’ll come back to it later",
       value: "incomplete"
     }
-  ]
+  ],
+  value: completedRadiosValue
 }) }}
