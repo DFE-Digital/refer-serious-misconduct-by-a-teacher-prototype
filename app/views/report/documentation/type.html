@@ -18,15 +18,19 @@
         </h1>
         {% set other %}
           {{ govukInput({
+            idPrefix: "[report][documentation][uploaded-files]["+fileId+"][other-type]",
+            name: "[report][documentation][uploaded-files]["+fileId+"][other-type]",
             label: {
               text: "Explain what this document is",
               classes: "govuk-label--s"
             },
-            decorate: 'report.documentation.uploaded-files.' + fileId + '.other-type'
+            value: data.report.documentation['uploaded-files'][fileId]['other-type']
           }) }}
         {% endset %}
 
         {{ govukCheckboxes({
+          idPrefix: "[report][documentation][uploaded-files]["+fileId+"][type]",
+          name: "[report][documentation][uploaded-files]["+fileId+"][type]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
@@ -34,37 +38,105 @@
             }
           },
           items: [
-            { text: "CV" },
-            { text: "References" },
-            { text: "Job application" },
-            { text: "Job offer" },
-            { text: "Job description, role requirement or person specification" },
-            { text: "File notes concerning conduct, behaviour, attitude" },
-            { text: "Statements made by the person you’re referring" },
-            { text: "Documents of internal investigations and outcomes" },
-            { text: "Documentation of any past disciplinary action and complaints" },
-            { text: "Police investigation and reports" },
-            { text: "Local authority investigation reports or documents" },
-            { text: "Reports from other bodies or agencies" },
-            { text: "Signed witness statements" },
-            { text: "Dismissal, resignation or redeployment letters" },
-            { text: "Interview reports relating to the allegation" },
-            { text: "Minutes of strategy meetings" },
+            {
+              text: "CV",
+              value: "CV"
+            },
+            {
+              text: "References",
+              value: "References"
+            },
+            {
+              text: "Job application",
+              value: "Job application"
+            },
+            {
+              text: "Job offer",
+              value: "Job offer"
+            },
+            {
+              text: "Job description, role requirement or person specification",
+              value: "Job description, role requirement or person specification"
+            },
+            {
+              text: "File notes concerning conduct, behaviour, attitude",
+              value: "File notes concerning conduct, behaviour, attitude"
+            },
+            {
+              text: "Statements made by the person you’re referring",
+              value: "Statements made by the person you’re referring"
+            },
+            {
+              text: "Documents of internal investigations and outcomes",
+              value: "Documents of internal investigations and outcomes"
+            },
+            {
+              text: "Documentation of any past disciplinary action and complaints",
+              value: "Documentation of any past disciplinary action and complaints"
+            },
+            {
+              text: "Police investigation and reports",
+              value: "Police investigation and reports"
+            },
+            {
+              text: "Local authority investigation reports or documents",
+              value: "Local authority investigation reports or documents"
+            },
+            {
+              text: "Reports from other bodies or agencies",
+              value: "Reports from other bodies or agencies"
+            },
+            {
+              text: "Signed witness statements",
+              value: "Signed witness statements"
+            },
+            {
+              text: "Dismissal, resignation or redeployment letters",
+              value: "Dismissal, resignation or redeployment letters"
+            },
+            {
+              text: "Interview reports relating to the allegation",
+              value: "Interview reports relating to the allegation"
+            },
+            {
+              text: "Minutes of strategy meetings",
+              value: "Minutes of strategy meetings"
+            },
             {
               text: "Other",
+              value: "Other",
               conditional: {
                 html: other
               }
             }
           ] if isEmployer else [
-            { text: "Complaint made to the school" },
-            { text: "Correspondence to or from school" },
-            { text: "School complaint policy" },
-            { text: "Complaint made to the police" },
-            { text: "Complaint made to the local authority or any other agency or body" },
-            { text: "Signed witness statements" },
+            {
+              text: "Complaint made to the school",
+              value: "Complaint made to the school"
+            },
+            {
+              text: "Correspondence to or from school",
+              value: "Correspondence to or from school"
+            },
+            {
+              text: "School complaint policy",
+              value: "School complaint policy"
+            },
+            {
+              text: "Complaint made to the police",
+              value: "Complaint made to the police"
+            },
+            {
+              text: "Complaint made to the local authority or any other agency or body",
+              value: "Complaint made to the local authority or any other agency or body"
+            },
+            {
+              text: "Signed witness statements",
+              value: "Signed witness statements"
+            },
             {
               text: "Other",
+              value: "Other",
               conditional: {
                 html: other
               }
