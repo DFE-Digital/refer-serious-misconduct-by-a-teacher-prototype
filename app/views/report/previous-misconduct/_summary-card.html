@@ -1,55 +1,76 @@
-{{ xGovukSummaryCard({
+{{ appSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "Previous allegations",
-  rows: decorateRows([
+  rows: [
     {
-      key: "Has there been any previous misconduct?",
-      data: "report.previous-misconduct.any-previous",
-      href: "/report/previous-misconduct/any-previous"
-    },
-    {
-      key: "Detailed report",
-      value: {
-        html: d('report.previous-misconduct.previous-misconduct') | nl2br
+      key: {
+        html: "Has there been any previous misconduct?"
       },
-      href: "/report/previous-misconduct/previous-misconduct",
-      condition: {
-        data: "report.previous-misconduct.how-tell",
-        value: "describe"
+      value: {
+        html: data.report['previous-misconduct']['any-previous']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/previous-misconduct/any-previous"
+        }]
       }
     },
     {
-      key: "Detailed report",
+      key: {
+        html: "Detailed report"
+      },
+      value: {
+        html: data.report['previous-misconduct']['previous-misconduct'] | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/previous-misconduct/previous-misconduct"
+        }]
+      }
+    } if data.report['previous-misconduct']['how-tell'] == 'describe',
+    {
+      key: {
+        html: "Detailed report"
+      },
       value: {
         html: '<a href="#">previous-misconduct.pdf</a>'
       },
-      href: "/report/previous-misconduct/previous-misconduct",
-      condition: {
-        data: "report.previous-misconduct.how-tell",
-        value: "upload"
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/previous-misconduct/previous-misconduct"
+        }]
       }
-    },
+    } if data.report['previous-misconduct']['how-tell'] == 'upload',
     {
-      key: "Detailed report",
+      key: {
+        html: "Detailed report"
+      },
       value: {
         html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
       },
-      href: "/report/previous-misconduct/previous-misconduct",
-      condition: {
-        data: "report.previous-misconduct.how-tell",
-        value: "later"
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/previous-misconduct/previous-misconduct"
+        }]
       }
-    },
+    } if data.report['previous-misconduct']['how-tell'] == 'later',
     {
-      key: "Summary",
-      value: {
-        html: d('report.previous-misconduct.previous-misconduct-summary') | nl2br
+      key: {
+        html: "Summary"
       },
-      href: "/report/previous-misconduct/previous-misconduct-summary",
-      condition: {
-        data: "report.previous-misconduct.any-previous",
-        value: "Yes"
+      value: {
+        html: data.report['previous-misconduct']['previous-misconduct-summary'] | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/previous-misconduct/previous-misconduct-summary"
+        }]
       }
-    }
-  ])
+    } if data.report['previous-misconduct']['any-previous'] == 'Yes'
+  ]
 }) }}

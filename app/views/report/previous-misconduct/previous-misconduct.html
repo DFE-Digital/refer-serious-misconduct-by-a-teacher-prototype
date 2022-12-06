@@ -42,7 +42,7 @@
               text: "Details of previous allegations",
               classes: "govuk-label--m govuk-!-margin-top-6"
             },
-            value: data.report['previous-misconduct']['previous-misconduct']
+            value: data.report['previous-misconduct']['previous-misconduct'],
             rows: 20
           }) }}
         {% endset %}
@@ -60,8 +60,8 @@
         {% endset %}
 
         {{ govukRadios({
-          idPrefix: "[report][previous-misconduct][previous-misconduct-file]",
-          name: "[report][previous-misconduct][previous-misconduct-file]",
+          idPrefix: "[report][previous-misconduct][how-tell]",
+          name: "[report][previous-misconduct][how-tell]",
           formGroup: {
             classes: "govuk-!-margin-top-6"
           },
