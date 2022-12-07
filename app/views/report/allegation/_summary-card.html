@@ -60,20 +60,6 @@
     } if data.report['allegation']['how-tell'] == "later",
     {
       key: {
-        html: 'Summary'
-      },
-      value: {
-        html: data.report['allegation']['allegation-summary'] | nl2br
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/allegation/dbs"
-        }]
-      }
-    } if isEmployer,
-    {
-      key: {
         html: 'Have you told DBS?'
       },
       value: {
