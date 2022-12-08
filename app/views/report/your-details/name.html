@@ -12,7 +12,38 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
+        <h1 class="govuk-heading-xl">
+          Your name
+        </h1>
+
         {{ govukInput({
+          id: "[report][your-details][firstName]",
+          name: "[report][your-details][firstName]",
+          label: {
+            text: "First name",
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: 'Or given name'
+          },
+          value: data.report['your-details']['firstName']
+        }) }}
+
+        {{ govukInput({
+          id: "[report][your-details][lastName]",
+          name: "[report][your-details][lastName]",
+          label: {
+            text: "Last name",
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: 'Or family name'
+          },
+          value: data.report['your-details']['lastName']
+        }) }}
+
+
+        {# {{ govukInput({
           id: "[report][your-details][name]",
           name: "[report][your-details][name]",
           label: {
@@ -21,7 +52,7 @@
             classes: "govuk-label--xl"
           },
           value: data.report['your-details']['name']
-        }) }}
+        }) }} #}
         {{ govukButton({
           text: "Save and continue"
         }) }}

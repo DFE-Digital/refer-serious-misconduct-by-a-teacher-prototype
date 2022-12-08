@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Describe their main duties" if isPublic else "How do you want to tell us about their main duties?" %}
+{% set title = "Describe the work carried out by the person you’re referring" if isPublic else "How do you want to tell us about their main duties?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -21,13 +21,10 @@
             idPrefix: "[report][teacher-role][duties]",
             name: "[report][teacher-role][duties]",
             label: {
-              text: "Describe their main duties",
+              text: "Describe the work carried out by the person you’re referring",
               classes: "govuk-label--xl" if isPublic else "govuk-label--m",
               isPageHeading: isPublic
             },
-            hint: {
-              html: hintHtml
-            } if isPublic,
             rows: 10 if isPublic else 20
           }) }}
         {% endset %}

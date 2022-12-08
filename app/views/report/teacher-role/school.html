@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set whereDidTheyWorkTitle = "Where did they work?" if hasLeftJob else "Where do they work?" %}
+{% set whereDidTheyWorkTitle = "Where did they work?" if hasLeftJob else "Where the person was employed at the time of the alleged misconduct" %}
 {% set title = whereDidTheyWorkTitle if isPublic else ("Did they" if hasLeftJob else "Do they") + " work in the same organisation as you?" %}
 
 {% block beforeContent %}
@@ -33,7 +33,7 @@
             name: "[report][teacher-role][school][address][name]",
             label: {
               text: "School name",
-              classes: "govuk-label--s" if isPublic else "govuk-label--s"
+              classes: "govuk-label--m" if isPublic else "govuk-label--s"
             }
           }) }}
 

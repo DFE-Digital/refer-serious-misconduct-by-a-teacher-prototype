@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is the name of the person you’re referring?" %}
+{% set title = "Name of the person you’re referring" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -13,15 +13,17 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
         <h1 class="govuk-heading-xl">{{ title }}</h1>
-        <h2 class="govuk-heading-m">Why do we ask for personal information?</h2>
-        <p class="govuk-!-padding-bottom-6">We’ll use the details you provide to help us identify the correct person. This information is required by law. It will help us decide whether we need to investigate the case further, or if we need more information first.</p>
+        <p class="govuk-!-padding-bottom-6">This information is required by law. It will help us to identify the person you’re referring and decide if we need to investigate the case further.’</p>
 
         {{ govukInput({
           id: "[report][teacher-details][first-name]",
           name: "[report][teacher-details][first-name]",
           label: {
             text: "First name",
-            classes: "govuk-label--s"
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Or given name - enter the initial if you do not know their first name"
           },
           value: data.report['teacher-details']['first-name']
         }) }}
@@ -31,7 +33,10 @@
           name: "[report][teacher-details][last-name]",
           label: {
             text: "Last name",
-            classes: "govuk-label--s"
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Or family name"
           },
           value: data.report['teacher-details']['last-name']
         }) }}
@@ -48,7 +53,7 @@
           }) }}
         {% endset %}
 
-        {% if isEmployer %}
+        {# {% if isEmployer %} #}
           {{ govukRadios({
             idPrefix: "[report][teacher-details][have-previous-name]",
             name: "[report][teacher-details][have-previous-name]",
@@ -57,9 +62,6 @@
                 classes: "govuk-fieldset__legend--m",
                 text: "Do you know them by any other name?"
               }
-            },
-            hint: {
-              text: "For example, a nickname or professional name."
             },
             items: [
               {
@@ -80,7 +82,7 @@
             ],
             value: data.report['teacher-details']['have-previous-name']
           }) }}
-        {% endif %}
+        {# {% endif %} #}
 
         {{ govukButton({
           text: "Save and continue"
