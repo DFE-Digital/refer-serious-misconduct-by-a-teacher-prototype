@@ -32,20 +32,6 @@
     } if data.report['teacher-details']['previous-name'],
     {
       key: {
-        html: 'Date of birth'
-      },
-      value: {
-        html: (data.report['teacher-details']['date-of-birth'] | isoDateFromDateInput | date) if (data.report['teacher-details']['date-of-birth'].day) else 'Not known'
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher/age"
-        }]
-      }
-    } if data.report['teacher-details']['know-age'] == 'knows-dob',
-    {
-      key: {
         html: 'National Insurance number'
       },
       value: {
