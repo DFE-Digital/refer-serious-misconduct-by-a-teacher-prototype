@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Give a detailed account of what happened" if isPublic else "How do you want to tell us about your allegation?" %}
+{% set title = "Description of what happened" if isPublic else "How do you want to tell us about your allegation?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -20,9 +20,6 @@
               text: title if isPublic else "Details of the allegation",
               classes: "govuk-label--xl govuk-!-margin-top-6" if isPublic else "govuk-label--m govuk-!-margin-top-6",
               isPageHeading: isPublic
-            },
-            hint: {
-              text: 'Include dates and locations'
             },
             rows: 20
           }) }}
@@ -47,7 +44,7 @@
             name: "[report][allegation][how-tell]",
             fieldset: {
               legend: {
-                classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+                classes: "govuk-fieldset__legend--xl",
                 isPageHeading: true,
                 text: title
               }
@@ -74,7 +71,7 @@
             ]
           }) }}
         {% endif %}
-      
+
         {{ govukButton({
           text: "Save and continue"
         }) }}

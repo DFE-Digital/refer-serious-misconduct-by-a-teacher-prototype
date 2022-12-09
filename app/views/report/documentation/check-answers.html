@@ -21,14 +21,14 @@
         {{ title }}
       </h1>
 
-      <p>Upload all relevant correspondence and supporting information.</p>
 
-      {{ govukDetails({
-        summaryText: 'See examples of commonly uploaded documents',
-        html: examples
-      }) }}
     </div>
   </div>
+
+  {{ govukButton({
+    text: "Add more evidence",
+    classes: 'govuk-button--secondary'
+  }) }}
 
   {% include '../documentation/_summary-card.html' %}
 

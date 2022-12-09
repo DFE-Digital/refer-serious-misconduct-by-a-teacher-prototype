@@ -32,14 +32,14 @@
             id: "[report][teacher-role][school][address][name]",
             name: "[report][teacher-role][school][address][name]",
             label: {
-              text: "School name",
+              text: "Organisation name",
               classes: "govuk-label--m" if isPublic else "govuk-label--s"
             }
           }) }}
 
           {% call govukFieldset({
             legend: {
-              text: "School address",
+              text: "Organisation address",
               classes: "govuk-fieldset__legend--m govuk-!-padding-top-6" if isPublic else "govuk-fieldset__legend--s govuk-!-padding-top-6"
             }
           }) %}
@@ -89,7 +89,7 @@
               name: "[report][teacher-role][same-organisation]",
               fieldset: {
                 legend: {
-                  classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+                  classes: "govuk-fieldset__legend--xl",
                   isPageHeading: true,
                   text: title
                 }

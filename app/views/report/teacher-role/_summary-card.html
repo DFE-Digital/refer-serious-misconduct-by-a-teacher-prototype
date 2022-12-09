@@ -110,7 +110,7 @@
     } if isEmployer,
     {
       key: {
-        html: 'School'
+        html: 'Organisation'
       },
       value: {
         html: address
@@ -124,7 +124,7 @@
     } if isPublic or data.report['teacher-role']['same-organisation'] == "different",
     {
       key: {
-        html: 'Main duties'
+        html: 'Description of the work carried out by the person you’re referring'
       },
       value: {
         html: data.report['teacher-role']['duties'] | nl2br

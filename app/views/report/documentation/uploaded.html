@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "You uploaded " + data.report.documentation'uploaded-files' | length + " files" %}
+{% set title = "You uploaded " + data.report.documentation['uploaded-files'] | length + " files" %}
 
 {% block beforeContent %}
   {{ govukBackLink({

@@ -3,7 +3,11 @@ const _ = require('lodash')
 module.exports = router => {
 
   router.post('/report/documentation/anything-to-upload', (req, res) => {
-    res.redirect('/report/documentation/add')
+    if(req.session.data.report.documentation['anything-to-upload'] == 'Yes') {
+      res.redirect('/report/documentation/add')
+    } else {
+      res.redirect('/report/documentation/check-answers')
+    }
   })
 
   router.post('/report/documentation/add', (req, res) => {

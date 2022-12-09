@@ -4,7 +4,7 @@
   rows: [
     {
       key: {
-        html: 'How this complaint has been considered'
+        html: 'Details about how this complaint has been considered'
       },
       value: {
         html: data.report['allegation']['already-considered'] | nl2br
@@ -18,7 +18,7 @@
     } if isPublic,
     {
       key: {
-        html: 'Detailed account'
+        html: 'Description of what happened'
       },
       value: {
         html: data.report['allegation']['allegation'] | nl2br

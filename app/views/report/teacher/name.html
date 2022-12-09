@@ -53,36 +53,34 @@
           }) }}
         {% endset %}
 
-        {# {% if isEmployer %} #}
-          {{ govukRadios({
-            idPrefix: "[report][teacher-details][have-previous-name]",
-            name: "[report][teacher-details][have-previous-name]",
-            fieldset: {
-              legend: {
-                classes: "govuk-fieldset__legend--m",
-                text: "Do you know them by any other name?"
+        {{ govukRadios({
+          idPrefix: "[report][teacher-details][have-previous-name]",
+          name: "[report][teacher-details][have-previous-name]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--m",
+              text: "Do you know them by any other name?"
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes",
+              conditional: {
+                html: previousNameHtml
               }
             },
-            items: [
-              {
-                text: "Yes",
-                value: "Yes",
-                conditional: {
-                  html: previousNameHtml
-                }
-              },
-              {
-                text: "No",
-                value: "No"
-              },
-              {
-                text: "I don’t know",
-                value: "I don’t know"
-              }
-            ],
-            value: data.report['teacher-details']['have-previous-name']
-          }) }}
-        {# {% endif %} #}
+            {
+              text: "No",
+              value: "No"
+            },
+            {
+              text: "I don’t know",
+              value: "I don’t know"
+            }
+          ],
+          value: data.report['teacher-details']['have-previous-name']
+        }) }}
 
         {{ govukButton({
           text: "Save and continue"
