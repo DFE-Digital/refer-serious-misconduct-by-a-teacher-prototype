@@ -11,6 +11,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% set h1 %}
+        <span class="govuk-caption-xl">
+          Personal details
+        </span>
+        {{title}}
+      {% endset %}
+
       <form method="post">
         {% set nino %}
           {{ govukInput({
@@ -34,7 +41,7 @@
             legend: {
               classes: "govuk-fieldset__legend--xl",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           items: [

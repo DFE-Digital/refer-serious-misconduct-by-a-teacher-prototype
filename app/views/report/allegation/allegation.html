@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Description of what happened" if isPublic else "How do you want to tell us about your allegation?" %}
+{% set title = "How do you want to tell us about the allegation?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -11,34 +11,38 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% set h1 %}
+        <span class="govuk-caption-xl">
+          The allegation
+        </span>
+        {{title}}
+      {% endset %}
+
+
       <form method="post">
         {% set textarea %}
           {{ govukTextarea({
             id: "[report][allegation][allegation]",
             name: "[report][allegation][allegation]",
             label: {
-              text: title if isPublic else "Details of the allegation",
-              classes: "govuk-label--xl govuk-!-margin-top-6" if isPublic else "govuk-label--m govuk-!-margin-top-6",
-              isPageHeading: isPublic
-            },
-            rows: 20
-          }) }}
-        {% endset %}
-
-        {% set fileUpload %}
-          {{ govukFileUpload({
-            id: "[report][allegation][allegation-file]",
-            name: "[report][allegation][allegation-file]",
-            label: {
-              text: "Upload allegation details",
+              text: "Description of the allegation",
               classes: "govuk-label--s"
-            }
+            },
+            rows: 15
           }) }}
         {% endset %}
 
-        {% if isPublic %}
-          {{ textarea | safe }}
-        {% else %}
+          {% set fileUpload %}
+            {{ govukFileUpload({
+              id: "[report][allegation][allegation-file]",
+              name: "[report][allegation][allegation-file]",
+              label: {
+                text: "Upload file",
+                classes: "govuk-label--s"
+              }
+            }) }}
+          {% endset %}
+
           {{ govukRadios({
             id: "[report][allegation][how-tell]",
             name: "[report][allegation][how-tell]",
@@ -46,31 +50,26 @@
               legend: {
                 classes: "govuk-fieldset__legend--xl",
                 isPageHeading: true,
-                text: title
+                html: h1
               }
             },
             items: [
               {
-                text: "I’ll upload the allegation details",
+                text: "Upload file",
                 value: "upload",
                 conditional: {
                   html: fileUpload
                 }
               },
               {
-                text: "I’ll give details of the allegation",
+                text: "Describe the allegation",
                 value: "describe",
                 conditional: {
                   html: textarea
                 }
-              },
-              {
-                text: "I’ll do this later",
-                value: "later"
               }
             ]
           }) }}
-        {% endif %}
 
         {{ govukButton({
           text: "Save and continue"
