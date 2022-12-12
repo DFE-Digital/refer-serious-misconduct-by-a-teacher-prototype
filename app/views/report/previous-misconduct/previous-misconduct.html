@@ -1,10 +1,10 @@
 {% extends "layouts/main.html" %}
-{% set title = "Give a detailed account of previous allegations" %}
+{% set title = "Detailed account of previous allegations" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/report/previous-misconduct/any-previous"
+    href: "/report/previousMisconduct/any-previous"
   }) }}
 {% endblock %}
 
@@ -12,6 +12,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
+        <span class="govuk-caption-xl">
+          Previous allegations
+        </span>
         <h1 class="govuk-heading-xl">
           {{ title }}
         </h1>
@@ -36,32 +39,32 @@
 
         {% set textarea %}
           {{ govukTextarea({
-            id: "[report][previous-misconduct][previous-misconduct]",
-            name: "[report][previous-misconduct][previous-misconduct]",
+            id: "[report][previousMisconduct][previousMisconduct]",
+            name: "[report][previousMisconduct][previousMisconduct]",
             label: {
-              text: "Details of previous allegations",
-              classes: "govuk-label--m govuk-!-margin-top-6"
+              text: "Description of previous allegations",
+              classes: "govuk-label--s"
             },
-            value: data.report['previous-misconduct']['previous-misconduct'],
-            rows: 20
+            value: data.report.previousMisconduct.previousMisconduct,
+            rows: 15
           }) }}
         {% endset %}
 
         {% set fileUpload %}
           {{ govukFileUpload({
-            id: "[report][previous-misconduct][previous-misconduct-file]",
-            name: "[report][previous-misconduct][previous-misconduct-file]",
+            id: "[report][previousMisconduct][previousMisconductFile]",
+            name: "[report][previousMisconduct][previousMisconductFile]",
             label: {
-              text: "Upload details of previous allegations",
+              text: "Upload file",
               classes: "govuk-label--s"
             },
-            value: data.report['previous-misconduct']['previous-misconduct-file']
+            value: data.report.previousMisconduct.previousMisconductFile
           }) }}
         {% endset %}
 
         {{ govukRadios({
-          idPrefix: "[report][previous-misconduct][how-tell]",
-          name: "[report][previous-misconduct][how-tell]",
+          idPrefix: "[report][previousMisconduct][how-tell]",
+          name: "[report][previousMisconduct][how-tell]",
           formGroup: {
             classes: "govuk-!-margin-top-6"
           },
@@ -73,25 +76,21 @@
           },
           items: [
             {
-              text: "I’ll upload the previous misconduct details",
+              text: "Upload file",
               value: "upload",
               conditional: {
                 html: fileUpload
               }
             },
             {
-              text: "I’ll give details of the previous misconduct",
+              text: "Describe the previous allegations",
               value: "describe",
               conditional: {
                 html: textarea
               }
-            },
-            {
-              text: "I’ll do this later",
-              value: "later"
             }
           ],
-          value: data.report['previous-misconduct']['how-tell']
+          value: data.report.previousMisconduct.previousMisconduct['how-tell']
         }) }}
         {{ govukButton({
           text: "Save and continue"

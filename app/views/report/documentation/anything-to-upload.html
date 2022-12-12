@@ -1,10 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Evidence and supporting information" %}
 
-{% set examples %}
-  {% include "../../shared/_examples.html" %}
-{% endset %}
-
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -20,29 +16,24 @@
           {{ title }}
         </h1>
 
-        {# <p>Upload all relevant correspondence and supporting information.</p> #}
-
-        {{ examples | safe }}
+        {% include "../../shared/_examples.html" %}
 
         {{ govukRadios({
           idPrefix: "[report][documentation][anything-to-upload]",
           name: "[report][documentation][anything-to-upload]",
-          formGroup: {
-            classes: "govuk-!-margin-top-6"
-          },
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
-              text: "Do you have anything to upload?"
+              text: "Do you have evidence to upload?"
             }
           },
           items: [
             {
-              text: "Yes, I need to upload files",
+              text: "Yes",
               value: "Yes"
             },
             {
-              text: "No, I do not have anything to upload",
+              text: "No",
               value: "No"
             }
           ],

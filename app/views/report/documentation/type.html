@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = file.filename %}
+{% set title = 'Description of ' + file.filename %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,9 +12,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <h1 class="govuk-heading-l">
-
-        </h1>
         {% set other %}
           {{ govukInput({
             idPrefix: "[report][documentation][uploaded-files]["+fileId+"][other-type]",
@@ -29,9 +26,9 @@
 
         {% set h1 %}
           <span class="govuk-caption-xl">
-            {{title}}
+            Evidence and supporting information
           </span>
-          File description
+          {{title}}
         {% endset %}
 
         {{ govukCheckboxes({

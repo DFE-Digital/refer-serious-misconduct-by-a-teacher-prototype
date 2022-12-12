@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Upload evidence and supporting information" %}
+{% set title = "Upload evidence" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,13 +12,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
+        <span class="govuk-caption-xl">
+          Evidence and supporting information
+        </span>
         <h1 class="govuk-heading-xl">{{ title }}</h1>
 
         {% include "../../shared/_examples.html" %}
 
         <p>Make sure the file names describe the content, for example ‘signed witness statement’.</p>
 
-        {{ govukInsetText({
+        {{ govukWarningText({
           text: "Do not include explicit content, for example indecent photos. You’ll be asked for these separately if needed."
         }) }}
 
