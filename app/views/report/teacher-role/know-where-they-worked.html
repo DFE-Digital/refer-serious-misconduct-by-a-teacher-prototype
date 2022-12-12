@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = 'Do you know the name and address of the organisation where they were employed at the time the alleged misconduct took place?' %}
+{% set title = 'Do you know the name and address of the organisation where the alleged misconduct took place?' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,6 +12,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
+      {% set h1 %}
+        <span class="govuk-caption-xl">
+          About their role
+        </span>
+        {{title}}
+      {% endset %}
+
       <form method="post">
         {{ govukRadios({
           id: "[report][teacher-role][know-where-they-worked]",
@@ -20,7 +27,7 @@
             legend: {
               classes: "govuk-fieldset__legend--xl",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           items: [

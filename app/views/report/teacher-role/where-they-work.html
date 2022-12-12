@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = 'Where the person is working now' %}
+{% set title = 'Where they currently work' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -11,6 +11,9 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-xl">
+        About their role
+      </span>
       <h1 class="govuk-heading-xl">
         {{title}}
       </h1>

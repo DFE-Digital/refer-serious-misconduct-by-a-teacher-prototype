@@ -19,7 +19,7 @@
             fieldset: {
               legend: {
                 classes: "govuk-label--s",
-                text: "Start date"
+                text: "Job start date"
               }
             },
             hint: {
@@ -48,6 +48,14 @@
           }) }}
         {% endset %}
 
+        {% set h1 %}
+          <span class="govuk-caption-xl">
+            About their role
+          </span>
+          {{title}}
+        {% endset %}
+
+
         {{ govukRadios({
           id: "[report][teacher-role][start-job]",
           name: "[report][teacher-role][start-job]",
@@ -55,11 +63,11 @@
             legend: {
               classes: "govuk-fieldset__legend--xl",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           hint: {
-            html: "<p>This is the job the person had when the allegation of serious misconduct was made against them.</p>"
+            html: "This is the job they had when the allegation of serious misconduct was made against them"
           },
           items: [
             {

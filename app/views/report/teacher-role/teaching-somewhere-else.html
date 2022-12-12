@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Is the person teaching somewhere else?" %}
+{% set title = "Are they teaching somewhere else?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -11,6 +11,14 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {% set h1 %}
+        <span class="govuk-caption-xl">
+          About their role
+        </span>
+        {{title}}
+      {% endset %}
+
       <form method="post">
         {{ govukRadios({
           id: "[report][teacher-role][teaching-elsewhere]",
@@ -19,7 +27,7 @@
             legend: {
               classes: "govuk-fieldset__legend--xl",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           items: [

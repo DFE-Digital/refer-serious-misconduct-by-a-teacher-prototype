@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Describe the work carried out by the person you’re referring" if isPublic else "How do you want to tell us about their main duties?" %}
+{% set title = "How do you want to tell us about the work they carried out?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -21,9 +21,8 @@
             idPrefix: "[report][teacher-role][duties]",
             name: "[report][teacher-role][duties]",
             label: {
-              text: "Description of the work carried out by the person you’re referring",
-              classes: "govuk-label--xl" if isPublic else "govuk-label--m",
-              isPageHeading: isPublic
+              text: "Description of the work carried out",
+              classes: "govuk-label--s"
             },
             rows: 10 if isPublic else 20
           }) }}
@@ -34,13 +33,24 @@
             idPrefix: "[report][teacher-details][job-description-file]",
             name: "[report][teacher-details][job-description-file]",
             label: {
-              text: "Upload job description",
+              text: "Upload file",
               classes: "govuk-label--s"
+            },
+            hint: {
+              text: "For example, a job description"
             }
           }) }}
         {% endset %}
 
-        {% if isEmployer %}
+
+
+          {% set h1 %}
+            <span class="govuk-caption-xl">
+              About their role
+            </span>
+            {{title}}
+          {% endset %}
+
           {{ govukRadios({
             idPrefix: "[report][teacher-role][how-tell-job]",
             name: "[report][teacher-role][how-tell-job]",
@@ -48,33 +58,26 @@
               legend: {
                 classes: "govuk-fieldset__legend--xl",
                 isPageHeading: true,
-                text: title
+                html: h1
               }
             },
             items: [
               {
-                text: "I’ll upload a job description",
+                text: "Upload file",
                 value: "upload",
                 conditional: {
                   html: jobDescription
                 }
               },
               {
-                text: "I’ll describe their main duties",
+                text: "Describe the work carried out",
                 value: "describe",
                 conditional: {
                   html: duties
                 }
-              },
-              {
-                text: "I’ll do this later",
-                value: "later"
               }
             ]
           }) }}
-        {% else %}
-          {{ duties | safe }}
-        {% endif %}
 
         {{ govukButton({
           text: "Save and continue"

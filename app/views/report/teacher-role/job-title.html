@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Person’s job title" %}
+{% set title = "Job title" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,12 +12,20 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% set h1 %}
+        <span class="govuk-caption-xl">
+          About their role
+        </span>
+        {{title}}
+      {% endset %}
+
+
       <form method="post">
         {{ govukInput({
           idPrefix: "[report][teacher-role][job-title]",
           name: "[report][teacher-role][job-title]",
           label: {
-            text: title,
+            html: h1,
             classes: "govuk-label--xl",
             isPageHeading: true
           },

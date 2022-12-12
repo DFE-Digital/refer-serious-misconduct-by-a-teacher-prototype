@@ -35,7 +35,11 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/duties', (req, res) => {
-    res.redirect('/report/teacher-role/still-employed')
+    if(_.get(req.session.data, 'report[type-of-report]') == 'public') {
+      res.redirect('/report/teacher-role/check-answers')
+    } else {
+      res.redirect('/report/teacher-role/still-employed')
+    }
   })
 
   router.post('/report/teacher-role/still-employed', (req, res) => {
