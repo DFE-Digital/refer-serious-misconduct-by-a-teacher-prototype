@@ -26,10 +26,10 @@
   rows: [
     {
       key: {
-        html: 'Start date'
+        html: 'Do you know when they started their job?'
       },
       value: {
-        html: data.report.teacherRole['start-date'] | isoDateFromDateInput | date
+        html: data.report.teacherRole.knowJobStartDate
       },
       actions: {
         items: [{
@@ -37,55 +37,27 @@
           href: "/report/teacher-role/start-date"
         }]
       }
-    } if isEmployer,
+    },
     {
       key: {
-        html: 'End date'
+        html: 'Job start date'
       },
       value: {
-        html: data.report.teacherRole['end-date'] | isoDateFromDateInput | date
+        html: data.report.teacherRole.jobStartDate | isoDateFromDateInput | date
       },
       actions: {
         items: [{
           text: 'Change',
-          href: "/report/teacher-role/end-date"
+          href: "/report/teacher-role/start-date"
         }]
       }
-    } if isEmployer and data.report.teacherRole['still-employed'] == "No",
-    {
-      key: {
-        html: 'How did they leave this job?'
-      },
-      value: {
-        html: data.report.teacherRole['how-end-job']
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/end-date"
-        }]
-      }
-    } if isEmployer and data.report.teacherRole['still-employed'] == "No",
-    {
-      key: {
-        html: 'Are they still employed in this job?'
-      },
-      value: {
-        html: data.report.teacherRole['still-employed']
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/end-date"
-        }]
-      }
-    } if isEmployer,
+    } if data.report.teacherRole.knowJobStartDate == 'Yes',
     {
       key: {
         html: 'Job title'
       },
       value: {
-        html: data.report.teacherRole['job-title']
+        html: data.report.teacherRole.jobTitle
       },
       actions: {
         items: [{
@@ -93,7 +65,21 @@
           href: "/report/teacher-role/job-title"
         }]
       }
-    } if data.report.teacherRole['job-title'],
+    } if data.report.teacherRole.jobTitle,
+    {
+      key: {
+        html: 'Did they work at the same organisation as you at the time of the alleged misconduct?'
+      },
+      value: {
+        html: data.report.teacherRole.sameOrganisation
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/same-organisation"
+        }]
+      }
+    },
     {
       key: {
         html: 'Do you know the name and address of the organisation where the alleged misconduct took place?'
@@ -124,21 +110,21 @@
     } if data.report.teacherRole.knowWhereTheyWorked == 'Yes',
     {
       key: {
-        html: 'Description of the work carried out'
+        html: 'How do you want to tell us about the work they carried out?'
       },
       value: {
-        html: data.report.teacherRole['duties'] | nl2br
+        html: data.report.teacherRole.duties
       },
       actions: {
         items: [{
           text: 'Change',
-          href: "/report/teacher-role/school"
+          href: "/report/teacher-role/duties"
         }]
       }
-    } if isPublic or data.report.teacherRole['how-tell-job'] == "describe",
+    },
     {
       key: {
-        html: 'Main duties'
+        html: 'Description of the work carried out'
       },
       value: {
         html: '<a href="#">job-description.pdf</a>'
@@ -149,13 +135,13 @@
           href: "/report/teacher-role/duties"
         }]
       }
-    } if data.report.teacherRole['how-tell-job'] == "upload",
+    } if data.report.teacherRole.duties == "Upload file",
     {
       key: {
-        html: 'Main duties'
+        html: 'Description of the work carried out'
       },
       value: {
-        html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
+        html: data.report.teacherRole.dutiesText
       },
       actions: {
         items: [{
@@ -163,13 +149,55 @@
           href: "/report/teacher-role/duties"
         }]
       }
-    } if data.report.teacherRole['how-tell-job'] == "later",
+    } if data.report.teacherRole.duties == 'Describe the work carried out',
+    {
+      key: {
+        html: 'Are they still employed in the job where the alleged misconduct took place?'
+      },
+      value: {
+        html: data.report.teacherRole.stillEmployed
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/still-employed"
+        }]
+      }
+    } if data.report.teacherRole.stillEmployed,
+    {
+      key: {
+        html: 'When they left the job'
+      },
+      value: {
+        html: data.report.teacherRole.jobEndDate | isoDateFromDateInput | date
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+        href: "/report/teacher-role/when-they-left"
+        }]
+      }
+    } if data.report.teacherRole.jobEndDate,
+    {
+      key: {
+        html: 'Reason they left the job'
+      },
+      value: {
+        html: data.report.teacherRole.reasonForLeaving
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/why-they-left"
+        }]
+      }
+    } if data.report.teacherRole.reasonForLeaving,
     {
       key: {
         html: 'Are they teaching somewhere else?'
       },
       value: {
-        html: data.report.teacherRole['teaching-elsewhere']
+        html: data.report.teacherRole.teachingElsewhere
       },
       actions: {
         items: [{
@@ -177,24 +205,24 @@
           href: "/report/teacher-role/teaching-somewhere-else"
         }]
       }
-    } if hasLeftJob,
+    } if data.report.teacherRole.teachingElsewhere,
     {
       key: {
-        html: 'Do you know where they are teaching?'
+        html: 'Do you know the name and address of the organisation where they’re currently working?'
       },
       value: {
-        html: data.report.teacherRole['know-other-employer']
+        html: data.report.teacherRole.knowWhereTheyWork
       },
       actions: {
         items: [{
           text: 'Change',
-          href: "/report/teacher-role/teaching-where-now"
+          href: "/report/teacher-role/know-where-they-work"
         }]
       }
-    } if hasLeftJob and data.report.teacherRole['teaching-elsewhere'] == "Yes",
+    } if data.report.teacherRole.knowWhereTheyWork,
     {
       key: {
-        html: 'New employer'
+        html: 'Where they currently work'
       },
       value: {
         html: newOrgAddress
@@ -202,9 +230,9 @@
       actions: {
         items: [{
           text: 'Change',
-          href: "/report/teacher-role/teaching-where-now"
+          href: "/report/teacher-role/where-they-work"
         }]
       }
-    } if hasLeftJob and data.report.teacherRole['teaching-elsewhere'] == "Yes"
+    } if data.report.teacherRole.knowWhereTheyWork == 'Yes'
   ]
 }) }}

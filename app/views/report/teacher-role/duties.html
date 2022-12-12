@@ -18,20 +18,20 @@
           {% endset %}
 
           {{ govukTextarea({
-            idPrefix: "[report][teacherRole][duties]",
-            name: "[report][teacherRole][duties]",
+            idPrefix: "[report][teacherRole][dutiesText]",
+            name: "[report][teacherRole][dutiesText]",
             label: {
               text: "Description of the work carried out",
               classes: "govuk-label--s"
             },
-            rows: 10 if isPublic else 20
+            rows: 15
           }) }}
         {% endset %}
 
         {% set jobDescription %}
           {{ govukFileUpload({
-            idPrefix: "[report][teacherRole][file]",
-            name: "[report][teacherRole][file]",
+            idPrefix: "[report][teacherRole][dutiesFile]",
+            name: "[report][teacherRole][dutiesFile]",
             label: {
               text: "Upload file",
               classes: "govuk-label--s"
@@ -52,8 +52,8 @@
           {% endset %}
 
           {{ govukRadios({
-            idPrefix: "[report][teacherRole][how-tell-job]",
-            name: "[report][teacherRole][how-tell-job]",
+            idPrefix: "[report][teacherRole][duties]",
+            name: "[report][teacherRole][duties]",
             fieldset: {
               legend: {
                 classes: "govuk-fieldset__legend--xl",
@@ -64,14 +64,14 @@
             items: [
               {
                 text: "Upload file",
-                value: "upload",
+                value: "Upload file",
                 conditional: {
                   html: jobDescription
                 }
               },
               {
                 text: "Describe the work carried out",
-                value: "describe",
+                value: "Describe the work carried out",
                 conditional: {
                   html: duties
                 }
