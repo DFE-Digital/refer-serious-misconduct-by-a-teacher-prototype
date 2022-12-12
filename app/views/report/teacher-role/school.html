@@ -9,7 +9,6 @@
   }) }}
 {% endblock %}
 
-
 {% if data.report['teacher-role']['your-organisation.name'] %}
   {% set organisationName = "(" + data.report['teacher-role']['your-organisation.name'] + ")" %}
 {% else %}
@@ -20,14 +19,15 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% if isPublic %}
+
+      {% else %}
+        <h2 class="govuk-heading-m">{{ whereDidTheyWorkTitle }}</h2>
+      {% endif %}
+
+
       <form method="post">
         {% set where %}
-          {% if isPublic %}
-            <h1 class="govuk-heading-xl">{{ title }}</h1>
-          {% else %}
-            <h2 class="govuk-heading-m">{{ whereDidTheyWorkTitle }}</h2>
-          {% endif %}
-
           {{ govukInput({
             id: "[report][teacher-role][school][address][name]",
             name: "[report][teacher-role][school][address][name]",
@@ -109,7 +109,113 @@
               ]
             }) }}
           {% else %}
-            {{ where | safe }}
+            <h1 class="govuk-heading-xl">Where the person was employed</h1>
+            {# {{ where | safe }} #}
+
+            {% set schoolName %}
+              {{ govukInput({
+                id: "[report][teacher-role][school][address][name]",
+                name: "[report][teacher-role][school][address][name]",
+                label: {
+                  text: "Organisation name",
+                  classes: "govuk-label--s"
+                }
+              }) }}
+            {% endset %}
+
+            {{ govukRadios({
+              idPrefix: "[report][teacher-role][know-school-name]",
+              name: "[report][teacher-role][know-school-name]",
+              fieldset: {
+                legend: {
+                  text: "Do you know the name of the organisation where they were employed at the time of the alleged misconduct?",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  conditional: {
+                    html: schoolName
+                  }
+                },
+                {
+                  value: "No",
+                  text: "No"
+                }
+              ],
+              value: data.report['teacher-role']['know-school-name']
+            }) }}
+
+            {% set schoolAddress %}
+              {{ govukInput({
+                id: "[report][teacher-role][school][address][line-1]",
+                name: "[report][teacher-role][school][address][line-1]",
+                label: {
+                  text: 'Address line 1',
+                  classes: "govuk-label--s"
+                },
+                autocomplete: "address-line1"
+              }) }}
+
+              {{ govukInput({
+                id: "[report][teacher-role][school][address][line-2]",
+                name: "[report][teacher-role][school][address][line-2]",
+                label: {
+                  text: 'Address line 2 (optional)',
+                  classes: "govuk-label--s"
+                },
+                autocomplete: "address-line2"
+              }) }}
+
+              {{ govukInput({
+                id: "[report][teacher-role][school][address][town]",
+                name: "[report][teacher-role][school][address][town]",
+                label: {
+                  text: "Town or city",
+                  classes: "govuk-label--s"
+                },
+                classes: "govuk-!-width-two-thirds",
+                autocomplete: "address-level2"
+              }) }}
+
+              {{ govukInput({
+                id: "[report][teacher-role][school][address][postcode]",
+                name: "[report][teacher-role][school][address][postcode]",
+                label: {
+                  text: "Postcode",
+                  classes: "govuk-label--s"
+                },
+                classes: "govuk-input--width-10",
+                autocomplete: "postal-code"
+              }) }}
+            {% endset %}
+
+            {{ govukRadios({
+              idPrefix: "[report][teacher-role][know-school-address]",
+              name: "[report][teacher-role][know-school-address]",
+              fieldset: {
+                legend: {
+                  text: "Do you know the address of the organisation where they were employed at the time of the alleged misconduct?",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  conditional: {
+                    html: schoolAddress
+                  }
+                },
+                {
+                  value: "No",
+                  text: "No"
+                }
+              ],
+              value: data.report['teacher-role']['know-school-address']
+            }) }}
           {% endif %}
         {{ govukButton({
           text: "Save and continue"

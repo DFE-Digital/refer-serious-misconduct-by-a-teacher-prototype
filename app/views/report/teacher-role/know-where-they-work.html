@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Is the person teaching somewhere else?" %}
+{% set title = 'Do you know the name and address of the organisation where they’re working now?' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -11,10 +11,11 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+
       <form method="post">
         {{ govukRadios({
-          id: "[report][teacher-role][teaching-elsewhere]",
-          name: "[report][teacher-role][teaching-elsewhere]",
+          id: "[report][teacher-role][know-where-they-work]",
+          name: "[report][teacher-role][know-where-they-work]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--xl",
@@ -30,10 +31,6 @@
             {
               text: "No",
               value: "No"
-            },
-            {
-              text: "I’m not sure",
-              value: "I’m not sure"
             }
           ]
         }) }}

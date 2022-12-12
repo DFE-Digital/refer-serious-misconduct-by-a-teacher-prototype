@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Is the person teaching somewhere else?" %}
+{% set title = 'Did the allegation of misconduct take place at the same organisation as you?' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -8,13 +8,16 @@
   }) }}
 {% endblock %}
 
+{# {% set organisationName = "(" + data.report['teacher-role']['your-organisation.name'] + ")" %} #}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+
       <form method="post">
         {{ govukRadios({
-          id: "[report][teacher-role][teaching-elsewhere]",
-          name: "[report][teacher-role][teaching-elsewhere]",
+          id: "[report][teacher-role][same-organisation]",
+          name: "[report][teacher-role][same-organisation]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--xl",
@@ -30,10 +33,6 @@
             {
               text: "No",
               value: "No"
-            },
-            {
-              text: "I’m not sure",
-              value: "I’m not sure"
             }
           ]
         }) }}

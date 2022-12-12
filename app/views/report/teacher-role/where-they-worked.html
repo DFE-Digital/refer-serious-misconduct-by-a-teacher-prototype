@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+{% set title = 'Where the person was employed at the time of the alleged misconduct' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-xl">
+        {{title}}
+      </h1>
+
+      <form method="post">
+        {{ govukInput({
+          id: "[report][teacher-role][organisation][name]",
+          name: "[report][teacher-role][organisation][name]",
+          label: {
+            text: "Organisation name",
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacher-role][organisation][address][line1]",
+          name: "[report][teacher-role][organisation][address][line1]",
+          label: {
+            text: 'Address line 1',
+          classes: "govuk-label--m"
+          },
+          autocomplete: "address-line1"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacher-role][organisation][address][line2]",
+          name: "[report][teacher-role][organisation][address][line2]",
+          label: {
+            text: 'Address line 2 (optional)',
+            classes: "govuk-label--m"
+          },
+          autocomplete: "address-line2",
+        classes: "govuk-label--m"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacher-role][organisation][address][town]",
+          name: "[report][teacher-role][organisation][address][town]",
+          label: {
+            text: "Town or city",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-!-width-two-thirds",
+          autocomplete: "address-level2"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacher-role][organisation][address][postcode]",
+          name: "[report][teacher-role][organisation][address][postcode]",
+          label: {
+            text: "Postcode",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-input--width-10",
+          autocomplete: "postal-code"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

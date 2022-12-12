@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+{% set title = "When the person left the job" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {{ govukDateInput({
+          idPrefix: "[report][teacher-role][end-date]",
+          name: "[report][teacher-role][end-date]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--xl",
+              text: title,
+              isPageHeading: true
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2022"
+          },
+          items: [
+            {
+              name: "[report][teacher-role][end-date][day]",
+              label: "Day",
+              value: data.report['teacher-role']['end-date'].day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "[report][teacher-role][end-date][month]",
+              label: "Month",
+              value: data.report['teacher-role']['end-date'].month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "[report][teacher-role][end-date][year]",
+              label: "Year",
+              value: data.report['teacher-role']['end-date'].year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
