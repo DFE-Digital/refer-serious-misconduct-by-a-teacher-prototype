@@ -40,10 +40,10 @@
         {% endif %}
       {% endif %}
 
-      {% if data.report['teacher-role']['section-completed'] %}
+      {% if data.report.teacherRole.sectionCompleted %}
         {% set teacherRoleHref = '/report/teacher-role/check-answers' %}
-        {% set teacherRoleStatus = data.report['teacher-role']['section-completed'] %}
-        {% if data.report['teacher-role']['section-completed'] == 'completed' %}
+        {% set teacherRoleStatus = data.report.teacherRole.sectionCompleted %}
+        {% if data.report.teacherRole.sectionCompleted == 'completed' %}
           {% set teacherRoleTagColour = 'solid' %}
         {% endif %}
       {% endif %}

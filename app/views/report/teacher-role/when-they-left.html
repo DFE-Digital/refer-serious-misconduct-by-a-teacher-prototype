@@ -21,8 +21,8 @@
 
       <form method="post">
         {{ govukDateInput({
-          idPrefix: "[report][teacher-role][end-date]",
-          name: "[report][teacher-role][end-date]",
+          idPrefix: "[report][teacherRole][jobEndDate]",
+          name: "[report][teacherRole][jobEndDate]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--xl",
@@ -35,21 +35,21 @@
           },
           items: [
             {
-              name: "[report][teacher-role][end-date][day]",
+              name: "[report][teacherRole][jobEndDate][day]",
               label: "Day",
-              value: data.report['teacher-role']['end-date'].day,
+              value: data.report.teacherRole.jobEndDate.day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "[report][teacher-role][end-date][month]",
+              name: "[report][teacherRole][jobEndDate][month]",
               label: "Month",
-              value: data.report['teacher-role']['end-date'].month,
+              value: data.report.teacherRole.jobEndDate.month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "[report][teacher-role][end-date][year]",
+              name: "[report][teacherRole][jobEndDate][year]",
               label: "Year",
-              value: data.report['teacher-role']['end-date'].year,
+              value: data.report.teacherRole.jobEndDate.year,
               classes: "govuk-input--width-4"
             }
           ]

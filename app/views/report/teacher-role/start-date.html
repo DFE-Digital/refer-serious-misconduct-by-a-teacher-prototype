@@ -14,8 +14,8 @@
       <form method="post">
         {% set startDate %}
           {{ govukDateInput({
-            id: "[report][teacher-role][start-date]",
-            name: "[report][teacher-role][start-date]",
+            id: "[report][teacherRole][jobStartDate]",
+            name: "[report][teacherRole][jobStartDate]",
             fieldset: {
               legend: {
                 classes: "govuk-label--s",
@@ -27,21 +27,21 @@
             },
             items: [
               {
-                name: "[report][teacher-role][start-date][day]",
+                name: "[report][teacherRole][jobStartDate][day]",
                 label: "Day",
-                value: data.report['teacher-role']['start-date'].day,
+                value: data.report.teacherRole.jobStartDate.day,
                 classes: "govuk-input--width-2"
               },
               {
-                name: "[report][teacher-role][start-date][month]",
+                name: "[report][teacherRole][jobStartDate][month]",
                 label: "Month",
-                value: data.report['teacher-role']['start-date'].month,
+                value: data.report.teacherRole.jobStartDate.month,
                 classes: "govuk-input--width-2"
               },
               {
-                name: "[report][teacher-role][start-date][year]",
+                name: "[report][teacherRole][jobStartDate][year]",
                 label: "Year",
-                value: data.report['teacher-role']['start-date'].year,
+                value: data.report.teacherRole.jobStartDate.year,
                 classes: "govuk-input--width-4"
               }
             ]
@@ -57,8 +57,8 @@
 
 
         {{ govukRadios({
-          id: "[report][teacher-role][start-job]",
-          name: "[report][teacher-role][start-job]",
+          id: "[report][teacherRole][knowJobStartDate]",
+          name: "[report][teacherRole][knowJobStartDate]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--xl",

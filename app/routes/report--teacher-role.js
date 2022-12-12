@@ -11,7 +11,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/same-organisation', (req, res) => {
-    if(req.session.data.report['teacher-role']['same-organisation'] === 'Yes') {
+    if(req.session.data.report.teacherRole.sameOrganisation === 'Yes') {
       res.redirect('/report/teacher-role/duties')
     } else {
       res.redirect('/report/teacher-role/know-where-they-worked')
@@ -19,7 +19,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/know-where-they-worked', (req, res) => {
-    if(req.session.data.report['teacher-role']['know-where-they-worked'] === 'Yes') {
+    if(req.session.data.report.teacherRole.knowWhereTheyWorked === 'Yes') {
       res.redirect('/report/teacher-role/where-they-worked')
     } else {
       res.redirect('/report/teacher-role/duties')
@@ -43,7 +43,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/still-employed', (req, res) => {
-    if(req.session.data.report['teacher-role']['still-employed'] === 'No') {
+    if(req.session.data.report.teacherRole.stillEmployed === 'No') {
       res.redirect('/report/teacher-role/when-they-left')
     } else {
       res.redirect('/report/teacher-role/check-answers')
@@ -59,7 +59,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/teaching-somewhere-else', (req, res) => {
-    if(req.session.data.report['teacher-role']['teaching-elsewhere'] == 'Yes') {
+    if(req.session.data.report.teacherRole.teachingElsewhere == 'Yes') {
       res.redirect('/report/teacher-role/know-where-they-work')
     } else {
       res.redirect('/report/teacher-role/check-answers')
@@ -67,7 +67,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/know-where-they-work', (req, res) => {
-    if(req.session.data.report['teacher-role']['know-where-they-work'] === 'Yes') {
+    if(req.session.data.report.teacherRole.knowWhereTheyWork === 'Yes') {
       res.redirect('/report/teacher-role/where-they-work')
     } else {
       res.redirect('/report/teacher-role/check-answers')
