@@ -63,8 +63,8 @@
         {% endset %}
 
         {{ govukRadios({
-          idPrefix: "[report][previousMisconduct][how-tell]",
-          name: "[report][previousMisconduct][how-tell]",
+          idPrefix: "[report][previousMisconduct][howTell]",
+          name: "[report][previousMisconduct][howTell]",
           formGroup: {
             classes: "govuk-!-margin-top-6"
           },
@@ -77,20 +77,20 @@
           items: [
             {
               text: "Upload file",
-              value: "upload",
+              value: "Upload file",
               conditional: {
                 html: fileUpload
               }
             },
             {
               text: "Describe the previous allegations",
-              value: "describe",
+              value: "Describe the previous allegations",
               conditional: {
                 html: textarea
               }
             }
           ],
-          value: data.report.previousMisconduct.previousMisconduct['how-tell']
+          value: data.report.previousMisconduct.previousMisconduct.howTell
         }) }}
         {{ govukButton({
           text: "Save and continue"

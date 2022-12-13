@@ -7,7 +7,7 @@
         html: "Has there been any previous misconduct?"
       },
       value: {
-        html: data.report['previous-misconduct']['any-previous']
+        html: data.report.previousMisconduct.anyPrevious
       },
       actions: {
         items: [{
@@ -15,13 +15,13 @@
           href: "/report/previous-misconduct/any-previous"
         }]
       }
-    },
+    } if data.report.previousMisconduct.anyPrevious,
     {
       key: {
-        html: "Detailed report"
+        html: "How do you want to tell us about previous allegations?"
       },
       value: {
-        html: data.report['previous-misconduct']['previous-misconduct'] | nl2br
+        html: data.report.previousMisconduct.howTell
       },
       actions: {
         items: [{
@@ -29,10 +29,24 @@
           href: "/report/previous-misconduct/previous-misconduct"
         }]
       }
-    } if data.report['previous-misconduct']['how-tell'] == 'describe',
+    } if data.report.previousMisconduct.howTell,
     {
       key: {
-        html: "Detailed report"
+        html: "Description of previous allegations"
+      },
+      value: {
+        html: data.report.previousMisconduct.previousMisconduct | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/previous-misconduct/previous-misconduct"
+        }]
+      }
+    } if data.report.previousMisconduct.howTell == 'Describe the previous allegations',
+    {
+      key: {
+        html: "Description of previous allegations"
       },
       value: {
         html: '<a href="#">previous-misconduct.pdf</a>'
@@ -43,34 +57,6 @@
           href: "/report/previous-misconduct/previous-misconduct"
         }]
       }
-    } if data.report['previous-misconduct']['how-tell'] == 'upload',
-    {
-      key: {
-        html: "Detailed report"
-      },
-      value: {
-        html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/previous-misconduct/previous-misconduct"
-        }]
-      }
-    } if data.report['previous-misconduct']['how-tell'] == 'later',
-    {
-      key: {
-        html: "Summary"
-      },
-      value: {
-        html: data.report['previous-misconduct']['previous-misconduct-summary'] | nl2br
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/previous-misconduct/previous-misconduct-summary"
-        }]
-      }
-    } if data.report['previous-misconduct']['any-previous'] == 'Yes'
+    } if data.report.previousMisconduct.howTell == 'Upload file'
   ]
 }) }}
