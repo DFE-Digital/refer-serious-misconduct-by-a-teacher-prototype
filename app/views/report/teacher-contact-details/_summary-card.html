@@ -14,10 +14,10 @@
   rows: [
     {
       key: {
-        html: "Email address"
+        html: "Do you know the person’s email address?"
       },
       value: {
-        html: data.report['teacher-contact-details'].email if data.report['teacher-contact-details']['know-email'] == 'Yes' else "Not known"
+        html: data.report['teacher-contact-details']['know-email']
       },
       actions: {
         items: [{
@@ -28,10 +28,24 @@
     },
     {
       key: {
-        html: "Phone number"
+        html: "Email address"
       },
       value: {
-        html: data.report['teacher-contact-details']['main-contact'] if data.report['teacher-contact-details']['know-telephone'] == 'Yes' else "Not known"
+        html: data.report['teacher-contact-details'].email
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-contact-details/email"
+        }]
+      }
+    } if data.report['teacher-contact-details']['know-email'] == 'Yes',
+    {
+      key: {
+        html: "Do you know the person’s phone number?"
+      },
+      value: {
+        html: data.report['teacher-contact-details']['know-telephone']
       },
       actions: {
         items: [{
@@ -42,10 +56,38 @@
     },
     {
       key: {
-        html: "Address"
+        html: "Phone number"
       },
       value: {
-        html: address if data.report['teacher-contact-details']['know-address'] == 'Yes' else 'Not known'
+        html: data.report['teacher-contact-details']['main-contact']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-contact-details/telephone"
+        }]
+      }
+    } if data.report['teacher-contact-details']['know-telephone'] == 'Yes',
+    {
+      key: {
+        html: "Do you know the person’s phone number?"
+      },
+      value: {
+        html: data.report['teacher-contact-details']['know-address']
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-contact-details/telephone"
+        }]
+      }
+    },
+    {
+      key: {
+        html: "Home address"
+      },
+      value: {
+        html: address
       },
       actions: {
         items: [{
@@ -53,6 +95,6 @@
           href: "/report/teacher-contact-details/address"
         }]
       }
-    }
+    } if data.report['teacher-contact-details']['know-address'] == 'Yes'
   ]
 }) }}

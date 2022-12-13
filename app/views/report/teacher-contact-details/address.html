@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you know their home address?" %}
+{% set title = "Do you know the person’s home address?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -11,6 +11,14 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% set h1 %}
+        <span class="govuk-caption-xl">
+          Contact details
+        </span>
+        {{title}}
+      {% endset %}
+
+
       <form method="post">
         {% set address %}
           {% call govukFieldset({
@@ -83,7 +91,7 @@
             legend: {
               classes: "govuk-fieldset__legend--xl",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           items: [
