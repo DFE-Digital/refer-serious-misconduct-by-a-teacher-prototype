@@ -1,5 +1,13 @@
 {% extends "layouts/main.html" %}
-{% set title = "You uploaded " + data.report.documentation['uploaded-files'] | length + " files" %}
+
+{% set filesLength = data.report.documentation['uploaded-files'] | length %}
+
+{% set title = filesLength %}
+{% if filesLength == 1 %}
+  {% set title = title + ' file uploaded' %}
+{% else %}
+  {% set title = title + ' files uploaded' %}
+{% endif %}
 
 {% block beforeContent %}
   {{ govukBackLink({
