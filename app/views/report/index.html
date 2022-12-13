@@ -33,7 +33,7 @@
       {% endif %}
 
       {% if data.report['teacher-contact-details']['section-completed'] %}
-        {% set teacherContactDetailsHref = '/report/teacher/check-answers' %}
+        {% set teacherContactDetailsHref = '/report/teacher-contact-details/check-answers' %}
         {% set teacherContactDetailsStatus = data.report['teacher-contact-details']['section-completed'] %}
         {% if data.report['teacher-contact-details']['section-completed'] == 'completed' %}
           {% set teacherContactDetailsTagColour = 'solid' %}
