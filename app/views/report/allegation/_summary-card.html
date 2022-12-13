@@ -4,24 +4,10 @@
   rows: [
     {
       key: {
-        html: 'Details about how this complaint has been considered'
+        html: 'How do you want to tell us about the allegation?'
       },
       value: {
-        html: data.report['allegation']['already-considered'] | nl2br
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/allegation/already-considered"
-        }]
-      }
-    } if isPublic,
-    {
-      key: {
-        html: 'Description of what happened'
-      },
-      value: {
-        html: data.report['allegation']['allegation'] | nl2br
+        html: data.report['allegation']['how-tell']
       },
       actions: {
         items: [{
@@ -29,10 +15,10 @@
           href: "/report/allegation/allegation"
         }]
       }
-    } if isPublic or data.report['allegation']['how-tell'] == "describe",
+    },
     {
       key: {
-        html: 'Detailed account'
+        html: 'Description of the allegation'
       },
       value: {
         html: '<a href="#">investigation.pdf</a>'
@@ -43,13 +29,13 @@
           href: "/report/allegation/allegation"
         }]
       }
-    } if data.report['allegation']['how-tell'] == "upload",
+    } if data.report['allegation']['how-tell'] == "Upload file",
     {
       key: {
-        html: 'Detailed account'
+        html: 'Description of the allegation'
       },
       value: {
-        html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
+        html: data.report['allegation']['allegation'] | nl2br
       },
       actions: {
         items: [{
@@ -57,21 +43,7 @@
           href: "/report/allegation/allegation"
         }]
       }
-    } if data.report['allegation']['how-tell'] == "later",
-    {
-      key: {
-        html: 'Summary'
-      },
-      value: {
-        html: data.report['allegation']['allegation-summary'] | nl2br
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/allegation/dbs"
-        }]
-      }
-    } if isEmployer,
+    } if data.report['allegation']['how-tell'] == "Describe the allegation",
     {
       key: {
         html: 'Have you told DBS?'
@@ -85,6 +57,20 @@
           href: "/report/allegation/dbs"
         }]
       }
-    } if isEmployer
+    } if data.report['allegation']['dbs'],
+    {
+      key: {
+        html: 'Details about how this complaint has been considered'
+      },
+      value: {
+        html: data.report['allegation']['already-considered'] | nl2br
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/allegation/already-considered"
+        }]
+      }
+    } if data.report['allegation']['already-considered']
   ]
 }) }}
