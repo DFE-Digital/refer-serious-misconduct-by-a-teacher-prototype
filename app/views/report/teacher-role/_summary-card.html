@@ -166,6 +166,20 @@
     } if data.report.teacherRole.stillEmployed,
     {
       key: {
+        html: 'Do you know when they left the job?'
+      },
+      value: {
+        html: data.report.teacherRole.knowWhenTheyLeft
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+        href: "/report/teacher-role/know-when-they-left"
+        }]
+      }
+    } if data.report.teacherRole.knowWhenTheyLeft,
+    {
+      key: {
         html: 'When they left the job'
       },
       value: {
