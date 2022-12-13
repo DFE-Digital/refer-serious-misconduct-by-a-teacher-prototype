@@ -37,7 +37,7 @@
           href: "/report/teacher-role/start-date"
         }]
       }
-    },
+    } if data.report.teacherRole.knowJobStartDate,
     {
       key: {
         html: 'Job start date'
@@ -51,7 +51,7 @@
           href: "/report/teacher-role/start-date"
         }]
       }
-    } if data.report.teacherRole.knowJobStartDate == 'Yes',
+    } if data.report.teacherRole.knowJobStartDate and data.report.teacherRole.knowJobStartDate == 'Yes',
     {
       key: {
         html: 'Job title'
@@ -79,7 +79,7 @@
           href: "/report/teacher-role/same-organisation"
         }]
       }
-    },
+    } if data.report.teacherRole.sameOrganisation,
     {
       key: {
         html: 'Do you know the name and address of the organisation where the alleged misconduct took place?'
