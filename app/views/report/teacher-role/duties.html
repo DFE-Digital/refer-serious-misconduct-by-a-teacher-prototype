@@ -20,7 +20,8 @@
               text: "Description of their main duties",
               classes: "govuk-label--s"
             },
-            rows: 15
+            rows: 15,
+            value: data.report.teacherRole.dutiesText
           }) }}
         {% endset %}
 
@@ -72,7 +73,8 @@
                   html: duties
                 }
               }
-            ]
+            ],
+            value: data.report.teacherRole.duties
           }) }}
 
         {{ govukButton({

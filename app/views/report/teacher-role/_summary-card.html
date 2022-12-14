@@ -83,20 +83,6 @@
     } if data.report.teacherRole.duties == 'Describe their main duties',
     {
       key: {
-        html: 'Do you know the name and address of the organisation where the alleged misconduct took place?'
-      },
-      value: {
-        html: data.report.teacherRole.knowWhereTheyWorked
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/know-where-they-worked"
-        }]
-      }
-    },
-    {
-      key: {
         html: 'Did they work at the same organisation as you at the time of the alleged misconduct?'
       },
       value: {
@@ -109,6 +95,20 @@
         }]
       }
     } if data.report.teacherRole.sameOrganisation,
+    {
+      key: {
+        html: 'Do you know the name and address of the organisation where the alleged misconduct took place?'
+      },
+      value: {
+        html: data.report.teacherRole.knowWhereTheyWorked
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/know-where-they-worked"
+        }]
+      }
+    } if data.report.teacherRole.sameOrganisation == 'No',
     {
       key: {
         html: 'Where they were employed at the time of the alleged misconduct'

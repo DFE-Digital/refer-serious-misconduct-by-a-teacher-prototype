@@ -25,7 +25,8 @@
           label: {
             text: "Organisation name",
             classes: "govuk-label--m"
-          }
+          },
+          value: report.teacherRole.newOrganisation.name
         }) }}
 
         {{ govukInput({
@@ -33,9 +34,10 @@
           name: "[report][teacherRole][organisation][address][line1]",
           label: {
             text: 'Address line 1',
-          classes: "govuk-label--m"
+            classes: "govuk-label--m"
           },
-          autocomplete: "address-line1"
+          autocomplete: "address-line1",
+          value: report.teacherRole.organisation.address.line1
         }) }}
 
         {{ govukInput({
@@ -46,7 +48,8 @@
             classes: "govuk-label--m"
           },
           autocomplete: "address-line2",
-        classes: "govuk-label--m"
+          classes: "govuk-label--m",
+          value: report.teacherRole.organisation.address.line2
         }) }}
 
         {{ govukInput({
@@ -57,7 +60,8 @@
             classes: "govuk-label--m"
           },
           classes: "govuk-!-width-two-thirds",
-          autocomplete: "address-level2"
+          autocomplete: "address-level2",
+          value: report.teacherRole.organisation.address.town
         }) }}
 
         {{ govukInput({
@@ -68,7 +72,8 @@
             classes: "govuk-label--m"
           },
           classes: "govuk-input--width-10",
-          autocomplete: "postal-code"
+          autocomplete: "postal-code",
+          value: report.teacherRole.organisation.address.postcode
         }) }}
 
         {{ govukButton({
