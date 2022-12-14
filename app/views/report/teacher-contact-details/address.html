@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you know their home address?" %}
+{% set title = "Their home address" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -11,96 +11,72 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+        <span class="govuk-caption-l">
+          Contact details
+        </span>
+        <h1 class="govuk-heading-l">
+          {{title}}
+        </h1>
+
       <form method="post">
-        {% set address %}
-          {% call govukFieldset({
-            legend: {
-              text: "What is their address?",
-              classes: "govuk-fieldset__legend--m"
-            }
-          }) %}
-
-          {{ govukInput({
-            id: "[report][teacher-contact-details][address][line1]",
-            name: "[report][teacher-contact-details][address][line1]",
-            label: {
-              text: 'Address line 1'
-            },
-            value: data.report['teacher-contact-details'].address.line1,
-            autocomplete: "address-line1"
-          }) }}
-
-          {{ govukInput({
-            id: "[report][teacher-contact-details][address][line2]",
-            name: "[report][teacher-contact-details][address][line2]",
-            label: {
-              text: 'Address line 2 (optional)'
-            },
-            value: data.report['teacher-contact-details'].address.line2,
-            autocomplete: "address-line2"
-          }) }}
-
-          {{ govukInput({
-            id: "[report][teacher-contact-details][address][town]",
-            name: "[report][teacher-contact-details][address][town]",
-            label: {
-              text: "Town or city"
-            },
-            classes: "govuk-!-width-two-thirds",
-            value: data.report['teacher-contact-details'].address.town,
-            autocomplete: "address-level2"
-          }) }}
-
-          {{ govukInput({
-            id: "[report][teacher-contact-details][address][postcode]",
-            name: "[report][teacher-contact-details][address][postcode]",
-            label: {
-              text: "Postcode"
-            },
-            classes: "govuk-input--width-10",
-            value: data.report['teacher-contact-details'].address.postcode,
-            autocomplete: "postal-code"
-          }) }}
-
-          {{ govukInput({
-            id: "[report][teacher-contact-details][address][country]",
-            name: "[report][teacher-contact-details][address][country]",
-            label: {
-              text: "Country (optional)"
-            },
-            classes: "govuk-!-width-two-thirds",
-            value: data.report['teacher-contact-details'].address.country,
-            autocomplete: "country"
-          }) }}
-
-          {% endcall %}
-        {% endset %}
-
-        {{ govukRadios({
-          idPrefix: "[report][teacher-contact-details][know-address]",
-          name: "[report][teacher-contact-details][know-address]",
-          fieldset: {
-            legend: {
-              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-              isPageHeading: true,
-              text: title
-            }
+        {{ govukInput({
+          id: "[report][teacher-contact-details][address][line1]",
+          name: "[report][teacher-contact-details][address][line1]",
+          label: {
+            text: 'Address line 1',
+            classes: 'govuk-label--m'
           },
-          items: [
-            {
-              text: "Yes",
-              value: "Yes",
-              conditional: {
-                html: address
-              }
-            },
-            {
-              text: "No",
-              value: "No"
-            }
-          ],
-          value: data.report['teacher-contact-details']['know-address']
+          value: data.report['teacher-contact-details'].address.line1,
+          autocomplete: "address-line1"
         }) }}
+
+        {{ govukInput({
+          id: "[report][teacher-contact-details][address][line2]",
+          name: "[report][teacher-contact-details][address][line2]",
+          label: {
+            text: 'Address line 2 (optional)',
+            classes: 'govuk-label--m'
+          },
+          value: data.report['teacher-contact-details'].address.line2,
+          autocomplete: "address-line2"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacher-contact-details][address][town]",
+          name: "[report][teacher-contact-details][address][town]",
+          label: {
+            text: "Town or city",
+            classes: 'govuk-label--m'
+          },
+          classes: "govuk-!-width-two-thirds",
+          value: data.report['teacher-contact-details'].address.town,
+          autocomplete: "address-level2"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacher-contact-details][address][postcode]",
+          name: "[report][teacher-contact-details][address][postcode]",
+          label: {
+            text: "Postcode",
+            classes: 'govuk-label--m'
+          },
+          classes: "govuk-input--width-10",
+          value: data.report['teacher-contact-details'].address.postcode,
+          autocomplete: "postal-code"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacher-contact-details][address][country]",
+          name: "[report][teacher-contact-details][address][country]",
+          label: {
+            text: "Country (optional)",
+            classes: 'govuk-label--m'
+          },
+          classes: "govuk-!-width-two-thirds",
+          value: data.report['teacher-contact-details'].address.country,
+          autocomplete: "country"
+        }) }}
+
         {{ govukButton({
           text: "Save and continue"
         }) }}

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = file.filename %}
+{% set title = 'Description of ' + file.filename %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,20 +12,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <h1 class="govuk-heading-l">
-          <span class="govuk-caption-l">Your uploaded file</span>
-          {{ title }}
-        </h1>
         {% set other %}
           {{ govukInput({
             idPrefix: "[report][documentation][uploaded-files]["+fileId+"][other-type]",
             name: "[report][documentation][uploaded-files]["+fileId+"][other-type]",
             label: {
-              text: "Explain what this document is",
+              text: "File description",
               classes: "govuk-label--s"
             },
             value: data.report.documentation['uploaded-files'][fileId]['other-type']
           }) }}
+        {% endset %}
+
+        {% set h1 %}
+          <span class="govuk-caption-l">
+            Evidence and supporting information
+          </span>
+          {{title}}
         {% endset %}
 
         {{ govukCheckboxes({
@@ -33,8 +36,9 @@
           name: "[report][documentation][uploaded-files]["+fileId+"][type]",
           fieldset: {
             legend: {
-              classes: "govuk-fieldset__legend--m",
-              text: "Select all the categories that describe this file" | noOrphans | safe
+              classes: "govuk-fieldset__legend--l",
+              html: h1,
+              isPageHeading: true
             }
           },
           items: [
@@ -115,12 +119,12 @@
               value: "Complaint made to the school"
             },
             {
-              text: "Correspondence to or from school",
-              value: "Correspondence to or from school"
+              text: "Correspondence with the school",
+              value: "Correspondence with the school"
             },
             {
-              text: "School complaint policy",
-              value: "School complaint policy"
+              text: "School complaints policy",
+              value: "School complaints policy"
             },
             {
               text: "Complaint made to the police",

@@ -3,10 +3,6 @@ const _ = require('lodash')
 module.exports = router => {
 
   router.post('/report/teacher/name', (req, res) => {
-    res.redirect('/report/teacher/age')
-  })
-
-  router.post('/report/teacher/age', (req, res) => {
     if(res.locals.isPublic) {
       res.redirect('/report/teacher/check-answers')
     } else {

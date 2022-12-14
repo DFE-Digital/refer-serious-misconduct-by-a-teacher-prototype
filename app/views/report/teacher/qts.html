@@ -11,15 +11,21 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% set h1 %}
+        <span class="govuk-caption-l">
+          Personal details
+        </span>
+        {{title}}
+      {% endset %}
       <form method="post">
         {{ govukRadios({
           idPrefix: "[report][teacher-details][qts]",
           name: "[report][teacher-details][qts]",
           fieldset: {
             legend: {
-              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+              classes: "govuk-fieldset__legend--l",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           items: [
@@ -32,7 +38,7 @@
               value: "No"
             },
             {
-              text: "I don’t know",
+              text: "I’m not sure",
               value: "Not known"
             }
           ],

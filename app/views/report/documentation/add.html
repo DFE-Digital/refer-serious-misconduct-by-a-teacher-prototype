@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Upload evidence and supporting information" %}
+{% set title = "Upload evidence" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,15 +12,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <h1 class="govuk-heading-xl">{{ title }}</h1>
+        <span class="govuk-caption-l">
+          Evidence and supporting information
+        </span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
 
-        {% set examples %}
-          {% include "../../shared/_examples.html" %}
-        {% endset %}
+        {% include "../../shared/_examples.html" %}
 
-        {{ govukDetails({
-          summaryText: "Examples of evidence and supporting information",
-          html: examples
+        <p>Make sure the file names describe the content, for example ‘signed witness statement’.</p>
+
+        {{ govukWarningText({
+          text: "Do not include explicit content, for example indecent photos. You’ll be asked for these separately if needed."
         }) }}
 
         {{ govukFileUpload({
@@ -28,20 +30,13 @@
             text: "Upload files",
             classes: "govuk-label--m"
           },
-          hint: {
-            html: "<p>You should make sure the file names describe the content, for example ‘signed witness statement</p><p>You can upload all file types. Each file must not exceed 25mb.</p>"
-          },
           attributes: {
             multiple: true
           },
           decorate: 'report.documentation.files'
         }) }}
 
-        <h2 class="govuk-heading-s">Upload multiple files</h2>
-        <p>You can upload multiple files at once.</p>
 
-        <h2 class="govuk-heading-s">Do not upload explicit content</h2>
-        <p class="govuk-!-margin-bottom-6">Do not upload explicit files, for example indecent images. If your allegation mentions explicit files, we’ll ask for them when they’re needed.</p>
 
         {{ govukButton({
           text: "Save and continue"

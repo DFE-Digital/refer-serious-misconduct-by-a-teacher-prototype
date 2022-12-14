@@ -1,0 +1,97 @@
+{% extends "layouts/main.html" %}
+{% set title = "What is your organisation’s address?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report/yourOrganisation/name"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Your organisation
+      </h1>
+
+      <p>TRA will only consider cases of serious misconduct by teachers who are currently (or have previously been) employed or engaged at:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a school in England</li>
+        <li>a sixth form college in England</li>
+        <li>relevant youth accommodation in England</li>
+        <li>a children’s home in England</li>
+        <li>a 16 to 19 Academy</li>
+      </ul>
+      <p>TRA will not usually consider cases relating to teaching assistants, higher level teaching assistants or other support staff.</p>
+
+      <form method="post">
+
+
+        {{ govukInput({
+          id: "[report][yourOrganisation][name]",
+          name: "[report][yourOrganisation][name]",
+          label: {
+            text: 'Organisation name',
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            html: details
+          },
+          value: data.report.yourOrganisation.name
+        }) }}
+
+
+          {{ govukInput({
+            id: "[report][yourOrganisation][address][line1]",
+            name: "[report][yourOrganisation][address][line1]",
+            label: {
+              text: 'Address line 1',
+            classes: 'govuk-label--m'
+            },
+            value: data.report.yourOrganisation.address.line1,
+            autocomplete: "address-line1"
+          }) }}
+
+          {{ govukInput({
+            id: "[report][yourOrganisation][address][line2]",
+            name: "[report][yourOrganisation][address][line2]",
+            label: {
+              text: 'Address line 2 (optional)',
+            classes: 'govuk-label--m'
+            },
+            value: data.report.yourOrganisation.address.line2,
+            autocomplete: "address-line2"
+          }) }}
+
+          {{ govukInput({
+            id: "[report][yourOrganisation][address][town]",
+            name: "[report][yourOrganisation][address][town]",
+            label: {
+              text: "Town or city",
+            classes: 'govuk-label--m'
+            },
+            classes: "govuk-!-width-two-thirds",
+            value: data.report.yourOrganisation.address['town'],
+            autocomplete: "address-level2"
+          }) }}
+
+          {{ govukInput({
+            id: "[report][yourOrganisation][address][postcode]",
+            name: "[report][yourOrganisation][address][postcode]",
+            label: {
+              text: "Postcode",
+            classes: 'govuk-label--m'
+            },
+            classes: "govuk-input--width-10",
+            value: data.report.yourOrganisation.address.postcode,
+            autocomplete: "postal-code"
+          }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -14,12 +14,12 @@
       <form method="post">
         {% set startDate %}
           {{ govukDateInput({
-            id: "[report][teacher-role][start-date]",
-            name: "[report][teacher-role][start-date]",
+            id: "[report][teacherRole][jobStartDate]",
+            name: "[report][teacherRole][jobStartDate]",
             fieldset: {
               legend: {
                 classes: "govuk-label--s",
-                text: "Start date"
+                text: "Job start date"
               }
             },
             hint: {
@@ -27,39 +27,47 @@
             },
             items: [
               {
-                name: "[report][teacher-role][start-date][day]",
+                name: "[report][teacherRole][jobStartDate][day]",
                 label: "Day",
-                value: data.report['teacher-role']['start-date'].day,
+                value: data.report.teacherRole.jobStartDate.day,
                 classes: "govuk-input--width-2"
               },
               {
-                name: "[report][teacher-role][start-date][month]",
+                name: "[report][teacherRole][jobStartDate][month]",
                 label: "Month",
-                value: data.report['teacher-role']['start-date'].month,
+                value: data.report.teacherRole.jobStartDate.month,
                 classes: "govuk-input--width-2"
               },
               {
-                name: "[report][teacher-role][start-date][year]",
+                name: "[report][teacherRole][jobStartDate][year]",
                 label: "Year",
-                value: data.report['teacher-role']['start-date'].year,
+                value: data.report.teacherRole.jobStartDate.year,
                 classes: "govuk-input--width-4"
               }
             ]
           }) }}
         {% endset %}
 
+        {% set h1 %}
+          <span class="govuk-caption-l">
+            About their role
+          </span>
+          {{title}}
+        {% endset %}
+
+
         {{ govukRadios({
-          id: "[report][teacher-role][start-job]",
-          name: "[report][teacher-role][start-job]",
+          id: "[report][teacherRole][knowJobStartDate]",
+          name: "[report][teacherRole][knowJobStartDate]",
           fieldset: {
             legend: {
-              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+              classes: "govuk-fieldset__legend--l",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           hint: {
-            html: "<p>This is the job the person had when the allegation of serious misconduct was made against them.</p>"
+            html: "This is the job they had when the allegation of serious misconduct was made against them"
           },
           items: [
             {

@@ -1,9 +1,10 @@
 {% set address %}
   {{appFormattedAddress({
-    line1: data.report['your-organisation'].address.line1,
-    line2: data.report['your-organisation'].address.line2,
-    town: data.report['your-organisation'].address.town,
-    postcode: data.report['your-organisation'].address.postcode
+    name: data.report.yourOrganisation.name,
+    line1: data.report.yourOrganisation.address.line1,
+    line2: data.report.yourOrganisation.address.line2,
+    town: data.report.yourOrganisation.address.town,
+    postcode: data.report.yourOrganisation.address.postcode
   })}}
 {% endset %}
 
@@ -13,21 +14,7 @@
   rows: [
     {
       key: {
-        html: "Organisation"
-      },
-      value: {
-        html: data.report['your-organisation'].name
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/your-organisation/name"
-        }]
-      }
-    },
-    {
-      key: {
-        html: "Address"
+        html: "Your organisation"
       },
       value: {
         html: address
@@ -35,7 +22,7 @@
       actions: {
         items: [{
           text: 'Change',
-          href: "/report/your-organisation/address"
+          href: "/report/your-organisation/organisation"
         }]
       }
     }

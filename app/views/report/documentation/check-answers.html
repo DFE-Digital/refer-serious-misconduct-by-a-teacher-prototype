@@ -16,19 +16,17 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <h1 class="govuk-heading-xl">
-        <span class="govuk-caption-xl">About you</span>
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">Evidence and supporting information</span>
         {{ title }}
       </h1>
-
-      <p>Upload all relevant correspondence and supporting information.</p>
-
-      {{ govukDetails({
-        summaryText: 'See examples of commonly uploaded documents',
-        html: examples
-      }) }}
     </div>
   </div>
+
+  {{ govukButton({
+    text: "Add more evidence",
+    classes: 'govuk-button--secondary'
+  }) }}
 
   {% include '../documentation/_summary-card.html' %}
 

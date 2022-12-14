@@ -4,17 +4,13 @@ module.exports = router => {
 
   router.post('/report/your-details/name', (req, res) => {
     if(res.locals.isPublic) {
-      res.redirect('/report/your-details/relationship-to')
+      res.redirect('/report/your-details/telephone')
     } else {
       res.redirect('/report/your-details/job-title')
     }
   })
 
   router.post('/report/your-details/job-title', (req, res) => {
-    res.redirect('/report/your-details/telephone')
-  })
-
-  router.post('/report/your-details/relationship-to', (req, res) => {
     res.redirect('/report/your-details/telephone')
   })
 

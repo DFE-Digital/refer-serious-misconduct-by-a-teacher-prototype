@@ -1,5 +1,13 @@
 {% extends "layouts/main.html" %}
-{% set title = "You uploaded " + data.report.documentation'uploaded-files' | length + " files" %}
+
+{% set filesLength = data.report.documentation['uploaded-files'] | length %}
+
+{% set title = filesLength %}
+{% if filesLength == 1 %}
+  {% set title = title + ' file uploaded' %}
+{% else %}
+  {% set title = title + ' files uploaded' %}
+{% endif %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,7 +20,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-l">
+          Evidence and supporting information
+        </span>
+        <h1 class="govuk-heading-l">
           {{ title }}
         </h1>
 

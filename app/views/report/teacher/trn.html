@@ -11,22 +11,24 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% set h1 %}
+        <span class="govuk-caption-l">
+          Personal details
+        </span>
+        {{title}}
+      {% endset %}
+
       <form method="post">
         {% set trn %}
           {{ govukInput({
             id: "[report][teacher-details][trn]",
             name: "[report][teacher-details][trn]",
             label: {
-              text: "Teacher reference number",
+              text: "TRN",
               classes: "govuk-label--s"
             },
             value: data.report['teacher-details'].trn
           }) }}
-        {% endset %}
-
-        {% set hint %}
-          <p>A TRN is 7 digits long, for example 4567814.</p>
-          <!-- It’s previously been known as a QTS, GTC, DfE, DfES and DCSF number. -->
         {% endset %}
 
         {{ govukRadios({
@@ -34,13 +36,13 @@
           name: "[report][teacher-details][know-trn]",
           fieldset: {
             legend: {
-              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+              classes: "govuk-fieldset__legend--l",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           hint: {
-            html: hint
+            html: 'A TRN is 7 digits long, for example 4567814'
           },
           items: [
             {

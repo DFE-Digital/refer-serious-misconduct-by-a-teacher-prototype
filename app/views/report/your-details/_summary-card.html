@@ -7,7 +7,7 @@
         text: "Your name"
       },
       value: {
-        html: data.report['your-details'].name
+        html: data.report['your-details'].firstName + ' ' + data.report['your-details'].lastName
       },
       actions: {
         items: [{
@@ -18,7 +18,7 @@
     },
     {
       key: {
-        text: "Email address"
+        text: "Your email address"
       },
       value: {
         html: data.report.email
@@ -40,21 +40,7 @@
     } if isEmployer,
     {
       key: {
-        text: "Relationship to person"
-      },
-      value: {
-        html: data.report['your-details']['relationship-to']
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/your-details/relationship-to"
-        }]
-      }
-    } if isPublic,
-    {
-      key: {
-        text: "Main contact number"
+        text: "Your phone number"
       },
       value: {
         html: data.report['your-details']['telephone']

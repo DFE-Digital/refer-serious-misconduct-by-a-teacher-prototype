@@ -6,7 +6,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <h1 class="govuk-heading-xl">{{ title }}</h1>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
 
       {% if data.report['your-details']['section-completed'] %}
         {% set yourDetailsHref = '/report/your-details/check-answers' %}
@@ -33,17 +33,17 @@
       {% endif %}
 
       {% if data.report['teacher-contact-details']['section-completed'] %}
-        {% set teacherContactDetailsHref = '/report/teacher/check-answers' %}
+        {% set teacherContactDetailsHref = '/report/teacher-contact-details/check-answers' %}
         {% set teacherContactDetailsStatus = data.report['teacher-contact-details']['section-completed'] %}
         {% if data.report['teacher-contact-details']['section-completed'] == 'completed' %}
           {% set teacherContactDetailsTagColour = 'solid' %}
         {% endif %}
       {% endif %}
 
-      {% if data.report['teacher-role']['section-completed'] %}
+      {% if data.report.teacherRole.sectionCompleted %}
         {% set teacherRoleHref = '/report/teacher-role/check-answers' %}
-        {% set teacherRoleStatus = data.report['teacher-role']['section-completed'] %}
-        {% if data.report['teacher-role']['section-completed'] == 'completed' %}
+        {% set teacherRoleStatus = data.report.teacherRole.sectionCompleted %}
+        {% if data.report.teacherRole.sectionCompleted == 'completed' %}
           {% set teacherRoleTagColour = 'solid' %}
         {% endif %}
       {% endif %}
@@ -85,14 +85,14 @@
               }
             }, {
               text: "Your organisation",
-              href: yourOrganisationHref or '/report/your-organisation/name',
+              href: yourOrganisationHref or '/report/your-organisation/organisation',
               tag: {
                 colour: yourOrganisationTagColour or 'grey',
                 text: yourOrganisationStatus or 'Not started yet'
               }
             }]
           }, {
-            titleText: "About the person you are referring",
+            titleText: "About the person you’re referring",
             items: [{
               text: "Personal details",
               href: teacherHref or '/report/teacher/name',
@@ -109,7 +109,7 @@
               }
             }, {
               text: "About their role",
-              href: teacherRoleHref or '/report/teacher-role/start-date',
+              href: teacherRoleHref or '/report/teacher-role/job-title',
               tag: {
                 colour: teacherRoleTagColour or 'grey',
                 text: teacherRoleStatus or 'Not started yet'
@@ -154,7 +154,7 @@
               }
             }]
           }, {
-            titleText: "About the person you are referring",
+            titleText: "About the person you’re referring",
             items: [{
               text: "Personal details",
               href: teacherHref or '/report/teacher/name',
@@ -201,7 +201,7 @@
           <a href="/report/delete">Delete your draft referral</a>
         </p>
         <p>
-          Drafts are automatically deleted after 6 months of no activity. We’ll send you an email before deleting it.
+          Drafts are automatically deleted after 6 months of no activity. You’ll be sent an email before it’s deleted.
         </p>
       {% endset %}
 
@@ -212,7 +212,7 @@
       </form>
 
       {{ govukDetails({
-        summaryText: "I don’t want to continue",
+        summaryText: "I do not want to continue",
         html: html
       }) }}
     </div>

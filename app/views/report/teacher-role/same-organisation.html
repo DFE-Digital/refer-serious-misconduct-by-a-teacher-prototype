@@ -1,30 +1,33 @@
 {% extends "layouts/main.html" %}
-{% set title = "Evidence and supporting information" %}
+{% set title = 'Did they work at the same organisation as you at the time of the alleged misconduct?' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/report"
+    href: "javascript:history.back();"
   }) }}
 {% endblock %}
+
+{# {% set organisationName = "(" + data.report['teacher-role']['your-organisation.name'] + ")" %} #}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% set h1 %}
+        <span class="govuk-caption-l">
+          About their role
+        </span>
+        {{title}}
+      {% endset %}
       <form method="post">
-        <h1 class="govuk-heading-l">
-          {{ title }}
-        </h1>
-
-        {% include "../../shared/_examples.html" %}
-
         {{ govukRadios({
-          idPrefix: "[report][documentation][anything-to-upload]",
-          name: "[report][documentation][anything-to-upload]",
+          id: "[report][teacherRole][sameOrganisation]",
+          name: "[report][teacherRole][sameOrganisation]",
           fieldset: {
             legend: {
-              classes: "govuk-fieldset__legend--m",
-              text: "Do you have evidence to upload?"
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: h1
             }
           },
           items: [
@@ -36,8 +39,7 @@
               text: "No",
               value: "No"
             }
-          ],
-          value: data.report.documentation['anything-to-upload']
+          ]
         }) }}
         {{ govukButton({
           text: "Save and continue"

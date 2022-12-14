@@ -1,37 +1,47 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you know if they are teaching somewhere else?" %}
+{% set title = "Are they employed somewhere else?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/report/teacher-role/duties"
+    href: "javascript:history.back();"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {% set h1 %}
+        <span class="govuk-caption-l">
+          About their role
+        </span>
+        {{title}}
+      {% endset %}
+
       <form method="post">
         {{ govukRadios({
-          id: "[report][teacher-role][teaching-elsewhere]",
-          name: "[report][teacher-role][teaching-elsewhere]",
+          id: "[report][teacherRole][teachingElsewhere]",
+          name: "[report][teacherRole][teachingElsewhere]",
           fieldset: {
             legend: {
-              classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+              classes: "govuk-fieldset__legend--l",
               isPageHeading: true,
-              text: title
+              html: h1
             }
           },
           items: [
             {
-              text: "Yes, they are teaching somewhere else",
+              text: "Yes",
               value: "Yes"
             },
             {
-              text: "No, they are not teaching somewhere else"
+              text: "No",
+              value: "No"
             },
             {
-              text: "I don’t know"
+              text: "I’m not sure",
+              value: "I’m not sure"
             }
           ]
         }) }}
