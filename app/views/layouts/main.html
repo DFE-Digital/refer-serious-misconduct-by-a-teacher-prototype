@@ -15,7 +15,17 @@ https://prototype-kit.service.gov.uk/docs/layouts
 {% endblock %}
 
 {% block header %}
-  {{super()}}
+  {{ govukHeader({
+    homepageUrl: "#",
+    serviceName: serviceName,
+    serviceUrl: '/',
+    navigation: [
+      {
+        href: "/account/sign-out",
+        text: "Sign out"
+      }
+    ] if data.report.email
+  }) }}
   {{ govukPhaseBanner({
     tag: {
       text: "Beta"

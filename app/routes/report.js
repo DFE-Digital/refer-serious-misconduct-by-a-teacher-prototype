@@ -8,6 +8,11 @@ module.exports = router => {
     next()
   })
 
+  router.get('/account/sign-out', (req, res) => {
+    delete req.session.data
+    res.redirect('/')
+  })
+
   router.post('/report', (req, res) => {
     res.redirect('/report/submit/review')
   })
