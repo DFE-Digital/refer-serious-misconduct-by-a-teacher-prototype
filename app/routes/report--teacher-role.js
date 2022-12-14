@@ -3,14 +3,14 @@ const _ = require('lodash')
 module.exports = router => {
 
   /*
-    Job title
+    Their job title
     Main duties
     Do you know where they worked
       Where they worked (if yes)
   */
 
   /*
-    Job title
+    Their job title
     Main duties
     Do you know where they worked
       Was it the same org
