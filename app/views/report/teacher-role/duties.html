@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "How do you want to tell us about the work they carried out?" %}
+{% set title = "How do you want to give details about their main duties?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -13,15 +13,11 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
         {% set duties %}
-          {% set hintHtml %}
-            <p>As far as you know, give details of the work carried out by the person you are referring.</p>
-          {% endset %}
-
           {{ govukTextarea({
             idPrefix: "[report][teacherRole][dutiesText]",
             name: "[report][teacherRole][dutiesText]",
             label: {
-              text: "Description of the work carried out",
+              text: "Description of their main duties",
               classes: "govuk-label--s"
             },
             rows: 15
@@ -70,8 +66,8 @@
                 }
               },
               {
-                text: "Describe the work carried out",
-                value: "Describe the work carried out",
+                text: "Describe their main duties",
+                value: "Describe their main duties",
                 conditional: {
                   html: duties
                 }

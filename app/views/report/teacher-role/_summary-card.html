@@ -1,4 +1,4 @@
-{% set address %}
+{%- set address -%}
   {{appFormattedAddress({
     name: data.report.teacherRole.organisation.name,
     line1: data.report.teacherRole.organisation.address.line1,
@@ -7,7 +7,7 @@
     postcode: data.report.teacherRole.organisation.address.postcode,
     country: data.report.teacherRole.organisation.address.country
   })}}
-{% endset %}
+{%- endset -%}
 
 {% set newOrgAddress %}
   {{appFormattedAddress({
@@ -20,10 +20,109 @@
   })}}
 {% endset %}
 
+
 {{ appSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "About their role",
   rows: [
+    {
+      key: {
+        html: 'Job title'
+      },
+      value: {
+        html: data.report.teacherRole.jobTitle
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/job-title"
+        }]
+      }
+    } if data.report.teacherRole.jobTitle,
+    {
+      key: {
+        html: 'How do you want to give details about their main duties?'
+      },
+      value: {
+        html: data.report.teacherRole.duties
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/duties"
+        }]
+      }
+    },
+    {
+      key: {
+        html: 'Description of their role'
+      },
+      value: {
+        html: '<a href="#">job-description.pdf</a>'
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/duties"
+        }]
+      }
+    } if data.report.teacherRole.duties == "Upload file",
+    {
+      key: {
+        html: 'Description of their role'
+      },
+      value: {
+        html: data.report.teacherRole.dutiesText
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/duties"
+        }]
+      }
+    } if data.report.teacherRole.duties == 'Describe their main duties',
+    {
+      key: {
+        html: 'Do you know the name and address of the organisation where the alleged misconduct took place?'
+      },
+      value: {
+        html: data.report.teacherRole.knowWhereTheyWorked
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/know-where-they-worked"
+        }]
+      }
+    },
+    {
+      key: {
+        html: 'Did they work at the same organisation as you at the time of the alleged misconduct?'
+      },
+      value: {
+        html: data.report.teacherRole.sameOrganisation
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/same-organisation"
+        }]
+      }
+    } if data.report.teacherRole.sameOrganisation,
+    {
+      key: {
+        html: 'Where they were employed at the time of the alleged misconduct'
+      },
+      value: {
+        html: address
+      },
+      actions: {
+        items: [{
+          text: 'Change',
+          href: "/report/teacher-role/where-they-worked"
+        }]
+      }
+    } if data.report.teacherRole.organisation,
     {
       key: {
         html: 'Do you know when they started their job?'
@@ -52,104 +151,6 @@
         }]
       }
     } if data.report.teacherRole.knowJobStartDate and data.report.teacherRole.knowJobStartDate == 'Yes',
-    {
-      key: {
-        html: 'Job title'
-      },
-      value: {
-        html: data.report.teacherRole.jobTitle
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/job-title"
-        }]
-      }
-    } if data.report.teacherRole.jobTitle,
-    {
-      key: {
-        html: 'Did they work at the same organisation as you at the time of the alleged misconduct?'
-      },
-      value: {
-        html: data.report.teacherRole.sameOrganisation
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/same-organisation"
-        }]
-      }
-    } if data.report.teacherRole.sameOrganisation,
-    {
-      key: {
-        html: 'Do you know the name and address of the organisation where the alleged misconduct took place?'
-      },
-      value: {
-        html: data.report.teacherRole.knowWhereTheyWorked
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/know-where-they-worked"
-        }]
-      }
-    },
-    {
-      key: {
-        html: 'Where they were employed at the time of the alleged misconduct'
-      },
-      value: {
-        html: address
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/where-they-worked"
-        }]
-      }
-    } if data.report.teacherRole.knowWhereTheyWorked == 'Yes',
-    {
-      key: {
-        html: 'How do you want to tell us about the work they carried out?'
-      },
-      value: {
-        html: data.report.teacherRole.duties
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/duties"
-        }]
-      }
-    },
-    {
-      key: {
-        html: 'Description of the work carried out'
-      },
-      value: {
-        html: '<a href="#">job-description.pdf</a>'
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/duties"
-        }]
-      }
-    } if data.report.teacherRole.duties == "Upload file",
-    {
-      key: {
-        html: 'Description of the work carried out'
-      },
-      value: {
-        html: data.report.teacherRole.dutiesText
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/teacher-role/duties"
-        }]
-      }
-    } if data.report.teacherRole.duties == 'Describe the work carried out',
     {
       key: {
         html: 'Are they still employed in the job where the alleged misconduct took place?'
@@ -208,7 +209,7 @@
     } if data.report.teacherRole.reasonForLeaving,
     {
       key: {
-        html: 'Are they teaching somewhere else?'
+        html: 'Are they employed somewhere else?'
       },
       value: {
         html: data.report.teacherRole.teachingElsewhere

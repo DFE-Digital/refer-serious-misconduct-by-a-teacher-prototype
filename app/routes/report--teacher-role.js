@@ -2,44 +2,80 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.post('/report/teacher-role/start-date', (req, res) => {
-    res.redirect('/report/teacher-role/job-title')
-  })
+  /*
+    Job title
+    Main duties
+    Do you know where they worked
+      Where they worked (if yes)
+  */
+
+  /*
+    Job title
+    Main duties
+    Do you know where they worked
+      Was it the same org
+        Do you know where they worked
+          Where they worked
+
+    Do you know when they started?
+    Are they still employed at same job?
+      Do you know when they left the job?
+        When they left the job?
+      Reason for leaving the job
+
+      Are they employed somewhere else?
+        Do you know the name and address of the organisation where they’re currently working?
+        Where they currently work
+  */
 
   router.post('/report/teacher-role/job-title', (req, res) => {
-    res.redirect('/report/teacher-role/same-organisation')
-  })
-
-  router.post('/report/teacher-role/same-organisation', (req, res) => {
-    if(req.session.data.report.teacherRole.sameOrganisation === 'Yes') {
-      res.redirect('/report/teacher-role/duties')
-    } else {
-      res.redirect('/report/teacher-role/know-where-they-worked')
-    }
-  })
-
-  router.post('/report/teacher-role/know-where-they-worked', (req, res) => {
-    if(req.session.data.report.teacherRole.knowWhereTheyWorked === 'Yes') {
-      res.redirect('/report/teacher-role/where-they-worked')
-    } else {
-      res.redirect('/report/teacher-role/duties')
-    }
-  })
-
-  router.post('/report/teacher-role/where-they-worked', (req, res) => {
-    res.redirect('/report/teacher-role/duties')
-  })
-
-  router.post('/report/teacher-role/school', (req, res) => {
     res.redirect('/report/teacher-role/duties')
   })
 
   router.post('/report/teacher-role/duties', (req, res) => {
-    if(_.get(req.session.data, 'report[type-of-report]') == 'public') {
+    res.redirect('/report/teacher-role/know-where-they-worked')
+  })
+
+  router.post('/report/teacher-role/know-where-they-worked', (req, res) => {
+    let isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public';
+    if(isPublic) {
+      // public
+      if(req.session.data.report.teacherRole.knowWhereTheyWorked === 'Yes') {
+        res.redirect('/report/teacher-role/where-they-worked')
+      } else {
+        res.redirect('/report/teacher-role/check-answers')
+      }
+    } else {
+      // employer
+      if(req.session.data.report.teacherRole.knowWhereTheyWorked === 'Yes') {
+        res.redirect('/report/teacher-role/same-organisation')
+      } else {
+        res.redirect('/report/teacher-role/start-date')
+      }
+    }
+  })
+
+  router.post('/report/teacher-role/same-organisation', (req, res) => {
+    if(req.session.data.report.teacherRole.sameOrganisation === 'Yes') {
+      res.redirect('/report/teacher-role/start-date')
+    } else {
+      res.redirect('/report/teacher-role/where-they-worked')
+    }
+  })
+
+  router.post('/report/teacher-role/where-they-worked', (req, res) => {
+    let isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public';
+    if(isPublic) {
+      // public
       res.redirect('/report/teacher-role/check-answers')
     } else {
-      res.redirect('/report/teacher-role/still-employed')
+      // employer
+      res.redirect('/report/teacher-role/start-date')
     }
+  })
+
+  router.post('/report/teacher-role/start-date', (req, res) => {
+    res.redirect('/report/teacher-role/still-employed')
   })
 
   router.post('/report/teacher-role/still-employed', (req, res) => {
@@ -54,7 +90,7 @@ module.exports = router => {
     if(req.session.data.report.teacherRole.knowWhenTheyLeft === 'Yes') {
       res.redirect('/report/teacher-role/when-they-left')
     } else {
-      res.redirect('/report/teacher-role/teaching-somewhere-else')
+      res.redirect('/report/teacher-role/why-they-left')
     }
   })
 
@@ -89,4 +125,5 @@ module.exports = router => {
   router.post('/report/teacher-role/check-answers', (req, res) => {
     res.redirect('/report')
   })
+
 }

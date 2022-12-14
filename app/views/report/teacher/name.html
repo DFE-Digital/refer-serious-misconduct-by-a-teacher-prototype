@@ -26,7 +26,7 @@
             classes: "govuk-label--m"
           },
           hint: {
-            text: "Or given name - enter the initial if you do not know their first name"
+            text: "Or given name - enter their initial if you do not know their first name"
           },
           value: data.report['teacher-details']['first-name']
         }) }}
@@ -64,6 +64,9 @@
               classes: "govuk-fieldset__legend--m",
               text: "Do you know them by any other name?"
             }
+          },
+          hint: {
+            text: 'For example, if they’ve changed their name after getting married'
           },
           items: [
             {
