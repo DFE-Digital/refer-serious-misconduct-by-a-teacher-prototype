@@ -108,7 +108,7 @@
           href: "/report/teacher-role/know-where-they-worked"
         }]
       }
-    } if data.report.teacherRole.sameOrganisation == 'No',
+    } if data.report.teacherRole.sameOrganisation == 'No' or (not data.report.teacherRole.sameOrganisation and data.report.teacherRole.knowWhereTheyWorked),
     {
       key: {
         html: 'Where they were employed at the time of the alleged misconduct'
@@ -122,7 +122,7 @@
           href: "/report/teacher-role/where-they-worked"
         }]
       }
-    } if data.report.teacherRole.organisation,
+    } if data.report.teacherRole.knowWhereTheyWorked == 'Yes' and data.report.teacherRole.organisation,
     {
       key: {
         html: 'Do you know when they started their job?'
