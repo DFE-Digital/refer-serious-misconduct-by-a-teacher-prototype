@@ -24,13 +24,7 @@
           }) }}
         {% endset %}
 
-        {% set h1 %}
-          <span class="govuk-caption-l">
-            Evidence and supporting information
-          </span>
-          {{title}}
-        {% endset %}
-
+        <span class="govuk-caption-l">Evidence and supporting information</span>
         {{ govukCheckboxes({
           idPrefix: "[report][documentation][uploaded-files]["+fileId+"][type]",
           name: "[report][documentation][uploaded-files]["+fileId+"][type]",
