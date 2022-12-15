@@ -4,20 +4,13 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/report/teacher/age"
+    href: "javascript:history.back();"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {% set h1 %}
-        <span class="govuk-caption-l">
-          Personal details
-        </span>
-        {{title}}
-      {% endset %}
-
       <form method="post">
         {% set nino %}
           {{ govukInput({
@@ -34,6 +27,7 @@
           }) }}
         {% endset %}
 
+        <span class="govuk-caption-l">Personal details</span>
         {{ govukRadios({
           idPrefix: "[report][teacher-details][know-nino]",
           name: "[report][teacher-details][know-nino]",
@@ -41,7 +35,7 @@
             legend: {
               classes: "govuk-fieldset__legend--l",
               isPageHeading: true,
-              html: h1
+              html: title
             }
           },
           items: [

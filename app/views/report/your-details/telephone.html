@@ -11,18 +11,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {% set h1 %}
-        <span class="govuk-caption-l">
-          Your details
-        </span>
-        {{title}}
-      {% endset %}
       <form method="post">
+        <span class="govuk-caption-l">Your details</span>
         {{ govukInput({
           id: "[report][your-details][telephone]",
           name: "[report][your-details][telephone]",
           label: {
-            html: h1,
+            html: title,
             classes: "govuk-label--l",
             isPageHeading: true
           },
