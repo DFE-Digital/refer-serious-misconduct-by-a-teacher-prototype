@@ -11,22 +11,15 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {% set h1 %}
-        <span class="govuk-caption-l">
-          About their role
-        </span>
-        {{title}}
-      {% endset %}
-
-
       <form method="post">
+        <span class="govuk-caption-l">About their role</span>
         {{ govukDateInput({
           idPrefix: "[report][teacherRole][jobEndDate]",
           name: "[report][teacherRole][jobEndDate]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--l",
-              html: h1,
+              html: title,
               isPageHeading: true
             }
           },

@@ -39,43 +39,35 @@
           }) }}
         {% endset %}
 
-
-
-          {% set h1 %}
-            <span class="govuk-caption-l">
-              About their role
-            </span>
-            {{title}}
-          {% endset %}
-
-          {{ govukRadios({
-            idPrefix: "[report][teacherRole][duties]",
-            name: "[report][teacherRole][duties]",
-            fieldset: {
-              legend: {
-                classes: "govuk-fieldset__legend--l",
-                isPageHeading: true,
-                html: h1
+        <span class="govuk-caption-l">About their role</span>
+        {{ govukRadios({
+          idPrefix: "[report][teacherRole][duties]",
+          name: "[report][teacherRole][duties]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          items: [
+            {
+              text: "Upload file",
+              value: "Upload file",
+              conditional: {
+                html: jobDescription
               }
             },
-            items: [
-              {
-                text: "Upload file",
-                value: "Upload file",
-                conditional: {
-                  html: jobDescription
-                }
-              },
-              {
-                text: "Describe their main duties",
-                value: "Describe their main duties",
-                conditional: {
-                  html: duties
-                }
+            {
+              text: "Describe their main duties",
+              value: "Describe their main duties",
+              conditional: {
+                html: duties
               }
-            ],
-            value: data.report.teacherRole.duties
-          }) }}
+            }
+          ],
+          value: data.report.teacherRole.duties
+        }) }}
 
         {{ govukButton({
           text: "Save and continue"
