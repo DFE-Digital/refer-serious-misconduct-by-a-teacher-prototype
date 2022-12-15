@@ -11,13 +11,6 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {% set h1 %}
-        <span class="govuk-caption-l">
-          Contact details
-        </span>
-        {{title}}
-      {% endset %}
-
       <form method="post">
         {% set email %}
           {{ govukInput({
@@ -31,6 +24,7 @@
           }) }}
         {% endset %}
 
+        <span class="govuk-caption-l">Contact details</span>
         {{ govukRadios({
           idPrefix: "[report][teacher-contact-details][know-email]",
           name: "[report][teacher-contact-details][know-email]",
