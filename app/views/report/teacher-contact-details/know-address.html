@@ -11,14 +11,8 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {% set h1 %}
-        <span class="govuk-caption-l">
-          Contact details
-        </span>
-        {{title}}
-      {% endset %}
-
       <form method="post">
+        <span class="govuk-caption-l">Contact details</span>
         {{ govukRadios({
           idPrefix: "[report][teacher-contact-details][know-address]",
           name: "[report][teacher-contact-details][know-address]",
@@ -26,7 +20,7 @@
             legend: {
               classes: "govuk-fieldset__legend--l",
               isPageHeading: true,
-              html: h1
+              html: title
             }
           },
           items: [

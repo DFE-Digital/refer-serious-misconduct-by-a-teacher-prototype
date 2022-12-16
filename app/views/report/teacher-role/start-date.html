@@ -48,14 +48,7 @@
           }) }}
         {% endset %}
 
-        {% set h1 %}
-          <span class="govuk-caption-l">
-            About their role
-          </span>
-          {{title}}
-        {% endset %}
-
-
+        <span class="govuk-caption-l">About their role</span>
         {{ govukRadios({
           id: "[report][teacherRole][knowJobStartDate]",
           name: "[report][teacherRole][knowJobStartDate]",
@@ -63,7 +56,7 @@
             legend: {
               classes: "govuk-fieldset__legend--l",
               isPageHeading: true,
-              html: h1
+              html: title
             }
           },
           hint: {

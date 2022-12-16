@@ -8,24 +8,16 @@
   }) }}
 {% endblock %}
 
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {% set h1 %}
-        <span class="govuk-caption-l">
-          About their role
-        </span>
-        {{title}}
-      {% endset %}
-
-
       <form method="post">
+        <span class="govuk-caption-l">About their role</span>
         {{ govukInput({
           id: "[report][teacherRole][jobTitle]",
           name: "[report][teacherRole][jobTitle]",
           label: {
-            html: h1,
+            html: title,
             classes: "govuk-label--l",
             isPageHeading: true
           },
