@@ -59,25 +59,17 @@ module.exports = router => {
 
   router.post('/report/teacher-role/still-employed', (req, res) => {
     if(req.session.data.report.teacherRole.stillEmployed === 'No') {
-      res.redirect('/report/teacher-role/know-when-they-left')
+      res.redirect('/report/teacher-role/end-date')
     } else {
       res.redirect('/report/teacher-role/check-answers')
     }
   })
 
-  router.post('/report/teacher-role/know-when-they-left', (req, res) => {
-    if(req.session.data.report.teacherRole.knowWhenTheyLeft === 'Yes') {
-      res.redirect('/report/teacher-role/when-they-left')
-    } else {
-      res.redirect('/report/teacher-role/why-they-left')
-    }
+  router.post('/report/teacher-role/end-date', (req, res) => {
+    res.redirect('/report/teacher-role/reason-for-leaving')
   })
 
-  router.post('/report/teacher-role/when-they-left', (req, res) => {
-    res.redirect('/report/teacher-role/why-they-left')
-  })
-
-  router.post('/report/teacher-role/why-they-left', (req, res) => {
+  router.post('/report/teacher-role/reason-for-leaving', (req, res) => {
     res.redirect('/report/teacher-role/teaching-somewhere-else')
   })
 

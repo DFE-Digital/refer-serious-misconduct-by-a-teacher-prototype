@@ -175,13 +175,13 @@
       actions: {
         items: [{
           text: 'Change',
-        href: "/report/teacher-role/know-when-they-left"
+          href: "/report/teacher-role/end-date"
         }]
       }
     } if data.report.teacherRole.knowWhenTheyLeft,
     {
       key: {
-        html: 'When they left the job'
+        html: 'Job end date'
       },
       value: {
         html: data.report.teacherRole.jobEndDate | isoDateFromDateInput | date
@@ -189,10 +189,10 @@
       actions: {
         items: [{
           text: 'Change',
-        href: "/report/teacher-role/when-they-left"
+          href: "/report/teacher-role/end-date"
         }]
       }
-    } if data.report.teacherRole.jobEndDate,
+    } if data.report.teacherRole.knowWhenTheyLeft == 'Yes',
     {
       key: {
         html: 'Reason they left the job'
@@ -203,7 +203,7 @@
       actions: {
         items: [{
           text: 'Change',
-          href: "/report/teacher-role/why-they-left"
+          href: "/report/teacher-role/reason-for-leaving"
         }]
       }
     } if data.report.teacherRole.reasonForLeaving,
