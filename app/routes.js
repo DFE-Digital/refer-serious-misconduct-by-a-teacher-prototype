@@ -9,6 +9,15 @@ router.all('*', (req, res, next) => {
   next()
 })
 
+router.get('/set-user-type', (req, res) => {
+  req.session.data = {
+    report: {
+      'type-of-report': req.query.type
+    }
+  }
+  res.redirect('/report')
+})
+
 require('./routes/eligibility')(router)
 require('./routes/report')(router)
 require('./routes/report--your-details')(router)
