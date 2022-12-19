@@ -10,6 +10,13 @@
 {% endblock %}
 
 {% block content %}
+
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash and flash.length }}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
@@ -28,15 +35,13 @@
                 <a href="#">{{file.filename}}</a>
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/evidence/{{id}}/delete">
+                <a class="govuk-link" href="/report/evidence/{{id}}/delete">
                   Delete<span class="govuk-visually-hidden"> {{file.filename}}</span>
                 </a>
               </dd>
             </div>
           {% endfor %}
         </dl>
-
-
 
         {{ govukRadios({
           idPrefix: "[report][evidence][addMore]",

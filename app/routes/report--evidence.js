@@ -54,49 +54,36 @@ module.exports = router => {
   })
 
   router.post('/report/evidence/check-files', (req, res) => {
-    if(req.session.data.report.evidence.addMore == 'Yes') {
+    if(_.get(req, 'body.report.evidence.addMore') == 'Yes') {
       res.redirect(`/report/evidence/upload`)
     } else {
       res.redirect(`/report/evidence/check-answers`)
     }
   })
 
-  router.get('/report/evidence/check-answers', (req, res) => {
-    const files = _.get(req.session.data, 'report.evidence.evidence.uploaded-files') || {}
-    const fileRows = []
+  router.post('/report/evidence/check-answers', (req, res) => {
+    res.redirect('/report')
+  })
 
-    for (const [fileId, file] of Object.entries(files)) {
-      let fileTypes = file.type ? file.type.join(', ') : 'No type'
-      fileTypes = 'Type:<br />' + fileTypes.replace('Other', `Other: ${file['other-type']}`)
-
-      fileRows.push({
-        key: {
-          html: `<a href="#">${file.filename}</a>`
-        },
-        value: {
-          html: fileTypes
-        },
-        actions: {
-          items: [
-            {
-              text: 'Change',
-              href: `/report/evidence/edit-file/${fileId}`
-            },
-            {
-              text: 'Delete',
-              href: '#'
-            }
-          ]
-        }
-      })
-    }
-    res.render('report/evidence/check-answers', {
-      fileRows
+  router.get('/report/evidence/:fileId/delete', (req, res) => {
+    let file = req.session.data.report.evidence.files[req.params.fileId]
+    res.render('report/evidence/delete', {
+      file
     })
   })
 
-  router.post('/report/evidence/check-answers', (req, res) => {
-    res.redirect('/report')
+  router.post('/report/evidence/:fileId/delete', (req, res) => {
+    delete req.session.data.report.evidence.files[req.params.fileId]
+    let filesCount = _.size(req.session.data.report.evidence.files)
+
+    req.flash('success', 'File deleted')
+
+    if(filesCount > 0) {
+      res.redirect('/report/evidence/check-files')
+    } else {
+      res.redirect('/report/evidence/has-evidence')
+    }
+
   })
 
 }
