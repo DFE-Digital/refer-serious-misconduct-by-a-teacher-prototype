@@ -19,8 +19,8 @@
         {% include "../../shared/_examples.html" %}
 
         {{ govukRadios({
-          idPrefix: "[report][documentation][anything-to-upload]",
-          name: "[report][documentation][anything-to-upload]",
+          idPrefix: "[report][evidence][hasEvidence]",
+          name: "[report][evidence][hasEvidence]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
@@ -37,7 +37,7 @@
               value: "No"
             }
           ],
-          value: data.report.documentation['anything-to-upload']
+          value: data.report.evidence.hasEvidence
         }) }}
         {{ govukButton({
           text: "Save and continue"

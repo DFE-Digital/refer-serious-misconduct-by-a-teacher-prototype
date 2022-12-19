@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% set title = 'Uploaded evidence' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">Evidence and supporting information</span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <h2 class="govuk-heading-m">Files added</h2>
+
+        <dl class="govuk-summary-list">
+          {% for id, file in data.report.evidence.files %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                File {{loop.index}}
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <a href="#">{{file.filename}}</a>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/evidence/{{id}}/delete">
+                  Delete<span class="govuk-visually-hidden"> {{file.filename}}</span>
+                </a>
+              </dd>
+            </div>
+          {% endfor %}
+        </dl>
+
+
+
+        {{ govukRadios({
+          idPrefix: "[report][evidence][addMore]",
+          name: "[report][evidence][addMore]",
+          fieldset: {
+            legend: {
+              text: "Do you want to add more evidence?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

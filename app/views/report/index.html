@@ -64,11 +64,11 @@
         {% endif %}
       {% endif %}
 
-      {% if data.report['documentation']['section-completed'] %}
-        {% set documentationHref = '/report/documentation/check-answers' %}
-        {% set documentationStatus = data.report['documentation']['section-completed'] %}
-        {% if data.report['documentation']['section-completed'] == 'completed' %}
-          {% set documentationTagColour = 'solid' %}
+      {% if data.report.evidence['section-completed'] %}
+        {% set evidenceHref = '/report/evidence/check-answers' %}
+        {% set evidenceStatus = data.report.evidence['section-completed'] %}
+        {% if data.report.evidence['section-completed'] == 'completed' %}
+          {% set evidenceTagColour = 'solid' %}
         {% endif %}
       {% endif %}
 
@@ -133,10 +133,10 @@
               }
             }, {
               text: "Evidence and supporting information",
-              href: documentationHref or '/report/documentation/anything-to-upload',
+              href: evidenceHref or '/report/evidence/has-evidence',
               tag: {
-                colour: documentationTagColour or 'grey',
-                text: documentationStatus or 'Not started yet'
+                colour: evidenceTagColour or 'grey',
+                text: evidenceStatus or 'Not started yet'
               }
             }]
           }]
@@ -181,10 +181,10 @@
               }
             }, {
               text: "Evidence and supporting information",
-              href: documentationHref or '/report/documentation/anything-to-upload',
+              href: evidenceHref or '/report/evidence/has-evidence',
               tag: {
-                colour: documentationTagColour or 'grey',
-                text: documentationStatus or 'Not started yet'
+                colour: evidenceTagColour or 'grey',
+                text: evidenceStatus or 'Not started yet'
               }
             }]
           }]
