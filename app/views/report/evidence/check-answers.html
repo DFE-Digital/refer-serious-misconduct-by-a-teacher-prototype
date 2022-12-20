@@ -9,7 +9,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/report/documentation/type/004"
+    href: "/report"
   }) }}
 {% endblock %}
 
@@ -25,14 +25,15 @@
 
   {{ govukButton({
     text: "Add more evidence",
-    classes: 'govuk-button--secondary'
+    classes: 'govuk-button--secondary',
+    href: '/report/evidence/upload'
   }) }}
 
-  {% include '../documentation/_summary-card.html' %}
+  {% include '../evidence/_summary-card.html' %}
 
   <form method="post">
-    {% set completedRadiosName = '[report][documentation][section-completed]' %}
-    {% set completedRadiosValue = data.report['documentation']['section-completed'] %}
+    {% set completedRadiosName = '[report][evidence][section-completed]' %}
+    {% set completedRadiosValue = data.report['evidence']['section-completed'] %}
     {% include '../../shared/_have-you-completed-section.html' %}
     {{ govukButton({
       text: "Save and continue"
