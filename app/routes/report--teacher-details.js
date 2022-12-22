@@ -6,8 +6,12 @@ module.exports = router => {
     if(res.locals.isPublic) {
       res.redirect('/report/teacher/check-answers')
     } else {
-      res.redirect('/report/teacher/nino')
+      res.redirect('/report/teacher/dob')
     }
+  })
+
+  router.post('/report/teacher/dob', (req, res) => {
+    res.redirect('/report/teacher/nino')
   })
 
   router.post('/report/teacher/nino', (req, res) => {
