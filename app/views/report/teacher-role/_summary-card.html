@@ -83,7 +83,7 @@
     } if data.report.teacherRole.duties == 'Describe their main duties',
     {
       key: {
-        html: 'Did they work at the same organisation as you at the time of the alleged misconduct?'
+        html: 'Were they employed at the same organisation as you at the time of the alleged misconduct?'
       },
       value: {
         html: data.report.teacherRole.sameOrganisation
@@ -111,7 +111,7 @@
     } if data.report.teacherRole.sameOrganisation == 'No' or (not data.report.teacherRole.sameOrganisation and data.report.teacherRole.knowWhereTheyWorked),
     {
       key: {
-        html: 'Where they were employed at the time of the alleged misconduct'
+        html: 'Name and address of the organisation where the alleged misconduct took place'
       },
       value: {
         html: address
@@ -153,7 +153,7 @@
     } if data.report.teacherRole.knowJobStartDate and data.report.teacherRole.knowJobStartDate == 'Yes',
     {
       key: {
-        html: 'Are they still employed in the job where the alleged misconduct took place?'
+        html: 'Are they still employed at the organisation where the alleged misconduct took place?'
       },
       value: {
         html: data.report.teacherRole.stillEmployed
@@ -223,7 +223,7 @@
     } if data.report.teacherRole.teachingElsewhere,
     {
       key: {
-        html: 'Do you know the name and address of the organisation where they’re currently working?'
+        html: 'Do you know the name and address of the organisation where they’re employed?'
       },
       value: {
         html: data.report.teacherRole.knowWhereTheyWork
@@ -237,7 +237,7 @@
     } if data.report.teacherRole.knowWhereTheyWork,
     {
       key: {
-        html: 'Where they currently work'
+        html: 'Name and address of the organisation where they’re employed'
       },
       value: {
         html: newOrgAddress

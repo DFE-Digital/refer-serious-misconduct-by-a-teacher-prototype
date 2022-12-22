@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you know when they started their job?" %}
+{% set title = "Do you know when they started the job?" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -58,9 +58,6 @@
               isPageHeading: true,
               html: title
             }
-          },
-          hint: {
-            html: "This is the job they had when the allegation of serious misconduct was made against them"
           },
           items: [
             {
