@@ -4,7 +4,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "javascript:history.back();"
+    href: "/report/evidence/check-files"
   }) }}
 {% endblock %}
 
@@ -23,6 +23,8 @@
           text: "Delete file",
           classes: 'govuk-button--warning'
         }) }}
+
+        <p><a href="/report/evidence/check-files">Cancel</a></p>
       </form>
     </div>
   </div>
