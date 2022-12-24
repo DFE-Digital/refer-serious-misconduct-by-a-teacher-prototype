@@ -24,7 +24,9 @@
 
   <h2 class="govuk-heading-m">2. About the teacher</h2>
   {% include '../teacher/_summary-card.html' %}
-  {% include '../teacher-contact-details/_summary-card.html' %}
+  {% if isEmployer %}
+    {% include '../teacher-contact-details/_summary-card.html' %}
+  {% endif %}
   {% include '../teacher-role/_summary-card.html' %}
 
   <h2 class="govuk-heading-m">3. The allegation</h2>
