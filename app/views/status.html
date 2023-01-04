@@ -1,6 +1,7 @@
 {% extends "layouts/main.html" %}
 {% set signedIn = false %}
-{% set title = "Sign in" %}
+{# {% set title = "You already have a referral in progress" %} #}
+{% set title = "You now have an account" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -13,20 +14,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ title }}</h1>
-      <p>Sign in to continue making your referral of serious misconduct.</p>
+      {# <p>Continue to your allegation of serious misconduct.</p> #}
+      <p>Continue to check if you’re eligible to refer serious misconduct by a teacher in England.</p>
       <form method="post">
-        {{ govukInput({
-          id: "[report][email]",
-          name: "[report][email]",
-          label: {
-            text: 'Your email address',
-            classes: "govuk-label--m"
-          }
-        }) }}
-
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "/who"
         }) }}
+{#
+        {{ govukButton({
+          text: "Continue",
+          href: "/report"
+        }) }} #}
       </form>
     </div>
   </div>

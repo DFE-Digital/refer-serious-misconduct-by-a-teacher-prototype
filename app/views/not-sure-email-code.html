@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set signedIn = false %}
-{% set title = "Sign in" %}
+{% set title = 'Check your email' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -10,18 +10,22 @@
 {% endblock %}
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">{{ title }}</h1>
-      <p>Sign in to continue making your referral of serious misconduct.</p>
       <form method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <p>A confirmation code has been sent to {{ data.report.email or 'noah@example.com' }}.</p>
+
+        <p>Check your spam and trash folder if you cannot find the email. You can also <a href="/email">request another confirmation code</a>.</p>
+
         {{ govukInput({
-          id: "[report][email]",
-          name: "[report][email]",
           label: {
-            text: 'Your email address',
-            classes: "govuk-label--m"
-          }
+            text: "Confirmation code",
+            classes: "govuk-label--s"
+          },
+          classes: 'govuk-input--width-5'
         }) }}
 
         {{ govukButton({
