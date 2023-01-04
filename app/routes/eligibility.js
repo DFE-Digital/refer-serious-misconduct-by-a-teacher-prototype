@@ -1,9 +1,25 @@
 const _ = require('lodash')
 
 module.exports = router => {
+  router.post('/has-account', (req, res) => {
+    let hasAccount = req.session.data.report.hasAccount
 
-  router.post('/email', (req, res) => { res.redirect('/email-code') })
-  router.post('/email-code', (req, res) => { res.redirect('/who') })
+    if(hasAccount == 'Yes, sign in and continue referring') {
+      res.redirect('/email')
+    } else if(hasAccount == 'No') {
+      res.redirect('/who')
+    } else {
+      res.redirect('/who')
+    }
+  })
+
+  router.post('/email', (req, res) => {
+    res.redirect('/email-code')
+  })
+
+  router.post('/email-code', (req, res) => {
+    res.redirect('/report')
+  })
 
   router.post('/who', (req, res) => {
     if(req.session.data.report['type-of-report'] == 'public') {
@@ -55,6 +71,12 @@ module.exports = router => {
 
   router.post('/eligibility/you-should-know', (req, res) => { res.redirect('/eligibility/save-as-you-go') })
 
-  router.post('/eligibility/save-as-you-go', (req, res) => { res.redirect('/report') })
+  router.post('/eligibility/save-as-you-go', (req, res) => {
+    res.redirect('/create-account-code')
+  })
+
+  router.post('/create-account-code', (req, res) => {
+    res.redirect('/report')
+  })
 
 }

@@ -1,28 +1,26 @@
 {% extends "layouts/main.html" %}
 {% set signedIn = false %}
-{% set title = "Your email address" %}
+{% set title = "Sign in" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/"
+    href: "javascript:history.back();"
   }) }}
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+      <p>Sign in to continue making your referral of serious misconduct.</p>
       <form method="post">
         {{ govukInput({
           id: "[report][email]",
           name: "[report][email]",
           label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
-          },
-          hint: {
-            html: 'Use your email address to return at any time'
+            text: 'Your email address',
+            classes: "govuk-label--m"
           }
         }) }}
 

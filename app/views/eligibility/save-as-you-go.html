@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Your progress is saved as you go" %}
+{% set title = "Enter your email address to save your progress" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,9 +12,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1>
-        <p>You do not have to complete your referral in a single session. Your answers will automatically be saved and you can return at any time by logging back in.</p>
-        <p>You’ll be sent an email with a link to access your referral.</p>
+        {# <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1> #}
+
+        {# <p>You’ll be sent an email with a link to continue making your referral. You’ll also be contacted about your referral using this email address.</p> #}
+
+        {{ govukInput({
+          id: "[report][email]",
+          name: "[report][email]",
+          label: {
+            text: 'Your email address',
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: 'The TRA may use this email address to contact you'
+          }
+        }) }}
+
         {{ govukButton({
           text: "Continue"
         }) }}
