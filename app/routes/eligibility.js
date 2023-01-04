@@ -4,13 +4,21 @@ module.exports = router => {
   router.post('/has-account', (req, res) => {
     let hasAccount = req.session.data.report.hasAccount
 
-    if(hasAccount == 'Yes, sign in and continue referring') {
+    if(hasAccount == 'Yes, sign in and continue making a referral') {
       res.redirect('/email')
     } else if(hasAccount == 'No') {
       res.redirect('/who')
     } else {
-      res.redirect('/who')
+      res.redirect('/not-sure')
     }
+  })
+
+  router.post('/not-sure', (req, res) => {
+    res.redirect('/not-sure-email-code')
+  })
+
+  router.post('/not-sure-email-code', (req, res) => {
+    res.redirect('/status')
   })
 
   router.post('/email', (req, res) => {
