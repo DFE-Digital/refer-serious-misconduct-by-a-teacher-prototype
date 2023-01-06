@@ -15,17 +15,7 @@ https://prototype-kit.service.gov.uk/docs/layouts
 {% endblock %}
 
 {% block header %}
-  {{ govukHeader({
-    homepageUrl: "#",
-    serviceName: serviceName,
-    serviceUrl: '/',
-    navigation: [
-      {
-        href: "/account/sign-out",
-        text: "Sign out"
-      }
-    ] if data.report.email
-  }) }}
+  {% include "_includes/header.njk" %}
   {{ govukPhaseBanner({
     tag: {
       text: "Beta"
@@ -36,26 +26,5 @@ https://prototype-kit.service.gov.uk/docs/layouts
 {% endblock %}
 
 {% block footer %}
-  {{ govukFooter({
-    meta: {
-      items: [
-        {
-          href: "/manage-prototype",
-          text: "Manage your prototype"
-        },
-        {
-          href: "/manage-prototype/clear-data",
-          text: "Clear data"
-        },
-        {
-          href: "/set-user-type?type=public",
-          text: "Public referral form"
-        },
-        {
-          href: "/set-user-type?type=employer",
-          text: "Employer referral form"
-        }
-      ]
-    }
-  }) }}
+  {% include "_includes/footer.njk" %}
 {% endblock %}
