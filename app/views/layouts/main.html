@@ -36,26 +36,40 @@ https://prototype-kit.service.gov.uk/docs/layouts
 {% endblock %}
 
 {% block footer %}
+  {% set footerHtml %}
+    <h2 class="govuk-heading-m">Get help</h2>
+    <p>
+      Call 020 7593 5393 or email:<br /><a href="#" class="govuk-footer__link">misconduct.teacher@education.gov.uk</a>
+    <p>
+    <p>Monday to Friday, 9am to 5pm (except public holidays)</p>
+    <hr class="govuk-section-break govuk-section-break--l">
+    <ul class="govuk-footer__inline-list">
+      <li class="govuk-footer__inline-list-item">
+        <a class="govuk-footer__link" href="/manage-prototype">
+          Manage your prototype
+        </a>
+      </li>
+      <li class="govuk-footer__inline-list-item">
+        <a class="govuk-footer__link" href="/manage-prototype/clear-data">
+          Clear data
+        </a>
+      </li>
+      <li class="govuk-footer__inline-list-item">
+        <a class="govuk-footer__link" href="/set-user-type?type=public">
+          Public
+        </a>
+      </li>
+      <li class="govuk-footer__inline-list-item">
+        <a class="govuk-footer__link" href="/set-user-type?type=employer">
+          Employer
+        </a>
+      </li>
+    </ul>
+  {% endset %}
+
   {{ govukFooter({
     meta: {
-      items: [
-        {
-          href: "/manage-prototype",
-          text: "Manage your prototype"
-        },
-        {
-          href: "/manage-prototype/clear-data",
-          text: "Clear data"
-        },
-        {
-          href: "/set-user-type?type=public",
-          text: "Public referral form"
-        },
-        {
-          href: "/set-user-type?type=employer",
-          text: "Employer referral form"
-        }
-      ]
+      html: footerHtml
     }
   }) }}
 {% endblock %}
