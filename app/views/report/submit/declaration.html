@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Before you send your referral" %}
-{% set buttonText = "Send referral" %}
+{% set title = "Confirm your agreement and send referral" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -29,28 +29,8 @@
 
         <p>Once submitted, your referral will be kept on file for 50 years.</p>
 
-        {{ govukCheckboxes({
-          idPrefix: "[report][submit][declaration]",
-          name: "[report][submit][declaration]",
-          formGroup: {
-            classes: "govuk-!-margin-top-7"
-          },
-          fieldset: {
-            legend: {
-              classes: "govuk-fieldset__legend--m",
-              text: "Do you agree to this declaration?"
-            }
-          },
-          items: [
-            {
-              text: "Yes, I agree"
-            }
-          ],
-          value: data.report.submit.declaration
-        }) }}
-
         {{ govukButton({
-          text: "Send referral"
+          text: "Agree and send referral"
         }) }}
       </form>
     </div>
