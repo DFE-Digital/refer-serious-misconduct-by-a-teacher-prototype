@@ -1,4 +1,4 @@
-{{ appSummaryCard({
+{{ govukSummaryList({
   classes: "govuk-!-margin-bottom-9",
   titleText: "Previous allegations",
   rows: [
@@ -15,7 +15,7 @@
           href: "/report/previous-misconduct/any-previous"
         }]
       }
-    } if data.report.previousMisconduct.anyPrevious,
+    },
     {
       key: {
         html: "How do you want to give details about previous allegations?"
