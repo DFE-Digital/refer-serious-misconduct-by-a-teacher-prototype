@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Check your answers before continuing" %}
+{% set title = "Check details and send referral" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -15,38 +15,41 @@
     </div>
   </div>
 
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-9 govuk-!-margin-bottom-6">1. About you</h2>
-
-  <h3 class="govuk-heading-m">Your details</h3>
-  {% include '../your-details/_summary-card.html' %}
-  {% if isEmployer %}
-    <h3 class="govuk-heading-m">Your organisation</h3>
-    {% include '../your-organisation/_summary-card.html' %}
-  {% endif %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-9 govuk-!-margin-bottom-6">2. About the teacher</h2>
-  <h3 class="govuk-heading-m">Personal details</h3>
-  {% include '../teacher/_summary-card.html' %}
-  {% if isEmployer %}
-    <h3 class="govuk-heading-m">Contact details</h3>
-    {% include '../teacher-contact-details/_summary-card.html' %}
-  {% endif %}
-  <h3 class="govuk-heading-m">About their role</h3>
-  {% include '../teacher-role/_summary-card.html' %}
-
-  <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-9 govuk-!-margin-bottom-6">3. The allegation</h2>
-  <h3 class="govuk-heading-m">Allegation details</h3>
-  {% include '../allegation/_summary-card.html' %}
-  {% if isEmployer %}
-    <h3 class="govuk-heading-m">Previous allegation details</h3>
-    {% include '../previous-misconduct/_summary-card.html' %}
-  {% endif %}
-  <h3 class="govuk-heading-m">Evidence and supporting information</h3>
-  {% include '../evidence/_summary-card.html' %}
+  <div class="app-review-panel">
+    <h2 class="govuk-heading-m govuk-!-font-size-27">1. About you</h2>
+    <h3 class="govuk-heading-m">Your details</h3>
+    {% include '../your-details/_summary-card.html' %}
+    {% if isEmployer %}
+      <h3 class="govuk-heading-m">Your organisation</h3>
+      {% include '../your-organisation/_summary-card.html' %}
+    {% endif %}
+  </div>
+  <div class="app-review-panel">
+    <h2 class="govuk-heading-m govuk-!-font-size-27">2. About the teacher</h2>
+    <h3 class="govuk-heading-m">Personal details</h3>
+    {% include '../teacher/_summary-card.html' %}
+    {% if isEmployer %}
+      <h3 class="govuk-heading-m">Contact details</h3>
+      {% include '../teacher-contact-details/_summary-card.html' %}
+    {% endif %}
+    <h3 class="govuk-heading-m">About their role</h3>
+    {% include '../teacher-role/_summary-card.html' %}
+  </div>
+  <div class="app-review-panel">
+    <h2 class="govuk-heading-m govuk-!-font-size-27">3. The allegation</h2>
+    <h3 class="govuk-heading-m">Allegation details</h3>
+    {% include '../allegation/_summary-card.html' %}
+    {% if isEmployer %}
+      <h3 class="govuk-heading-m">Previous allegation details</h3>
+      {% include '../previous-misconduct/_summary-card.html' %}
+    {% endif %}
+    <h3 class="govuk-heading-m">Evidence and supporting information</h3>
+    {% include '../evidence/_summary-card.html' %}
+  </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <h2 class="govuk-heading-m govuk-!-font-size-27 govuk-!-margin-top-6">
+      <h2 class="govuk-heading-m govuk-!-font-size-27">
         Declaration
       </h2>
 
