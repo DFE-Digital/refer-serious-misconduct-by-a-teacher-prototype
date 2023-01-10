@@ -52,7 +52,7 @@ module.exports = router => {
   })
 
   router.post('/report/submit/review', (req, res) => {
-    res.redirect('/report/submit/declaration')
+    res.redirect('/report/submit/confirmation')
   })
 
   router.post('/report/submit/declaration', (req, res) => {
