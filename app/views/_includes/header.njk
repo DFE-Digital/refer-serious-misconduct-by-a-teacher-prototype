@@ -1,7 +1,14 @@
+{% if data.report.email %}
+  {% set serviceUrl = '/report' %}
+{% else %}
+  {% set serviceUrl = '/' %}
+{% endif %}
+
+
 {{ govukHeader({
     homepageUrl: "#",
     serviceName: serviceName,
-    serviceUrl: '/',
+    serviceUrl: serviceUrl,
     navigation: [
       {
         href: "/account/sign-out",
