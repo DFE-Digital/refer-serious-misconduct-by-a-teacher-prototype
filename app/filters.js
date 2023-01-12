@@ -21,10 +21,6 @@ addFilter('isoDateFromDateInput', function(object) {
   }
 })
 
-addFilter('date', function(date) {
-  return DateTime.fromISO(date).toFormat('d MMMM yyyy')
-})
-
 addFilter('slugify', function(string) {
   return slugify(string, {
     replacement: '-',
@@ -49,3 +45,24 @@ addFilter('noOrphans', string => {
   const end = string.substring(indexOfLastSpace + 1)
   return `${begin}&nbsp;${end}`
 })
+
+function govukDate(date) {
+  return DateTime.fromISO(date).toFormat('d MMMM yyyy')
+}
+addFilter('date', govukDate)
+
+function govukTime(date) {
+  let dt = DateTime.fromISO(date)
+  if (dt.minute > 0) {
+    dt = dt.toFormat('h:mma')
+  } else {
+    dt = dt.toFormat('ha')
+  }
+  return dt.toLowerCase()
+}
+addFilter('time', govukTime)
+
+function govukDateTime(date) {
+  return govukDate(date) + ' at ' + govukTime(date)
+}
+addFilter('dateTime', govukDateTime)
