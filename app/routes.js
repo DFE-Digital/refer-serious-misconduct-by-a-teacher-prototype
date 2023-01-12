@@ -12,6 +12,7 @@ router.all('*', (req, res, next) => {
 router.get('/set-user-type', (req, res) => {
   req.session.data = {
     report: {
+      email: 'jo@example.com',
       'type-of-report': req.query.type
     }
   }
