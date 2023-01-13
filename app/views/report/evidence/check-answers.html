@@ -20,16 +20,16 @@
         <span class="govuk-caption-l">Evidence and supporting information</span>
         {{ title }}
       </h1>
+      {{ govukButton({
+        text: "Add more evidence",
+        classes: 'govuk-button--secondary',
+        href: '/report/evidence/upload'
+      }) }}
+
+      {% include '../evidence/_summary-card.html' %}
     </div>
   </div>
 
-  {{ govukButton({
-    text: "Add more evidence",
-    classes: 'govuk-button--secondary',
-    href: '/report/evidence/upload'
-  }) }}
-
-  {% include '../evidence/_summary-card.html' %}
 
   <form method="post">
     {% set completedRadiosName = '[report][evidence][section-completed]' %}
