@@ -75,6 +75,7 @@
 
       {% if isEmployer %}
         {{ appTaskList({
+          disableSectionNumbering: true,
           sections: [{
             titleText: "About you",
             items: [{
@@ -144,6 +145,7 @@
         }) }}
       {% else %}
         {{ appTaskList({
+          disableSectionNumbering: true,
           sections: [{
             titleText: "About you",
             items: [{
