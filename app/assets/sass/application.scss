@@ -7,3 +7,20 @@
 @import "../../views/_components/related-navigation/related-navigation.scss";
 @import "../../views/_components/summary-card/summary-card.scss";
 @import "../../views/_components/task-list/task-list.scss";
+@import "../../views/_components/list/list.scss";
+
+.app-review-panel {
+  @include govuk-responsive-margin(9, "bottom");
+  // background: red;
+  h2 {
+    margin-bottom: govuk-spacing(6);
+  }
+
+  .govuk-summary-list {
+    margin-bottom: govuk-spacing(6) !important;
+  }
+
+  h3 {
+    margin-bottom: govuk-spacing(1);
+  }
+}

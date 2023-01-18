@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Check your answers before continuing" %}
+{% set title = "Check details and send referral" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -8,37 +8,42 @@
   }) }}
 {% endblock %}
 
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1>
-    </div>
-  </div>
-
-  <h2 class="govuk-heading-m">1. About you</h2>
-  {% include '../your-details/_summary-card.html' %}
-  {% if isEmployer %}
-    {% include '../your-organisation/_summary-card.html' %}
-  {% endif %}
-
-  <h2 class="govuk-heading-m">2. About the teacher</h2>
-  {% include '../teacher/_summary-card.html' %}
-  {% if isEmployer %}
-    {% include '../teacher-contact-details/_summary-card.html' %}
-  {% endif %}
-  {% include '../teacher-role/_summary-card.html' %}
-
-  <h2 class="govuk-heading-m">3. The allegation</h2>
-  {% include '../allegation/_summary-card.html' %}
-  {% if isEmployer %}
-    {% include '../previous-misconduct/_summary-card.html' %}
-  {% endif %}
-  {% include '../evidence/_summary-card.html' %}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
-      <h2 class="govuk-heading-m">
+      <div class="app-review-panel">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">About you</h2>
+        <h3 class="govuk-heading-m">Your details</h3>
+        {% include '../your-details/_summary-card.html' %}
+        {% if isEmployer %}
+          <h3 class="govuk-heading-m">Your organisation</h3>
+          {% include '../your-organisation/_summary-card.html' %}
+        {% endif %}
+      </div>
+      <div class="app-review-panel">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">About the teacher</h2>
+        <h3 class="govuk-heading-m">Personal details</h3>
+        {% include '../teacher/_summary-card.html' %}
+        {% if isEmployer %}
+          <h3 class="govuk-heading-m">Contact details</h3>
+          {% include '../teacher-contact-details/_summary-card.html' %}
+        {% endif %}
+        <h3 class="govuk-heading-m">About their role</h3>
+        {% include '../teacher-role/_summary-card.html' %}
+      </div>
+      <div class="app-review-panel">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">The allegation</h2>
+        <h3 class="govuk-heading-m">Allegation details</h3>
+        {% include '../allegation/_summary-card.html' %}
+        {% if isEmployer %}
+          <h3 class="govuk-heading-m">Previous allegation details</h3>
+          {% include '../previous-misconduct/_summary-card.html' %}
+        {% endif %}
+        <h3 class="govuk-heading-m">Evidence and supporting information</h3>
+        {% include '../evidence/_summary-card.html' %}
+      </div>
+      <h2 class="govuk-heading-m govuk-!-font-size-27">
         Declaration
       </h2>
 
@@ -52,9 +57,10 @@
         <li>you may need to attend a hearing and give evidence if your allegation reaches that stage</li>
         <li>your referral will be kept on file for 50 years</li>
       </ul>
-
     </div>
   </div>
+
+
 
   <form method="post">
     {{ govukButton({

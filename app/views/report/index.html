@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Your allegation of serious misconduct" %}
+{% set title = "Your referral" %}
 {% set buttonText = "Review and send" %}
 {% block pageNavigation %}{% endblock %}
 
@@ -74,6 +75,7 @@
 
       {% if isEmployer %}
         {{ appTaskList({
+          disableSectionNumbering: true,
           sections: [{
             titleText: "About you",
             items: [{
@@ -143,6 +145,7 @@
         }) }}
       {% else %}
         {{ appTaskList({
+          disableSectionNumbering: true,
           sections: [{
             titleText: "About you",
             items: [{

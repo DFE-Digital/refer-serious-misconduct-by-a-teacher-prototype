@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your allegation of serious misconduct" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/report"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    .govuk-summary-list__actions {
+      display: none;
+    }
+  </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">
+        Your referral
+      </span>
+      {# <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1> #}
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Matt Johnson</h1>
+
+      {% set inset %}
+        <p>You sent this referral on 21 March 2023 at 2:21pm.</p>
+
+        <p>Contact the TRA if you need to make changes.</p>
+
+        <p>Email: <a href="#">misconduct.teacher@education.gov.uk</a></br>
+        We aim to respond within 3 working days.</p>
+
+        <p>Phone: 020 7593 5393</br>
+        Monday to Friday, 9am to 5pm (except public holidays)</p>
+      {% endset %}
+
+      {{ govukInsetText({
+        classes: 'govuk-!-margin-bottom-9',
+        html: inset
+      }) }}
+
+        <div class="app-review-panel">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">About you</h2>
+        <h3 class="govuk-heading-m">Your details</h3>
+        {% include './your-details/_summary-card.html' %}
+        {% if isEmployer %}
+          <h3 class="govuk-heading-m">Your organisation</h3>
+          {% include './your-organisation/_summary-card.html' %}
+        {% endif %}
+      </div>
+      <div class="app-review-panel">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">About the teacher</h2>
+        <h3 class="govuk-heading-m">Personal details</h3>
+        {% include './teacher/_summary-card.html' %}
+        {% if isEmployer %}
+          <h3 class="govuk-heading-m">Contact details</h3>
+          {% include './teacher-contact-details/_summary-card.html' %}
+        {% endif %}
+        <h3 class="govuk-heading-m">About their role</h3>
+        {% include './teacher-role/_summary-card.html' %}
+      </div>
+      <div class="app-review-panel">
+        <h2 class="govuk-heading-m govuk-!-font-size-27">The allegation</h2>
+        <h3 class="govuk-heading-m">Allegation details</h3>
+        {% include './allegation/_summary-card.html' %}
+        {% if isEmployer %}
+          <h3 class="govuk-heading-m">Previous allegation details</h3>
+          {% include './previous-misconduct/_summary-card.html' %}
+        {% endif %}
+        <h3 class="govuk-heading-m">Evidence and supporting information</h3>
+        {% include './evidence/_summary-card.html' %}
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+{% endblock %}

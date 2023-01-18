@@ -13,6 +13,19 @@ module.exports = router => {
     res.redirect('/')
   })
 
+  router.get('/report', (req, res) => {
+    if(typeof req.session.data.report.sentDate !== 'undefined') {
+
+      let referrals = [req.session.data.report]
+
+      res.render('report/list', {
+        referrals
+      })
+    } else {
+      res.render('report/index')
+    }
+  })
+
   router.post('/report', (req, res) => {
     res.redirect('/report/submit/review')
   })
@@ -52,10 +65,7 @@ module.exports = router => {
   })
 
   router.post('/report/submit/review', (req, res) => {
-    res.redirect('/report/submit/confirmation')
-  })
-
-  router.post('/report/submit/declaration', (req, res) => {
+    req.session.data.report.sentDate = new Date().toISOString()
     res.redirect('/report/submit/confirmation')
   })
 

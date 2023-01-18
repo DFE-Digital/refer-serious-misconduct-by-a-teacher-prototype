@@ -14,10 +14,9 @@
         <span class="govuk-caption-l">Personal details</span>
         {{ title }}
       </h1>
+      {% include '../teacher/_summary-card.html' %}
     </div>
   </div>
-
-  {% include '../teacher/_summary-card.html' %}
 
   <form method="post">
     {% set completedRadiosName = '[report][teacher-details][section-completed]' %}

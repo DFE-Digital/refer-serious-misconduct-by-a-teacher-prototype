@@ -14,10 +14,10 @@
       <h1 class="govuk-heading-l">
         {{ title }}
       </h1>
+      {% include '../allegation/_summary-card.html' %}
     </div>
   </div>
 
-  {% include '../allegation/_summary-card.html' %}
 
   <form method="post">
     {% set completedRadiosName = '[report][allegation][section-completed]' %}
