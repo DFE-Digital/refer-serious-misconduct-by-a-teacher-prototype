@@ -13,33 +13,30 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-  {{ govukRadios({
-    idPrefix: "[report][eligibility][teacher-in-england]",
-    name: "[report][eligibility][teacher-in-england]",
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--l",
-        text: title
-      }
-    },
-    items: [
-      {
-        text: "Yes",
-        value: "Yes"
-      },
-      {
-        text: "No",
-        value: "No"
-      },
-      {
-        text: "I’m not sure",
-        value: "I’m not sure",
-        conditional: {
-          html: "<p>If you’re not sure, you should continue to make a referral and the TRA will assess it.</p>"
-        }
-      }
-    ]
-  }) }}
+        {{ govukRadios({
+          idPrefix: "[report][eligibility][teacher-in-england]",
+          name: "[report][eligibility][teacher-in-england]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              text: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes"
+            },
+            {
+              text: "No",
+              value: "No"
+            },
+            {
+              text: "I’m not sure",
+              value: "I’m not sure"
+            }
+          ]
+        }) }}
         {{ govukButton({
           text: "Continue"
         }) }}
