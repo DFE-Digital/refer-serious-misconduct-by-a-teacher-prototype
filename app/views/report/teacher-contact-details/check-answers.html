@@ -15,10 +15,10 @@
         <span class="govuk-caption-l">Contact details</span>
         {{ title }}
       </h1>
+      {% include '../teacher-contact-details/_summary-card.html' %}
     </div>
   </div>
 
-  {% include '../teacher-contact-details/_summary-card.html' %}
 
   <form method="post">
     {% set completedRadiosName = '[report][teacher-contact-details][section-completed]' %}
