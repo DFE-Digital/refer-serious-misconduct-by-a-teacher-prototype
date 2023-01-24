@@ -26,17 +26,51 @@
         {% endset %}
 
         {% set jobDescription %}
-          {{ govukFileUpload({
-            idPrefix: "[report][teacherRole][dutiesFile]",
-            name: "[report][teacherRole][dutiesFile]",
-            label: {
-              text: "Upload file",
-              classes: "govuk-label--s"
-            },
-            hint: {
-              text: "For example, a job description"
-            }
-          }) }}
+          {% if data.report.teacherRole.duties == "Upload file" %}
+
+
+            {% set replace %}
+              {{ govukFileUpload({
+                idPrefix: "[report][teacherRole][dutiesFile]",
+                name: "[report][teacherRole][dutiesFile]",
+                label: {
+                  text: "Upload file",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, a job description"
+                }
+              }) }}
+            {% endset %}
+            {# <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+              Upload file
+            </h2> #}
+            <p>Current file: <a href="#">job-description.pdf (2MB)</a></p>
+
+            {{ govukDetails({
+              summaryText: "Replace file",
+              html: replace
+            }) }}
+
+            {# {{replace | safe}} #}
+
+            {# <div class="app-uploaded-file">
+              <p class="app-uploaded-file__file"><a href="#">job-description.pdf (2MB)</a></p>
+              <p class="app-uploaded-file__delete"><a href="#">Delete file</a></p>
+            </div> #}
+          {% else %}
+            {{ govukFileUpload({
+              idPrefix: "[report][teacherRole][dutiesFile]",
+              name: "[report][teacherRole][dutiesFile]",
+              label: {
+                text: "Upload file",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, a job description"
+              }
+            }) }}
+          {% endif %}
         {% endset %}
 
         <span class="govuk-caption-l">About their role</span>
