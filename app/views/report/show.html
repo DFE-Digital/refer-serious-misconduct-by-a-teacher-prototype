@@ -21,27 +21,11 @@
       <span class="govuk-caption-l">
         Your referral
       </span>
-      {# <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1> #}
-      <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Matt Johnson</h1>
+      <h1 class="govuk-heading-l">Matt Johnson</h1>
 
-      {% set inset %}
-        <p>You sent this referral on 21 March 2023 at 2:21pm.</p>
+      <p class="govuk-!-margin-bottom-8">You sent this referral on 21 March 2023 at 2:21pm.</p>
 
-        <p>Contact the TRA if you need to make changes.</p>
-
-        <p>Email: <a href="#">misconduct.teacher@education.gov.uk</a></br>
-        We aim to respond within 3 working days.</p>
-
-        <p>Phone: 020 7593 5393</br>
-        Monday to Friday, 9am to 5pm (except public holidays)</p>
-      {% endset %}
-
-      {{ govukInsetText({
-        classes: 'govuk-!-margin-bottom-9',
-        html: inset
-      }) }}
-
-        <div class="app-review-panel">
+      <div class="app-review-panel">
         <h2 class="govuk-heading-m govuk-!-font-size-27">About you</h2>
         <h3 class="govuk-heading-m">Your details</h3>
         {% include './your-details/_summary-card.html' %}
