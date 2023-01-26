@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Make a complaint to the school, school governors or your local council first" %}
+{% set title = "Consider making a complaint first" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -13,14 +14,26 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
+      <p>Before referring a teacher, first consider making a complaint to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          the school
+        </li>
+        <li>
+          the school governors
+        </li>
+        <li>
+          your local council
+        </li>
+      </ul>
+
       <p>View guidance about <a href="https://www.gov.uk/report-teacher-misconduct">how to make an informal complaint</a>.</p>
 
-      <p>You’ll need to provide proof to support your complaint.</p>
-
-      <p>You can still refer serious misconduct without making an informal complaint. Depending on the allegation, it may not be investigated unless you have tried to deal with the matter informally.</p>
+      <p>You can still refer a teacher without making an informal complaint. Your allegation may not be investigated unless you have made a complaint first.</p>
 
       {{ govukButton({
-        text: "Continue without making an informal complaint",
+        text: "Continue without making a complaint",
         href: "/eligibility/jurisdiction"
       }) }}
 
