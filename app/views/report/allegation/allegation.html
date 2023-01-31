@@ -25,14 +25,31 @@
         {% endset %}
 
           {% set fileUpload %}
-            {{ govukFileUpload({
-              id: "[report][allegation][allegation-file]",
-              name: "[report][allegation][allegation-file]",
-              label: {
-                text: "Upload file",
-                classes: "govuk-label--s"
-              }
-            }) }}
+            {% if data.report.allegation['how-tell'] == "Upload file" %}
+              <div class="app-uploaded-file">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                  Currently uploaded file
+                </h2>
+                <p><a href="#">investigation.pdf (2MB)</a></p>
+                {{ govukFileUpload({
+                  idPrefix: "[report][allegation][allegationFile]",
+                  name: "[report][allegation][allegationFile]",
+                  label: {
+                    text: "Upload new file",
+                    classes: "govuk-label--s"
+                  }
+                }) }}
+              </div>
+            {% else %}
+              {{ govukFileUpload({
+                id: "[report][allegation][allegationFile]",
+                name: "[report][allegation][allegationFile]",
+                label: {
+                  text: "Upload file",
+                  classes: "govuk-label--s"
+                }
+              }) }}
+            {% endif %}
           {% endset %}
 
           <span class="govuk-caption-l">The allegation</span>
@@ -46,6 +63,7 @@
                 html: title
               }
             },
+            value: data.report.allegation['how-tell'],
             items: [
               {
                 text: "Upload file",
