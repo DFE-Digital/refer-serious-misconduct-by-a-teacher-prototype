@@ -1,9 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "How do you want to give details about their main duties?" %}
 
-{% set turnOn = true %}
-{% set option = '4' %}
-
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -43,57 +40,24 @@
         {% endset %}
 
         {% set jobDescription %}
-          {% if data.report.teacherRole.duties == "Upload file" and turnOn == true %}
-              {% if option == '1' %}
-                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                  Upload file
-                </h2>
-                <div class="app-uploaded-file-v1 govuk-!-margin-bottom-6">
-                  <p class="app-uploaded-file__file"><a href="#">job-description.pdf (2MB)</a></p>
-                  <p class="app-uploaded-file__delete"><a href="#">Delete file</a></p>
-                </div>
-              {% endif %}
-
-              {% if option == '2' %}
-                <p>Currently uploaded file: <a href="#">job-description.pdf (2MB)</a></p>
-                {{ govukDetails({
-                  summaryText: "Upload new file",
-                  html: input
-                }) }}
-              {% endif %}
-              {% if option == '3' %}
-                <p>Currently uploaded file: <a href="#">job-description.pdf (2MB)</a></p>
-                {{ govukFileUpload({
-                  idPrefix: "[report][teacherRole][dutiesFile]",
-                  name: "[report][teacherRole][dutiesFile]",
-                  label: {
-                    text: "Upload new file",
-                    classes: "govuk-label--s"
-                  },
-                  hint: {
-                    text: "For example, a job description"
-                  }
-                }) }}
-              {% endif %}
-              {% if option == '4' %}
-                <div class="app-uploaded-file">
-                  <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                    Currently uploaded file
-                  </h2>
-                  <p><a href="#">job-description.pdf (2MB)</a></p>
-                  {{ govukFileUpload({
-                    idPrefix: "[report][teacherRole][dutiesFile]",
-                    name: "[report][teacherRole][dutiesFile]",
-                    label: {
-                      text: "Upload new file",
-                      classes: "govuk-label--s"
-                    },
-                    hint: {
-                      text: "For example, a job description"
-                    }
-                  }) }}
-                </div>
-              {% endif %}
+          {% if data.report.teacherRole.duties == "Upload file" %}
+            <div class="app-uploaded-file">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                Currently uploaded file
+              </h2>
+              <p><a href="#">job-description.pdf (2MB)</a></p>
+              {{ govukFileUpload({
+                idPrefix: "[report][teacherRole][dutiesFile]",
+                name: "[report][teacherRole][dutiesFile]",
+                label: {
+                  text: "Upload new file",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, a job description"
+                }
+              }) }}
+            </div>
           {% else %}
             {{ govukFileUpload({
               idPrefix: "[report][teacherRole][dutiesFile]",
