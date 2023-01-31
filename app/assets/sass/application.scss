@@ -40,3 +40,13 @@
     margin: 0;
   }
 }
+
+.app-uploaded-file-v2 {
+  background: govuk-colour('light-grey');
+  padding: govuk-spacing(2) govuk-spacing(3);
+  margin-bottom: govuk-spacing(6);
+
+  .govuk-form-group {
+    margin-bottom: 0;
+  }
+}

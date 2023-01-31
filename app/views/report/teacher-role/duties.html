@@ -27,37 +27,27 @@
 
         {% set jobDescription %}
           {% if data.report.teacherRole.duties == "Upload file" %}
-
-
-            {% set replace %}
+             <div class="app-uploaded-file-v2">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                Currently uploaded file
+              </h2>
+              <p><a href="#">job-description.pdf (2MB)</a></p>
               {{ govukFileUpload({
                 idPrefix: "[report][teacherRole][dutiesFile]",
                 name: "[report][teacherRole][dutiesFile]",
                 label: {
-                  text: "Upload file",
+                  text: "Upload new file",
                   classes: "govuk-label--s"
                 },
                 hint: {
                   text: "For example, a job description"
                 }
               }) }}
-            {% endset %}
-            {# <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-              Upload file
-            </h2> #}
-            <p>Current file: <a href="#">job-description.pdf (2MB)</a></p>
+            </div>
 
-            {{ govukDetails({
-              summaryText: "Replace file",
-              html: replace
-            }) }}
 
-            {# {{replace | safe}} #}
 
-            {# <div class="app-uploaded-file">
-              <p class="app-uploaded-file__file"><a href="#">job-description.pdf (2MB)</a></p>
-              <p class="app-uploaded-file__delete"><a href="#">Delete file</a></p>
-            </div> #}
+
           {% else %}
             {{ govukFileUpload({
               idPrefix: "[report][teacherRole][dutiesFile]",
