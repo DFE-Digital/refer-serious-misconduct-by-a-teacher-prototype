@@ -25,18 +25,52 @@
           }) }}
         {% endset %}
 
-        {% set jobDescription %}
+        {% set input %}
           {{ govukFileUpload({
             idPrefix: "[report][teacherRole][dutiesFile]",
             name: "[report][teacherRole][dutiesFile]",
             label: {
-              text: "Upload file",
+              text: "Upload new file",
               classes: "govuk-label--s"
             },
             hint: {
               text: "For example, a job description"
             }
           }) }}
+        {% endset %}
+
+        {% set jobDescription %}
+          {% if data.report.teacherRole.duties == "Upload file" %}
+            <div class="app-uploaded-file">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                Currently uploaded file
+              </h2>
+              <p><a href="#">job-description.pdf (2MB)</a></p>
+              {{ govukFileUpload({
+                idPrefix: "[report][teacherRole][dutiesFile]",
+                name: "[report][teacherRole][dutiesFile]",
+                label: {
+                  text: "Upload new file",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, a job description"
+                }
+              }) }}
+            </div>
+          {% else %}
+            {{ govukFileUpload({
+              idPrefix: "[report][teacherRole][dutiesFile]",
+              name: "[report][teacherRole][dutiesFile]",
+              label: {
+                text: "Upload file",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, a job description"
+              }
+            }) }}
+          {% endif %}
         {% endset %}
 
         <span class="govuk-caption-l">About their role</span>

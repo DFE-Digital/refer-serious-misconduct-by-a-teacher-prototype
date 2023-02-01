@@ -8,6 +8,7 @@
 @import "../../views/_components/summary-card/summary-card.scss";
 @import "../../views/_components/task-list/task-list.scss";
 @import "../../views/_components/list/list.scss";
+@import "../../views/_components/uploaded-file/uploaded-file.scss";
 
 .app-review-panel {
   @include govuk-responsive-margin(9, "bottom");
@@ -22,5 +23,21 @@
 
   h3 {
     margin-bottom: govuk-spacing(1);
+  }
+}
+
+.app-uploaded-file-v1 {
+  overflow: hidden;
+  .app-uploaded-file__file {
+    float: left;
+    background: govuk-colour('light-grey');
+    padding: govuk-spacing(2) govuk-spacing(3);
+    margin: 0;
+  }
+
+  .app-uploaded-file__delete {
+    padding: govuk-spacing(2) govuk-spacing(3);
+    float: left;
+    margin: 0;
   }
 }

@@ -41,15 +41,31 @@
         {% endset %}
 
         {% set fileUpload %}
-          {{ govukFileUpload({
-            id: "[report][previousMisconduct][previousMisconductFile]",
-            name: "[report][previousMisconduct][previousMisconductFile]",
-            label: {
-              text: "Upload file",
-              classes: "govuk-label--s"
-            },
-            value: data.report.previousMisconduct.previousMisconductFile
-          }) }}
+          {% if data.report.previousMisconduct.howTell == "Upload file" %}
+              <div class="app-uploaded-file">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                  Currently uploaded file
+                </h2>
+                <p><a href="#">previous-misconduct.pdf (2MB)</a></p>
+                {{ govukFileUpload({
+                  idPrefix: "[report][previousMisconduct][previousMisconductFile]",
+                  name: "[report][previousMisconduct][previousMisconductFile]",
+                  label: {
+                    text: "Upload new file",
+                    classes: "govuk-label--s"
+                  }
+                }) }}
+              </div>
+            {% else %}
+              {{ govukFileUpload({
+                id: "[report][previousMisconduct][previousMisconductFile]",
+                name: "[report][previousMisconduct][previousMisconductFile]",
+                label: {
+                  text: "Upload file",
+                  classes: "govuk-label--s"
+                }
+              }) }}
+            {% endif %}
         {% endset %}
 
         {{ govukRadios({
@@ -80,7 +96,7 @@
               }
             }
           ],
-          value: data.report.previousMisconduct.previousMisconduct.howTell
+          value: data.report.previousMisconduct.howTell
         }) }}
         {{ govukButton({
           text: "Save and continue"
