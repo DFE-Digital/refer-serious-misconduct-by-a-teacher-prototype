@@ -12,7 +12,7 @@
 {% endif %}
 
 {% set incomplete = false %}
-{% if not name or (not jobTitle and not isPublic) or not telephone %}
+{% if not name or (not jobTitle and isEmployer) or not telephone %}
   {% set incomplete = true %}
 {% endif %}
 
@@ -76,13 +76,10 @@
   ]
 }) }}
 
-
-
-
 {% if incomplete %}
   {% if not name %}
     {% set url = '/report/your-details/name' %}
-  {% elseif not jobTitle and not isPublic %}
+  {% elseif not jobTitle and isEmployer %}
     {% set url = '/report/your-details/job-title' %}
   {% elseif not telephone %}
     {% set url = '/report/your-details/telephone' %}
