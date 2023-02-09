@@ -1,9 +1,4 @@
-
-{% if data.report['your-details'].firstName or data.report['your-details'].lastName %}
-  {% set name = data.report['your-details'].firstName + ' ' + data.report['your-details'].lastName %}
-{% endif %}
-
-{% if data.report['your-details']['job-title'] %}
+{# {% if data.report['your-details']['job-title'] %}
   {% set jobTitle = data.report['your-details']['job-title']  %}
 {% endif %}
 
@@ -14,9 +9,11 @@
 {% set incomplete = false %}
 {% if not name or (not jobTitle and isEmployer) or not telephone %}
   {% set incomplete = true %}
-{% endif %}
+{% endif %} #}
 
-{% if incomplete %}
+
+
+{% if incompleteSection %}
   <div class="govuk-inset-text app-inset-text--incomplete-section {% if errorIsPersonalDetailsIncomplete %} app-inset-text--incomplete-section-error {% endif %}">
 {% endif %}
 
@@ -28,7 +25,7 @@
         text: "Your name"
       },
       value: {
-        html: name
+        html: data.report['your-details']['firstName'] + ' ' + data.report['your-details']['lastName']
       },
       actions: {
         items: [{
@@ -36,7 +33,7 @@
           href: "/report/your-details/name"
         }]
       }
-    } if name,
+    } if data.report['your-details']['firstName'],
     {
       key: {
         text: "Your email address"
@@ -50,7 +47,7 @@
         text: "Your job title"
       },
       value: {
-        html: jobTitle
+        html: data.report['your-details']['job-title']
       },
       actions: {
         items: [{
@@ -58,13 +55,13 @@
           href: "/report/your-details/job-title"
         }]
       }
-    } if jobTitle and not isPublic,
+    } if data.report['your-details']['job-title'] and isEmployer,
     {
       key: {
         text: "Your phone number"
       },
       value: {
-        html: telephone
+        html: data.report['your-details'].telephone
       },
       actions: {
         items: [{
@@ -72,26 +69,19 @@
           href: "/report/your-details/telephone"
         }]
       }
-    } if telephone
+    } if data.report['your-details'].telephone
   ]
 }) }}
 
-{% if incomplete %}
-  {% if not name %}
-    {% set url = '/report/your-details/name' %}
-  {% elseif not jobTitle and isEmployer %}
-    {% set url = '/report/your-details/job-title' %}
-  {% elseif not telephone %}
-    {% set url = '/report/your-details/telephone' %}
-  {% endif %}
-
-  <p class="app-instruction-text">You must complete your details before you can send your referrals.</p>
+{% if incompleteSection %}
+  {% set url = '/report/your-details/' + incompleteSection %}
+  <p class="app-instruction-text">You must complete your details before you can send your referral</p>
   {{ govukButton({
     text: "Complete your details",
     href: url
   }) }}
 {% endif %}
 
-{% if incomplete %}
+{% if incompleteSection %}
   </div>
 {% endif %}
