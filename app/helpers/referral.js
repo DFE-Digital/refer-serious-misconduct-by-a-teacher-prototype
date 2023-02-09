@@ -51,3 +51,15 @@ exports.getFirstIncompleteQuestionFromTeacherDetails = (data) => {
 
   return null
 }
+
+exports.getFirstIncompleteQuestionFromYourOrganisation = (data) => {
+  let type = _.get(data, 'report.type-of-report')
+  let name = _.get(data, 'report.yourOrganisation.name')
+  if(type == 'employer') {
+    if(!name) {
+      return 'organisation'
+    }
+  }
+
+  return null
+}

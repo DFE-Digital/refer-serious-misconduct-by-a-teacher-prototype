@@ -35,6 +35,7 @@ module.exports = router => {
 
   router.get('/report/submit/review', (req, res) => {
     let yourDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourDetails(req.session.data)
+    let yourOrganisationIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourOrganisation(req.session.data)
     let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherDetails(req.session.data)
 
     let errorsList = []
@@ -43,6 +44,12 @@ module.exports = router => {
         errorsList.push({
           href: '#app-your-details',
           text: 'You must complete your details before you can send your referral'
+        })
+      }
+      if(yourOrganisationIncompleteSection) {
+        errorsList.push({
+          href: '#app-your-organisation',
+          text: 'You must complete details about your organisation before you can send your referral'
         })
       }
       if(teacherDetailsIncompleteSection) {
@@ -55,6 +62,7 @@ module.exports = router => {
 
     res.render('report/submit/review', {
       yourDetailsIncompleteSection,
+      yourOrganisationIncompleteSection,
       teacherDetailsIncompleteSection,
       errorsList
     })
@@ -62,7 +70,9 @@ module.exports = router => {
 
   router.post('/report/submit/review', (req, res) => {
     let yourDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourDetails(req.session.data)
-    if(yourDetailsIncompleteSection) {
+    let yourOrganisationDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourOrganisation(req.session.data)
+    let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherDetails(req.session.data)
+    if(yourDetailsIncompleteSection || yourOrganisationDetailsIncompleteSection || teacherDetailsIncompleteSection) {
       req.flash('error', 'Errors detected')
       res.redirect('/report/submit/review')
     } else {
