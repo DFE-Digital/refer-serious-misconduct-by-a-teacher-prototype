@@ -35,7 +35,7 @@ module.exports = router => {
 
   router.get('/report/submit/review', (req, res) => {
     let yourDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourDetails(req.session.data)
-    let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourDetails(req.session.data)
+    let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherDetails(req.session.data)
 
     let errorsList = []
     if(req.flash('error') == 'Errors detected') {
@@ -48,7 +48,7 @@ module.exports = router => {
       if(teacherDetailsIncompleteSection) {
         errorsList.push({
           href: '#app-teacher-details',
-          text: 'You must complete the teacher’s details before you can send your referral'
+          text: 'You must complete personal details before you can send your referral'
         })
       }
     }

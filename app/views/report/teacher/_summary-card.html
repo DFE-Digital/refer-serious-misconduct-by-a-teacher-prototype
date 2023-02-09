@@ -151,9 +151,9 @@
 
 {% if teacherDetailsIncompleteSection %}
   {% set url = '/report/teacher/' + teacherDetailsIncompleteSection %}
-  <p class="app-instruction-text">You must complete the teacher’s details before you can send your referral</p>
+  <p class="app-instruction-text">You must complete personal details before you can send your referral</p>
   {{ govukButton({
-    text: "Complete your details",
+    text: "Complete personal details",
     href: url
   }) }}
 {% endif %}
