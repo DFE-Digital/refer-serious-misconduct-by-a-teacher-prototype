@@ -1,22 +1,5 @@
 const _ = require('lodash')
-
-function getFirstIncompleteSection(data) {
-  let type = _.get(data, 'report.type-of-report')
-  let firstName = _.get(data, 'report.your-details.firstName')
-  let lastName = _.get(data, 'report.your-details.lastName')
-  let jobTitle = _.get(data, 'report.your-details.job-title')
-  let telephone = _.get(data, 'report.your-details.telephone')
-  if(!firstName || !lastName) {
-    return 'name'
-  }
-  console.log(data)
-  if(type == 'employer' && !jobTitle) {
-    return 'job-title'
-  }
-  if(!telephone) {
-    return 'telephone'
-  }
-}
+const referralHelper = require('../helpers/referral')
 
 module.exports = router => {
 
@@ -38,7 +21,7 @@ module.exports = router => {
 
   router.get('/report/your-details/check-answers', (req, res) => {
     res.render('report/your-details/check-answers', {
-      incompleteSection: getFirstIncompleteSection(req.session.data)
+      yourDetailsIncompleteSection: referralHelper.getFirstIncompleteQuestionFromYourDetails(req.session.data)
     })
   })
 

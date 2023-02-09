@@ -1,20 +1,17 @@
 {% extends "layouts/main.html" %}
-{% set title = "Your allegation of serious misconduct" %}
 {% set title = "Your referral" %}
 {% set buttonText = "Review and send" %}
-{% block pageNavigation %}{% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
-      {% if data.report['your-details']['section-completed'] %}
+      {% if yourDetailsIncompleteSection != 'name' %}
         {% set yourDetailsHref = '/report/your-details/check-answers' %}
-        {% set yourDetailsStatus = data.report['your-details']['section-completed'] %}
-        {% if data.report['your-details']['section-completed'] == 'completed' %}
-          {% set yourDetailsTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report['your-details']['section-completed'] == 'completed' %}
+        {% set yourDetailsTagColour = 'solid' %}
       {% endif %}
 
       {% if data.report['your-organisation']['section-completed'] %}
@@ -25,10 +22,10 @@
         {% endif %}
       {% endif %}
 
-      {% if data.report['teacher-details']['section-completed'] %}
+      {% if data.report.teacherDetails['section-completed'] %}
         {% set teacherHref = '/report/teacher/check-answers' %}
-        {% set teacherStatus = data.report['teacher-details']['section-completed'] %}
-        {% if data.report['teacher-details']['section-completed'] == 'completed' %}
+        {% set teacherStatus = data.report.teacherDetails['section-completed'] %}
+        {% if data.report.teacherDetails['section-completed'] == 'completed' %}
           {% set teacherTagColour = 'solid' %}
         {% endif %}
       {% endif %}
@@ -83,7 +80,7 @@
               href: yourDetailsHref or '/report/your-details/name',
               tag: {
                 colour: yourDetailsTagColour or 'grey',
-                text: yourDetailsStatus or 'Incomplete'
+                text: data.report['your-details']['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Your organisation",
@@ -153,7 +150,7 @@
               href: yourDetailsHref or '/report/your-details/dont-worry',
               tag: {
                 colour: yourDetailsTagColour or 'grey',
-                text: yourDetailsStatus or 'Incomplete'
+                text: data.report['your-details']['section-completed'] or 'Incomplete'
               }
             }]
           }, {

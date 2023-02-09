@@ -14,8 +14,8 @@
       <form method="post">
         <span class="govuk-caption-l">Personal details</span>
         {{ govukRadios({
-          idPrefix: "[report][teacher-details][qts]",
-          name: "[report][teacher-details][qts]",
+          idPrefix: "[report][teacherDetails][qts]",
+          name: "[report][teacherDetails][qts]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--l",
@@ -37,7 +37,7 @@
               value: "Not known"
             }
           ],
-          value: data.report['teacher-details'].qts
+          value: data.report.teacherDetails.qts
         }) }}
         {{ govukButton({
           text: "Save and continue"

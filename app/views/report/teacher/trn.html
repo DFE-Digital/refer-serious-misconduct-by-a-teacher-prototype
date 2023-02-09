@@ -14,20 +14,20 @@
       <form method="post">
         {% set trn %}
           {{ govukInput({
-            id: "[report][teacher-details][trn]",
-            name: "[report][teacher-details][trn]",
+            id: "[report][teacherDetails][trn]",
+            name: "[report][teacherDetails][trn]",
             label: {
               text: "TRN",
               classes: "govuk-label--s"
             },
-            value: data.report['teacher-details'].trn
+            value: data.report.teacherDetails.trn
           }) }}
         {% endset %}
 
         <span class="govuk-caption-l">Personal details</span>
         {{ govukRadios({
-          idPrefix: "[report][teacher-details][know-trn]",
-          name: "[report][teacher-details][know-trn]",
+          idPrefix: "[report][teacherDetails][knowTrn]",
+          name: "[report][teacherDetails][knowTrn]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--l",
@@ -51,7 +51,7 @@
               value: "No"
             }
           ],
-          value: data.report['teacher-details']['know-trn']
+          value: data.report.teacherDetails.knowTrn
         }) }}
         {{ govukButton({
           text: "Save and continue"

@@ -14,8 +14,8 @@
       <form method="post">
         {% set nino %}
           {{ govukInput({
-            id: "[report][teacher-details][nino]",
-            name: "[report][teacher-details][nino]",
+            id: "[report][teacherDetails][nino]",
+            name: "[report][teacherDetails][nino]",
             label: {
               text: "National Insurance number",
               classes: "govuk-label--s"
@@ -23,14 +23,14 @@
             hint: {
               text: "For example, ‘QQ 12 34 56 C’"
             },
-            value: data.report['teacher-details'].nino
+            value: data.report.teacherDetails.nino
           }) }}
         {% endset %}
 
         <span class="govuk-caption-l">Personal details</span>
         {{ govukRadios({
-          idPrefix: "[report][teacher-details][know-nino]",
-          name: "[report][teacher-details][know-nino]",
+          idPrefix: "[report][teacherDetails][knowNino]",
+          name: "[report][teacherDetails][knowNino]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--l",
@@ -51,7 +51,7 @@
               value: "No"
             }
           ],
-          value: data.report['teacher-details']['know-nino']
+          value: data.report.teacherDetails.knowNino
         }) }}
         {{ govukButton({
           text: "Save and continue"

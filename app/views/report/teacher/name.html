@@ -17,8 +17,8 @@
         <p class="govuk-!-padding-bottom-6">This information is required by law. It’ll help us to identify the teacher you’re referring and decide if we need to investigate the case further.</p>
 
         {{ govukInput({
-          id: "[report][teacher-details][first-name]",
-          name: "[report][teacher-details][first-name]",
+          id: "[report][teacherDetails][firstName]",
+          name: "[report][teacherDetails][firstName]",
           label: {
             text: "First name",
             classes: "govuk-label--m"
@@ -26,12 +26,12 @@
           hint: {
             text: "Or given name - enter their initial if you do not know their first name"
           },
-          value: data.report['teacher-details']['first-name']
+          value: data.report.teacherDetails.firstName
         }) }}
 
         {{ govukInput({
-          id: "[report][teacher-details][last-name]",
-          name: "[report][teacher-details][last-name]",
+          id: "[report][teacherDetails][lastName]",
+          name: "[report][teacherDetails][lastName]",
           label: {
             text: "Last name",
             classes: "govuk-label--m"
@@ -39,24 +39,24 @@
           hint: {
             text: "Or family name"
           },
-          value: data.report['teacher-details']['last-name']
+          value: data.report.teacherDetails.lastName
         }) }}
 
         {% set previousNameHtml %}
           {{ govukInput({
-            id: "[report][teacher-details][previous-name]",
-            name: "[report][teacher-details][previous-name]",
+            id: "[report][teacherDetails][previousName]",
+            name: "[report][teacherDetails][previousName]",
             label: {
               text: "Other name",
               classes: "govuk-label--s"
             },
-            value: data.report['teacher-details']['previous-name']
+            value: data.report.teacherDetails.previousName
           }) }}
         {% endset %}
 
         {{ govukRadios({
-          idPrefix: "[report][teacher-details][have-previous-name]",
-          name: "[report][teacher-details][have-previous-name]",
+          idPrefix: "[report][teacherDetails][hasPreviousName]",
+          name: "[report][teacherDetails][hasPreviousName]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
@@ -79,7 +79,7 @@
               value: "No"
             }
           ],
-          value: data.report['teacher-details']['have-previous-name']
+          value: data.report.teacherDetails.hasPreviousName
         }) }}
 
         {{ govukButton({
