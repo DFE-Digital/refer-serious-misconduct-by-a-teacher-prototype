@@ -177,3 +177,28 @@ exports.getFirstIncompleteQuestionFromTeacherRole = (data) => {
 
   return null
 }
+
+exports.getFirstIncompleteQuestionFromAllegation = (data) => {
+  let type = _.get(data, 'report.type-of-report')
+  let howTell = _.get(data, 'report.allegation.howTell')
+  let alreadyConsidered = _.get(data, 'report.allegation.alreadyConsidered')
+  let dbs = _.get(data, 'report.allegation.dbs')
+
+  if(!howTell) {
+    return 'allegation'
+  }
+
+  if(type == 'employer') {
+    if(!dbs) {
+      return 'dbs'
+    }
+  }
+
+  if(type == 'public') {
+    if(!alreadyConsidered) {
+      return 'already-considered'
+    }
+  }
+
+  return null
+}

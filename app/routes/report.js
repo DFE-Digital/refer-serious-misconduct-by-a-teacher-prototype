@@ -39,6 +39,7 @@ module.exports = router => {
     let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherDetails(req.session.data)
     let teacherContactDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherContactDetails(req.session.data)
     let teacherRoleIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherRole(req.session.data)
+    let allegationIncompleteSection = referralHelper.getFirstIncompleteQuestionFromAllegation(req.session.data)
 
     let errorsList = []
     if(req.flash('error') == 'Errors detected') {
@@ -72,6 +73,12 @@ module.exports = router => {
           text: 'You must complete details about the role before you can send your referral'
         })
       }
+      if(allegationIncompleteSection) {
+        errorsList.push({
+          href: '#app-allegation',
+          text: 'You must complete allegation details before you can send your referral'
+        })
+      }
     }
 
     res.render('report/submit/review', {
@@ -80,6 +87,7 @@ module.exports = router => {
       teacherDetailsIncompleteSection,
       teacherContactDetailsIncompleteSection,
       teacherRoleIncompleteSection,
+      allegationIncompleteSection,
       errorsList
     })
   })
@@ -89,7 +97,8 @@ module.exports = router => {
     let yourOrganisationDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourOrganisation(req.session.data)
     let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherDetails(req.session.data)
     let teacherContactDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherContactDetails(req.session.data)
-    if(yourDetailsIncompleteSection || yourOrganisationDetailsIncompleteSection || teacherDetailsIncompleteSection || teacherContactDetailsIncompleteSection) {
+    let teacherRoleIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherTeacherRole(req.session.data)
+    if(yourDetailsIncompleteSection || yourOrganisationDetailsIncompleteSection || teacherDetailsIncompleteSection || teacherContactDetailsIncompleteSection || teacherRoleIncompleteSection) {
       req.flash('error', 'Errors detected')
       res.redirect('/report/submit/review')
     } else {

@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const referralHelper = require('../helpers/referral')
 
 module.exports = router => {
 
@@ -16,6 +17,12 @@ module.exports = router => {
 
   router.post('/report/allegation/dbs', (req, res) => {
     res.redirect('/report/allegation/check-answers')
+  })
+
+  router.get('/report/allegation/check-answers', (req, res) => {
+    res.render('report/allegation/check-answers', {
+      allegationIncompleteSection: referralHelper.getFirstIncompleteQuestionFromAllegation(req.session.data)
+    })
   })
 
   router.post('/report/allegation/check-answers', (req, res) => {

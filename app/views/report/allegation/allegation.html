@@ -25,7 +25,7 @@
         {% endset %}
 
           {% set fileUpload %}
-            {% if data.report.allegation['how-tell'] == "Upload file" %}
+            {% if data.report.allegation.howTell == "Upload file" %}
               <div class="app-uploaded-file">
                 <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                   Currently uploaded file
@@ -54,8 +54,8 @@
 
           <span class="govuk-caption-l">The allegation</span>
           {{ govukRadios({
-            id: "[report][allegation][how-tell]",
-            name: "[report][allegation][how-tell]",
+            id: "[report][allegation][howTell]",
+            name: "[report][allegation][howTell]",
             fieldset: {
               legend: {
                 classes: "govuk-fieldset__legend--l",
@@ -63,7 +63,7 @@
                 html: title
               }
             },
-            value: data.report.allegation['how-tell'],
+            value: data.report.allegation.howTell,
             items: [
               {
                 text: "Upload file",

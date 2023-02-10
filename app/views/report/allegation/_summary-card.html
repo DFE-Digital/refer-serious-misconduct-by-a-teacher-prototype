@@ -1,3 +1,7 @@
+{% if allegationIncompleteSection %}
+  <div class="govuk-inset-text app-inset-text--incomplete-section govuk-!-margin-top-2 {% if errorsList.length %} app-inset-text--incomplete-section-error {% endif %}">
+{% endif %}
+
 {{ govukSummaryList({
   classes: "govuk-!-margin-bottom-6",
   titleText: "The allegation",
@@ -7,7 +11,7 @@
         html: 'How do you want to give details about the allegation?'
       },
       value: {
-        html: data.report['allegation']['how-tell']
+        html: data.report.allegation.howTell
       },
       actions: {
         items: [{
@@ -29,13 +33,13 @@
           href: "/report/allegation/allegation"
         }]
       }
-    } if data.report['allegation']['how-tell'] == "Upload file",
+    } if data.report.allegation.howTell == "Upload file",
     {
       key: {
         html: 'Description of the allegation'
       },
       value: {
-        html: data.report['allegation']['allegation'] | nl2br
+        html: data.report.allegation['allegation'] | nl2br
       },
       actions: {
         items: [{
@@ -43,13 +47,13 @@
           href: "/report/allegation/allegation"
         }]
       }
-    } if data.report['allegation']['how-tell'] == "Describe the allegation",
+    } if data.report.allegation.howTell == "Describe the allegation",
     {
       key: {
         html: 'Have you told DBS?'
       },
       value: {
-        html: data.report['allegation']['dbs'] | nl2br
+        html: data.report.allegation.dbs | nl2br
       },
       actions: {
         items: [{
@@ -57,13 +61,13 @@
           href: "/report/allegation/dbs"
         }]
       }
-    } if data.report['allegation']['dbs'],
+    } if data.report.allegation.dbs,
     {
       key: {
         html: 'Details about how this complaint has been considered'
       },
       value: {
-        html: data.report['allegation']['already-considered'] | nl2br
+        html: data.report.allegation.alreadyConsidered | nl2br
       },
       actions: {
         items: [{
@@ -71,6 +75,19 @@
           href: "/report/allegation/already-considered"
         }]
       }
-    } if data.report['allegation']['already-considered']
+    } if data.report.allegation.alreadyConsidered
   ]
-}) }}
+}) if data.report.allegation.howTell }}
+
+{% if allegationIncompleteSection %}
+  {% set url = '/report/allegation/' + allegationIncompleteSection %}
+  <p class="app-instruction-text">You must complete allegation details before you can send your referral</p>
+  {{ govukButton({
+    text: "Complete allegation details",
+    href: url
+  }) }}
+{% endif %}
+
+{% if allegationIncompleteSection %}
+  </div>
+{% endif %}

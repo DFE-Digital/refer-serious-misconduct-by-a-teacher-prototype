@@ -31,14 +31,14 @@
         </ul>
 
         {{ govukTextarea({
-          id: "[report][allegation][already-considered]",
-          name: "[report][allegation][already-considered]",
+          id: "[report][allegation][alreadyConsidered]",
+          name: "[report][allegation][alreadyConsidered]",
           label: {
             text: "Details about how this complaint has been considered",
             classes: "govuk-label--m govuk-!-margin-top-6"
           },
-          decorate: 'report.allegation.already-considered',
-          rows: 20
+          value: data.report.allegation.alreadyConsidered,
+          rows: 15
         }) }}
 
         {{ govukButton({
