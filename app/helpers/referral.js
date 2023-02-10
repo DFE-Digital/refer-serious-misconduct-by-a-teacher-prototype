@@ -103,13 +103,27 @@ exports.getFirstIncompleteQuestionFromTeacherRole = (data) => {
   let knowWhereTheyWork = _.get(data, 'report.teacherRole.knowWhereTheyWork')
   let newOrganisationName = _.get(data, 'report.teacherRole.newOrganisation.name')
 
+  if(!jobTitle) {
+    return 'job-title'
+  }
+  if(!duties) {
+    return 'duties'
+  }
+
+  if(type == 'public') {
+    if(!knowWhereTheyWorked) {
+      return 'know-where-they-worked'
+    }
+
+    if(knowWhereTheyWorked == 'Yes') {
+      if(!organisationName) {
+        return 'where-they-worked'
+      }
+    }
+  }
+
   if(type == 'employer') {
-    if(!jobTitle) {
-      return 'job-title'
-    }
-    if(!duties) {
-      return 'duties'
-    }
+
     if(!sameOrganisation) {
       return 'same-organisation'
     }
