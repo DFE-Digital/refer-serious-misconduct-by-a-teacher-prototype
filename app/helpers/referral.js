@@ -87,3 +87,79 @@ exports.getFirstIncompleteQuestionFromTeacherContactDetails = (data) => {
 
   return null
 }
+
+exports.getFirstIncompleteQuestionFromTeacherRole = (data) => {
+  let type = _.get(data, 'report.type-of-report')
+  let jobTitle = _.get(data, 'report.teacherRole.jobTitle')
+  let duties = _.get(data, 'report.teacherRole.duties')
+  let sameOrganisation = _.get(data, 'report.teacherRole.sameOrganisation')
+  let knowWhereTheyWorked = _.get(data, 'report.teacherRole.knowWhereTheyWorked')
+  let organisationName = _.get(data, 'report.teacherRole.organisation.name')
+  let knowJobStartDate = _.get(data, 'report.teacherRole.knowJobStartDate')
+  let stillEmployed = _.get(data, 'report.teacherRole.stillEmployed')
+  let knowWhenTheyLeft = _.get(data, 'report.teacherRole.knowWhenTheyLeft')
+  let reasonForLeaving = _.get(data, 'report.teacherRole.reasonForLeaving')
+  let teachingElsewhere = _.get(data, 'report.teacherRole.teachingElsewhere')
+  let knowWhereTheyWork = _.get(data, 'report.teacherRole.knowWhereTheyWork')
+  let newOrganisationName = _.get(data, 'report.teacherRole.newOrganisation.name')
+
+  if(type == 'employer') {
+    if(!jobTitle) {
+      return 'job-title'
+    }
+    if(!duties) {
+      return 'duties'
+    }
+    if(!sameOrganisation) {
+      return 'same-organisation'
+    }
+
+    if(sameOrganisation == 'No') {
+      if(!knowWhereTheyWorked) {
+        return 'know-where-they-worked'
+      }
+      if(knowWhereTheyWorked == 'Yes') {
+        if(!organisationName) {
+          return 'where-they-worked'
+        }
+      }
+    }
+
+    if(!knowJobStartDate) {
+      return 'start-date'
+    }
+
+    if(!stillEmployed) {
+      return 'still-employed'
+    }
+
+    if(stillEmployed == 'No') {
+      if(!knowWhenTheyLeft) {
+        return 'end-date'
+      }
+
+      if(!reasonForLeaving) {
+        return 'reason-for-leaving'
+      }
+
+      if(!teachingElsewhere) {
+        return 'teaching-somewhere-else'
+      }
+    }
+
+    if(teachingElsewhere == 'Yes') {
+      if(!knowWhereTheyWork) {
+        return 'know-where-they-work'
+      }
+    }
+
+    if(knowWhereTheyWork == 'Yes') {
+      if(!newOrganisationName) {
+        return 'where-they-work'
+      }
+    }
+
+  }
+
+  return null
+}
