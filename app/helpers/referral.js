@@ -202,3 +202,24 @@ exports.getFirstIncompleteQuestionFromAllegation = (data) => {
 
   return null
 }
+
+exports.getFirstIncompleteQuestionFromPreviousAllegations = (data) => {
+  let type = _.get(data, 'report.type-of-report')
+  let anyPrevious = _.get(data, 'report.previousMisconduct.anyPrevious')
+  let howTell = _.get(data, 'report.previousMisconduct.howTell')
+
+  if(type == 'employer') {
+    if(!anyPrevious) {
+      return 'any-previous'
+    }
+
+    if(anyPrevious == 'Yes') {
+      if(!howTell) {
+        return 'previous-misconduct'
+      }
+    }
+
+  }
+
+  return null
+}
