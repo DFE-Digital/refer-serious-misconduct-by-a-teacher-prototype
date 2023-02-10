@@ -26,11 +26,14 @@
 
         {% include "../../shared/_examples.html" %}
 
-        {# <p>Make sure the file names describe the content, for example ‘signed witness statement’.</p>
+        {% if isPublic %}
 
-        {{ govukWarningText({
-          text: "Do not include explicit content, for example indecent photos. You’ll be asked for these separately if needed."
-        }) }} #}
+          <p>Make sure the file names describe the content, for example ‘signed witness statement’.</p>
+
+          {{ govukWarningText({
+            text: "Do not include explicit content, for example indecent photos. You’ll be asked for these separately if needed."
+          }) }}
+        {% endif %}
 
         {% set input %}
           {{ govukFileUpload({
@@ -63,38 +66,9 @@
               }
             }) }}
           </div>
-
-
-
-          {# <p>Current file: <a href="#">job-description.pdf (2MB)</a></p>
-          {{input | safe}} #}
-
-
-
-          {# <p>Current file: <a href="#">job-description.pdf (2MB)</a></p>
-          {{ govukDetails({
-            summaryText: "Upload a different file",
-            html: input
-          }) }} #}
-
-
-
-
-          {# <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
-            Upload file
-          </h2>
-          <div class="app-uploaded-file govuk-!-margin-bottom-6">
-            <p class="app-uploaded-file__file"><a href="#">job-description.pdf (2MB)</a></p>
-            <p class="app-uploaded-file__delete"><a href="#">Delete file</a></p>
-          </div> #}
         {% else %}
           {{input | safe}}
         {% endif %}
-
-
-
-
-
 
         {{ govukButton({
           text: "Save and continue"

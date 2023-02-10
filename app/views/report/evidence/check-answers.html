@@ -2,10 +2,6 @@
 {% set title = "Check and confirm your answers" %}
 {% set anyFiles = data.report.documentation['uploaded-files'] | length > 0 %}
 
-{% set examples %}
-  {% include "../../shared/_examples.html" %}
-{% endset %}
-
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
