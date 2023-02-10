@@ -223,3 +223,20 @@ exports.getFirstIncompleteQuestionFromPreviousAllegations = (data) => {
 
   return null
 }
+
+exports.getFirstIncompleteQuestionFromEvidence = (data) => {
+  let hasEvidence = _.get(data, 'report.evidence.hasEvidence')
+  let files = _.get(data, 'report.evidence.files')
+
+  if(!hasEvidence) {
+    return 'has-evidence'
+  }
+
+  if(hasEvidence == 'Yes') {
+    if(!files) {
+      return 'upload'
+    }
+  }
+
+  return null
+}

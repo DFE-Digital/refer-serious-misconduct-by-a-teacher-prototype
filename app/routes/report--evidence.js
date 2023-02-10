@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const { v4: uuidv4 } = require('uuid')
+const referralHelper = require('../helpers/referral')
 
 module.exports = router => {
 
@@ -59,6 +60,12 @@ module.exports = router => {
     } else {
       res.redirect(`/report/evidence/check-answers`)
     }
+  })
+
+  router.get('/report/evidence/check-answers', (req, res) => {
+    res.render('report/evidence/check-answers', {
+      evidenceIncompleteSection: referralHelper.getFirstIncompleteQuestionFromEvidence(req.session.data)
+    })
   })
 
   router.post('/report/evidence/check-answers', (req, res) => {
