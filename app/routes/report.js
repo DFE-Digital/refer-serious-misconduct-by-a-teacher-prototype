@@ -38,6 +38,7 @@ module.exports = router => {
     let yourOrganisationIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourOrganisation(req.session.data)
     let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherDetails(req.session.data)
     let teacherContactDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherContactDetails(req.session.data)
+    let teacherRoleIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherRole(req.session.data)
 
     let errorsList = []
     if(req.flash('error') == 'Errors detected') {
@@ -65,6 +66,12 @@ module.exports = router => {
           text: 'You must complete contact details before you can send your referral'
         })
       }
+      if(teacherRoleIncompleteSection) {
+        errorsList.push({
+          href: '#app-teacher-role',
+          text: 'You must complete details about the role before you can send your referral'
+        })
+      }
     }
 
     res.render('report/submit/review', {
@@ -72,6 +79,7 @@ module.exports = router => {
       yourOrganisationIncompleteSection,
       teacherDetailsIncompleteSection,
       teacherContactDetailsIncompleteSection,
+      teacherRoleIncompleteSection,
       errorsList
     })
   })
