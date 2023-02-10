@@ -12,23 +12,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        {% set homeNumber %}
+        {% set telephone %}
           {{ govukInput({
-            id: "[report][teacher-contact-details][main-contact]",
-            name: "[report][teacher-contact-details][main-contact]",
+            id: "[report][teacherContactDetails][telephone]",
+            name: "[report][teacherContactDetails][telephone]",
             label: {
               text: "Phone number",
               classes: "govuk-label--s"
             },
             classes: 'govuk-input--width-20',
-            value: data.report['teacher-contact-details']['main-contact']
+            value: data.report.teacherContactDetails.telephone
           }) }}
         {% endset %}
 
         <span class="govuk-caption-l">Contact details</span>
         {{ govukRadios({
-          idPrefix: "[report][teacher-contact-details][know-telephone]",
-          name: "[report][teacher-contact-details][know-telephone]",
+          idPrefix: "[report][teacherContactDetails][knowTelephone]",
+          name: "[report][teacherContactDetails][knowTelephone]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--l",
@@ -41,7 +41,7 @@
               text: "Yes",
               value: "Yes",
               conditional: {
-                html: homeNumber
+                html: telephone
               }
             },
             {
@@ -49,7 +49,7 @@
               value: "No"
             }
           ],
-          value: data.report['teacher-contact-details']['know-telephone']
+          value: data.report.teacherContactDetails.knowTelephone
         }) }}
         {{ govukButton({
           text: "Save and continue"

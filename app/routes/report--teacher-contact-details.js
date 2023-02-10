@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const referralHelper = require('../helpers/referral')
 
 module.exports = router => {
 
@@ -11,7 +12,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-contact-details/know-address', (req, res) => {
-    if(req.session.data.report['teacher-contact-details']['know-address'] == 'Yes') {
+    if(req.session.data.report.teacherContactDetails.knowHomeAddress == 'Yes') {
       res.redirect('/report/teacher-contact-details/address')
     } else {
       res.redirect('/report/teacher-contact-details/check-answers')
@@ -20,6 +21,12 @@ module.exports = router => {
 
   router.post('/report/teacher-contact-details/address', (req, res) => {
     res.redirect('/report/teacher-contact-details/check-answers')
+  })
+
+  router.get('/report/teacher-contact-details/check-answers', (req, res) => {
+    res.render('report/teacher-contact-details/check-answers', {
+      teacherContactDetailsIncompleteSection: referralHelper.getFirstIncompleteQuestionFromTeacherContactDetails(req.session.data)
+    })
   })
 
   router.post('/report/teacher-contact-details/check-answers', (req, res) => {

@@ -30,10 +30,10 @@
         {% endif %}
       {% endif %}
 
-      {% if data.report['teacher-contact-details']['section-completed'] %}
+      {% if data.report.teacherContactDetails['section-completed'] %}
         {% set teacherContactDetailsHref = '/report/teacher-contact-details/check-answers' %}
-        {% set teacherContactDetailsStatus = data.report['teacher-contact-details']['section-completed'] %}
-        {% if data.report['teacher-contact-details']['section-completed'] == 'completed' %}
+        {% set teacherContactDetailsStatus = data.report.teacherContactDetails['section-completed'] %}
+        {% if data.report.teacherContactDetails['section-completed'] == 'completed' %}
           {% set teacherContactDetailsTagColour = 'solid' %}
         {% endif %}
       {% endif %}

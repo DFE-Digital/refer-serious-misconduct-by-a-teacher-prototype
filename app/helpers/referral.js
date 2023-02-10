@@ -18,6 +18,18 @@ exports.getFirstIncompleteQuestionFromYourDetails = (data) => {
   return null
 }
 
+exports.getFirstIncompleteQuestionFromYourOrganisation = (data) => {
+  let type = _.get(data, 'report.type-of-report')
+  let name = _.get(data, 'report.yourOrganisation.name')
+  if(type == 'employer') {
+    if(!name) {
+      return 'organisation'
+    }
+  }
+
+  return null
+}
+
 exports.getFirstIncompleteQuestionFromTeacherDetails = (data) => {
   let type = _.get(data, 'report.type-of-report')
   let firstName = _.get(data, 'report.teacherDetails.firstName')
@@ -52,13 +64,25 @@ exports.getFirstIncompleteQuestionFromTeacherDetails = (data) => {
   return null
 }
 
-exports.getFirstIncompleteQuestionFromYourOrganisation = (data) => {
-  let type = _.get(data, 'report.type-of-report')
-  let name = _.get(data, 'report.yourOrganisation.name')
-  if(type == 'employer') {
-    if(!name) {
-      return 'organisation'
-    }
+exports.getFirstIncompleteQuestionFromTeacherContactDetails = (data) => {
+  let knowEmailAddress = _.get(data, 'report.teacherContactDetails.knowEmailAddress')
+  let emailAddress = _.get(data, 'report.teacherContactDetails.emailAddress')
+  let knowTelephone = _.get(data, 'report.teacherContactDetails.knowTelephone')
+  let telephone = _.get(data, 'report.teacherContactDetails.telephone')
+  let knowHomeAddress = _.get(data, 'report.teacherContactDetails.knowHomeAddress')
+  let addressLine1 = _.get(data, 'report.teacherContactDetails.address.line1')
+
+  if(!knowEmailAddress || (knowEmailAddress && !emailAddress)) {
+    return 'email'
+  }
+  if(!knowTelephone || (knowTelephone && !telephone)) {
+    return 'telephone'
+  }
+  if(!knowHomeAddress) {
+    return 'know-address'
+  }
+  if(knowHomeAddress && !addressLine1) {
+    return 'address'
   }
 
   return null

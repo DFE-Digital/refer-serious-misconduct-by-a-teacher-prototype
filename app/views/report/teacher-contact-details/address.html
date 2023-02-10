@@ -18,60 +18,60 @@
 
       <form method="post">
         {{ govukInput({
-          id: "[report][teacher-contact-details][address][line1]",
-          name: "[report][teacher-contact-details][address][line1]",
+          id: "[report][teacherContactDetails][address][line1]",
+          name: "[report][teacherContactDetails][address][line1]",
           label: {
             text: 'Address line 1',
             classes: 'govuk-label--m'
           },
-          value: data.report['teacher-contact-details'].address.line1,
+          value: data.report.teacherContactDetails.address.line1,
           autocomplete: "address-line1"
         }) }}
 
         {{ govukInput({
-          id: "[report][teacher-contact-details][address][line2]",
-          name: "[report][teacher-contact-details][address][line2]",
+          id: "[report][teacherContactDetails][address][line2]",
+          name: "[report][teacherContactDetails][address][line2]",
           label: {
             text: 'Address line 2 (optional)',
             classes: 'govuk-label--m'
           },
-          value: data.report['teacher-contact-details'].address.line2,
+          value: data.report.teacherContactDetails.address.line2,
           autocomplete: "address-line2"
         }) }}
 
         {{ govukInput({
-          id: "[report][teacher-contact-details][address][town]",
-          name: "[report][teacher-contact-details][address][town]",
+          id: "[report][teacherContactDetails][address][town]",
+          name: "[report][teacherContactDetails][address][town]",
           label: {
             text: "Town or city",
             classes: 'govuk-label--m'
           },
           classes: "govuk-!-width-two-thirds",
-          value: data.report['teacher-contact-details'].address.town,
+          value: data.report.teacherContactDetails.address.town,
           autocomplete: "address-level2"
         }) }}
 
         {{ govukInput({
-          id: "[report][teacher-contact-details][address][postcode]",
-          name: "[report][teacher-contact-details][address][postcode]",
+          id: "[report][teacherContactDetails][address][postcode]",
+          name: "[report][teacherContactDetails][address][postcode]",
           label: {
             text: "Postcode",
             classes: 'govuk-label--m'
           },
           classes: "govuk-input--width-10",
-          value: data.report['teacher-contact-details'].address.postcode,
+          value: data.report.teacherContactDetails.address.postcode,
           autocomplete: "postal-code"
         }) }}
 
         {{ govukInput({
-          id: "[report][teacher-contact-details][address][country]",
-          name: "[report][teacher-contact-details][address][country]",
+          id: "[report][teacherContactDetails][address][country]",
+          name: "[report][teacherContactDetails][address][country]",
           label: {
             text: "Country (optional)",
             classes: 'govuk-label--m'
           },
           classes: "govuk-!-width-two-thirds",
-          value: data.report['teacher-contact-details'].address.country,
+          value: data.report.teacherContactDetails.address.country,
           autocomplete: "country"
         }) }}
 
