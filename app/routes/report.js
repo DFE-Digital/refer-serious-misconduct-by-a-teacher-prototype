@@ -97,7 +97,7 @@ module.exports = router => {
     let yourOrganisationDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourOrganisation(req.session.data)
     let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherDetails(req.session.data)
     let teacherContactDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherContactDetails(req.session.data)
-    let teacherRoleIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherTeacherRole(req.session.data)
+    let teacherRoleIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherRole(req.session.data)
     if(yourDetailsIncompleteSection || yourOrganisationDetailsIncompleteSection || teacherDetailsIncompleteSection || teacherContactDetailsIncompleteSection || teacherRoleIncompleteSection) {
       req.flash('error', 'Errors detected')
       res.redirect('/report/submit/review')

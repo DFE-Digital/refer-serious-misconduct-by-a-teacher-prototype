@@ -40,13 +40,13 @@
       </div>
       <div class="app-review-panel">
         <h2 class="govuk-heading-m govuk-!-font-size-27">The allegation</h2>
-        <h3 class="govuk-heading-m">Allegation details</h3>
+        <h3 class="govuk-heading-m" id="app-allegation">Allegation details</h3>
         {% include '../allegation/_summary-card.html' %}
         {% if isEmployer %}
-          <h3 class="govuk-heading-m">Previous allegation details</h3>
+          <h3 class="govuk-heading-m" id="app-previous-allegation">Previous allegation details</h3>
           {% include '../previous-misconduct/_summary-card.html' %}
         {% endif %}
-        <h3 class="govuk-heading-m">Evidence and supporting information</h3>
+        <h3 class="govuk-heading-m" id="app-evidence">Evidence and supporting information</h3>
         {% include '../evidence/_summary-card.html' %}
       </div>
       <h2 class="govuk-heading-m govuk-!-font-size-27">
