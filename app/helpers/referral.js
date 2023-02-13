@@ -47,13 +47,13 @@ exports.getFirstIncompleteQuestionFromTeacherDetails = (data) => {
     return 'name'
   }
   if(type == 'employer') {
-    if(!knowDob || (knowDob && !dob)) {
+    if(!knowDob || (knowDob == 'Yes' && !dob)) {
       return 'dob'
     }
-    if(!knowNino || (knowNino && !nino)) {
+    if(!knowNino || (knowDob == 'Yes' && !nino)) {
       return 'nino'
     }
-    if(!knowTrn || (knowTrn && !trn)) {
+    if(!knowTrn || (knowDob == 'Yes' && !trn)) {
       return 'trn'
     }
     if(!qts) {

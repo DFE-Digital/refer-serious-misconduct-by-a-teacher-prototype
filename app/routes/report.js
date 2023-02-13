@@ -23,8 +23,25 @@ module.exports = router => {
         referrals
       })
     } else {
+
+      let yourDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourDetails(req.session.data)
+      let yourOrganisationIncompleteSection = referralHelper.getFirstIncompleteQuestionFromYourOrganisation(req.session.data)
+      let teacherDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherDetails(req.session.data)
+      let teacherContactDetailsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherContactDetails(req.session.data)
+      let teacherRoleIncompleteSection = referralHelper.getFirstIncompleteQuestionFromTeacherRole(req.session.data)
+      let allegationIncompleteSection = referralHelper.getFirstIncompleteQuestionFromAllegation(req.session.data)
+      let previousAllegationsIncompleteSection = referralHelper.getFirstIncompleteQuestionFromPreviousAllegations(req.session.data)
+      let evidenceIncompleteSection = referralHelper.getFirstIncompleteQuestionFromEvidence(req.session.data)
+
       res.render('report/index', {
-        yourDetailsIncompleteSection: referralHelper.getFirstIncompleteQuestionFromYourDetails(req.session.data)
+        yourDetailsIncompleteSection,
+        yourOrganisationIncompleteSection,
+        teacherDetailsIncompleteSection,
+        teacherContactDetailsIncompleteSection,
+        teacherRoleIncompleteSection,
+        allegationIncompleteSection,
+        previousAllegationsIncompleteSection,
+        evidenceIncompleteSection
       })
     }
   })

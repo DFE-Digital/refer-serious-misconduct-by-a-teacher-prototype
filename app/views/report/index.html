@@ -14,22 +14,17 @@
         {% set yourDetailsTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report['your-organisation']['section-completed'] %}
+      {% if data.report.yourOrganisation['section-completed'] == 'completed' %}
         {% set yourOrganisationHref = '/report/your-organisation/check-answers' %}
-        {% set yourOrganisationStatus = data.report['your-organisation']['section-completed'] %}
-        {% if data.report['your-organisation']['section-completed'] == 'completed' %}
-          {% set yourOrganisationTagColour = 'solid' %}
-        {% endif %}
+        {% set yourOrganisationTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report.teacherDetails['section-completed'] %}
+      {% if teacherContactDetailsIncompleteSection != 'name' %}
         {% set teacherHref = '/report/teacher/check-answers' %}
-        {% set teacherStatus = data.report.teacherDetails['section-completed'] %}
-        {% if data.report.teacherDetails['section-completed'] == 'completed' %}
-          {% set teacherTagColour = 'solid' %}
-        {% endif %}
       {% endif %}
-
+      {% if data.report.teacherDetails['section-completed'] == 'completed' %}
+        {% set teacherTagColour = 'solid' %}
+      {% endif %}
 
       {% if teacherContactDetailsIncompleteSection != 'email' %}
         {% set teacherContactDetailsHref = '/report/teacher-contact-details/check-answers' %}
@@ -38,12 +33,11 @@
         {% set teacherContactDetailsTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report.teacherRole.sectionCompleted %}
+      {% if teacherRoleIncompleteSection != 'job-title' %}
         {% set teacherRoleHref = '/report/teacher-role/check-answers' %}
-        {% set teacherRoleStatus = data.report.teacherRole.sectionCompleted %}
-        {% if data.report.teacherRole.sectionCompleted == 'completed' %}
-          {% set teacherRoleTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.teacherRole.sectionCompleted == 'completed' %}
+        {% set teacherRoleTagColour = 'solid' %}
       {% endif %}
 
       {% if data.report['allegation']['section-completed'] %}
@@ -87,7 +81,7 @@
               href: yourOrganisationHref or '/report/your-organisation/organisation',
               tag: {
                 colour: yourOrganisationTagColour or 'grey',
-                text: yourOrganisationStatus or 'Incomplete'
+                text: data.report.yourOrganisation['section-completed'] or 'Incomplete'
               }
             }]
           }, {
@@ -97,21 +91,21 @@
               href: teacherHref or '/report/teacher/name',
               tag: {
                 colour: teacherTagColour or 'grey',
-                text: teacherStatus or 'Incomplete'
+                text: data.report.teacherDetails['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Contact details",
               href: teacherContactDetailsHref or '/report/teacher-contact-details/email',
               tag: {
                 colour: teacherContactDetailsTagColour or 'grey',
-                text: teacherContactDetailsStatus or 'Incomplete'
+                text: data.report.teacherContactDetails['section-completed'] or 'Incomplete'
               }
             }, {
               text: "About their role",
               href: teacherRoleHref or '/report/teacher-role/job-title',
               tag: {
                 colour: teacherRoleTagColour or 'grey',
-                text: teacherRoleStatus or 'Incomplete'
+                text: data.report.teacherRole.sectionCompleted or 'Incomplete'
               }
             }]
           }, {

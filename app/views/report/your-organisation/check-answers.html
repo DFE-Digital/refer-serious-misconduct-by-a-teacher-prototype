@@ -21,8 +21,8 @@
 
   {% if not yourOrganisationIncompleteSection %}
     <form method="post">
-      {% set completedRadiosName = '[report][your-organisation][section-completed]' %}
-      {% set completedRadiosValue = data.report['your-organisation']['section-completed'] %}
+      {% set completedRadiosName = '[report][yourOrganisation][section-completed]' %}
+      {% set completedRadiosValue = data.report.yourOrganisation['section-completed'] %}
       {% include '../../shared/_have-you-completed-section.html' %}
       {{ govukButton({
         text: "Save and continue"

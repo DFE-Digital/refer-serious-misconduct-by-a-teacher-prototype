@@ -21,7 +21,7 @@
 
   {% if not teacherDetailsIncompleteSection %}
     <form method="post">
-      {% set completedRadiosName = '[report][teacher-details][section-completed]' %}
+      {% set completedRadiosName = '[report][teacherDetails][section-completed]' %}
       {% set completedRadiosValue = data.report.teacherDetails['section-completed'] %}
       {% include '../../shared/_have-you-completed-section.html' %}
       {{ govukButton({
