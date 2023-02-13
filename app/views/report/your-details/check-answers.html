@@ -18,12 +18,14 @@
     </div>
   </div>
 
-  <form method="post">
-    {% set completedRadiosName = '[report][your-details][section-completed]' %}
-    {% set completedRadiosValue = data.report['your-details']['section-completed'] %}
-    {% include '../../shared/_have-you-completed-section.html' %}
-    {{ govukButton({
-      text: "Save and continue"
-    }) }}
-  </form>
+  {% if not yourDetailsIncompleteSection %}
+    <form method="post">
+      {% set completedRadiosName = '[report][your-details][section-completed]' %}
+      {% set completedRadiosValue = data.report['your-details']['section-completed'] %}
+      {% include '../../shared/_have-you-completed-section.html' %}
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+  {% endif %}
 {% endblock %}

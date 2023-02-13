@@ -2,10 +2,6 @@
 {% set title = "Check and confirm your answers" %}
 {% set anyFiles = data.report.documentation['uploaded-files'] | length > 0 %}
 
-{% set examples %}
-  {% include "../../shared/_examples.html" %}
-{% endset %}
-
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -30,14 +26,15 @@
     </div>
   </div>
 
-
-  <form method="post">
-    {% set completedRadiosName = '[report][evidence][section-completed]' %}
-    {% set completedRadiosValue = data.report['evidence']['section-completed'] %}
-    {% include '../../shared/_have-you-completed-section.html' %}
-    {{ govukButton({
-      text: "Save and continue"
-    }) }}
-  </form>
+  {% if not evidenceIncompleteSection %}
+    <form method="post">
+      {% set completedRadiosName = '[report][evidence][section-completed]' %}
+      {% set completedRadiosValue = data.report['evidence']['section-completed'] %}
+      {% include '../../shared/_have-you-completed-section.html' %}
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+  {% endif %}
 {% endblock %}
 

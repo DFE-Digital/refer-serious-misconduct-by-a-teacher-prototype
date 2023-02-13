@@ -14,8 +14,8 @@
       <form method="post">
         {% set dob %}
           {{ govukDateInput({
-            id: "[report][teacher-details][dob]",
-            name: "[report][teacher-details][dob]",
+            id: "[report][teacherDetails][dob]",
+            name: "[report][teacherDetails][dob]",
             fieldset: {
               legend: {
                 classes: "govuk-label--s",
@@ -27,21 +27,21 @@
             },
             items: [
               {
-                name: "[report][teacher-details][dob][day]",
+                name: "[report][teacherDetails][dob][day]",
                 label: "Day",
-                value: data.report['teacher-details'].dob.day,
+                value: data.report.teacherDetails.dob.day,
                 classes: "govuk-input--width-2"
               },
               {
-                name: "[report][teacher-details][dob][month]",
+                name: "[report][teacherDetails][dob][month]",
                 label: "Month",
-                value: data.report['teacher-details'].dob.month,
+                value: data.report.teacherDetails.dob.month,
                 classes: "govuk-input--width-2"
               },
               {
-                name: "[report][teacher-details][dob][year]",
+                name: "[report][teacherDetails][dob][year]",
                 label: "Year",
-                value: data.report['teacher-details'].dob.year,
+                value: data.report.teacherDetails.dob.year,
                 classes: "govuk-input--width-4"
               }
             ]
@@ -50,8 +50,8 @@
 
         <span class="govuk-caption-l">Personal details</span>
         {{ govukRadios({
-          idPrefix: "[report][teacher-details][know-dob]",
-          name: "[report][teacher-details][know-dob]",
+          idPrefix: "[report][teacherDetails][knowDob]",
+          name: "[report][teacherDetails][knowDob]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--l",
@@ -72,7 +72,7 @@
               value: "No"
             }
           ],
-          value: data.report['teacher-details']['know-dob']
+          value: data.report.teacherDetails.knowDob
         }) }}
         {{ govukButton({
           text: "Save and continue"

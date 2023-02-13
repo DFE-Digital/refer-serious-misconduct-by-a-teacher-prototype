@@ -9,38 +9,44 @@
 {% endblock %}
 
 {% block content %}
+
+  {{ govukErrorSummary({
+    titleText: "There’s a problem",
+    errorList: errorsList
+  }) if errorsList.length }}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l govuk-!-margin-bottom-9">{{ title | noOrphans | safe }}</h1>
       <div class="app-review-panel">
         <h2 class="govuk-heading-m govuk-!-font-size-27">About you</h2>
-        <h3 class="govuk-heading-m">Your details</h3>
+        <h3 class="govuk-heading-m" id="app-your-details">Your details</h3>
         {% include '../your-details/_summary-card.html' %}
         {% if isEmployer %}
-          <h3 class="govuk-heading-m">Your organisation</h3>
+          <h3 class="govuk-heading-m" id="app-your-organisation">Your organisation</h3>
           {% include '../your-organisation/_summary-card.html' %}
         {% endif %}
       </div>
       <div class="app-review-panel">
         <h2 class="govuk-heading-m govuk-!-font-size-27">About the teacher</h2>
-        <h3 class="govuk-heading-m">Personal details</h3>
+        <h3 class="govuk-heading-m" id="app-teacher-details">Personal details</h3>
         {% include '../teacher/_summary-card.html' %}
         {% if isEmployer %}
-          <h3 class="govuk-heading-m">Contact details</h3>
+          <h3 class="govuk-heading-m" id="app-teacher-contact-details">Contact details</h3>
           {% include '../teacher-contact-details/_summary-card.html' %}
         {% endif %}
-        <h3 class="govuk-heading-m">About their role</h3>
+        <h3 class="govuk-heading-m" id="app-teacher-role">About their role</h3>
         {% include '../teacher-role/_summary-card.html' %}
       </div>
       <div class="app-review-panel">
         <h2 class="govuk-heading-m govuk-!-font-size-27">The allegation</h2>
-        <h3 class="govuk-heading-m">Allegation details</h3>
+        <h3 class="govuk-heading-m" id="app-allegation">Allegation details</h3>
         {% include '../allegation/_summary-card.html' %}
         {% if isEmployer %}
-          <h3 class="govuk-heading-m">Previous allegation details</h3>
+          <h3 class="govuk-heading-m" id="app-previous-allegations">Previous allegation details</h3>
           {% include '../previous-misconduct/_summary-card.html' %}
         {% endif %}
-        <h3 class="govuk-heading-m">Evidence and supporting information</h3>
+        <h3 class="govuk-heading-m" id="app-evidence">Evidence and supporting information</h3>
         {% include '../evidence/_summary-card.html' %}
       </div>
       <h2 class="govuk-heading-m govuk-!-font-size-27">

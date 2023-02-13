@@ -8,23 +8,40 @@
   })}}
 {% endset %}
 
-{{ govukSummaryList({
-  classes: "govuk-!-margin-bottom-6",
-  titleText: "Your organisation",
-  rows: [
-    {
-      key: {
-        html: "Your organisation"
-      },
-      value: {
-        html: address
-      },
-      actions: {
-        items: [{
-          text: 'Change',
-          href: "/report/your-organisation/organisation"
-        }]
+{% if yourOrganisationIncompleteSection %}
+  <div class="govuk-inset-text app-inset-text--incomplete-section govuk-!-margin-top-2 {% if errorsList.length %} app-inset-text--incomplete-section-error {% endif %}">
+{% endif %}
+
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-6",
+    titleText: "Your organisation",
+    rows: [
+      {
+        key: {
+          html: "Your organisation"
+        },
+        value: {
+          html: address
+        },
+        actions: {
+          items: [{
+            text: 'Change',
+            href: "/report/your-organisation/organisation"
+          }]
+        }
       }
-    }
-  ]
-}) }}
+    ]
+  }) if data.report.yourOrganisation.name}}
+
+{% if yourOrganisationIncompleteSection %}
+  {% set url = '/report/your-organisation/' + yourOrganisationIncompleteSection %}
+  <p class="app-instruction-text">You must complete details about your organisation before you can send your referral</p>
+  {{ govukButton({
+    text: "Complete personal details",
+    href: url
+  }) }}
+{% endif %}
+
+{% if yourOrganisationIncompleteSection %}
+  </div>
+{% endif %}

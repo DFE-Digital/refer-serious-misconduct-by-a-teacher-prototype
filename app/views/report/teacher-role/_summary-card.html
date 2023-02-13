@@ -20,6 +20,10 @@
   })}}
 {% endset %}
 
+{% if teacherRoleIncompleteSection %}
+  <div class="govuk-inset-text app-inset-text--incomplete-section govuk-!-margin-top-2 {% if errorsList.length %} app-inset-text--incomplete-section-error {% endif %}">
+{% endif %}
+
 
 {{ govukSummaryList({
   classes: "govuk-!-margin-bottom-6",
@@ -52,7 +56,7 @@
           href: "/report/teacher-role/duties"
         }]
       }
-    },
+    } if data.report.teacherRole.duties,
     {
       key: {
         html: 'Description of their role'
@@ -108,7 +112,7 @@
           href: "/report/teacher-role/know-where-they-worked"
         }]
       }
-    } if data.report.teacherRole.sameOrganisation == 'No' or (not data.report.teacherRole.sameOrganisation and data.report.teacherRole.knowWhereTheyWorked),
+    } if data.report.teacherRole.knowWhereTheyWorked,
     {
       key: {
         html: 'Name and address of the organisation where the alleged misconduct took place'
@@ -248,6 +252,19 @@
           href: "/report/teacher-role/where-they-work"
         }]
       }
-    } if data.report.teacherRole.knowWhereTheyWork == 'Yes'
+    } if data.report.teacherRole.newOrganisation.name
   ]
-}) }}
+}) if data.report.teacherRole.jobTitle }}
+
+{% if teacherRoleIncompleteSection %}
+  {% set url = '/report/teacher-role/' + teacherRoleIncompleteSection %}
+  <p class="app-instruction-text">You must complete details about the role before you can send your referral</p>
+  {{ govukButton({
+    text: "Complete role details",
+    href: url
+  }) }}
+{% endif %}
+
+{% if teacherRoleIncompleteSection %}
+  </div>
+{% endif %}

@@ -23,7 +23,7 @@
             text: "Organisation name",
             classes: "govuk-label--m"
           },
-          value: report.teacherRole.newOrganisation.name
+          value: data.report.teacherRole.newOrganisation.name
         }) }}
 
         {{ govukInput({
@@ -34,7 +34,7 @@
             classes: "govuk-label--m"
           },
           autocomplete: "address-line1",
-          value: report.teacherRole.newOrganisation.address.line1
+          value: data.report.teacherRole.newOrganisation.address.line1
         }) }}
 
         {{ govukInput({
@@ -46,7 +46,7 @@
           },
           autocomplete: "address-line2",
           classes: "govuk-label--m",
-          value: report.teacherRole.newOrganisation.address.line2
+          value: data.report.teacherRole.newOrganisation.address.line2
         }) }}
 
         {{ govukInput({
@@ -58,7 +58,7 @@
           },
           classes: "govuk-!-width-two-thirds",
           autocomplete: "address-level2",
-          value: report.teacherRole.newOrganisation.address.town
+          value: data.report.teacherRole.newOrganisation.address.town
         }) }}
 
         {{ govukInput({
@@ -70,7 +70,7 @@
           },
           classes: "govuk-input--width-10",
           autocomplete: "postal-code",
-          value: report.teacherRole.newOrganisation.address.postcode
+          value: data.report.teacherRole.newOrganisation.address.postcode
         }) }}
 
         {{ govukButton({

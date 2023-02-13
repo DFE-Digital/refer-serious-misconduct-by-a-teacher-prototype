@@ -1,3 +1,7 @@
+{% if yourDetailsIncompleteSection %}
+  <div class="govuk-inset-text app-inset-text--incomplete-section govuk-!-margin-top-2 {% if errorsList.length %} app-inset-text--incomplete-section-error {% endif %}">
+{% endif %}
+
 {{ govukSummaryList({
   classes: "govuk-!-margin-bottom-6",
   rows: [
@@ -6,7 +10,7 @@
         text: "Your name"
       },
       value: {
-        html: data.report['your-details'].firstName + ' ' + data.report['your-details'].lastName
+        html: data.report['your-details']['firstName'] + ' ' + data.report['your-details']['lastName']
       },
       actions: {
         items: [{
@@ -14,7 +18,7 @@
           href: "/report/your-details/name"
         }]
       }
-    },
+    } if data.report['your-details']['firstName'],
     {
       key: {
         text: "Your email address"
@@ -36,13 +40,13 @@
           href: "/report/your-details/job-title"
         }]
       }
-    } if isEmployer,
+    } if data.report['your-details']['job-title'] and isEmployer,
     {
       key: {
         text: "Your phone number"
       },
       value: {
-        html: data.report['your-details']['telephone']
+        html: data.report['your-details'].telephone
       },
       actions: {
         items: [{
@@ -50,6 +54,19 @@
           href: "/report/your-details/telephone"
         }]
       }
-    }
+    } if data.report['your-details'].telephone
   ]
 }) }}
+
+{% if yourDetailsIncompleteSection %}
+  {% set url = '/report/your-details/' + yourDetailsIncompleteSection %}
+  <p class="app-instruction-text">You must complete your details before you can send your referral</p>
+  {{ govukButton({
+    text: "Complete your details",
+    href: url
+  }) }}
+{% endif %}
+
+{% if yourDetailsIncompleteSection %}
+  </div>
+{% endif %}

@@ -1,76 +1,64 @@
 {% extends "layouts/main.html" %}
-{% set title = "Your allegation of serious misconduct" %}
 {% set title = "Your referral" %}
 {% set buttonText = "Review and send" %}
-{% block pageNavigation %}{% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
-      {% if data.report['your-details']['section-completed'] %}
+      {% if yourDetailsIncompleteSection != 'name' %}
         {% set yourDetailsHref = '/report/your-details/check-answers' %}
-        {% set yourDetailsStatus = data.report['your-details']['section-completed'] %}
-        {% if data.report['your-details']['section-completed'] == 'completed' %}
-          {% set yourDetailsTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report['your-details']['section-completed'] == 'completed' %}
+        {% set yourDetailsTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report['your-organisation']['section-completed'] %}
+      {% if data.report.yourOrganisation['section-completed'] == 'completed' %}
         {% set yourOrganisationHref = '/report/your-organisation/check-answers' %}
-        {% set yourOrganisationStatus = data.report['your-organisation']['section-completed'] %}
-        {% if data.report['your-organisation']['section-completed'] == 'completed' %}
-          {% set yourOrganisationTagColour = 'solid' %}
-        {% endif %}
+        {% set yourOrganisationTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report['teacher-details']['section-completed'] %}
+      {% if teacherDetailsIncompleteSection != 'name' %}
         {% set teacherHref = '/report/teacher/check-answers' %}
-        {% set teacherStatus = data.report['teacher-details']['section-completed'] %}
-        {% if data.report['teacher-details']['section-completed'] == 'completed' %}
-          {% set teacherTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.teacherDetails['section-completed'] == 'completed' %}
+        {% set teacherTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report['teacher-contact-details']['section-completed'] %}
+      {% if teacherContactDetailsIncompleteSection != 'email' %}
         {% set teacherContactDetailsHref = '/report/teacher-contact-details/check-answers' %}
-        {% set teacherContactDetailsStatus = data.report['teacher-contact-details']['section-completed'] %}
-        {% if data.report['teacher-contact-details']['section-completed'] == 'completed' %}
-          {% set teacherContactDetailsTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.teacherContactDetails['section-completed'] == 'completed' %}
+        {% set teacherContactDetailsTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report.teacherRole.sectionCompleted %}
+      {% if teacherRoleIncompleteSection != 'job-title' %}
         {% set teacherRoleHref = '/report/teacher-role/check-answers' %}
-        {% set teacherRoleStatus = data.report.teacherRole.sectionCompleted %}
-        {% if data.report.teacherRole.sectionCompleted == 'completed' %}
-          {% set teacherRoleTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.teacherRole.sectionCompleted == 'completed' %}
+        {% set teacherRoleTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report['allegation']['section-completed'] %}
+      {% if allegationIncompleteSection != 'allegation' %}
         {% set allegationHref = '/report/allegation/check-answers' %}
-        {% set allegationStatus = data.report['allegation']['section-completed'] %}
-        {% if data.report['allegation']['section-completed'] == 'completed' %}
-          {% set allegationTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.allegation['section-completed'] == 'completed' %}
+        {% set allegationTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report['previous-misconduct']['section-completed'] %}
+      {% if previousAllegationsIncompleteSection != 'any-previous' %}
         {% set previousAllegationsHref = '/report/previous-misconduct/check-answers' %}
-        {% set previousAllegationsStatus = data.report['previous-misconduct']['section-completed'] %}
-        {% if data.report['previous-misconduct']['section-completed'] == 'completed' %}
-          {% set previousAllegationsTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.previousMisconduct['section-completed'] == 'completed' %}
+        {% set previousAllegationsTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report.evidence['section-completed'] %}
+      {% if evidenceIncompleteSection != 'has-evidence' %}
         {% set evidenceHref = '/report/evidence/check-answers' %}
-        {% set evidenceStatus = data.report.evidence['section-completed'] %}
-        {% if data.report.evidence['section-completed'] == 'completed' %}
-          {% set evidenceTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.evidence['section-completed'] == 'completed' %}
+        {% set evidenceTagColour = 'solid' %}
       {% endif %}
 
       {% if isEmployer %}
@@ -83,14 +71,14 @@
               href: yourDetailsHref or '/report/your-details/name',
               tag: {
                 colour: yourDetailsTagColour or 'grey',
-                text: yourDetailsStatus or 'Not started yet'
+                text: data.report['your-details']['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Your organisation",
               href: yourOrganisationHref or '/report/your-organisation/organisation',
               tag: {
                 colour: yourOrganisationTagColour or 'grey',
-                text: yourOrganisationStatus or 'Not started yet'
+                text: data.report.yourOrganisation['section-completed'] or 'Incomplete'
               }
             }]
           }, {
@@ -100,21 +88,21 @@
               href: teacherHref or '/report/teacher/name',
               tag: {
                 colour: teacherTagColour or 'grey',
-                text: teacherStatus or 'Not started yet'
+                text: data.report.teacherDetails['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Contact details",
               href: teacherContactDetailsHref or '/report/teacher-contact-details/email',
               tag: {
                 colour: teacherContactDetailsTagColour or 'grey',
-                text: teacherContactDetailsStatus or 'Not started yet'
+                text: data.report.teacherContactDetails['section-completed'] or 'Incomplete'
               }
             }, {
               text: "About their role",
               href: teacherRoleHref or '/report/teacher-role/job-title',
               tag: {
                 colour: teacherRoleTagColour or 'grey',
-                text: teacherRoleStatus or 'Not started yet'
+                text: data.report.teacherRole.sectionCompleted or 'Incomplete'
               }
             }]
           }, {
@@ -124,21 +112,21 @@
               href: allegationHref or '/report/allegation/allegation',
               tag: {
                 colour: allegationTagColour or 'grey',
-                text: allegationStatus or 'Not started yet'
+                text: data.report.allegation['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Previous allegations",
               href: previousAllegationsHref or '/report/previous-misconduct/any-previous',
               tag: {
                 colour: previousAllegationsTagColour or 'grey',
-                text: previousAllegationsStatus or 'Not started yet'
+                text: data.report.previousMisconduct['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Evidence and supporting information",
               href: evidenceHref or '/report/evidence/has-evidence',
               tag: {
                 colour: evidenceTagColour or 'grey',
-                text: evidenceStatus or 'Not started yet'
+                text: data.report.evidence['section-completed'] or 'Incomplete'
               }
             }]
           }]
@@ -153,7 +141,7 @@
               href: yourDetailsHref or '/report/your-details/dont-worry',
               tag: {
                 colour: yourDetailsTagColour or 'grey',
-                text: yourDetailsStatus or 'Not started yet'
+                text: data.report['your-details']['section-completed'] or 'Incomplete'
               }
             }]
           }, {
@@ -163,14 +151,14 @@
               href: teacherHref or '/report/teacher/name',
               tag: {
                 colour: teacherTagColour or 'grey',
-                text: teacherStatus or 'Not started yet'
+                text: data.report.teacherDetails['section-completed'] or 'Incomplete'
               }
             }, {
               text: "About their role",
               href: teacherRoleHref or '/report/teacher-role/job-title',
               tag: {
                 colour: teacherRoleTagColour or 'grey',
-                text: teacherRoleStatus or 'Not started yet'
+                text: data.report.teacherRole.sectionCompleted or 'Incomplete'
               }
             }]
           }, {
@@ -180,14 +168,14 @@
               href: allegationHref or '/report/allegation/allegation',
               tag: {
                 colour: allegationTagColour or 'grey',
-                text: allegationStatus or 'Not started yet'
+                text: data.report.allegation['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Evidence and supporting information",
               href: evidenceHref or '/report/evidence/has-evidence',
               tag: {
                 colour: evidenceTagColour or 'grey',
-                text: evidenceStatus or 'Not started yet'
+                text: data.report.evidence['section-completed'] or 'Incomplete'
               }
             }]
           }]
