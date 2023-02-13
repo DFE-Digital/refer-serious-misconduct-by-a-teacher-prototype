@@ -30,12 +30,12 @@
         {% endif %}
       {% endif %}
 
-      {% if data.report.teacherContactDetails['section-completed'] %}
+
+      {% if teacherContactDetailsIncompleteSection != 'email' %}
         {% set teacherContactDetailsHref = '/report/teacher-contact-details/check-answers' %}
-        {% set teacherContactDetailsStatus = data.report.teacherContactDetails['section-completed'] %}
-        {% if data.report.teacherContactDetails['section-completed'] == 'completed' %}
-          {% set teacherContactDetailsTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.teacherContactDetails['section-completed'] == 'completed' %}
+        {% set teacherContactDetailsTagColour = 'solid' %}
       {% endif %}
 
       {% if data.report.teacherRole.sectionCompleted %}

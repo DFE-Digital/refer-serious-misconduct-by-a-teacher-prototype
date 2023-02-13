@@ -72,10 +72,10 @@ exports.getFirstIncompleteQuestionFromTeacherContactDetails = (data) => {
   let knowHomeAddress = _.get(data, 'report.teacherContactDetails.knowHomeAddress')
   let addressLine1 = _.get(data, 'report.teacherContactDetails.address.line1')
 
-  if(!knowEmailAddress || (knowEmailAddress && !emailAddress)) {
+  if(!knowEmailAddress || (knowEmailAddress == 'Yes' && !emailAddress)) {
     return 'email'
   }
-  if(!knowTelephone || (knowTelephone && !telephone)) {
+  if(!knowTelephone || (knowTelephone == 'Yes' && !telephone)) {
     return 'telephone'
   }
   if(!knowHomeAddress) {
