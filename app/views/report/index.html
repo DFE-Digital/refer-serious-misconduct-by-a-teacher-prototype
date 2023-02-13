@@ -19,7 +19,7 @@
         {% set yourOrganisationTagColour = 'solid' %}
       {% endif %}
 
-      {% if teacherContactDetailsIncompleteSection != 'name' %}
+      {% if teacherDetailsIncompleteSection != 'name' %}
         {% set teacherHref = '/report/teacher/check-answers' %}
       {% endif %}
       {% if data.report.teacherDetails['section-completed'] == 'completed' %}
@@ -40,28 +40,25 @@
         {% set teacherRoleTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report['allegation']['section-completed'] %}
+      {% if allegationIncompleteSection != 'allegation' %}
         {% set allegationHref = '/report/allegation/check-answers' %}
-        {% set allegationStatus = data.report['allegation']['section-completed'] %}
-        {% if data.report['allegation']['section-completed'] == 'completed' %}
-          {% set allegationTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.allegation['section-completed'] == 'completed' %}
+        {% set allegationTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report['previous-misconduct']['section-completed'] %}
+      {% if previousAllegationsIncompleteSection != 'any-previous' %}
         {% set previousAllegationsHref = '/report/previous-misconduct/check-answers' %}
-        {% set previousAllegationsStatus = data.report['previous-misconduct']['section-completed'] %}
-        {% if data.report['previous-misconduct']['section-completed'] == 'completed' %}
-          {% set previousAllegationsTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.previousMisconduct['section-completed'] == 'completed' %}
+        {% set previousAllegationsTagColour = 'solid' %}
       {% endif %}
 
-      {% if data.report.evidence['section-completed'] %}
+      {% if evidenceIncompleteSection != 'has-evidence' %}
         {% set evidenceHref = '/report/evidence/check-answers' %}
-        {% set evidenceStatus = data.report.evidence['section-completed'] %}
-        {% if data.report.evidence['section-completed'] == 'completed' %}
-          {% set evidenceTagColour = 'solid' %}
-        {% endif %}
+      {% endif %}
+      {% if data.report.evidence['section-completed'] == 'completed' %}
+        {% set evidenceTagColour = 'solid' %}
       {% endif %}
 
       {% if isEmployer %}
@@ -115,21 +112,21 @@
               href: allegationHref or '/report/allegation/allegation',
               tag: {
                 colour: allegationTagColour or 'grey',
-                text: allegationStatus or 'Incomplete'
+                text: data.report.allegation['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Previous allegations",
               href: previousAllegationsHref or '/report/previous-misconduct/any-previous',
               tag: {
                 colour: previousAllegationsTagColour or 'grey',
-                text: previousAllegationsStatus or 'Incomplete'
+                text: data.report.previousMisconduct['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Evidence and supporting information",
               href: evidenceHref or '/report/evidence/has-evidence',
               tag: {
                 colour: evidenceTagColour or 'grey',
-                text: evidenceStatus or 'Incomplete'
+                text: data.report.evidence['section-completed'] or 'Incomplete'
               }
             }]
           }]
@@ -154,14 +151,14 @@
               href: teacherHref or '/report/teacher/name',
               tag: {
                 colour: teacherTagColour or 'grey',
-                text: teacherStatus or 'Incomplete'
+                text: data.report.teacherDetails['section-completed'] or 'Incomplete'
               }
             }, {
               text: "About their role",
               href: teacherRoleHref or '/report/teacher-role/job-title',
               tag: {
                 colour: teacherRoleTagColour or 'grey',
-                text: teacherRoleStatus or 'Incomplete'
+                text: data.report.teacherRole.sectionCompleted or 'Incomplete'
               }
             }]
           }, {
@@ -171,14 +168,14 @@
               href: allegationHref or '/report/allegation/allegation',
               tag: {
                 colour: allegationTagColour or 'grey',
-                text: allegationStatus or 'Incomplete'
+                text: data.report.allegation['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Evidence and supporting information",
               href: evidenceHref or '/report/evidence/has-evidence',
               tag: {
                 colour: evidenceTagColour or 'grey',
-                text: evidenceStatus or 'Incomplete'
+                text: data.report.evidence['section-completed'] or 'Incomplete'
               }
             }]
           }]

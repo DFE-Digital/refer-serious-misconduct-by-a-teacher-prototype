@@ -21,8 +21,8 @@
 
   {% if not previousAllegationsIncompleteSection %}
     <form method="post">
-      {% set completedRadiosName = '[report][previous-misconduct][section-completed]' %}
-      {% set completedRadiosValue = data.report['previous-misconduct']['section-completed'] %}
+      {% set completedRadiosName = '[report][previousMisconduct][section-completed]' %}
+      {% set completedRadiosValue = data.report.previousMisconduct['section-completed'] %}
       {% include '../../shared/_have-you-completed-section.html' %}
       {{ govukButton({
         text: "Save and continue"
