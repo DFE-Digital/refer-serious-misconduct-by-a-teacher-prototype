@@ -15,7 +15,7 @@ module.exports = router => {
   })
 
   router.get('/report', (req, res) => {
-    if(typeof req.session.data.report.sentDate !== 'undefined') {
+    if(_.get(req.session.data, 'report.sentDate')) {
 
       let referrals = [req.session.data.report]
 

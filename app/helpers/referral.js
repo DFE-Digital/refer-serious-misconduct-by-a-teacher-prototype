@@ -65,6 +65,7 @@ exports.getFirstIncompleteQuestionFromTeacherDetails = (data) => {
 }
 
 exports.getFirstIncompleteQuestionFromTeacherContactDetails = (data) => {
+  let type = _.get(data, 'report.type-of-report')
   let knowEmailAddress = _.get(data, 'report.teacherContactDetails.knowEmailAddress')
   let emailAddress = _.get(data, 'report.teacherContactDetails.emailAddress')
   let knowTelephone = _.get(data, 'report.teacherContactDetails.knowTelephone')
@@ -72,17 +73,19 @@ exports.getFirstIncompleteQuestionFromTeacherContactDetails = (data) => {
   let knowHomeAddress = _.get(data, 'report.teacherContactDetails.knowHomeAddress')
   let addressLine1 = _.get(data, 'report.teacherContactDetails.address.line1')
 
-  if(!knowEmailAddress || (knowEmailAddress == 'Yes' && !emailAddress)) {
-    return 'email'
-  }
-  if(!knowTelephone || (knowTelephone == 'Yes' && !telephone)) {
-    return 'telephone'
-  }
-  if(!knowHomeAddress) {
-    return 'know-address'
-  }
-  if(knowHomeAddress && !addressLine1) {
-    return 'address'
+  if(type == 'employer') {
+    if(!knowEmailAddress || (knowEmailAddress == 'Yes' && !emailAddress)) {
+      return 'email'
+    }
+    if(!knowTelephone || (knowTelephone == 'Yes' && !telephone)) {
+      return 'telephone'
+    }
+    if(!knowHomeAddress) {
+      return 'know-address'
+    }
+    if(knowHomeAddress && !addressLine1) {
+      return 'address'
+    }
   }
 
   return null
