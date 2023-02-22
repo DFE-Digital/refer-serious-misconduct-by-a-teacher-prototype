@@ -1,0 +1,20 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set title = 'You cannot sign in for 15 minutes' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+      <p>This is because you entered an incorrect code 5 times. </p>
+      <p><a href="/email">Sign in</a> again after 15 minutes.</p>
+    </div>
+  </div>
+{% endblock %}
