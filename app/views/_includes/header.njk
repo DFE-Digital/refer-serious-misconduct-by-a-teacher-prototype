@@ -11,6 +11,10 @@
     serviceUrl: serviceUrl,
     navigation: [
       {
+        href: "/report",
+        text: "Your referrals"
+      } if data.report.sentDate,
+      {
         href: "/account/sign-out",
         text: "Sign out"
       }
