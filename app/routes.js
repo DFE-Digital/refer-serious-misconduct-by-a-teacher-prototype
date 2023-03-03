@@ -16,6 +16,11 @@ router.get('/set-user-type', (req, res) => {
       'type-of-report': req.query.type
     }
   }
+
+  if(req.query.sent) {
+    req.session.data.report.sentDate = new Date().toISOString()
+  }
+
   res.redirect('/report')
 })
 
