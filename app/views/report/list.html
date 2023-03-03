@@ -6,10 +6,10 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1>
 
-      {# {{ govukButton({
+      {{ govukButton({
         text: "Start new referral",
         href: "/who"
-      }) }} #}
+      }) }}
 
       {% set complete %}
         <p>You have a referral that you have not sent.</p>
@@ -19,10 +19,10 @@
         }) }}
       {% endset %}
 
-      {{ govukInsetText({
+      {# {{ govukInsetText({
         html: complete,
         classes: 'govuk-!-margin-bottom-7'
-      }) }}
+      }) }} #}
 
       <h2 class="govuk-heading-m">
         Sent referrals
