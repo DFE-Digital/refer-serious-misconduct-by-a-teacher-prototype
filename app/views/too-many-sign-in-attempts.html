@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set signedIn = false %}
-{% set title = 'You cannot sign in for 15 minutes' %}
+{% set title = 'You need to request another confirmation code' %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -13,8 +13,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ title }}</h1>
-      <p>This is because you entered an incorrect code 5 times. </p>
-      <p><a href="/email">Sign in</a> again after 15 minutes.</p>
+      <p>This is because you entered an incorrect code 5 times.</p>
+      <p><a href="/email">Request another confirmation code</a>.</p>
     </div>
   </div>
 {% endblock %}
