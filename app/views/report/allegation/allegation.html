@@ -58,7 +58,56 @@
             {% endif %}
           {% endset %}
 
-          <span class="govuk-caption-l">The allegation</span>
+          {% set inner %}
+            {{ govukRadios({
+              idPrefix: "inner",
+              name: "inner",
+              fieldset: {
+                legend: {
+                  text: "Do you prefer light or dark chocolate?",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Light chocolate",
+                  text: "Light chocolate"
+                },
+                {
+                  value: "Dark chocolate",
+                  text: "Dark chocolate"
+                }
+              ]
+            }) }}
+          {% endset %}
+
+          {{ govukRadios({
+            idPrefix: "outer",
+            name: "outer",
+            fieldset: {
+              legend: {
+                text: "Do you like chocolate?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                conditional: {
+                  html: inner
+                }
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+
+
+          {# <span class="govuk-caption-l">The allegation</span>
           {{ govukRadios({
             id: "[report][allegation][howTell]",
             name: "[report][allegation][howTell]",
@@ -75,18 +124,15 @@
                 text: "Upload file",
                 value: "Upload file",
                 conditional: {
-                  html: fileUpload
+                  html: inner
                 }
               },
               {
                 text: "Describe the allegation",
-                value: "Describe the allegation",
-                conditional: {
-                  html: textarea
-                }
+                value: "Describe the allegation"
               }
             ]
-          }) }}
+          }) }} #}
 
         {{ govukButton({
           text: "Save and continue"
