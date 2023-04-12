@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Does the allegation involve serious misconduct?" %}
+{% set title = "Confirm if your allegation involves serious misconduct" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,45 +12,27 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <h1 class="govuk-heading-l">What the allegation is about</h1>
+        <h1 class="govuk-heading-l">{{title}}</h1>
 
-        <p>Serious misconduct is unacceptable behaviour that:</p>
-        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
-          <li>falls significantly short of the standards expected of a teacher </li>
-          <li>brings the teaching profession into disrepute</li>
-          <li>affects the way someone performs their teaching role</li>
-        </ul>
+        <p>Examples of allegations that involve serious misconduct:</p>
 
-       <p>If the person is convicted of a relevant offence at any time, this is also serious misconduct.</p>
-
-      {% set examples %}
-        <p>Examples include:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>committing a criminal offence that results in imprisonment (including a suspended sentence)</li>
           <li>violence</li>
-          <li>terrorism</li>
+          <li>harassing or stalking</li>
+          <li>child cruelty or neglect</li>
           <li>inappropriate sexual activity</li>
           <li>voyeurism (including upskirting)</li>
-          <li>revenge pornography (sharing private sexual materials of another person without their consent, such as photos or videos)</li>
-          <li>sexual communication with a child</li>
-          <li>viewing, taking, making, possessing, distributing or publishing any indecent photograph or image of a child (or permitting any such activity)</li>
-          <li>child cruelty or neglect</li>
-          <li>controlling or coercive behaviour</li>
-          <li>harassing or stalking</li>
-          <li>intolerance or hatred on the grounds of race, religion, sexual orientation or any of the other protected characteristics</li>
-          <li>possessing, supplying or producing class A, B or C drugs</li>
-          <li>fraud or serious dishonesty</li>
-          <li>theft from a person or other serious theft</li>
-          <li>arson and other major criminal damage</li>
-          <li>possession of prohibited firearms, knives or other weapons</li>
-          <li>serious offences where alcohol or drugs are involved</li>
         </ul>
-      {% endset %}
 
-  {{ govukDetails({
-    summaryText: "Examples of serious misconduct and relevant offences",
-    html: examples
-  }) }}
+        <p>Examples of allegations that are usually not considered to involve serious misconduct and are unlikely to be investigated:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>name-calling</li>
+          <li>swearing</li>
+          <li>anger</li>
+          <li>etc</li>
+          <li>etc</li>
+        </ul>
 
   {{ govukRadios({
     idPrefix: "[report][eligibility][serious]",
@@ -58,7 +40,7 @@
     fieldset: {
       legend: {
         classes: "govuk-fieldset__legend--m",
-        text: title
+        text: 'Do you think your allegation involves serious misconduct?'
       }
     },
     items: [
