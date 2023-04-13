@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Confirm if your allegation involves serious misconduct" %}
+{% set title = "Check that your allegation involves serious misconduct" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -14,7 +15,7 @@
       <form method="post">
         <h1 class="govuk-heading-l">{{title}}</h1>
 
-        <p>Examples of allegations that involve serious misconduct:</p>
+        <p>Examples of serious misconduct:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>violence</li>
@@ -24,7 +25,7 @@
           <li>voyeurism (including upskirting)</li>
         </ul>
 
-        <p>Examples of allegations that are usually not considered to involve serious misconduct and are unlikely to be investigated:</p>
+        <p>Examples that are unlikely to be investigated because they’re not serious misconduct:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>name-calling</li>
