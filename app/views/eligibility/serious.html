@@ -18,47 +18,45 @@
         <p>Examples of serious misconduct:</p>
 
         <ul class="govuk-list govuk-list--bullet">
-          <li>violence</li>
-          <li>harassing or stalking</li>
-          <li>child cruelty or neglect</li>
-          <li>inappropriate sexual activity</li>
-          <li>voyeurism (including upskirting)</li>
+          <li>having a sexual relationship with a pupil</li>
+          <li>contacting a pupil on social media</li>
+          <li>touching a pupil inappropriately</li>
+          <li>failing to report an accident</li>
         </ul>
 
-        <p>Examples that are unlikely to be investigated because they’re not serious misconduct:</p>
+        <p>Some allegations are unlikely to be investigated. For example, if a teacher:</p>
 
         <ul class="govuk-list govuk-list--bullet">
-          <li>name-calling</li>
-          <li>swearing</li>
-          <li>anger</li>
-          <li>etc</li>
-          <li>etc</li>
+          <li>fails to support pupils with special educational needs</li>
+          <li>has poor subject knowledge</li>
+          <li>makes rude comments</li>
+          <li>plans lessons poorly</li>
         </ul>
 
-  {{ govukRadios({
-    idPrefix: "[report][eligibility][serious]",
-    name: "[report][eligibility][serious]",
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--m",
-        text: 'Do you think your allegation involves serious misconduct?'
-      }
-    },
-    items: [
-      {
-        text: "Yes",
-        value: "Yes"
-      },
-      {
-        text: "No",
-        value: "No"
-      },
-      {
-        text: "I’m not sure",
-        value: "I’m not sure"
-      }
-    ]
-  }) }}
+        {{ govukRadios({
+          idPrefix: "[report][eligibility][serious]",
+          name: "[report][eligibility][serious]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--m",
+              text: 'Do you think your allegation involves serious misconduct?'
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes"
+            },
+            {
+              text: "No",
+              value: "No"
+            },
+            {
+              text: "I’m not sure",
+              value: "I’m not sure"
+            }
+          ]
+        }) }}
         {{ govukButton({
           text: "Continue"
         }) }}
