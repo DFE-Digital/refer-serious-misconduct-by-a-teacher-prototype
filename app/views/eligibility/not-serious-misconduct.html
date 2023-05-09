@@ -1,22 +1,22 @@
 {% extends "layouts/main.html" %}
-{% set title = "You need to report this misconduct somewhere else" %}
+{% set title = "Your allegation is unlikely to be investigated because it is not serious misconduct" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibility/serious"
+  }) }}
+{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-l">{{ title }}</h1>
 
-    <p>Cases relating to minor misconduct or a teacher’s performance or competence will not be investigated.</p>
+    <p>
+      If you’re not satisfied that your complaint to the school has been resolved, contact the board of governors or <a href="https://www.gov.uk/find-local-council">contact the council</a>.
+    </p>
 
-    <p>You need to:</p>
-
-    <ol class="govuk-list govuk-list--number">
-      <li>talk to the school or sixth-form college first to try to solve the problem.
-</li>
-      <li>contact the school’s board of governors or contact the council if you’re not happy with the response.</li>
-    </ol>
-
-    <p>You’ll need to provide proof to support your complaint.</p>
   </div>
 </div>
 {% endblock %}
