@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "Confirm if your allegation involves serious misconduct" %}
 {% set title = "Check that your allegation involves serious misconduct" %}
+{% set title = "Check that you understand what your allegation means for the teacher before you continue" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -15,43 +15,29 @@
       <form method="post">
         <h1 class="govuk-heading-l">{{title}}</h1>
 
+        <p>Making an allegation is a very serious decision. If found to be serious it will result in the teacher being banned, usually for life.</p>
 
-        {# <p>Serious misconduct by a teacher must involve one or more of the following:</p> #}
-        {# <p>Serious misconduct is:</p> #}
-        <p>Examples of serious misconduct:</p>
+        {% set html %}
+          <ul class="govuk-list govuk-list--bullet">
+            <li>violent behaviour</li>
+            <li>a serious criminal offence</li>
+            <li>an abuse of position or trust</li>
+            <li>inappropriate sexual activity</li>
+            <li>a serious failure in safeguarding</li>
+            {# <li>a serious failure of the Teachers’ Standards</li> #}
+            <li>a sexual or romantic relationship with a current or former pupil</li>
+          </ul>
+        {% endset %}
 
-        <ul class="govuk-list govuk-list--bullet">
-          <li>violent behaviour</li>
-          <li>a serious criminal offence</li>
-          <li>an abuse of position or trust</li>
-          <li>inappropriate sexual activity</li>
-          <li>a serious failure in safeguarding</li>
-          {# <li>a serious failure of the Teachers’ Standards</li> #}
-          <li>a sexual or romantic relationship with a current or former pupil</li>
-        </ul>
-        <p>If your allegation is not serious misconduct, it will not be investigated. For example, cases of incompetence.</p>
-
-
-
+        {{ govukDetails({
+          summaryText: "Examples of serious misconduct",
+          html: html
+        }) }}
 
         {# <p>Examples of serious misconduct:</p>
 
-        <ul class="govuk-list govuk-list--bullet">
-          <li>having a sexual relationship with a pupil</li>
-          <li>contacting a pupil on social media</li>
-          <li>touching a pupil inappropriately</li>
-          <li>failing to report an accident</li>
-        </ul> #}
 
-        {# <p>Some allegations are unlikely to be investigated. For example, if a teacher:</p> #}
-
-        {# <ul class="govuk-list govuk-list--bullet"> #}
-          {# <li>fails to support a pupil with special educational needs</li> #}
-          {# <li>does not allow a pupil to take part in an activity</li> #}
-          {# <li>makes rude comments</li>
-          <li>gives a pupil detention</li>
-          <li>plans lessons poorly</li>
-        </ul> #}
+        <p>If your allegation is not serious misconduct, it will not be investigated. For example, cases of incompetence.</p> #}
 
         {{ govukRadios({
           idPrefix: "[report][eligibility][serious]",
@@ -59,21 +45,18 @@
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
-              text: 'Does your allegation involve serious misconduct?'
+              text: 'Does your allegation involve serious misconduct?',
+              text: 'Are you sure you you want to continue?'
             }
           },
           items: [
             {
-              text: "Yes",
+              text: "Yes, I understand what this means for the teacher",
               value: "Yes"
             },
             {
-              text: "No",
+              text: "No, but I’d like to know how I can raise this issue another way",
               value: "No"
-            },
-            {
-              text: "I’m not sure",
-              value: "I’m not sure"
             }
           ]
         }) }}
