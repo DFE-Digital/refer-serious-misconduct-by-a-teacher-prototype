@@ -1,6 +1,5 @@
 {% extends "layouts/main.html" %}
 {% set title = "Check that your allegation involves serious misconduct" %}
-{% set title = "Check that you understand what your allegation means for the teacher before you continue" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -15,29 +14,19 @@
       <form method="post">
         <h1 class="govuk-heading-l">{{title}}</h1>
 
-        <p>Making an allegation is a very serious decision. If found to be serious it will result in the teacher being banned, usually for life.</p>
+        <p>Examples of serious misconduct:</p>
 
-        {% set html %}
-          <ul class="govuk-list govuk-list--bullet">
+        <ul class="govuk-list govuk-list--bullet">
             <li>violent behaviour</li>
             <li>a serious criminal offence</li>
             <li>an abuse of position or trust</li>
             <li>inappropriate sexual activity</li>
             <li>a serious failure in safeguarding</li>
-            {# <li>a serious failure of the Teachers’ Standards</li> #}
             <li>a sexual or romantic relationship with a current or former pupil</li>
           </ul>
-        {% endset %}
-
-        {{ govukDetails({
-          summaryText: "Examples of serious misconduct",
-          html: html
-        }) }}
-
-        {# <p>Examples of serious misconduct:</p>
 
 
-        <p>If your allegation is not serious misconduct, it will not be investigated. For example, cases of incompetence.</p> #}
+        <p>If your allegation is not serious misconduct, it will not be investigated. For example, cases of incompetence.</p>
 
         {{ govukRadios({
           idPrefix: "[report][eligibility][serious]",
@@ -45,17 +34,16 @@
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
-              text: 'Does your allegation involve serious misconduct?',
-              text: 'Are you sure you you want to continue?'
+              text: 'Does your allegation involve serious misconduct?'
             }
           },
           items: [
             {
-              text: "Yes, I understand what this means for the teacher",
+              text: "Yes",
               value: "Yes"
             },
             {
-              text: "No, but I’d like to know how I can raise this issue another way",
+              text: "No",
               value: "No"
             }
           ]
