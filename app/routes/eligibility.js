@@ -81,8 +81,12 @@ module.exports = router => {
     if(req.session.data.report.eligibility.serious == 'No') {
       res.redirect('/eligibility/not-serious-misconduct')
     } else {
-      res.redirect('/eligibility/implications')
-      // res.redirect('/eligibility/you-should-know')
+      if(req.session.data.report['type-of-report'] == 'public') {
+        res.redirect('/eligibility/implications')
+      } else {
+        res.redirect('/eligibility/you-should-know')
+      }
+
     }
   })
 
