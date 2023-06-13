@@ -1,5 +1,12 @@
 {% extends "layouts/main.html" %}
+{% set title = "The teacher may be banned for life" %}
+{% set title = "Making a referral means the teacher may be banned for life" %}
+{% set title = "If your allegation is found to be serious, it will result in the teacher being banned for life." %}
 {% set title = "Check that you understand what your allegation means for the teacher" %}
+{% set title = "The teacher could be banned for life" %}
+{% set title = "Confirm how you want to proceed" %}
+{% set title = "Your allegation could result in the teacher being banned for life" %}
+
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -14,9 +21,9 @@
       <form method="post">
         <h1 class="govuk-heading-l">{{title}}</h1>
 
-        <p>If your allegation is found to be serious, it will result in the teacher being banned for life.</p>
+        <p>If the allegation is found to be serious misconduct, the teacher will usually be banned for life.</p>
 
-        {# <p>Most allegations are not found to be serious and cause a lot of stress to the teacher.</p> #}
+        <p>Most allegations are not serious misconduct and are handled through the school’s complaints process.</p>
 
         {{ govukRadios({
           idPrefix: "[report][eligibility][implications]",
@@ -24,21 +31,30 @@
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
-              text: 'Do you think the teacher deserves to be banned for life?'
+              text: 'Would you like another way to continue?',
+              text: 'Would you like to follow the school’s complaints process or continue making an allegation of serious misconduct?',
+              text: 'How do you want to continue with your allegation?'
             }
           },
           items: [
             {
-              text: "Yes",
-              value: "Yes"
+              text: "Follow the school’s complaint’s process",
+              value: "No",
+              hint: {
+                text: 'Select this if you do not think the teacher should be banned for life'
+              }
             },
             {
-              text: "No",
-              value: "No"
+              text: "Yes",
+              text: "Make a referral of serious misconduct",
+              value: "Yes",
+              hint: {
+                text: 'Select this if you think the teacher should be banned for life'
+              }
             }
           ],
           value: data.report.eligibility.implications
-        }) }}
+        })}}
         {{ govukButton({
           text: "Continue"
         }) }}
