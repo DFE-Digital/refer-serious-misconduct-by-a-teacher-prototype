@@ -13,15 +13,51 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
-      <p>To make a complaint, contact the school.</p>
+      <p>Follow these steps to make a complaint:</p>
 
-      <p>
-        If you’re not satisfied that your complaint to the school has been resolved, contact the board of governors or <a href="https://www.gov.uk/find-local-council">contact the council</a>.
-      </p>
+      <h2 class="govuk-heading-m">
+        1. Contact the school to make an informal complaint
+      </h2>
 
-      <p>You can <a href="/eligibility/jurisdiction">continue to refer serious misconduct without making a complaint</a>.</p>
+      <p>You can make an informal complaint. The school will tell you when they will respond.</p>
+      <p>After the school reviews your complaint, you’ll be told the outcome.</p>
 
-      </p>
+
+      <h2 class="govuk-heading-m">
+        2. Contact the school to make a formal complaint
+      </h2>
+
+      <p>If the problem is not resolved, follow the school’s complaints process to make a formal complaint.</p>
+
+      <p>Every school in England must have a complaints policy. It’s usually available on the school’s website or from the school office. It should tell you the kind of complaints the school deals with.</p>
+
+      <h2 class="govuk-heading-m">
+        3. Contact the board of governors or your local council
+      </h2>
+
+      <p>If you’re not satisfied with how the school has handled your complaint, contact the board of governors or your <a href="https://www.gov.uk/find-local-council">local council</a>.</p>
+
+      <h2 class="govuk-heading-m">
+        4. Make a complaint to the Department for Education (DfE)
+      </h2>
+
+      <p>If you’re still not satisfied with how the school dealt with your complaint, you can make a complaint to the DfE.</p>
+
+      <p>DfE will only consider your complaint if either of the following apply:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          you have completed the school’s complaints process
+        </li>
+        <li>
+          you have been stopped from completing the school’s complaints process
+        </li>
+      </ul>
+
+      {{ govukButton({
+        text: "Make a complaint",
+        href: "https://www.gov.uk/complain-to-dfe"
+      }) }}
     </div>
   </div>
 {% endblock %}
