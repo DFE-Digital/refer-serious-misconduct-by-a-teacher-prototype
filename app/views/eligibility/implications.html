@@ -6,7 +6,7 @@
 {% set title = "The teacher could be banned for life" %}
 {% set title = "Confirm how you want to proceed" %}
 {% set title = "Your allegation could result in the teacher being banned for life" %}
-{% set title = "Your allegation could result in the teacher being banned for life" %}
+{% set title = "Your allegation could result in the teacher being banned from teaching for life" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -21,9 +21,9 @@
       <form method="post">
         <h1 class="govuk-heading-l">{{title}}</h1>
 
-        <p>If the allegation is found to be serious misconduct, the teacher will usually be banned for life.</p>
+        <p>If the allegation is found to be serious misconduct, the teacher could be banned for life.</p>
 
-        <p>Most allegations are not serious misconduct and are resolved by making a complaint.</p>
+        <p>Many allegations are not serious misconduct and are resolved by making a complaint.</p>
 
         {{ govukRadios({
           idPrefix: "[report][eligibility][implications]",
