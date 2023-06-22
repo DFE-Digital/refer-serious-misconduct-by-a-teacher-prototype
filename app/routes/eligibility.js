@@ -30,27 +30,7 @@ module.exports = router => {
   })
 
   router.post('/who', (req, res) => {
-    // if(req.session.data.report['type-of-report'] == 'public') {
-      res.redirect('/eligibility/jurisdiction')
-    // } else {
-      // res.redirect('/eligibility/jurisdiction')
-    // }
-  })
-
-  router.post('/eligibility/public-other-options', (req, res) => {
-    if(req.session.data.report.eligibility['made-complaint'] == 'Yes') {
-      res.redirect('/eligibility/30-days')
-    } else {
-      res.redirect('/eligibility/no-complaint')
-    }
-  })
-
-  router.post('/eligibility/30-days', (req, res) => {
-    if(req.session.data.report.eligibility['30days'] == 'Yes') {
-      res.redirect('/eligibility/within-30-days')
-    } else {
-      res.redirect('/eligibility/jurisdiction')
-    }
+    res.redirect('/eligibility/jurisdiction')
   })
 
   router.post('/eligibility/jurisdiction', (req, res) => {
