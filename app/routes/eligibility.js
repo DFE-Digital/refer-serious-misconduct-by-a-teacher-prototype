@@ -30,11 +30,11 @@ module.exports = router => {
   })
 
   router.post('/who', (req, res) => {
-    if(req.session.data.report['type-of-report'] == 'public') {
-      res.redirect('/eligibility/public-other-options')
-    } else {
+    // if(req.session.data.report['type-of-report'] == 'public') {
       res.redirect('/eligibility/jurisdiction')
-    }
+    // } else {
+      // res.redirect('/eligibility/jurisdiction')
+    // }
   })
 
   router.post('/eligibility/public-other-options', (req, res) => {
@@ -78,15 +78,10 @@ module.exports = router => {
   })
 
   router.post('/eligibility/serious', (req, res) => {
-    if(req.session.data.report.eligibility.serious == 'No') {
-      res.redirect('/eligibility/not-serious-misconduct')
+    if(req.session.data.report.eligibility.serious == 'Make a complaint') {
+      res.redirect('/eligibility/implications-no')
     } else {
-      if(req.session.data.report['type-of-report'] == 'public') {
-        res.redirect('/eligibility/implications')
-      } else {
-        res.redirect('/eligibility/you-should-know')
-      }
-
+      res.redirect('/eligibility/you-should-know')
     }
   })
 
