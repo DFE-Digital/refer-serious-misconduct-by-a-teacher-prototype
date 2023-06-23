@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "How to make a complaint" %}
+{% set title = "Make a complaint" %}
 {# {% set title = "Complain to the school or the Department for Education" %} #}
 
 {% block beforeContent %}
@@ -14,39 +14,41 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p>Follow these steps to make a complaint:</p>
+     <p>Every school in England must have a complaints policy. It’s usually available on the school’s website or from the school office.</p>
 
-      <h2 class="govuk-heading-m">
-        1. Complain to the school
-      </h2>
 
-      <p>Every school in England must have a complaints policy.</p>
+     <p>You may also be able to complain to your local council or organisations such as the school inspectors Ofsted. This depends on the type of school and what you’re complaining about.</p>
 
-      <p>It’s usually available on the school’s website or from the school office. It should tell you the kind of complaints the school deals with.</p>
 
-      <p><a href="https://www.gov.uk/complain-about-school">Find out how to complain to the school</a>.</p>
+     <p><a href="https://www.gov.uk/complain-about-school">Find out how to complain to the school or another organisation</a>.</p>
 
-      <h2 class="govuk-heading-m">2. If you’re not satisfied with how the school deals with your complaint</h2>
-      {# <h2 class="govuk-heading-m">Complain to DfE</h2> #}
 
-      <p>You can make a complaint to the Department for Education (DfE) if either of the following apply:</p>
+     <h2 class="govuk-heading-m">Complain to the Department for Education (DfE)</h2>
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          you have completed the school’s complaints process
-        </li>
-        <li>
-          you have been stopped from completing the school’s complaints process
-        </li>
-      </ul>
 
-      {# <p><a href="https://www.gov.uk/complain-to-dfe">Complain to DfE</a></p> #}
+     <p>You can make a complaint to the DfE about a school if any of the following apply:</p>
 
-      {{ govukButton({
-        text: "Continue to complain to DfE",
-        href: "https://www.gov.uk/complain-to-dfe"
-      }) }}
 
+     <ul class="govuk-list govuk-list--bullet">
+       <li>
+         you’ve completed the school’s complaints process
+       </li>
+       <li>
+         you’ve been stopped from completing the school’s complaints process
+       </li>
+       <li>
+         a child is not getting an education
+       </li>
+       <li>
+         a child has been exposed to harm
+       </li>
+     </ul>
+
+
+     {{ govukButton({
+       text: "Complain to the DfE",
+       href: "https://www.gov.uk/complain-to-dfe"
+     }) }}
 
     </div>
   </div>
