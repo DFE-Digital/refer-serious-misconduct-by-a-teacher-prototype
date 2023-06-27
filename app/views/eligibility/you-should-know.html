@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What completing this referral means for you" %}
+{% set title = "Confirm that you understand what will happen after you make a referral" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -14,20 +14,19 @@
       <form method="post">
   <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1>
 
-  <p>If your allegation of serious misconduct is investigated, it could result in the person you’re referring being banned from teaching.</p>
+  <p>Your name and allegation will be shared with the teacher and their employer. Your contact details will not be shared.</p>
 
-  <p>You might need to attend a hearing of a professional conduct panel to give evidence, if the allegation reaches that stage.</p>
+  <p>You might need to give evidence at a hearing.</p>
 
-  <p>Your name and the allegation will be shared with the person you’re referring, and any employer. Your contact details will not be shared.</p>
+  <p>If the teacher is found guilty of serious misconduct then they could be prevented from teaching for life.</p>
 
-  <p>Once a referral is submitted, it’ll be kept on file for up to 50 years.</p>
+  <p>If the teacher is not found guilty then they may still need to say that they were referred for serious misconduct when they apply for a job.</p>
 
   <p class="govuk-!-margin-bottom-6"></p>
         {{ govukButton({
-          text: "Continue"
+          text: "I understand and want to continue"
         }) }}
       </form>
     </div>
   </div>
 {% endblock %}
-
