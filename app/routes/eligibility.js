@@ -45,7 +45,12 @@ module.exports = router => {
     if(req.session.data.report.eligibility['teacher-in-england'] == 'No') {
       res.redirect('/eligibility/no-jurisdiction-england')
     } else {
-      res.redirect('/eligibility/serious')
+      if(req.session.data.report['type-of-report'] == 'employer') {
+        res.redirect('/eligibility/serious')
+      } else {
+        res.redirect('/eligibility/complain-or-refer')
+      }
+
     }
   })
 
@@ -58,7 +63,15 @@ module.exports = router => {
   })
 
   router.post('/eligibility/serious', (req, res) => {
-    if(req.session.data.report.eligibility.serious == 'Make a complaint') {
+    if(req.session.data.report.eligibility.serious == 'No') {
+      res.redirect('/eligibility/not-serious-misconduct')
+    } else {
+      res.redirect('/eligibility/you-should-know')
+    }
+  })
+
+  router.post('/eligibility/complain-or-refer', (req, res) => {
+    if(req.session.data.report.eligibility.proceed == 'Make a complaint') {
       res.redirect('/eligibility/implications-no')
     } else {
       res.redirect('/eligibility/you-should-know')
@@ -73,7 +86,9 @@ module.exports = router => {
     }
   })
 
-  router.post('/eligibility/you-should-know', (req, res) => { res.redirect('/eligibility/save-as-you-go') })
+  router.post('/eligibility/you-should-know', (req, res) => {
+    res.redirect('/eligibility/save-as-you-go')
+  })
 
   router.post('/eligibility/save-as-you-go', (req, res) => {
     res.redirect('/create-account-code')

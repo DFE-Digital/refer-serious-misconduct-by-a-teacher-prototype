@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Check that your allegation involves serious misconduct" %}
+{% set title = "Check if you should make a complaint or refer the teacher for serious misconduct" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -14,6 +15,8 @@
       <form method="post">
         <h1 class="govuk-heading-l">{{title}}</h1>
 
+        <p>The teacher could be prevented from teaching for life if they're found guilty of serious misconduct. This is known as a ‘prohibition order’.</p>
+
         <p>Examples of serious misconduct are:</p>
 
         <ul class="govuk-list govuk-list--bullet">
@@ -25,29 +28,31 @@
             <li>a sexual or romantic relationship with a current or former pupil</li>
           </ul>
 
-        <p>If your allegation is not serious misconduct, it will not be investigated. For example, cases of incompetence.</p>
+        <p>If you refer the teacher for something which is not serious misconduct, it will not be investigated. You should make a complaint instead.</p>
 
         {{ govukRadios({
-          idPrefix: "[report][eligibility][serious]",
-          name: "[report][eligibility][serious]",
+          idPrefix: "[report][eligibility][proceed]",
+          name: "[report][eligibility][proceed]",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
-              text: 'Does the allegation involve serious misconduct?'
+              text: 'How do you want to continue with your allegation?'
             }
           },
           items: [
             {
-              text: "Yes",
-              value: "Yes"
+              text: "Make a complaint",
+              value: "Make a complaint",
+              hint: {
+                text: 'You can complain to the school and may be able to complain to other organisations including the Department for Education'
+              }
             },
             {
-              text: "No",
-              value: "No"
-            },
-            {
-              text: "I’m not sure",
-              value: "I’m not sure"
+              text: "Refer serious misconduct",
+              value: "Refer serious misconduct",
+              hint: {
+                text: 'The teacher could be prevented from teaching for life'
+              }
             }
           ]
         }) }}
