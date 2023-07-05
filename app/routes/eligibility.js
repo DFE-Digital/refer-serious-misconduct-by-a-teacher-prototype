@@ -45,7 +45,7 @@ module.exports = router => {
     if(req.session.data.report.eligibility['teacher-in-england'] == 'No') {
       res.redirect('/eligibility/no-jurisdiction-england')
     } else {
-      if(req.session.data.report['type-of-report'] == 'employer') {
+      if(req.session.data.report.userType == 'employer') {
         res.redirect('/eligibility/serious')
       } else {
         res.redirect('/eligibility/complain-or-refer')

@@ -1,7 +1,7 @@
 const _ = require('lodash')
 
 exports.getFirstIncompleteQuestionFromYourDetails = (data) => {
-  let type = _.get(data, 'report.type-of-report')
+  let type = _.get(data, 'report.userType')
   let firstName = _.get(data, 'report.your-details.firstName')
   let lastName = _.get(data, 'report.your-details.lastName')
   let jobTitle = _.get(data, 'report.your-details.job-title')
@@ -19,7 +19,7 @@ exports.getFirstIncompleteQuestionFromYourDetails = (data) => {
 }
 
 exports.getFirstIncompleteQuestionFromYourOrganisation = (data) => {
-  let type = _.get(data, 'report.type-of-report')
+  let type = _.get(data, 'report.userType')
   let name = _.get(data, 'report.yourOrganisation.name')
   if(type == 'employer') {
     if(!name) {
@@ -31,7 +31,7 @@ exports.getFirstIncompleteQuestionFromYourOrganisation = (data) => {
 }
 
 exports.getFirstIncompleteQuestionFromTeacherDetails = (data) => {
-  let type = _.get(data, 'report.type-of-report')
+  let type = _.get(data, 'report.userType')
   let firstName = _.get(data, 'report.teacherDetails.firstName')
   let lastName = _.get(data, 'report.teacherDetails.lastName')
   let hasPreviousName = _.get(data, 'report.teacherDetails.hasPreviousName')
@@ -65,7 +65,7 @@ exports.getFirstIncompleteQuestionFromTeacherDetails = (data) => {
 }
 
 exports.getFirstIncompleteQuestionFromTeacherContactDetails = (data) => {
-  let type = _.get(data, 'report.type-of-report')
+  let type = _.get(data, 'report.userType')
   let knowEmailAddress = _.get(data, 'report.teacherContactDetails.knowEmailAddress')
   let emailAddress = _.get(data, 'report.teacherContactDetails.emailAddress')
   let knowTelephone = _.get(data, 'report.teacherContactDetails.knowTelephone')
@@ -92,7 +92,7 @@ exports.getFirstIncompleteQuestionFromTeacherContactDetails = (data) => {
 }
 
 exports.getFirstIncompleteQuestionFromTeacherRole = (data) => {
-  let type = _.get(data, 'report.type-of-report')
+  let type = _.get(data, 'report.userType')
   let jobTitle = _.get(data, 'report.teacherRole.jobTitle')
   let duties = _.get(data, 'report.teacherRole.duties')
   let sameOrganisation = _.get(data, 'report.teacherRole.sameOrganisation')
@@ -182,7 +182,7 @@ exports.getFirstIncompleteQuestionFromTeacherRole = (data) => {
 }
 
 exports.getFirstIncompleteQuestionFromAllegation = (data) => {
-  let type = _.get(data, 'report.type-of-report')
+  let type = _.get(data, 'report.userType')
   let howTell = _.get(data, 'report.allegation.howTell')
   let alreadyConsidered = _.get(data, 'report.allegation.alreadyConsidered')
   let dbs = _.get(data, 'report.allegation.dbs')
@@ -207,7 +207,7 @@ exports.getFirstIncompleteQuestionFromAllegation = (data) => {
 }
 
 exports.getFirstIncompleteQuestionFromPreviousAllegations = (data) => {
-  let type = _.get(data, 'report.type-of-report')
+  let type = _.get(data, 'report.userType')
   let anyPrevious = _.get(data, 'report.previousMisconduct.anyPrevious')
   let howTell = _.get(data, 'report.previousMisconduct.howTell')
 

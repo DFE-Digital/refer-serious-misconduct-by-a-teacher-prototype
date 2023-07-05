@@ -4,7 +4,7 @@ const referralHelper = require('../helpers/referral')
 module.exports = router => {
 
   router.all(['/report', '/report/*'], (req, res, next) => {
-    res.locals.isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public'
+    res.locals.isPublic = _.get(req.session.data, 'report[userType]') == 'public'
     res.locals.isEmployer = !res.locals.isPublic
     next()
   })

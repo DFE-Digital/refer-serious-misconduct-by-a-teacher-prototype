@@ -8,7 +8,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/duties', (req, res) => {
-    let isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public';
+    let isPublic = _.get(req.session.data, 'report[userType]') == 'public';
     if(isPublic) {
       res.redirect('/report/teacher-role/know-where-they-worked')
     } else {
@@ -25,7 +25,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/know-where-they-worked', (req, res) => {
-    let isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public';
+    let isPublic = _.get(req.session.data, 'report[userType]') == 'public';
     if(isPublic) {
       // public
       if(req.session.data.report.teacherRole.knowWhereTheyWorked === 'Yes') {
@@ -44,7 +44,7 @@ module.exports = router => {
   })
 
   router.post('/report/teacher-role/where-they-worked', (req, res) => {
-    let isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public';
+    let isPublic = _.get(req.session.data, 'report[userType]') == 'public';
     if(isPublic) {
       // public
       res.redirect('/report/teacher-role/check-answers')

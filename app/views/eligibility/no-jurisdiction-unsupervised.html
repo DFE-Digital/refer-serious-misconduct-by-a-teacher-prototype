@@ -12,6 +12,11 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-l">{{ title }}</h1>
+    {% if data.report.userType == 'employer' %}
+      <p>Some stuff employer</p>
+    {% else %}
+      <p>Some stuff for public</p>
+    {% endif %}
 
     <p>View guidance about how to <a href="https://www.gov.uk/report-teacher-misconduct">make an informal complaint</a>.</p>
   </div>
