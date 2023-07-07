@@ -14,7 +14,17 @@
       <form method="post">
   <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1>
 
-  <p>Your name and allegation will be shared with the teacher and their employer. Your contact details will not be shared.</p>
+  {% if data.report.userType == 'employer' %}
+
+    <p>Your name and allegation will be shared with the teacher. It will also be shared with their current employer if you no longer employ them.
+
+    <p>Your contact details will not be shared.</p>
+
+  {% else %}
+
+    <p>Your name and allegation will be shared with the teacher and their employer. Your contact details will not be shared.</p>
+
+  {% endif %}
 
   <p>You might need to give evidence at a hearing.</p>
 
