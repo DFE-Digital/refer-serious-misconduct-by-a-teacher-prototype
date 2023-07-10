@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Your allegation is unlikely to be investigated" %}
+{% set title = "Your allegation is unlikely to be investigated because it does not involve serious misconduct" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,8 +12,6 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-l">{{ title }}</h1>
-    <p>This is because your allegation does not involve serious misconduct.</p>
-
     <p><a href="https://www.gov.uk/contact-police">Contact the police</a> if you think a child is in immediate danger.</p>
   </div>
 </div>
