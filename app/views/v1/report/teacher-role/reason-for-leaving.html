@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+{% set title = "Reason they left the job" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">About their role</span>
+        {{ govukRadios({
+            idPrefix: "[report][teacherRole][reasonForLeaving]",
+            name: "[report][teacherRole][reasonForLeaving]",
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--l",
+                html: title,
+                isPageHeading: true
+              }
+            },
+            items: [
+              {
+                text: "Resigned",
+                value: "Resigned"
+              },
+              {
+                text: "Dismissed",
+                value: "Dismissed"
+              },
+              {
+                text: "Retired",
+                value: "Retired"
+              },
+              {
+                text: "I’m not sure",
+                value: "I’m not sure"
+              }
+            ],
+            value: report.teacherRole.reasonForLeaving
+          }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

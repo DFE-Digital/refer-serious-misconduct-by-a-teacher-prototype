@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your job title" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "name"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">Your details</span>
+        {{ govukInput({
+          id: "[report][your-details][job-title]",
+          name: "[report][your-details][job-title]",
+          label: {
+            html: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: 'For example, ‘Headteacher’'
+          },
+          value: data.report['your-details']['job-title']
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

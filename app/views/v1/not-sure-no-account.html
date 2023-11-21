@@ -1,0 +1,27 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set title = 'You now have an account' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <p>Continue to refer serious misconduct.</p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
