@@ -3,8 +3,8 @@ const { v4: uuidv4 } = require('uuid')
 const referralHelper = require('../../helpers/referral')
 
 // version
-var v = '/v1/'
-var vGet = 'v1/'
+var v = '/nov-23-live/'
+var vGet = 'nov-23-live/'
 
 module.exports = router => {
 
