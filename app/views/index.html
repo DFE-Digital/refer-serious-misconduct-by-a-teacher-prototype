@@ -1,96 +1,51 @@
 {% extends "layouts/main.html" %}
-{% set signedIn = false %}
-{% set serviceUrl = '/report/start' %}
-{% set title = serviceName %}
+
+{% block pageTitle %}
+Home – {{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
-      <h1 class="govuk-heading-xl">{{ title }}</h1>
-    </div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Refer serious misconduct prototype
+    </h1>
+
+    <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+
+    <h2 class="govuk-heading-m">Sprint 1</h2>
+    <p class="govuk-body-l">Work in progress.</p>
+    <p>Sprint goals:</p>
+    {{ govukButton({
+    text: "Start prototype journey",
+    href: "#",
+    isStartButton: true
+    }) }}
+
+
+    <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m">
+
+    <h2 class="govuk-heading-m">Live service user journey as of November 2023</h2>
+    <p>This version contains the live service refer user journey as of November 2023.</p>
+    {{ govukButton({
+    text: "Start prototype journey",
+    href: "nov-23-live/index",
+    isStartButton: true
+    }) }}
+
+    <h2 class="govuk-heading-m">Prototype as of November 2023</h2>
+    <p>This version contains the work done in this prototype prior to the new team forming in November 2023.</p>
+    {{ govukButton({
+    text: "Start prototype journey",
+    href: "nov-23/index",
+    isStartButton: true
+    }) }}
   </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
-      {{ govukWarningText({
-        html: '<a href="https://www.gov.uk/contact-police">Contact the police</a> if you think a child is in immediate danger.'
-      }) }}
 
-      <p>Your case will only be investigated if the misconduct is serious enough to potentially result in a teacher being stopped from teaching (known as a ‘prohibition order’).</p>
-
-      <p>You should provide any evidence to support your allegation, for example signed witness statements or previous complaints against the teacher.</p>
-
-      <p>All cases of incompetence and less serious misconduct should be dealt with by employers.</p>
-
-      <h2 class="govuk-heading-m">How long it will take to complete your referral</h2>
-
-      <p>You should allow an hour or more to complete your referral. The time it will take depends on the case. It will be faster if you’ve prepared the evidence.</p>
-
-      {{ govukButton({
-        classes: "govuk-!-margin-top-4 govuk-!-margin-bottom-4",
-        text: "Start now",
-        href: '/has-account',
-        isStartButton: true
-      }) }}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-7">
-        If you’d rather refer a teacher by email or post
-      </h2>
-
-      <p>Download one of the forms:</p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="">Employer referral form (PDF)</a>
-        </li>
-        <li>
-          <a href="">Member of public form (PDF)</a>
-        </li>
-      </ul>
-
-      <p>Once you’ve completed the form, you should email it to: <br><a href="">misconduct.teacher@education.gov.uk</a>.
-
-      <p>Or send it by registered post to:</p>
-
-      <p>Teacher Misconduct<br>
-      Ground Floor, South<br>
-      Cheylesmore House<br>
-      5 Quinton Road<br>
-      Coventry<br>
-      CV1 2WT
-      </p>
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-      {{ appRelatedNavigation({
-        sections: [{
-          items: [{
-            text: "Teacher misconduct: information for teachers",
-            href: "https://www.gov.uk/government/publications/teacher-misconduct-information-for-teachers"
-          }, {
-            text: "Teacher misconduct: referring a case",
-            href: "https://www.gov.uk/guidance/teacher-misconduct-referring-a-case"
-          },
-          {
-            text: "Teacher misconduct: disciplinary procedures",
-            href: "https://www.gov.uk/government/publications/teacher-misconduct-disciplinary-procedures"
-          },
-          {
-            text: "Teacher misconduct: regulating the teaching profession",
-            href: "https://www.gov.uk/guidance/teacher-misconduct-regulating-the-teaching-profession"
-          },
-          {
-            text: "Teacher misconduct hearings: information for observers",
-            href: "https://www.gov.uk/government/publications/teacher-misconduct-information-for-observers"
-          }],
-          subsections: [{
-            title: "Collection",
-            items: [{
-              text: "Teacher misconduct",
-              href: "https://www.gov.uk/government/collections/teacher-misconduct"
-            }]
-          }]
-        }]
-      }) }}
-    </div>
+  <div class="govuk-grid-column-one-third">
   </div>
+</div>
+
 {% endblock %}

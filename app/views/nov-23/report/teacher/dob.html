@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know their date of birth?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set dob %}
+          {{ govukDateInput({
+            id: "[report][teacherDetails][dob]",
+            name: "[report][teacherDetails][dob]",
+            fieldset: {
+              legend: {
+                classes: "govuk-label--s",
+                text: "Date of birth"
+              }
+            },
+            hint: {
+              text: "For example, 27 3 1983"
+            },
+            items: [
+              {
+                name: "[report][teacherDetails][dob][day]",
+                label: "Day",
+                value: data.report.teacherDetails.dob.day,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "[report][teacherDetails][dob][month]",
+                label: "Month",
+                value: data.report.teacherDetails.dob.month,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "[report][teacherDetails][dob][year]",
+                label: "Year",
+                value: data.report.teacherDetails.dob.year,
+                classes: "govuk-input--width-4"
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        <span class="govuk-caption-l">Personal details</span>
+        {{ govukRadios({
+          idPrefix: "[report][teacherDetails][knowDob]",
+          name: "[report][teacherDetails][knowDob]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes",
+              conditional: {
+                html: dob
+              }
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+          value: data.report.teacherDetails.knowDob
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

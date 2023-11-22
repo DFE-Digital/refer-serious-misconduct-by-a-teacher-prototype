@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+{% set title = 'Were they employed at the same organisation as you at the time of the alleged misconduct?' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{# {% set organisationName = "(" + data.report['teacher-role']['your-organisation.name'] + ")" %} #}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">About their role</span>
+        {{ govukRadios({
+          id: "[report][teacherRole][sameOrganisation]",
+          name: "[report][teacherRole][sameOrganisation]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes"
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+          value: data.report.teacherRole.sameOrganisation
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+{% set title = "How this complaint has been considered" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "allegation"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">The allegation</span>
+        <h1 class="govuk-heading-l">
+          {{ title }}
+        </h1>
+
+        <p>Include details about:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            the local procedures you followed, for example if you made a complaint to the headteacher, local authority or police
+          </li>
+          <li>
+            when you made the complaint
+          </li>
+          <li>
+            the outcomes of the complaint
+          </li>
+        </ul>
+
+        {{ govukTextarea({
+          id: "[report][allegation][alreadyConsidered]",
+          name: "[report][allegation][alreadyConsidered]",
+          label: {
+            text: "Details about how this complaint has been considered",
+            classes: "govuk-label--m govuk-!-margin-top-6"
+          },
+          value: data.report.allegation.alreadyConsidered,
+          rows: 15
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

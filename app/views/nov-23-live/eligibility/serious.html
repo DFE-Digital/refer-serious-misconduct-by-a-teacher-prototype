@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+{% set title = "Check that your allegation involves serious misconduct" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "england"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        <p>Examples of serious misconduct are:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>violent behaviour</li>
+            <li>a serious criminal offence</li>
+            <li>an abuse of position or trust</li>
+            <li>inappropriate sexual activity</li>
+            <li>a serious failure in safeguarding</li>
+            <li>a sexual or romantic relationship with a current or former pupil</li>
+          </ul>
+
+        <p>If your allegation is not serious misconduct, it will not be investigated. For example, cases of incompetence.</p>
+
+        {{ govukRadios({
+          idPrefix: "[report][eligibility][serious]",
+          name: "[report][eligibility][serious]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--m",
+              text: 'Does the allegation involve serious misconduct?'
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes"
+            },
+            {
+              text: "No",
+              value: "No"
+            },
+            {
+              text: "I’m not sure",
+              value: "I’m not sure"
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

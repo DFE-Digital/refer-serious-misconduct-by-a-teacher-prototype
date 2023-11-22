@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do they have qualified teacher status (QTS)?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">Personal details</span>
+        {{ govukRadios({
+          idPrefix: "[report][teacherDetails][qts]",
+          name: "[report][teacherDetails][qts]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          items: [
+            {
+              text: "Yes, they have QTS",
+              value: "Yes"
+            },
+            {
+              text: "No, they do not have QTS",
+              value: "No"
+            },
+            {
+              text: "I’m not sure",
+              value: "Not known"
+            }
+          ],
+          value: data.report.teacherDetails.qts
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
