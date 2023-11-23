@@ -3,8 +3,8 @@ const { v4: uuidv4 } = require('uuid')
 const referralHelper = require('../../helpers/referral')
 
 // version
-var v = '/nov-23/'
-var vGet = 'nov-23/'
+var v = '/nov-23-live/'
+var vGet = 'nov-23-live/'
 
 module.exports = router => {
 
@@ -126,7 +126,7 @@ module.exports = router => {
 
     // Report
 
-    router.all(['/report', '/report/*'], (req, res, next) => {
+    router.all([v + 'report', v + 'report/*'], (req, res, next) => {
         res.locals.isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public'
         res.locals.isEmployer = !res.locals.isPublic
         next()
@@ -267,30 +267,30 @@ module.exports = router => {
 
     // Report allegation
 
-    router.post('/report/allegation/allegation', (req, res) => {
+    router.post(v + 'report/allegation/allegation', (req, res) => {
         if(res.locals.isPublic) {
-            res.redirect('/report/allegation/already-considered')
+            res.redirect(v + 'report/allegation/already-considered')
         } else {
-            res.redirect('/report/allegation/dbs')
+            res.redirect(v + 'report/allegation/dbs')
         }
     })
 
-    router.post('/report/allegation/already-considered', (req, res) => {
-        res.redirect('/report/allegation/check-answers')
+    router.post(v + 'report/allegation/already-considered', (req, res) => {
+        res.redirect(v + 'report/allegation/check-answers')
     })
 
-    router.post('/report/allegation/dbs', (req, res) => {
-        res.redirect('/report/allegation/check-answers')
+    router.post(v + 'report/allegation/dbs', (req, res) => {
+        res.redirect(v + 'report/allegation/check-answers')
     })
 
-    router.get('/report/allegation/check-answers', (req, res) => {
+    router.get(v + 'report/allegation/check-answers', (req, res) => {
         res.render(vGet + 'report/allegation/check-answers', {
             allegationIncompleteSection: referralHelper.getFirstIncompleteQuestionFromAllegation(req.session.data)
         })
     })
 
-    router.post('/report/allegation/check-answers', (req, res) => {
-        res.redirect('/report/')
+    router.post(v + 'report/allegation/check-answers', (req, res) => {
+        res.redirect(v + 'report/')
     })
 
     // Report evidence
@@ -347,9 +347,9 @@ module.exports = router => {
 
     router.post(v + 'report/evidence/check-files', (req, res) => {
         if(_.get(req, 'body.report.evidence.addMore') == 'Yes') {
-            res.redirect(`/report/evidence/upload`)
+            res.redirect(v + `report/evidence/upload`)
         } else {
-            res.redirect(`/report/evidence/check-answers`)
+            res.redirect(v + `report/evidence/check-answers`)
         }
     })
 
