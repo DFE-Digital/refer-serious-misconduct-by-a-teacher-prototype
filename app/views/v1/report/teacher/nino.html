@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know their National Insurance number?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set nino %}
+          {{ govukInput({
+            id: "[report][teacherDetails][nino]",
+            name: "[report][teacherDetails][nino]",
+            label: {
+              text: "National Insurance number",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "For example, ‘QQ 12 34 56 C’"
+            },
+            value: data.report.teacherDetails.nino
+          }) }}
+        {% endset %}
+
+        <span class="govuk-caption-l">Personal details</span>
+        {{ govukRadios({
+          idPrefix: "[report][teacherDetails][knowNino]",
+          name: "[report][teacherDetails][knowNino]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes",
+              conditional: {
+                html: nino
+              }
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+          value: data.report.teacherDetails.knowNino
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

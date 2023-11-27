@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know their home address?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">Contact details</span>
+        {{ govukRadios({
+          idPrefix: "[report][teacherContactDetails][knowHomeAddress]",
+          name: "[report][teacherContactDetails][knowHomeAddress]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes"
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+          value: data.report.teacherContactDetails.knowHomeAddress
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

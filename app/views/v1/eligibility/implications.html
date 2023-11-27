@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+{% set title = "The teacher may be banned for life" %}
+{% set title = "Making a referral means the teacher may be banned for life" %}
+{% set title = "If your allegation is found to be serious, it will result in the teacher being banned for life." %}
+{% set title = "Check that you understand what your allegation means for the teacher" %}
+{% set title = "The teacher could be banned for life" %}
+{% set title = "Confirm how you want to proceed" %}
+{% set title = "Your allegation could result in the teacher being banned for life" %}
+{% set title = "Your allegation could result in the teacher being banned from teaching for life" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        <p>If the allegation is found to be serious misconduct, the teacher could be banned for life.</p>
+
+        <p>Many allegations are not serious misconduct and are resolved by making a complaint.</p>
+
+        {{ govukRadios({
+          idPrefix: "[report][eligibility][implications]",
+          name: "[report][eligibility][implications]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--m",
+              text: 'Would you like another way to continue?',
+              text: 'Would you like to follow the school’s complaints process or continue making an allegation of serious misconduct?',
+              text: 'How do you want to continue with your allegation?'
+            }
+          },
+          items: [
+            {
+              text: "Make a complaint",
+              value: "No",
+              hint: {
+                text: 'Select this if you do not think the teacher should be banned for life'
+              }
+            },
+            {
+              text: "Yes",
+              text: "Make a referral of serious misconduct",
+              value: "Yes",
+              hint: {
+                text: 'Select this if you think the teacher should be banned for life'
+              }
+            }
+          ],
+          value: data.report.eligibility.implications
+        })}}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
