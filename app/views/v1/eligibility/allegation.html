@@ -12,89 +12,100 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <h1 class="govuk-heading-l">{{title}}</h1>
 
-    <div id="waste-hint" class="govuk-hint">
-      Select all that apply.</div>
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="allegation-6" name="allegation" type="checkbox" value="sexual">
-        <label class="govuk-label govuk-checkboxes__label" for="allegation-6">
-          Sexual misconduct
-        </label>
-        <div id="nationality-item-hint" class="govuk-hint govuk-checkboxes__hint">
-          For example, a sexual relationship with a current or former pupil.
-        </div>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="allegation-7" name="allegation" type="checkbox" value="violent">
-        <label class="govuk-label govuk-checkboxes__label" for="allegation-7">
-          Violent behaviour
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="allegation-2" name="allegation" type="checkbox" value="safeguarding">
-        <label class="govuk-label govuk-checkboxes__label" for="allegation-2">
-          Failure to protect the safety and wellbeing of pupils
-        </label>
-         <div id="nationality-item-hint" class="govuk-hint govuk-checkboxes__hint">
-          For example, not reporting evidence of neglect or abuse.
-        </div>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="allegation-3" name="allegation" type="checkbox" value="alcohol">
-        <label class="govuk-label govuk-checkboxes__label" for="allegation-3">
-          Alcohol or drug misuse
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="allegation-4" name="allegation" type="checkbox" value="fraud">
-        <label class="govuk-label govuk-checkboxes__label" for="allegation-4">
-          Fraud or serious dishonesty
-        </label>
-        <div id="nationality-item-hint" class="govuk-hint govuk-checkboxes__hint">
-          For example, misuse of school funds.
-        </div>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="allegation-5" name="allegation" type="checkbox" value="harassment">
-        <label class="govuk-label govuk-checkboxes__label" for="allegation-5">
-          Discrimination, harassment or bullying
-        </label>
-      </div> 
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="allegation-6" name="allegation" type="checkbox" value="sexual">
-        <label class="govuk-label govuk-checkboxes__label" for="allegation-6">
-          Promoting extreme political or religious views
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="allegation" name="allegation" type="checkbox" value="criminal">
-        <label class="govuk-label govuk-checkboxes__label" for="allegation">
-          A serious criminal offence
-        </label>
-      </div>
-      <div class="govuk-checkboxes__divider">or</div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="contact-3" name="contact" type="checkbox" value="text message" data-aria-controls="conditional-contact-3">
-        <label class="govuk-label govuk-checkboxes__label" for="contact-3">
-          None of these
-        </label>
-      </div>
-      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-contact-3">
         <div class="govuk-form-group">
-          <label class="govuk-label" for="contact-by-text">
-            Enter the nature of the serious misconduct
-          </label>
-          <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+          <fieldset class="govuk-fieldset" aria-describedby="allegation-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                {{title}}
+              </h1>
+            </legend>
+            <div id="allegation-hint" class="govuk-hint">
+              Select all that apply.
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-1" name="allegation" type="checkbox" value="sexual-misconduct">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-1">
+                  Sexual misconduct
+                </label>
+                <div id="sexual-misconduct-hint" class="govuk-hint govuk-checkboxes__hint">
+                  For example, a sexual relationship with a current or former pupil.
+                </div>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-2" name="allegation" type="checkbox" value="violent">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-2">
+                  Violent behaviour
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-3" name="allegation" type="checkbox" value="safeguarding">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-3">
+                  Failure to protect the safety and wellbeing of pupils
+                </label>
+                <div id="safeguarding-hint" class="govuk-hint govuk-checkboxes__hint">
+                  For example, not reporting evidence of neglect or abuse.
+                </div>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-4" name="allegation" type="checkbox" value="alcohol">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-4">
+                  Alcohol or drug misuse
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-5" name="allegation" type="checkbox" value="fraud">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-5">
+                  Fraud or serious dishonesty
+                </label>
+                <div id="fraud-hint" class="govuk-hint govuk-checkboxes__hint">
+                  For example, misuse of school funds.
+                </div>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-6" name="allegation" type="checkbox" value="harassment">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-6">
+                  Discrimination, harassment or bullying
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-7" name="allegation" type="checkbox" value="extreme">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-7">
+                  Promoting extreme political or religious views
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-8" name="allegation" type="checkbox" value="criminal">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-8">
+                  A serious criminal offence
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__divider">or</div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allegation-none" name="allegation" type="checkbox" value="none" data-aria-controls="conditional-allegation">
+                <label class="govuk-label govuk-checkboxes__label" for="allegation-none">
+                  None of these
+                </label>
+              </div>
+              <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-allegation">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="allegation-detail">
+                    Enter the nature of the serious misconduct
+                  </label>
+                  <textarea class="govuk-textarea" id="allegation-detail" name="allegation-detail" rows="5" aria-describedby="allegation-detail"></textarea>
+                </div>
+              </div>
+
+            </div>
+          </fieldset>
         </div>
-      </div>
-      </div>
     
-    <br>
         {{ govukButton({
           text: "Continue"
         }) }}
+
       </form>
     </div>
   </div>
