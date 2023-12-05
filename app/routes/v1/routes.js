@@ -56,7 +56,32 @@ module.exports = router => {
     })
 
     router.post(v + 'who', (req, res) => {
-        res.redirect(v + 'eligibility/jurisdiction')
+        if(req.session.data.report['type-of-report'] == 'public') {
+            res.redirect(v + 'eligibility/complaint')
+        } else {
+            res.redirect(v + 'eligibility/jurisdiction')
+        }
+    })
+
+    router.post(v + 'eligibility/complaint', (req, res) => {
+        if (req.session.data.report.eligibility['have-you-complained'] == "Yes, and I received an outcome") {
+            res.redirect(v + 'eligibility/allegation')
+        }
+        else if (req.session.data.report.eligibility['have-you-complained'] == "Yes, and I'm waiting for an outcome") {
+            res.redirect(v + 'eligibility/awaiting-outcome')
+        }
+        else {
+            res.redirect(v + 'eligibility/not-complained')
+        }
+    })
+
+    router.post(v + 'eligibility/allegation', (req, res) => {
+        if (req.session.data.allegation == "none") {
+            res.redirect(v + 'eligibility/pause')
+        }
+        else {
+            res.redirect(v + 'eligibility/jurisdiction')
+        }
     })
 
     router.post(v + 'eligibility/jurisdiction', (req, res) => {
@@ -74,7 +99,7 @@ module.exports = router => {
             if(req.session.data.report['type-of-report'] == 'employer') {
                 res.redirect(v + 'eligibility/serious')
             } else {
-                res.redirect(v + 'eligibility/complain-or-refer')
+                res.redirect(v + 'eligibility/you-should-know')
             }
 
         }
