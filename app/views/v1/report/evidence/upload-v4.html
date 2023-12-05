@@ -1,0 +1,93 @@
+{% extends "layouts/main.html" %}
+{% set title = "Upload evidence" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash and flash.length }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">
+          Evidence and supporting information
+        </span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        {% include "../../shared/_examples.html" %}
+
+        {% if isPublic %}
+
+          <p>Make sure the file names describe the content, for example ‘signed witness statement’.</p>
+
+          {{ govukWarningText({
+            text: "Do not include explicit content, for example indecent photos. You’ll be asked for these separately if needed."
+          }) }}
+        {% endif %}
+
+        <div class="govuk-form-group">
+          <label class="govuk-heading-m" for="file-upload-1">
+            Upload a file
+          </label>
+          <div id="event-name-hint" class="govuk-hint">You can upload up to 10 files. Each file must be smaller than 20MB.
+          </div>
+        <!--  <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Types of file you can upload
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <h3 class="govuk-heading-s">Images</h3>
+              <p>APNG, AVIF, GIF, HEIC, HEIF, JPG, JPEG, PNG and WebP.</p>
+              <h3 class="govuk-heading-s">Audio files</h3>
+              <p>M4A and MP3.</p>
+              <h3 class="govuk-heading-s">Videos</h3>
+              <p>MP4 and MOV.</p>
+              <h3 class="govuk-heading-s">Other files</h3>
+              <p>DOC, DOCX, EML, MSG, PDF, RTF, TXT and XLSX.</p>
+            </div>
+          </details> -->
+          <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+        </div>
+
+        {% set uploaded = false %}
+
+        {% if uploaded %}
+
+          <div class="app-uploaded-file-v2">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
+              Currently uploaded file
+            </h2>
+            <p><a href="#">job-description.pdf (2MB)</a></p>
+
+            {{ govukFileUpload({
+              id: "[report][evidence][file]",
+              name: "[report][evidence][file]",
+              label: {
+                text: "Upload a different file",
+                classes: "govuk-label--m"
+              }
+            }) }}
+          </div>
+        {% else %}
+          {{input | safe}}
+        {% endif %}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
