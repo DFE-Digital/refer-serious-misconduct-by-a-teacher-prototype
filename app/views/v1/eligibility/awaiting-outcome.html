@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Awaiting outcome" %}
+{% set title = "You should wait for an outcome before making a referral" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -13,11 +13,10 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+        <p>Check the school's complaint policy for the processing time. It's usually available on the school's website or from the school office.</p>
+        <p>Contact the school if an outcome is overdue.</p>
 
-     {{ govukButton({
-       text: "~",
-       href: ""
-     }) }}
+        <p><a href="allegation">I want to continue making a referral</a></p>
 
     </div>
   </div>
