@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+{% set title = 'Name and address of the organisation where they’re employed' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">About their role</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+      <form method="post">
+        {{ govukInput({
+          id: "[report][teacherRole][newOrganisation][name]",
+          name: "[report][teacherRole][newOrganisation][name]",
+          label: {
+            text: "Organisation name",
+            classes: "govuk-label--m"
+          },
+          value: data.report.teacherRole.newOrganisation.name
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacherRole][newOrganisation][address][line1]",
+          name: "[report][teacherRole][newOrganisation][address][line1]",
+          label: {
+            text: 'Address line 1',
+            classes: "govuk-label--m"
+          },
+          autocomplete: "address-line1",
+          value: data.report.teacherRole.newOrganisation.address.line1
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacherRole][newOrganisation][address][line2]",
+          name: "[report][teacherRole][newOrganisation][address][line2]",
+          label: {
+            text: 'Address line 2 (optional)',
+            classes: "govuk-label--m"
+          },
+          autocomplete: "address-line2",
+          classes: "govuk-label--m",
+          value: data.report.teacherRole.newOrganisation.address.line2
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacherRole][newOrganisation][address][town]",
+          name: "[report][teacherRole][newOrganisation][address][town]",
+          label: {
+            text: "Town or city",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-!-width-two-thirds",
+          autocomplete: "address-level2",
+          value: data.report.teacherRole.newOrganisation.address.town
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacherRole][newOrganisation][address][postcode]",
+          name: "[report][teacherRole][newOrganisation][address][postcode]",
+          label: {
+            text: "Postcode",
+            classes: "govuk-label--m"
+          },
+          classes: "govuk-input--width-10",
+          autocomplete: "postal-code",
+          value: data.report.teacherRole.newOrganisation.address.postcode
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layouts/main.html" %}
+{% set title = "Tell us about where they teach" %}
+
+{% block content %}
+  <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1>
+  {{ govukInput({
+    label: {
+      text: 'School name',
+      classes: "govuk-label--m"
+    },
+    decorate: 'report.school-name'
+  }) }}
+
+  {{ govukTextarea({
+    label: {
+      text: 'School address',
+      classes: "govuk-label--m"
+    },
+    decorate: 'report.school-address'
+  }) }}
+{% endblock %}

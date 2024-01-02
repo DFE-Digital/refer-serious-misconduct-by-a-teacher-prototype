@@ -1,0 +1,24 @@
+{% extends "layouts/main.html" %}
+{% set title = "You should wait for an outcome before making a referral" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+        <p>Check the school's complaint policy for the processing time. It's usually available on the school's website or from the school office.</p>
+        <p>Contact the school if an outcome is overdue.</p>
+
+        <p><a href="allegation">I want to continue making a referral</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{{ govukRadios({
+  idPrefix: completedRadiosName,
+  name: completedRadiosName,
+  fieldset: {
+    legend: {
+      classes: "govuk-fieldset__legend--m",
+      text: "Have you completed this section?"
+    }
+  },
+  hint: {
+    text: "You can still make changes to a completed section"
+  },
+  items: [
+    {
+      text: "Yes, I’ve completed this section",
+      value: "completed"
+    },
+    {
+      text: "No, I’ll come back to it later",
+      value: "incomplete"
+    }
+  ],
+  value: completedRadiosValue
+}) }}
