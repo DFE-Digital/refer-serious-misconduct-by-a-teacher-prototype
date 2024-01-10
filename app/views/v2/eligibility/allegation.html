@@ -84,19 +84,11 @@
 
               <div class="govuk-checkboxes__divider">or</div>
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="allegation-none" name="allegation" type="checkbox" value="none" data-aria-controls="">
+                <input class="govuk-checkboxes__input" id="allegation-none" name="allegation" type="checkbox" value="none" data-behaviour="exclusive">
                 <label class="govuk-label govuk-checkboxes__label" for="allegation-none">
                   None of these
                 </label>
               </div>
-<!--              <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional&#45;&#45;hidden" id="conditional-allegation">-->
-<!--                <div class="govuk-form-group">-->
-<!--                  <label class="govuk-label" for="allegation-detail">-->
-<!--                    Enter the nature of the serious misconduct-->
-<!--                  </label>-->
-<!--                  <textarea class="govuk-textarea" id="allegation-detail" name="allegation-detail" rows="5" aria-describedby="allegation-detail"></textarea>-->
-<!--                </div>-->
-<!--              </div>-->
 
             </div>
           </fieldset>
@@ -113,35 +105,35 @@
 {% endblock %}
 
 {% block pageScripts %}
-<script>
-  // Function to handle checkbox changes
-  function handleCheckboxChange() {
-    var allegationNoneCheckbox = document.getElementById("allegation-none");
-    var otherCheckboxes = document.querySelectorAll("input[type='checkbox']:not(#allegation-none)");
-    var targetDiv = document.getElementById("conditional-allegation");
+<!--<script>-->
+<!--  // Function to handle checkbox changes-->
+<!--  function handleCheckboxChange() {-->
+<!--    var allegationNoneCheckbox = document.getElementById("allegation-none");-->
+<!--    var otherCheckboxes = document.querySelectorAll("input[type='checkbox']:not(#allegation-none)");-->
+<!--    var targetDiv = document.getElementById("conditional-allegation");-->
 
-    if (this === allegationNoneCheckbox && allegationNoneCheckbox.checked) {
-      // If 'allegation-none' is checked, uncheck all other checkboxes
-      otherCheckboxes.forEach(function (checkbox) {
-        checkbox.checked = false;
-      });
-      targetDiv.style.display = "block"; // Show the target div
-    } else if (this !== allegationNoneCheckbox && this.checked) {
-      // If any other checkbox is checked, uncheck 'allegation-none'
-      allegationNoneCheckbox.checked = false;
-      targetDiv.style.display = "none"; // Hide the target div
-    } else if (this !== allegationNoneCheckbox && !this.checked && !otherCheckboxes.some(checkbox => checkbox.checked)) {
-      // If no other checkboxes are checked, hide the target div
-      targetDiv.style.display = "none";
-    }
-  }
+<!--    if (this === allegationNoneCheckbox && allegationNoneCheckbox.checked) {-->
+<!--      // If 'allegation-none' is checked, uncheck all other checkboxes-->
+<!--      otherCheckboxes.forEach(function (checkbox) {-->
+<!--        checkbox.checked = false;-->
+<!--      });-->
+<!--      targetDiv.style.display = "block"; // Show the target div-->
+<!--    } else if (this !== allegationNoneCheckbox && this.checked) {-->
+<!--      // If any other checkbox is checked, uncheck 'allegation-none'-->
+<!--      allegationNoneCheckbox.checked = false;-->
+<!--      targetDiv.style.display = "none"; // Hide the target div-->
+<!--    } else if (this !== allegationNoneCheckbox && !this.checked && !otherCheckboxes.some(checkbox => checkbox.checked)) {-->
+<!--      // If no other checkboxes are checked, hide the target div-->
+<!--      targetDiv.style.display = "none";-->
+<!--    }-->
+<!--  }-->
 
-  // Add event listeners when the document is loaded
-  document.addEventListener("DOMContentLoaded", function () {
-    var checkboxes = document.querySelectorAll("input[type='checkbox']");
-    checkboxes.forEach(function (checkbox) {
-      checkbox.addEventListener("change", handleCheckboxChange);
-    });
-  });
-</script>
+<!--  // Add event listeners when the document is loaded-->
+<!--  document.addEventListener("DOMContentLoaded", function () {-->
+<!--    var checkboxes = document.querySelectorAll("input[type='checkbox']");-->
+<!--    checkboxes.forEach(function (checkbox) {-->
+<!--      checkbox.addEventListener("change", handleCheckboxChange);-->
+<!--    });-->
+<!--  });-->
+<!--</script>-->
 {% endblock %}
