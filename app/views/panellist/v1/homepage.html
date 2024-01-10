@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+{% set serviceName %}Manage your panel hearings and availability{% endset %}
+
+{% block pageTitle %}
+Home – {{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Important
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <p class="govuk-notification-banner__heading">
+          You have 2 outstanding pending hearing requests.
+          <a class="govuk-notification-banner__link" href="#">View hearing requests</a>.
+        </p>
+      </div>
+    </div>
+
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+      {{serviceName}}
+    </h1>
+    <span class="govuk-caption-l">James Smith</span>
+
+    <h2 class="govuk-heading-l govuk-!-margin-top-8">Hearings</h2>
+    <div class="dfe-grid-container">
+      <div class="dfe-card">
+        <div class="dfe-card-container">
+          <h2 class="govuk-heading-m">
+            <a class="govuk-link govuk-link--no-visited-state dfe-card-link--header" href="">Respond to requests to attend hearings</a>
+          </h2>
+          <p>View and respond to pending hearing requests.</p>
+        </div>
+      </div>
+      <div class="dfe-card">
+        <div class="dfe-card-container">
+          <h2 class="govuk-heading-m">
+            <a class="govuk-link govuk-link--no-visited-state dfe-card-link--header" href="">Upcoming hearings</a>
+          </h2>
+          <p>See information about upcoming hearings you will be attending.</p>
+        </div>
+      </div>
+      <div class="dfe-card">
+        <div class="dfe-card-container">
+          <h2 class="govuk-heading-m">
+            <a class="govuk-link govuk-link--no-visited-state dfe-card-link--header" href="">Previous hearings</a>
+          </h2>
+          <p>See information on previous hearings you have attended.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h2 class="govuk-heading-l govuk-!-margin-top-8">Availability</h2>
+    <div class="dfe-grid-container">
+      <div class="dfe-card">
+        <div class="dfe-card-container">
+          <h2 class="govuk-heading-m">
+            <a class="govuk-link govuk-link--no-visited-state dfe-card-link--header" href="">Submit dates you are not available for hearings</a>
+          </h2>
+          <p>Give us information about when you are not available.</p>
+        </div>
+      </div>
+      <div class="dfe-card">
+        <div class="dfe-card-container">
+          <h2 class="govuk-heading-m">
+            <a class="govuk-link govuk-link--no-visited-state dfe-card-link--header" href="">View and delete unavailable dates</a>
+          </h2>
+          <p>Make changes to dates you have submitted as unavailable.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

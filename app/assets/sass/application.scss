@@ -9,6 +9,9 @@
 @import "../../views/_components/task-list/task-list.scss";
 @import "../../views/_components/list/list.scss";
 @import "../../views/_components/uploaded-file/uploaded-file.scss";
+@import 'node_modules/dfe-frontend-alpha/packages/dfefrontend';
+
+@import "components/cards";
 
 .app-review-panel {
   @include govuk-responsive-margin(9, "bottom");

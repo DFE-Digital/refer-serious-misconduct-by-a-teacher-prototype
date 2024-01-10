@@ -1,0 +1,48 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Home – {{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Pending hearing requests
+    </h1>
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Hearing request</caption>
+      <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header app-custom-class">Name of teacher</th>
+        <th scope="col" class="govuk-table__header app-custom-class">Date</th>
+        <th scope="col" class="govuk-table__header app-custom-class">Attendance type</th>
+        <th scope="col" class="govuk-table__header app-custom-class govuk-visually-hidden">Respond to request</th>
+      </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">James Smith</th>
+        <td class="govuk-table__cell">12th February to 15th February</td>
+        <td class="govuk-table__cell">Online</td>
+        <td class="govuk-table__cell"><a href="#">Respond</a></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">Peter Jones</th>
+        <td class="govuk-table__cell">22nd March to 23rd March</td>
+        <td class="govuk-table__cell">In person</td>
+        <td class="govuk-table__cell"><a href="#">Respond</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+{% endblock %}

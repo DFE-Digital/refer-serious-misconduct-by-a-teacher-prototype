@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Home – {{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<a href="/index" class="govuk-back-link">Back to prototype homepage</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Panellist prototypes
+    </h1>
+
+    <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+
+    <h2 class="govuk-heading-m">Sprint 3</h2>
+    <p class="govuk-body-m">Initial ideas of how to meet panellist needs identified in a GOV.UK service.</p>
+
+    <h3 class="govuk-heading-s"><a href="v1/homepage">Panellist homepage (after signing in)</a></h3>
+    <h3 class="govuk-heading-s"><a href="v1/">View requests to attend hearings</a></h3>
+    <h3 class="govuk-heading-s"><a href="v1/">Log when unavailable - option 1</a></h3>
+
+    <hr class="govuk-section-break govuk-section-break-l">
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+  </div>
+</div>
+
+{% endblock %}
