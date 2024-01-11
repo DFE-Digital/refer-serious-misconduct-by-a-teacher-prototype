@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+{% set serviceName %}Manage your panel hearings and availability{% endset %}
+
+{% block pageTitle %}
+{{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:history.back();"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post">
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Can you attend the hearing for James Smith?
+          </h1>
+        </legend>
+        <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="response" name="response" type="radio" value="yes">
+            <label class="govuk-label govuk-radios__label" for="response">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="response-2" name="response" type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="response-2">
+              No
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <button class="govuk-button" href="confirmed">Continue</button>
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}
