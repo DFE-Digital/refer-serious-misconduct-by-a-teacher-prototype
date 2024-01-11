@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+{% set serviceName %}Manage your panel hearings and availability{% endset %}
+
+{% block pageTitle %}
+{{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Attendance confirmed
+          </h1>
+          <div class="govuk-panel__body">
+            Hearing for:<br><strong>James Smith</strong>
+          </div>
+        </div>
+        <p class="govuk-body">We have sent you a confirmation email.</p>
+        <h2 class="govuk-heading-m">What happens next</h2>
+        <p class="govuk-body">
+          You can view and download the hearing bundle when it has been uploaded.
+        </p>
+        <p class="govuk-body">
+          <a href="homepage" class="govuk-link">Back to home page</a>
+        </p>
+      </div>
+    </div>
+
+{% endblock %}
