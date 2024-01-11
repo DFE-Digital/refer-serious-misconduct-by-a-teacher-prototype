@@ -1,10 +1,15 @@
 {% extends "layouts/main.html" %}
+{% set serviceName %}Manage your panel hearings and availability{% endset %}
 
 {% block pageTitle %}
 Home – {{serviceName}} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:history.back();"
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -12,18 +17,21 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">
-      Pending hearing requests
+    <h1 class="govuk-heading-xl">
+      Respond to requests to attend hearings
     </h1>
+  </div>
 
+  <div class="govuk-grid-column-full">
     <table class="govuk-table">
-      <caption class="govuk-table__caption govuk-table__caption--m">Hearing request</caption>
+      <caption class="govuk-table__caption govuk-table__caption--m">Hearing requests</caption>
       <thead class="govuk-table__head">
       <tr class="govuk-table__row">
         <th scope="col" class="govuk-table__header app-custom-class">Name of teacher</th>
         <th scope="col" class="govuk-table__header app-custom-class">Date</th>
         <th scope="col" class="govuk-table__header app-custom-class">Attendance type</th>
-        <th scope="col" class="govuk-table__header app-custom-class govuk-visually-hidden">Respond to request</th>
+        <th scope="col" class="govuk-table__header app-custom-class">Role</th>
+        <th scope="col" class="govuk-table__header app-custom-class"><span class="govuk-visually-hidden">Respond to request</span></th>
       </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -31,12 +39,14 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
         <th scope="row" class="govuk-table__header">James Smith</th>
         <td class="govuk-table__cell">12th February to 15th February</td>
         <td class="govuk-table__cell">Online</td>
+        <td class="govuk-table__cell">Chair</td>
         <td class="govuk-table__cell"><a href="#">Respond</a></td>
       </tr>
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__header">Peter Jones</th>
         <td class="govuk-table__cell">22nd March to 23rd March</td>
         <td class="govuk-table__cell">In person</td>
+        <td class="govuk-table__cell">Panellist</td>
         <td class="govuk-table__cell"><a href="#">Respond</a></td>
       </tr>
       </tbody>
