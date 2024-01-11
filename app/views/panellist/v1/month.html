@@ -1,0 +1,1293 @@
+{% extends "layouts/main.html" %}
+{% set title = month.name + ' ' + year %}
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block pageNavigation %}
+{{ govukBreadcrumbs({
+items: [{
+text: "Your unavailability",
+href: "/calendar"
+}, {
+text: month.name
+}]
+}) }}
+{% endblock %}
+
+{% block content %}
+<h1 class="govuk-heading-xl">January 2024</h1>
+<h2 class="govuk-heading-m">Tell us which days you are unavailable</h2>
+
+<form action="/calendar" class="app-calendar-month" data-module="warn-on-unsaved-changes" method="post">
+    <table class="govuk-table">
+        <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th class="govuk-table__header">
+                <a class="js-calendar-link govuk-!-font-weight-regular" data-month="" href="#all">Every day</a>
+            </th>
+
+            <th class="govuk-table__header">
+                Mon<br>
+
+                <a class="js-calendar-link govuk-!-font-weight-regular" data-day="Mon" href="#day">Every Mon</a>
+
+            </th>
+
+            <th class="govuk-table__header">
+                Tue<br>
+
+                <a class="js-calendar-link govuk-!-font-weight-regular" data-day="Tue" href="#day">Every Tue</a>
+
+            </th>
+
+            <th class="govuk-table__header">
+                Wed<br>
+
+                <a class="js-calendar-link govuk-!-font-weight-regular" data-day="Wed" href="#day">Every Wed</a>
+
+            </th>
+
+            <th class="govuk-table__header">
+                Thu<br>
+
+                <a class="js-calendar-link govuk-!-font-weight-regular" data-day="Thu" href="#day">Every Thu</a>
+
+            </th>
+
+            <th class="govuk-table__header">
+                Fri<br>
+
+                <a class="js-calendar-link govuk-!-font-weight-regular" data-day="Fri" href="#day">Every Fri</a>
+
+            </th>
+
+            <th class="govuk-table__header">
+                Sat<br>
+
+            </th>
+
+            <th class="govuk-table__header">
+                Sun<br>
+
+            </th>
+
+        </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-1">
+                <a class="js-calendar-link govuk-!-font-weight-regular" data-week="" href="#week">All week</a>
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-01" data-day="Mon">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-01"
+                                   name="[unavailability][2024-01-01]" type="checkbox" value="2024-01-01">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-01">
+
+                                <span class="govuk-body-s app-calendar-label-text">1&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-02" data-day="Tue">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-02"
+                                   name="[unavailability][2024-01-02]" type="checkbox" value="2024-01-02">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-02">
+
+                                <span class="govuk-body-s app-calendar-label-text">2&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-03" data-day="Wed">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-03"
+                                   name="[unavailability][2024-01-03]" type="checkbox" value="2024-01-03">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-03">
+
+                                <span class="govuk-body-s app-calendar-label-text">3&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-04" data-day="Thu">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-04"
+                                   name="[unavailability][2024-01-04]" type="checkbox" value="2024-01-04">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-04">
+
+                                <span class="govuk-body-s app-calendar-label-text">4&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-05" data-day="Fri">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-05"
+                                   name="[unavailability][2024-01-05]" type="checkbox" value="2024-01-05">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-05">
+
+                                <span class="govuk-body-s app-calendar-label-text">5&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+
+            " data-date="2024-01-06" data-day="Sat">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-06"
+                                   name="[unavailability][2024-01-06]" type="checkbox" value="2024-01-06">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-06">
+
+                                <span class="govuk-body-s app-calendar-label-text">6&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+
+            " data-date="2024-01-07" data-day="Sun">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-07"
+                                   name="[unavailability][2024-01-07]" type="checkbox" value="2024-01-07">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-07">
+
+                                <span class="govuk-body-s app-calendar-label-text">7&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-2">
+                <a class="
+                      js-calendar-link
+                      govuk-!-font-weight-regular
+                    " data-week="" href="#week">All week</a>
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-08" data-day="Mon">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-08"
+                                   name="[unavailability][2024-01-08]" type="checkbox" value="2024-01-08">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-08">
+
+                                <span class="govuk-body-s app-calendar-label-text">8&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-09" data-day="Tue">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-09"
+                                   name="[unavailability][2024-01-09]" type="checkbox" value="2024-01-09">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-09">
+
+                                <span class="govuk-body-s app-calendar-label-text">9&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-10" data-day="Wed">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-10"
+                                   name="[unavailability][2024-01-10]" type="checkbox" value="2024-01-10">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-10">
+
+                                <span class="govuk-body-s app-calendar-label-text">10&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-11" data-day="Thu">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-11"
+                                   name="[unavailability][2024-01-11]" type="checkbox" value="2024-01-11">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-11">
+
+                                <span class="govuk-body-s app-calendar-label-text">11&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-12" data-day="Fri">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-12"
+                                   name="[unavailability][2024-01-12]" type="checkbox" value="2024-01-12">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-12">
+
+                                <span class="govuk-body-s app-calendar-label-text">12&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+
+            " data-date="2024-01-13" data-day="Sat">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-13"
+                                   name="[unavailability][2024-01-13]" type="checkbox" value="2024-01-13">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-13">
+
+                                <span class="govuk-body-s app-calendar-label-text">13&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+
+            " data-date="2024-01-14" data-day="Sun">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-14"
+                                   name="[unavailability][2024-01-14]" type="checkbox" value="2024-01-14">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-14">
+
+                                <span class="govuk-body-s app-calendar-label-text">14&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-2">
+                <a class="
+                      js-calendar-link
+                      govuk-!-font-weight-regular
+                    " data-week="" href="#week">All week</a>
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-15" data-day="Mon">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-15"
+                                   name="[unavailability][2024-01-15]" type="checkbox" value="2024-01-15">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-15">
+
+                                <span class="govuk-body-s app-calendar-label-text">15&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-16" data-day="Tue">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-16"
+                                   name="[unavailability][2024-01-16]" type="checkbox" value="2024-01-16">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-16">
+
+                                <span class="govuk-body-s app-calendar-label-text">16&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-17" data-day="Wed">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-17"
+                                   name="[unavailability][2024-01-17]" type="checkbox" value="2024-01-17">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-17">
+
+                                <span class="govuk-body-s app-calendar-label-text">17&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-18" data-day="Thu">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-18"
+                                   name="[unavailability][2024-01-18]" type="checkbox" value="2024-01-18">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-18">
+
+                                <span class="govuk-body-s app-calendar-label-text">18&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-19" data-day="Fri">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-19"
+                                   name="[unavailability][2024-01-19]" type="checkbox" value="2024-01-19">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-19">
+
+                                <span class="govuk-body-s app-calendar-label-text">19&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+
+            " data-date="2024-01-20" data-day="Sat">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-20"
+                                   name="[unavailability][2024-01-20]" type="checkbox" value="2024-01-20">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-20">
+
+                                <span class="govuk-body-s app-calendar-label-text">20&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+
+            " data-date="2024-01-21" data-day="Sun">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-21"
+                                   name="[unavailability][2024-01-21]" type="checkbox" value="2024-01-21">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-21">
+
+                                <span class="govuk-body-s app-calendar-label-text">21&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-2">
+                <a class="
+                      js-calendar-link
+                      govuk-!-font-weight-regular
+                    " data-week="" href="#week">All week</a>
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-22" data-day="Mon">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-22"
+                                   name="[unavailability][2024-01-22]" type="checkbox" value="2024-01-22">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-22">
+
+                                <span class="govuk-body-s app-calendar-label-text">22&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-23" data-day="Tue">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-23"
+                                   name="[unavailability][2024-01-23]" type="checkbox" value="2024-01-23">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-23">
+
+                                <span class="govuk-body-s app-calendar-label-text">23&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-24" data-day="Wed">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-24"
+                                   name="[unavailability][2024-01-24]" type="checkbox" value="2024-01-24">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-24">
+
+                                <span class="govuk-body-s app-calendar-label-text">24&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-25" data-day="Thu">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-25"
+                                   name="[unavailability][2024-01-25]" type="checkbox" value="2024-01-25">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-25">
+
+                                <span class="govuk-body-s app-calendar-label-text">25&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-26" data-day="Fri">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-26"
+                                   name="[unavailability][2024-01-26]" type="checkbox" value="2024-01-26">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-26">
+
+                                <span class="govuk-body-s app-calendar-label-text">26&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+
+            " data-date="2024-01-27" data-day="Sat">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-27"
+                                   name="[unavailability][2024-01-27]" type="checkbox" value="2024-01-27">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-27">
+
+                                <span class="govuk-body-s app-calendar-label-text">27&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+
+            " data-date="2024-01-28" data-day="Sun">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-28"
+                                   name="[unavailability][2024-01-28]" type="checkbox" value="2024-01-28">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-28">
+
+                                <span class="govuk-body-s app-calendar-label-text">28&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+        </tr>
+
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-2">
+                <a class="
+                      js-calendar-link
+                      govuk-!-font-weight-regular
+                    " data-week="" href="#week">All week</a>
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-29" data-day="Mon">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-29"
+                                   name="[unavailability][2024-01-29]" type="checkbox" value="2024-01-29">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-29">
+
+                                <span class="govuk-body-s app-calendar-label-text">29&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-30" data-day="Tue">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-30"
+                                   name="[unavailability][2024-01-30]" type="checkbox" value="2024-01-30">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-30">
+
+                                <span class="govuk-body-s app-calendar-label-text">30&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+
+            " data-date="2024-01-31" data-day="Wed">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-01-31"
+                                   name="[unavailability][2024-01-31]" type="checkbox" value="2024-01-31">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-01-31">
+
+                                <span class="govuk-body-s app-calendar-label-text">31&nbsp;Jan</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+              app-calendar-offset-cell
+            " data-date="2024-02-01" data-day="Thu">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-02-01"
+                                   name="[unavailability][2024-02-01]" type="checkbox" value="2024-02-01">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-02-01">
+
+                                <span class="govuk-body-s app-calendar-label-text">1&nbsp;Feb</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+
+              app-calendar-offset-cell
+            " data-date="2024-02-02" data-day="Fri">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-02-02"
+                                   name="[unavailability][2024-02-02]" type="checkbox" value="2024-02-02">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-02-02">
+
+                                <span class="govuk-body-s app-calendar-label-text">2&nbsp;Feb</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+              app-calendar-offset-cell
+            " data-date="2024-02-03" data-day="Sat">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-02-03"
+                                   name="[unavailability][2024-02-03]" type="checkbox" value="2024-02-03">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-02-03">
+
+                                <span class="govuk-body-s app-calendar-label-text">3&nbsp;Feb</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td class="
+              govuk-table__cell
+
+              app-calendar-weekend-cell
+              app-calendar-offset-cell
+            " data-date="2024-02-04" data-day="Sun">
+
+
+                <div class="govuk-form-group govuk-!-margin-bottom-0 govuk-!-margin-left-1">
+
+                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+
+
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="unavailability-2024-02-04"
+                                   name="[unavailability][2024-02-04]" type="checkbox" value="2024-02-04">
+                            <label class="govuk-label govuk-checkboxes__label" for="unavailability-2024-02-04">
+
+                                <span class="govuk-body-s app-calendar-label-text">4&nbsp;Feb</span>
+                                <div class="app-calendar-label-box"></div>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+        </tr>
+
+
+        </tbody>
+    </table>
+
+
+    <button class="govuk-button" data-module="govuk-button">
+        Save unavailability
+    </button>
+
+</form>
+{% endblock %}
