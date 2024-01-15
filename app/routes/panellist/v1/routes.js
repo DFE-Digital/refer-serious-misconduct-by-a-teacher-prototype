@@ -6,9 +6,11 @@ module.exports = router => {
 
     router.post(v + 'respond', (req, res) => {
         if (req.session.data.response === 'yes'){
-           res.redirect(v + 'attending-confirmed')
+            req.session.data.jamesSmithResponded = true
+            res.redirect(v + 'attending-confirmed')
         }
         if (req.session.data.response === 'no'){
+            req.session.data.jamesSmithResponded = true
             res.redirect(v + 'not-attending-confirmed')
         }
     })

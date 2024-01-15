@@ -23,7 +23,7 @@ href: "javascript:history.back();"
   </div>
 
   <div class="govuk-grid-column-full">
-
+    {% if data['jamesSmithResponded'] !== true %}
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">James Smith</h2>
@@ -61,6 +61,7 @@ href: "javascript:history.back();"
         </dl>
       </div>
     </div>
+    {% endif %}
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">Peter Jones</h2>
