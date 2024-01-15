@@ -21,7 +21,11 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       </div>
       <div class="govuk-notification-banner__content">
         <p class="govuk-notification-banner__heading">
+          {% if data['jamesSmithResponded'] === true %}
+          You have 1 pending hearing request.
+          {% else %}
           You have 2 pending hearing requests.
+          {% endif %}
           <a class="govuk-notification-banner__link" href="hearing-requests">View hearing requests</a>.
         </p>
       </div>
@@ -31,7 +35,7 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
       {{serviceName}}
     </h1>
-    <span class="govuk-caption-l"><a href="#">James Smith</a></span>
+    <span class="govuk-caption-l">Peter Crouch</span>
 
     <h2 class="govuk-heading-l govuk-!-margin-top-8">Hearings</h2>
     <div class="dfe-grid-container">
