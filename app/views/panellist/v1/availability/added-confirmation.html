@@ -1,0 +1,29 @@
+{% extends "layouts/main.html" %}
+{% set serviceName %}Manage your panel hearings and availability{% endset %}
+
+{% block pageTitle %}
+{{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">We've saved your unavailability request</h1>
+    <p>We have saved that you are unavailable to attend a hearing on {{ data['unavailable-date']| govukDate }}.</p>
+
+    {% if data['repeatingOccurrence'] === 'yes' %}
+    <p>We've repeated this unavailability occurrence on a {{data['howOften']}} basis, with {{data['repeatUnavailability']}} occurrences.</p>
+    {% endif %}
+
+    <p class="govuk-body">
+      <a href="../homepage" class="govuk-link">Back to home page</a>
+    </p>
+  </div>
+</div>
+
+{% endblock %}
