@@ -1,0 +1,75 @@
+{% extends "layouts/main.html" %}
+{% set serviceName %}Manage your panel hearings and availability{% endset %}
+
+{% block pageTitle %}
+{{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:history.back();"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l">Check your answers</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              When can you not attend a hearing?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['unavailable-date']| govukDate }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> when you can not attend a hearing</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Does this occurrence repeat?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['repeatingOccurrence'] | capitalize }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> does this occurrence repeat</span></a>
+            </dd>
+          </div>
+          {% if data['repeatingOccurrence'] === 'yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              How often will the unavailability repeat?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['howOften'] | capitalize }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> how often will the unavailability repeat</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              How many times will it repeat?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['repeatUnavailability'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> how many times will it repeat</span></a>
+            </dd>
+          </div>
+          {% endif %}
+        </dl>
+        <form method="post" novalidate>
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+{% endblock %}

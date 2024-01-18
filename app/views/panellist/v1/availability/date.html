@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+{% set serviceName %}Manage your panel hearings and availability{% endset %}
+
+{% block pageTitle %}
+{{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:history.back();"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-width-container">
+            <h1 class="govuk-heading-xl">
+              Submit dates you cannot attend hearings
+            </h1>
+            <p class="govuk-body">
+              You can provide details here about a date that you are not available to attend a hearing. You will not be requested to attend a hearing on this date.
+            </p>
+            <p class="govuk-body">
+              You can also tell us how to repeat this occurrence if it is a recurring occurrence.
+            </p>
+            <form method="post" novalidate>
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" role="group" aria-describedby="date-not-attending-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h1 class="govuk-fieldset__heading">
+                      When can you not attend a hearing?
+                    </h1>
+                  </legend>
+                  <div id="date-not-attending-hint" class="govuk-hint">
+                    For example, 27 3 2024
+                  </div>
+                  <div class="govuk-date-input" id="date-not-attending">
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-not-attending-day">
+                          Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-not-attending-day" name="date-not-attending-day" type="text" inputmode="numeric">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-not-attending-month">
+                          Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-not-attending-month" name="date-not-attending-month" type="text" inputmode="numeric">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="date-not-attending-year">
+                          Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-not-attending-year" name="date-not-attending-year" type="text" inputmode="numeric">
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    Does this occurrence repeat?
+                  </legend>
+                  <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="repeatingOccurrence" name="repeatingOccurrence" type="radio" value="yes">
+                      <label class="govuk-label govuk-radios__label" for="repeatingOccurrence">
+                        Yes
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="repeatingOccurrence-2" name="repeatingOccurrence" type="radio" value="no">
+                      <label class="govuk-label govuk-radios__label" for="repeatingOccurrence-2">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+              </button>
+            </form>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
