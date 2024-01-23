@@ -23,7 +23,7 @@ href: "javascript:history.back();"
               When can you not attend a hearing?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['unavailable-date']| govukDate }}
+              {{data['dayOfWeek']}} {{ data['unavailable-date']| govukDate }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> when you can not attend a hearing</span></a>
