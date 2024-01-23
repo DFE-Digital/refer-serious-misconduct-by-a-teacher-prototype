@@ -41,19 +41,19 @@ href: "javascript:history.back();"
                     <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="howOften-2" name="howOften" type="radio" value="weekly">
                       <label class="govuk-label govuk-radios__label" for="howOften-2">
-                        Weekly
+                        Weekly on {{data ['dayOfWeek']}}s
                       </label>
                     </div>
                     <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="howOften-3" name="howOften" type="radio" value="fortnightly">
                       <label class="govuk-label govuk-radios__label" for="howOften-3">
-                        Fortnightly
+                        Fortnightly on {{data ['dayOfWeek']}}s
                       </label>
                     </div>
                     <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="howOften-4" name="howOften" type="radio" value="monthly">
                       <label class="govuk-label govuk-radios__label" for="howOften-4">
-                        Monthly
+                        Monthly on the {{data['dateSuffix']}}
                       </label>
                     </div>
                   </div>

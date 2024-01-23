@@ -14,10 +14,22 @@ href: "javascript:history.back();"
 
 {% block content %}
 
+{% if data['error'] === 'date' %}
+{{ govukErrorSummary({
+titleText: "There is a problem",
+errorList: [
+{
+text: "The date entered must not be in the past",
+href: "#date-not-attending-day"
+}
+]
+}) }}
+{% endif %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
-            <h1 class="govuk-heading-xl">
+            <h1 class="govuk-heading-l">
               Submit dates you cannot attend hearings
             </h1>
             <p class="govuk-body">
@@ -27,7 +39,11 @@ href: "javascript:history.back();"
               You can also tell us how to repeat this occurrence if it is a recurring occurrence.
             </p>
             <form method="post" novalidate>
+              {% if data['error'] === 'date' %}
+              <div class="govuk-form-group govuk-form-group--error">
+                {% else %}
               <div class="govuk-form-group">
+                {% endif %}
                 <fieldset class="govuk-fieldset" role="group" aria-describedby="date-not-attending-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h1 class="govuk-fieldset__heading">
@@ -37,13 +53,22 @@ href: "javascript:history.back();"
                   <div id="date-not-attending-hint" class="govuk-hint">
                     For example, 27 3 2024
                   </div>
+                  {% if data['error'] === 'date' %}
+                  <p id="date-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> The date entered must not be in the past
+                  </p>
+                  {% endif %}
                   <div class="govuk-date-input" id="date-not-attending">
                     <div class="govuk-date-input__item">
                       <div class="govuk-form-group">
                         <label class="govuk-label govuk-date-input__label" for="date-not-attending-day">
                           Day
                         </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-not-attending-day" name="date-not-attending-day" type="text" inputmode="numeric">
+                        {% if data['error'] === 'date' %}
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="date-not-attending-day" name="date-not-attending-day" type="number" inputmode="numeric" required min="1" max="31">
+                        {% else %}
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-not-attending-day" name="date-not-attending-day" type="number" inputmode="numeric" required min="1" max="31">
+                        {% endif %}
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
@@ -51,7 +76,11 @@ href: "javascript:history.back();"
                         <label class="govuk-label govuk-date-input__label" for="date-not-attending-month">
                           Month
                         </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-not-attending-month" name="date-not-attending-month" type="text" inputmode="numeric">
+                        {% if data['error'] === 'date' %}
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="date-not-attending-month" name="date-not-attending-month" type="number" inputmode="numeric" required min="1" max="12">
+                        {% else %}
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-not-attending-month" name="date-not-attending-month" type="number" inputmode="numeric" required min="1" max="12">
+                        {% endif %}
                       </div>
                     </div>
                     <div class="govuk-date-input__item">
@@ -59,7 +88,11 @@ href: "javascript:history.back();"
                         <label class="govuk-label govuk-date-input__label" for="date-not-attending-year">
                           Year
                         </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-not-attending-year" name="date-not-attending-year" type="text" inputmode="numeric">
+                        {% if data['error'] === 'date' %}
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="date-not-attending-year" name="date-not-attending-year" type="number" inputmode="numeric">
+                        {% else %}
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-not-attending-year" name="date-not-attending-year" type="number" inputmode="numeric" required min="1900" max="2100">
+                        {% endif %}
                       </div>
                     </div>
                   </div>
