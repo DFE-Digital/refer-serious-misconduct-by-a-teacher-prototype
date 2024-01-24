@@ -31,7 +31,7 @@ href: "javascript:history.back();"
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Does this occurrence repeat?
+              Will this be a repeating occurrence?
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['repeatingOccurrence'] | capitalize }}
@@ -43,7 +43,7 @@ href: "javascript:history.back();"
           {% if data['repeatingOccurrence'] === 'yes' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              How often will the unavailability repeat?
+              How often do you want this to repeat?
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['howOften'] | capitalize }}
@@ -54,7 +54,7 @@ href: "javascript:history.back();"
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              How many times will it repeat?
+              How many times will this repeat?
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['repeatUnavailability'] }}

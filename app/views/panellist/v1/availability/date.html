@@ -30,13 +30,10 @@ href: "#date-not-attending-day"
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
             <h1 class="govuk-heading-l">
-              Submit dates you cannot attend hearings
+              Enter dates you cannot attend hearings
             </h1>
             <p class="govuk-body">
-              You can provide details here about a date that you are not available to attend a hearing. You will not be requested to attend a hearing on this date.
-            </p>
-            <p class="govuk-body">
-              You can also tell us how to repeat this occurrence if it is a recurring occurrence.
+              We will not ask you to attend hearings on any dates you enter.
             </p>
             <form method="post" novalidate>
               {% if data['error'] === 'date' %}
@@ -51,7 +48,7 @@ href: "#date-not-attending-day"
                     </h1>
                   </legend>
                   <div id="date-not-attending-hint" class="govuk-hint">
-                    For example, 27 3 2024
+                    For example, 27 3 2024.
                   </div>
                   {% if data['error'] === 'date' %}
                   <p id="date-error" class="govuk-error-message">
@@ -101,8 +98,11 @@ href: "#date-not-attending-day"
               <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    Does this occurrence repeat?
+                    Will this be a repeating occurrence?
                   </legend>
+                   <div id="event-name-hint" class="govuk-hint">
+                    For example, you cannot attend hearings on Mondays.
+                  </div>
                   <div class="govuk-radios" data-module="govuk-radios">
                     <div class="govuk-radios__item">
                       <input class="govuk-radios__input" id="repeatingOccurrence" name="repeatingOccurrence" type="radio" value="yes">

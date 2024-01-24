@@ -13,11 +13,11 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">We've saved your unavailability request</h1>
-    <p>We have saved that you are unavailable to attend a hearing on {{data['dayOfWeek']}} {{ data['unavailable-date']| govukDate }}.</p>
+    <h1 class="govuk-heading-l">We've saved your unavailability</h1>
+    <p>You told us that you cannot attend a hearing on {{data['dayOfWeek']}} {{ data['unavailable-date']| govukDate }}.</p>
 
     {% if data['repeatingOccurrence'] === 'yes' %}
-    <p>We've repeated this unavailability occurrence on a {{data['howOften']}} basis, with {{data['repeatUnavailability']}} occurrences.</p>
+    <p>Your unavailability repeats on a {{data['howOften']}} basis, with {{data['repeatUnavailability']}} occurrences.</p>
     {% endif %}
 
     <p class="govuk-body">
