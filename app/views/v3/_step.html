@@ -1,0 +1,19 @@
+<li class="app-step-nav__step js-step" id="step-{{ stepNumber }}">
+  <div class="app-step-nav__header js-toggle-panel">
+    <h2 class="app-step-nav__title">
+      <span class="app-step-nav__circle app-step-nav__circle--number">
+        <span class="app-step-nav__circle-inner">
+          <span class="app-step-nav__circle-background">
+            <span class="govuk-visually-hidden govuk-!-display-none-print">Step</span> {{ stepNumber }}<span class="govuk-visually-hidden govuk-!-display-none-print" aria-hidden="true">:</span>
+          </span>
+        </span>
+      </span>
+      <span class="js-step-title">
+        {{ stepTitle }}
+      </span>
+    </h2>
+  </div>
+  <div class="app-step-nav__panel js-panel" id="step-panel-step-{{ stepNumber }}">
+    {{ stepHtml | safe }}
+  </div>
+</li>

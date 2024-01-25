@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+{% set title = "Telling DBS about this case" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "allegation"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">The allegation</span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <p>DBS (Disclosure and Barring Service) need to know about any allegations that involve harm to a child, or the risk of harm to a child.</p>
+
+        <p>If you have not told DBS about your allegation, we’ll pass your report onto them if it meets all the legal requirements.</p>
+
+        {{ govukRadios({
+          id: "[report][allegation][dbs]",
+          name: "[report][allegation][dbs]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--m",
+              text: "Have you told DBS about this case?"
+            }
+          },
+          items: [
+            {
+              text: "Yes, I’ve told DBS",
+              value: "Yes"
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+          value: data.report.allegation.dbs
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

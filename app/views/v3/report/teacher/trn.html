@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+{% set title = "Do you know their teacher reference number (TRN)?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set trn %}
+          {{ govukInput({
+            id: "[report][teacherDetails][trn]",
+            name: "[report][teacherDetails][trn]",
+            label: {
+              text: "TRN",
+              classes: "govuk-label--s"
+            },
+            value: data.report.teacherDetails.trn
+          }) }}
+        {% endset %}
+
+        <span class="govuk-caption-l">Personal details</span>
+        {{ govukRadios({
+          idPrefix: "[report][teacherDetails][knowTrn]",
+          name: "[report][teacherDetails][knowTrn]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          hint: {
+            html: 'A TRN is 7 digits long, for example 4567814'
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes",
+              conditional: {
+                html: trn
+              }
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+          value: data.report.teacherDetails.knowTrn
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

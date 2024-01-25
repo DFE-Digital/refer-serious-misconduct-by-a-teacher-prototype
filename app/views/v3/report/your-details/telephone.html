@@ -1,0 +1,36 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your phone number" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">Your details</span>
+        {{ govukInput({
+          id: "[report][your-details][telephone]",
+          name: "[report][your-details][telephone]",
+          label: {
+            html: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: 'It’ll only be used to contact you about your referral'
+          },
+          classes: 'govuk-input--width-20',
+          value: data.report['your-details'].telephone
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

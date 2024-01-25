@@ -1,0 +1,113 @@
+{% extends "layouts/main.html" %}
+{% set title = "How do you want to give details about their main duties?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        {% set duties %}
+          {{ govukTextarea({
+            idPrefix: "[report][teacherRole][dutiesText]",
+            name: "[report][teacherRole][dutiesText]",
+            label: {
+              text: "Description of their main duties",
+              classes: "govuk-label--s"
+            },
+            rows: 15,
+            value: data.report.teacherRole.dutiesText
+          }) }}
+        {% endset %}
+
+        {% set input %}
+          {{ govukFileUpload({
+            idPrefix: "[report][teacherRole][dutiesFile]",
+            name: "[report][teacherRole][dutiesFile]",
+            label: {
+              text: "Upload new file",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "For example, a job description"
+            }
+          }) }}
+        {% endset %}
+
+        {% set jobDescription %}
+          {% if data.report.teacherRole.duties == "Upload file" %}
+            <div class="app-uploaded-file">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                Currently uploaded file
+              </h2>
+              <p><a href="#">job-description.pdf (2MB)</a></p>
+              {{ govukFileUpload({
+                idPrefix: "[report][teacherRole][dutiesFile]",
+                name: "[report][teacherRole][dutiesFile]",
+                label: {
+                  text: "Upload new file",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, a job description. Must be smaller than 50MB"
+                }
+              }) }}
+            </div>
+          {% else %}
+            {{ govukFileUpload({
+              idPrefix: "[report][teacherRole][dutiesFile]",
+              name: "[report][teacherRole][dutiesFile]",
+              label: {
+                text: "Upload file",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, a job description. Must be smaller than 50MB"
+              }
+            }) }}
+          {% endif %}
+        {% endset %}
+
+        <span class="govuk-caption-l">About their role</span>
+        {{ govukRadios({
+          idPrefix: "[report][teacherRole][duties]",
+          name: "[report][teacherRole][duties]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          items: [
+            {
+              text: "Upload file",
+              value: "Upload file",
+              conditional: {
+                html: jobDescription
+              }
+            },
+            {
+              text: "Describe their main duties",
+              value: "Describe their main duties",
+              conditional: {
+                html: duties
+              }
+            }
+          ],
+          value: data.report.teacherRole.duties
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

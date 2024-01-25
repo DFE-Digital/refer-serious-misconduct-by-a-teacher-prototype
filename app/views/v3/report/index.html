@@ -1,0 +1,212 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your referral" %}
+{% set buttonText = "Review and send" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      {% if yourDetailsIncompleteSection != 'name' %}
+        {% set yourDetailsHref = 'report/your-details/check-answers' %}
+      {% endif %}
+      {% if data.report['your-details']['section-completed'] == 'completed' %}
+        {% set yourDetailsTagColour = 'solid' %}
+      {% endif %}
+
+      {% if data.report.yourOrganisation['section-completed'] == 'completed' %}
+        {% set yourOrganisationHref = 'report/your-organisation/check-answers' %}
+        {% set yourOrganisationTagColour = 'solid' %}
+      {% endif %}
+
+      {% if teacherDetailsIncompleteSection != 'name' %}
+        {% set teacherHref = 'report/teacher/check-answers' %}
+      {% endif %}
+      {% if data.report.teacherDetails['section-completed'] == 'completed' %}
+        {% set teacherTagColour = 'solid' %}
+      {% endif %}
+
+      {% if teacherContactDetailsIncompleteSection != 'email' %}
+        {% set teacherContactDetailsHref = 'report/teacher-contact-details/check-answers' %}
+      {% endif %}
+      {% if data.report.teacherContactDetails['section-completed'] == 'completed' %}
+        {% set teacherContactDetailsTagColour = 'solid' %}
+      {% endif %}
+
+      {% if teacherRoleIncompleteSection != 'job-title' %}
+        {% set teacherRoleHref = 'report/teacher-role/check-answers' %}
+      {% endif %}
+      {% if data.report.teacherRole.sectionCompleted == 'completed' %}
+        {% set teacherRoleTagColour = 'solid' %}
+      {% endif %}
+
+      {% if allegationIncompleteSection != 'allegation' %}
+        {% set allegationHref = 'report/allegation/check-answers' %}
+      {% endif %}
+      {% if data.report.allegation['section-completed'] == 'completed' %}
+        {% set allegationTagColour = 'solid' %}
+      {% endif %}
+
+      {% if previousAllegationsIncompleteSection != 'any-previous' %}
+        {% set previousAllegationsHref = 'report/previous-misconduct/check-answers' %}
+      {% endif %}
+      {% if data.report.previousMisconduct['section-completed'] == 'completed' %}
+        {% set previousAllegationsTagColour = 'solid' %}
+      {% endif %}
+
+      {% if evidenceIncompleteSection != 'has-evidence' %}
+        {% set evidenceHref = 'report/evidence/check-answers' %}
+      {% endif %}
+      {% if data.report.evidence['section-completed'] == 'completed' %}
+        {% set evidenceTagColour = 'solid' %}
+      {% endif %}
+
+      {% if isEmployer %}
+        {{ appTaskList({
+          disableSectionNumbering: true,
+          sections: [{
+            titleText: "About you",
+            items: [{
+              text: "Your details",
+              href: yourDetailsHref or 'report/your-details/name',
+              tag: {
+                colour: yourDetailsTagColour or 'grey',
+                text: data.report['your-details']['section-completed'] or 'Incomplete'
+              }
+            }, {
+              text: "Your organisation",
+              href: yourOrganisationHref or 'report/your-organisation/organisation',
+              tag: {
+                colour: yourOrganisationTagColour or 'grey',
+                text: data.report.yourOrganisation['section-completed'] or 'Incomplete'
+              }
+            }]
+          }, {
+            titleText: "About the teacher",
+            items: [{
+              text: "Personal details",
+              href: teacherHref or 'report/teacher/name',
+              tag: {
+                colour: teacherTagColour or 'grey',
+                text: data.report.teacherDetails['section-completed'] or 'Incomplete'
+              }
+            }, {
+              text: "Contact details",
+              href: teacherContactDetailsHref or 'report/teacher-contact-details/email',
+              tag: {
+                colour: teacherContactDetailsTagColour or 'grey',
+                text: data.report.teacherContactDetails['section-completed'] or 'Incomplete'
+              }
+            }, {
+              text: "About their role",
+              href: teacherRoleHref or 'report/teacher-role/job-title',
+              tag: {
+                colour: teacherRoleTagColour or 'grey',
+                text: data.report.teacherRole.sectionCompleted or 'Incomplete'
+              }
+            }]
+          }, {
+            titleText: "The allegation",
+            items: [{
+              text: "Details of the allegation",
+              href: allegationHref or 'report/allegation/allegation',
+              tag: {
+                colour: allegationTagColour or 'grey',
+                text: data.report.allegation['section-completed'] or 'Incomplete'
+              }
+            }, {
+              text: "Previous allegations",
+              href: previousAllegationsHref or 'report/previous-misconduct/any-previous',
+              tag: {
+                colour: previousAllegationsTagColour or 'grey',
+                text: data.report.previousMisconduct['section-completed'] or 'Incomplete'
+              }
+            }, {
+              text: "Evidence and supporting information",
+              href: evidenceHref or 'report/evidence/has-evidence',
+              tag: {
+                colour: evidenceTagColour or 'grey',
+                text: data.report.evidence['section-completed'] or 'Incomplete'
+              }
+            }]
+          }]
+        }) }}
+      {% else %}
+        {{ appTaskList({
+          disableSectionNumbering: true,
+          sections: [{
+            titleText: "About you",
+            items: [{
+              text: "Your details",
+              href: yourDetailsHref or 'report/your-details/name',
+              tag: {
+                colour: yourDetailsTagColour or 'grey',
+                text: data.report['your-details']['section-completed'] or 'Incomplete'
+              }
+            }]
+          }, {
+            titleText: "About the teacher",
+            items: [{
+              text: "Personal details",
+              href: teacherHref or 'report/teacher/name',
+              tag: {
+                colour: teacherTagColour or 'grey',
+                text: data.report.teacherDetails['section-completed'] or 'Incomplete'
+              }
+            }, {
+              text: "About their role",
+              href: teacherRoleHref or 'report/teacher-role/job-title',
+              tag: {
+                colour: teacherRoleTagColour or 'grey',
+                text: data.report.teacherRole.sectionCompleted or 'Incomplete'
+              }
+            }]
+          }, {
+            titleText: "The allegation",
+            items: [{
+              text: "Details of the allegation",
+              href: allegationHref or 'report/allegation/allegation',
+              tag: {
+                colour: allegationTagColour or 'grey',
+                text: data.report.allegation['section-completed'] or 'Incomplete'
+              }
+            }, {
+              text: "Evidence and supporting information",
+              href: evidenceHref or 'report/evidence/has-evidence',
+              tag: {
+                colour: evidenceTagColour or 'grey',
+                text: data.report.evidence['section-completed'] or 'Incomplete'
+              }
+            }]
+          }]
+        }) }}
+      {% endif %}
+
+
+
+
+
+      {% set html %}
+        <p>
+          You can delete your draft:<br />
+          <a href="delete">Delete your draft referral</a>
+        </p>
+        <p>
+          Drafts are automatically deleted after 6 months of no activity. You’ll be sent an email before it’s deleted.
+        </p>
+      {% endset %}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Review and send"
+        }) }}
+      </form>
+
+      {# {{ govukDetails({
+        summaryText: "I do not want to continue",
+        html: html
+      }) }} #}
+    </div>
+  </div>
+{% endblock %}
+
