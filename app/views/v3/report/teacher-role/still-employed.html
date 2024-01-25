@@ -1,0 +1,48 @@
+{% extends "layouts/main.html" %}
+{% set title = 'Are they still employed at the organisation where the alleged misconduct took place?' %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">About their role</span>
+        {{ govukRadios({
+          id: "[report][teacherRole][stillEmployed]",
+          name: "[report][teacherRole][stillEmployed]",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              html: title
+            }
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes"
+            },
+            {
+              text: "They’re still employed but they’ve been suspended",
+              value: "They’re still employed but they’ve been suspended"
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+          value: data.report.teacherRole.stillEmployed
+        }) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

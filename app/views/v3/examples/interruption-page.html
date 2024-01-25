@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="govuk-panel govuk-panel--interruption">
+      <form method="post">
+        <fieldset class="govuk-fieldset">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+            <h1 class="govuk-heading-xl">
+              Interruption page
+            </h1>
+          </legend>
+
+          <h2 class="govuk-heading-m">
+            Are you sure?
+          </h2>
+
+          <div class="govuk-radios govuk-!-margin-bottom-9">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" type="radio" value="yes" name="interruption" id="interruption-yes">
+              <label class="govuk-label govuk-radios__label" for="interruption-yes">Yes</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" type="radio" value="no" name=interruption id="interruption-no">
+              <label class="govuk-label govuk-radios__label" for="interruption-no">No</label>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <button class="govuk-button govuk-button--secondary" name="continue" id="continue">Continue</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

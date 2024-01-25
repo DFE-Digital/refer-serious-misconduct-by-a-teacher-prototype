@@ -15,16 +15,34 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
 
     <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
 
-    <h2 class="govuk-heading-m">Sprint 2</h2>
-    <p class="govuk-body-m">We've updated some of the content based on feedback received from business stakeholders. No additional pages or changes to the flow of the journey. Ready to move to research.</p>
+    <h2 class="govuk-heading-m">Sprint 3</h2>
+    <p class="govuk-body-m">Work in progress - changes from user research</p>
 
     {{ govukButton({
     text: "Start prototype journey",
-    href: "v2/index",
+    href: "v3/index",
     isStartButton: true
     }) }}
 
     <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+          Sprint 2
+        </span>
+          </h2>
+        </div>
+        <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+          <p class="govuk-body-m">We've updated some of the content based on feedback received from business stakeholders. No additional pages or changes to the flow of the journey. Ready to move to research.</p>
+
+          {{ govukButton({
+          text: "Start prototype journey",
+          href: "v2/index",
+          isStartButton: true
+          }) }}
+        </div>
+      </div>
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
