@@ -23,8 +23,8 @@
         }) }} #}
 
         {{ govukRadios({
-          idPrefix: "[report][eligibility][are-they-teacher]",
-          name: "[report][eligibility][are-they-teacher]",
+          idPrefix: "are-they-teacher",
+          name: "are-they-teacher",
           fieldset: {
           legend: {
             html: title,
@@ -47,7 +47,8 @@
               text: "I’m not sure",
               value: "I’m not sure"
             }
-          ]
+          ],
+        value: data['are-they-teacher']
         }) }}
 
         {{ govukButton({

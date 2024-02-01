@@ -13,8 +13,8 @@
     <div class="govuk-grid-column-two-thirds">
       <form method="post">
         {{ govukRadios({
-          idPrefix: "[report][type-of-report]",
-          name: "[report][type-of-report]",
+          idPrefix: "type-of-report",
+          name: "type-of-report",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--l",
@@ -31,7 +31,8 @@
               text: "I’m referring as a member of the public",
               value: "public"
             }
-          ]
+          ],
+        value: data['type-of-report']
         }) }}
 
         {{ govukButton({

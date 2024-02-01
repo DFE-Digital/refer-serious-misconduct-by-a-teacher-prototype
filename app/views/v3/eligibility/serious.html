@@ -28,8 +28,8 @@
         <p>If your allegation is not serious misconduct, it will not be investigated. For example, cases of incompetence.</p>
 
         {{ govukRadios({
-          idPrefix: "[report][eligibility][serious]",
-          name: "[report][eligibility][serious]",
+          idPrefix: "serious",
+          name: "serious",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--m",
@@ -49,7 +49,8 @@
               text: "I’m not sure",
               value: "I’m not sure"
             }
-          ]
+          ],
+        value: data['serious']
         }) }}
         {{ govukButton({
           text: "Continue"

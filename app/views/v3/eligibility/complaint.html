@@ -14,8 +14,8 @@ href: "../who"
     <form method="post">
 
       {{ govukRadios({
-      idPrefix: "[report][eligibility][have-you-complained]",
-      name: "[report][eligibility][have-you-complained]",
+      idPrefix: "have-you-complained",
+      name: "have-you-complained",
       fieldset: {
       legend: {
       html: title,
@@ -35,7 +35,8 @@ href: "../who"
       text: "No",
       value: "No"
       }
-      ]
+      ],
+      value: data['have-you-complained']
       }) }}
 
       {{ govukButton({

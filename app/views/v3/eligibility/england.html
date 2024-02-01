@@ -1,5 +1,4 @@
 {% extends "layouts/main.html" %}
-{% set areTheyTeacher = data.report.eligibility['are-they-teacher'] == 'Yes' %}
 {% set title = "Were they employed in England at the time the alleged misconduct took place?" if areTheyTeacher else "Were they employed in England at the time the alleged misconduct took place?" %}
 
 {% block beforeContent %}
@@ -14,8 +13,8 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
         {{ govukRadios({
-          idPrefix: "[report][eligibility][teacher-in-england]",
-          name: "[report][eligibility][teacher-in-england]",
+          idPrefix: "teacher-in-england",
+          name: "teacher-in-england",
           fieldset: {
             legend: {
               classes: "govuk-fieldset__legend--l",
@@ -35,7 +34,8 @@
               text: "I’m not sure",
               value: "I’m not sure"
             }
-          ]
+          ],
+        value: data['teacher-in-england']
         }) }}
         {{ govukButton({
           text: "Continue"

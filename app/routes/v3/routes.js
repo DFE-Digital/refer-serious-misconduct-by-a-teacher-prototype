@@ -28,7 +28,7 @@ module.exports = router => {
     // Eligibility
 
     router.post(v + 'has-account', (req, res) => {
-        let hasAccount = req.session.data.report.hasAccount
+        let hasAccount = req.session.data['hasAccount']
 
         if(hasAccount == 'Yes, sign in and continue making a referral') {
             res.redirect(v + 'email')
@@ -37,14 +37,6 @@ module.exports = router => {
         } else {
             res.redirect(v + 'not-sure')
         }
-    })
-
-    router.post(v + 'not-sure', (req, res) => {
-        res.redirect(v + 'not-sure-email-code')
-    })
-
-    router.post(v + 'not-sure-email-code', (req, res) => {
-        res.redirect(v + 'status')
     })
 
     router.post(v + 'email', (req, res) => {
@@ -56,7 +48,7 @@ module.exports = router => {
     })
 
     router.post(v + 'who', (req, res) => {
-        if(req.session.data.report['type-of-report'] == 'public') {
+        if(req.session.data['type-of-report'] === 'public') {
             res.redirect(v + 'eligibility/complaint')
         } else {
             res.redirect(v + 'eligibility/jurisdiction')
@@ -64,10 +56,10 @@ module.exports = router => {
     })
 
     router.post(v + 'eligibility/complaint', (req, res) => {
-        if (req.session.data.report.eligibility['have-you-complained'] == "Yes, and I received an outcome") {
-            res.redirect(v + 'eligibility/you-should-know')
+        if (req.session.data['have-you-complained'] === "Yes, and I received an outcome") {
+            res.redirect(v + 'eligibility/you-should-know-public')
         }
-        else if (req.session.data.report.eligibility['have-you-complained'] == "Yes, and I'm waiting for an outcome") {
+        else if (req.session.data['have-you-complained'] === "Yes, and I'm waiting for an outcome") {
             res.redirect(v + 'eligibility/awaiting-outcome')
         }
         else {
@@ -75,27 +67,11 @@ module.exports = router => {
         }
     })
 
-    router.post(v + 'eligibility/you-should-know', (req, res) => {
-        if (req.session.data.report['type-of-report'] == 'public'){
-            res.redirect(v + 'eligibility/allegation')
-        }
-        res.redirect(v + 'eligibility/save-as-you-go')
-    })
-
-    router.post(v + 'eligibility/allegation', (req, res) => {
-        if (req.session.data.allegation == "none") {
-            res.redirect(v + 'eligibility/pause')
-        }
-        else {
-            res.redirect(v + 'eligibility/jurisdiction')
-        }
-    })
-
     router.post(v + 'eligibility/jurisdiction', (req, res) => {
-        if(req.session.data.report.eligibility['are-they-teacher'] == 'Yes') {
+        if(req.session.data['are-they-teacher'] === 'Yes') {
             res.redirect(v + 'eligibility/england')
         }
-        if(req.session.data.report.eligibility['are-they-teacher'] == 'No') {
+        else if(req.session.data['are-they-teacher'] === 'No') {
             res.redirect(v + 'eligibility/no-jurisdiction-unsupervised')
         }
         else {
@@ -103,11 +79,25 @@ module.exports = router => {
         }
     })
 
+
+    router.post(v + 'eligibility/you-should-know-public', (req, res) => {
+        res.redirect(v + 'eligibility/allegation')
+    })
+
+    router.post(v + 'eligibility/allegation', (req, res) => {
+        if (req.session.data.allegation === "none") {
+            res.redirect(v + 'eligibility/pause')
+        }
+        else {
+            res.redirect(v + 'eligibility/jurisdiction')
+        }
+    })
+
     router.post(v + 'eligibility/england', (req, res) => {
-        if(req.session.data.report.eligibility['teacher-in-england'] == 'No') {
+        if(req.session.data['teacher-in-england'] === 'No') {
             res.redirect(v + 'eligibility/no-jurisdiction-england')
         } else {
-            if(req.session.data.report['type-of-report'] == 'employer') {
+            if(req.session.data['type-of-report'] === 'employer') {
                 res.redirect(v + 'eligibility/serious')
             } else {
                 res.redirect(v + 'eligibility/save-as-you-go')
@@ -117,7 +107,7 @@ module.exports = router => {
     })
 
     router.post(v + 'eligibility/possible-jurisdiction', (req, res) => {
-        if(req.session.data.report.eligibility['teacher-unsupervised'] == 'No') {
+        if(req.session.data['teacher-unsupervised'] === 'No') {
             res.redirect(v + 'eligibility/no-jurisdiction-unsupervised')
         } else {
             res.redirect(v + 'eligibility/england')
@@ -125,27 +115,15 @@ module.exports = router => {
     })
 
     router.post(v + 'eligibility/serious', (req, res) => {
-        if(req.session.data.report.eligibility.serious == 'No') {
+        if(req.session.data['serious'] === 'No') {
             res.redirect(v + 'eligibility/not-serious-misconduct')
         } else {
             res.redirect(v + 'eligibility/you-should-know')
         }
     })
 
-    router.post(v + 'eligibility/complain-or-refer', (req, res) => {
-        if(req.session.data.report.eligibility.proceed == 'Make a complaint') {
-            res.redirect(v + 'eligibility/implications-no')
-        } else {
-            res.redirect(v + 'eligibility/you-should-know')
-        }
-    })
-
-    router.post(v + 'eligibility/implications', (req, res) => {
-        if(req.session.data.report.eligibility.implications == 'No') {
-            res.redirect(v + 'eligibility/implications-no')
-        } else {
-            res.redirect(v + 'eligibility/you-should-know')
-        }
+    router.post(v + 'eligibility/you-should-know', (req, res) => {
+        res.redirect(v + 'eligibility/save-as-you-go')
     })
 
     router.post(v + 'eligibility/save-as-you-go', (req, res) => {

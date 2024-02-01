@@ -24,8 +24,8 @@
   <p>This does not include teaching assistants or other support staff who work under the supervision of teachers.</p>
 
   {{ govukRadios({
-    idPrefix: "[report][eligibility][teacher-unsupervised]",
-    name: "[report][eligibility][teacher-unsupervised]",
+    idPrefix: "teacher-unsupervised",
+    name: "teacher-unsupervised",
     fieldset: {
       legend: {
         classes: "govuk-fieldset__legend--m",
@@ -41,8 +41,9 @@
         text: "No",
         value: "No"
       }
-    ]
-  }) }}
+    ],
+        value: data['teacher-unsupervised']
+        }) }}
         {{ govukButton({
           text: "Continue"
         }) }}

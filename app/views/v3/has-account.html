@@ -13,18 +13,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form method="post">
-        {# {{ govukInput({
-          id: "[report][email]",
-          name: "[report][email]",
-          label: {
-            text: 'Your email address',
-            classes: "govuk-label--m"
-          }
-        }) }} #}
 
         {{ govukRadios({
-          idPrefix: "[report][hasAccount]",
-          name: "[report][hasAccount]",
+          idPrefix: "hasAccount",
+          name: "hasAccount",
           fieldset: {
             legend: {
               html: title,
@@ -40,13 +32,9 @@
             {
               value: "No",
               text: "No"
-            },
-            {
-              value: "I’m not sure",
-              text: "I’m not sure"
-            } if 1 == 2
+            }
           ],
-          value: data.report.hasAccount
+          value: data.hasAccount
         }) }}
 
         {{ govukButton({
