@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Make a complaint" %}
+{% set title = "You should complain to the school, school governors or your local council first" %}
 {# {% set title = "Complain to the school or the Department for Education" %} #}
 
 {% block beforeContent %}
@@ -14,43 +14,13 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-     <p>Every school in England must have a complaints policy. It’s usually available on the school’s website or from the school office.</p>
+     <p>See <a href="https://www.gov.uk/complain-about-school">guidance on how to make a complaint</a>.</p>
 
+     <h2 class="govuk-heading-m">Refer a teacher without complaining to the school</h1>
+    
+      <p>You can still report serious misconduct without complaining to the school first. Depending on the case, the TRA might not investigate unless you've made a complaint first.</p>
 
-     <p>You may also be able to complain to your local council or organisations such as the school inspectors Ofsted. This depends on the type of school and what you’re complaining about.</p>
-
-
-     <p><a href="https://www.gov.uk/complain-about-school">Find out how to complain to the school or another organisation</a>.</p>
-
-
-     <h2 class="govuk-heading-m">Complain to the Department for Education (DfE)</h2>
-
-
-     <p>You can make a complaint to the DfE about a school if any of the following apply:</p>
-
-
-     <ul class="govuk-list govuk-list--bullet">
-       <li>
-         you’ve completed the school’s complaints process
-       </li>
-       <li>
-         you’ve been stopped from completing the school’s complaints process
-       </li>
-       <li>
-         a child is not getting an education
-       </li>
-       <li>
-         a child has been exposed to harm
-       </li>
-     </ul>
-
-
-     {{ govukButton({
-       text: "Complain to the DfE",
-       href: "https://www.gov.uk/complain-to-dfe"
-     }) }}
-
-     <p><a href="allegation">I still want to refer serious misconduct by a teacher</a></p>
+      <p><a href="/v3/eligibility/allegation">Continue making a referral</a></p> 
 
     </div>
   </div>

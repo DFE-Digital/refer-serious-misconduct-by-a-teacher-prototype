@@ -14,16 +14,12 @@
       <form method="post">
         <h1 class="govuk-heading-l">{{title}}</h1>
        
-        <p>If you refer the teacher for something which is not serious misconduct, it will not be investigated.</p>
+        <p>If you refer the teacher for something which is not serious misconduct, it will not be investigated. You should <a href="https://www.gov.uk/complain-about-school">complain to the school</a> instead.</p>
 
-        <p>You should <a href="https://www.gov.uk/complain-about-school">complain to the school</a> instead.</p>
+       <!-- <p>If you complained to your school and believe your complaint was not dealt with correctly, you can <a href="https://www.gov.uk/complain-to-dfe">complain to the DfE</a>.</p> -->
 
-        <p>If you complained to your school and believe your complaint was not dealt with correctly, you can <a href="https://www.gov.uk/complain-to-dfe">complain to the DfE</a>.</p>
+       <p><a href="/v3/eligibility/allegation">Continue making a referral</a></p>
 
-        {{ govukButton({
-          text: "I want to make a referral",
-          href: "jurisdiction"
-        }) }}
       </form>
     </div>
   </div>

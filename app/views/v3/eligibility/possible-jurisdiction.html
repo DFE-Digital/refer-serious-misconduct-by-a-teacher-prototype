@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "You can refer someone who does unsupervised teaching work" %}
+{% set title = "What we mean by 'teacher'" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -14,14 +14,14 @@
       <form method="post">
   <h1 class="govuk-heading-l">{{ title }}</h1>
 
-  <p>Unsupervised teaching work is:</p>
+  <p>The TRA defines a teacher as someone who carries out teaching work in a classroom or online such as:</p>
 
   <ul class="govuk-list govuk-list--bullet">
-    <li>planning and preparing lessons and courses for pupils</li>
-    <li>delivering lessons to pupils</li>
-    <li>assessing the development, progress and attainment of pupils</li>
-    <li>reporting on the development, progress and attainment of pupils</li>
+    <li>planning and preparing lessons for pupils</li>
+    <li>giving lessons to pupils</li>
+    <li>assessing and reporting on the development and progress of pupils</li>
   </ul>
+  <p>This does not include teaching assistants or other support staff who work under the supervision of teachers.</p>
 
   {{ govukRadios({
     idPrefix: "[report][eligibility][teacher-unsupervised]",
@@ -29,12 +29,12 @@
     fieldset: {
       legend: {
         classes: "govuk-fieldset__legend--m",
-        text: "Do they carry out unsupervised teaching work?"
+        text: "Are you referring a teacher?"
       }
     },
     items: [
       {
-        text: "Yes, they do unsupervised teaching work",
+        text: "Yes",
         value: "Yes, they do unsupervised teaching work"
       },
       {
