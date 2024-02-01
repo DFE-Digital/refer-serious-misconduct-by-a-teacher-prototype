@@ -65,7 +65,7 @@ module.exports = router => {
 
     router.post(v + 'eligibility/complaint', (req, res) => {
         if (req.session.data.report.eligibility['have-you-complained'] == "Yes, and I received an outcome") {
-            res.redirect(v + 'eligibility/allegation')
+            res.redirect(v + 'eligibility/you-should-know')
         }
         else if (req.session.data.report.eligibility['have-you-complained'] == "Yes, and I'm waiting for an outcome") {
             res.redirect(v + 'eligibility/awaiting-outcome')
@@ -73,6 +73,13 @@ module.exports = router => {
         else {
             res.redirect(v + 'eligibility/not-complained')
         }
+    })
+
+    router.post(v + 'eligibility/you-should-know', (req, res) => {
+        if (req.session.data.report['type-of-report'] == 'public'){
+            res.redirect(v + 'eligibility/allegation')
+        }
+        res.redirect(v + 'eligibility/save-as-you-go')
     })
 
     router.post(v + 'eligibility/allegation', (req, res) => {
@@ -87,7 +94,11 @@ module.exports = router => {
     router.post(v + 'eligibility/jurisdiction', (req, res) => {
         if(req.session.data.report.eligibility['are-they-teacher'] == 'Yes') {
             res.redirect(v + 'eligibility/england')
-        } else {
+        }
+        if(req.session.data.report.eligibility['are-they-teacher'] == 'No') {
+            res.redirect(v + 'eligibility/no-jurisdiction-unsupervised')
+        }
+        else {
             res.redirect(v + 'eligibility/possible-jurisdiction')
         }
     })
@@ -99,7 +110,7 @@ module.exports = router => {
             if(req.session.data.report['type-of-report'] == 'employer') {
                 res.redirect(v + 'eligibility/serious')
             } else {
-                res.redirect(v + 'eligibility/you-should-know')
+                res.redirect(v + 'eligibility/save-as-you-go')
             }
 
         }
@@ -135,10 +146,6 @@ module.exports = router => {
         } else {
             res.redirect(v + 'eligibility/you-should-know')
         }
-    })
-
-    router.post(v + 'eligibility/you-should-know', (req, res) => {
-        res.redirect(v + 'eligibility/save-as-you-go')
     })
 
     router.post(v + 'eligibility/save-as-you-go', (req, res) => {
