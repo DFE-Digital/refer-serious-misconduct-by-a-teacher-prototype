@@ -85,7 +85,7 @@ module.exports = router => {
     })
 
     router.post(v + 'eligibility/allegation', (req, res) => {
-        if (req.session.data.allegation === "none") {
+        if (req.session.data['allegation'] == "none") {
             res.redirect(v + 'eligibility/pause')
         }
         else {
