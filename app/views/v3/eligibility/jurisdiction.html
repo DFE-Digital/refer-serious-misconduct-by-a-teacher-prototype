@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Is the allegation about a teacher?" %}
+{% set title = "Who the allegation is about" %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,23 +12,31 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
 
-        {% set examples %}
+        <p>You can only refer a teacher for serious misconduct if their day-to-day responsibilities include:</p>
 
-        {% endset %}
-
-        {# {{ govukDetails({
-          summaryText: "Who is considered to be a teacher?",
-          html: examples
-        }) }} #}
-
+  <ul class="govuk-list govuk-list--bullet">
+    <li>planning and preparing lessons for pupils</li>
+    <li>giving lessons to pupils</li>
+    <li>assessing and reporting on the development and progress of pupils</li>
+  </ul>
+  <p>You can refer a teacher who has resigned or been dismissed.</p>
+  <h2 class="govuk-heading-s">Who you cannot refer</h2>
+  <p>The TRA will not usually consider cases relating to:</p>
+  <ul class="govuk-list govuk-list--bullet">
+  <li>teaching assistants</li>
+  <li>head teachers</li>
+  <li>school support staff</li>
+  </ul>
+<p>You should <a href="https://www.gov.uk/complain-about-school">complain to the school</a> instead.</p>
         {{ govukRadios({
           idPrefix: "are-they-teacher",
           name: "are-they-teacher",
           fieldset: {
           legend: {
-            html: title,
-            classes: "govuk-fieldset__legend--l"
+            classes: "govuk-fieldset__legend--m",
+        text: "Is the allegation about a teacher?"
           }
         },
           hint: {
@@ -42,10 +50,6 @@
             {
               text: "No",
               value: "No"
-            },
-            {
-              text: "I’m not sure",
-              value: "I’m not sure"
             }
           ],
         value: data['are-they-teacher']

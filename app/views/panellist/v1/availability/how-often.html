@@ -21,10 +21,11 @@ href: "javascript:history.back();"
               Repeat unavailability</h1>
             <form method="post" novalidate>
               <div class="govuk-form-group">
+                <p>You told us you cannot attend a hearing on {{data['dayOfWeek']}} {{data['dateSuffix']}} {{ data['unavailable-date']| govukDate }}.
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h1 class="govuk-fieldset__heading">
-                      How often do you want this to repeat?
+                      Select how often you're unavailable
                     </h1>
                   </legend>
                   <div class="govuk-radios" data-module="govuk-radios">
