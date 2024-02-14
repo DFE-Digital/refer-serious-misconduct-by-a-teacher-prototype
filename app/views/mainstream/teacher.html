@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set serviceUrl = '/' %}
+{% set serviceName = '' %}
+{% set title = 'Report serious teacher misconduct in England - GOV.UK' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Report serious teacher misconduct in England
+      </h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body-s">Contents</p>
+      <p class="govuk-body-s">— <a href="index">Overview</a><br>
+        — <a href="misconduct">What counts as serious misconduct</a><br>
+        — Who you can report<br>
+        — <a href="complain">Complain to the school, college or council</a><br>
+        — <a href="report">Report serious teacher misconduct online</a><br>
+        — <a href="other-ways">Other ways to report misconduct</a></p>
+        <hr><br>
+
+      <h2 class="govuk-heading-l">Who you can report</h2>
+
+      <p>You can only report a teacher for serious misconduct if their day-to-day responsibilities include:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>planning and preparing lessons for pupils</li>
+        <li>giving lessons to pupils</li>
+        <li>assessing and reporting on the development and progress of pupils</li>
+      </ul>
+      <p>You can report a teacher who has resigned or been dismissed.</p>
+      <h2 class="govuk-heading-m">Who you cannot report</h2>
+      <p>The TRA will not usually consider cases relating to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+      <li>teaching assistants</li>
+      <li>head teachers</li>
+      <li>school support staff</li>
+      </ul>
+
+      <nav class="govuk-pagination govuk-pagination--block" role="navigation" aria-label="Pagination">
+        <div class="govuk-pagination__prev">
+          <a class="govuk-link govuk-pagination__link" href="misconduct" rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Previous<span class="govuk-visually-hidden"> page</span></span><span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label"> What counts as serious misconduct</span></a>
+        </div>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="complain" rel="next"> <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg> <span class="govuk-pagination__link-title">Next<span class="govuk-visually-hidden"> page</span></span><span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Complain to the school, college or council</span></a>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {{ appRelatedNavigation({
+        sections: [{
+          items: [
+          {
+            text: "Teacher misconduct: regulating the teaching profession",
+            href: "https://www.gov.uk/guidance/teacher-misconduct-regulating-the-teaching-profession"
+          }],
+          subsections: [{
+            title: "Collection",
+            items: [{
+              text: "Teacher misconduct",
+              href: "https://www.gov.uk/government/collections/teacher-misconduct"
+            }]
+          }]
+        }]
+      }) }}
+    </div>
+  </div>
+{% endblock %}

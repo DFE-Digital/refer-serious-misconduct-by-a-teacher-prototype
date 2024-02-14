@@ -1,0 +1,96 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set serviceUrl = '/' %}
+{% set serviceName = '' %}
+{% set title = 'Report serious teacher misconduct in England - GOV.UK' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Report serious teacher misconduct in England
+      </h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body-s">Contents</p>
+      <p class="govuk-body-s">— <a href="index">Overview</a><br>
+        — <a href="misconduct">What counts as serious misconduct</a><br>
+        — <a href="teacher">Who you can report</a><br>
+        — <a href="complain">Complain to the school, college or council</a><br>
+        — Report serious teacher misconduct online<br>
+        — <a href="other-ways">Other ways to report misconduct</a></p>
+        <hr><br>
+
+      <h2 class="govuk-heading-l">Report serious teacher misconduct online</h2>
+
+      {{ govukWarningText({
+        html: '<a href="https://www.gov.uk/contact-police">Contact the police</a> if you think a child is in immediate danger.'
+      }) }}
+      <p>Use this service to report serious teacher misconduct in England if you're:</p>
+      <ul class="govuk-list govuk-list--bullet">
+      <li>a member of the public</li>
+      <li>an employer</li>
+      </ul> 
+      <h2 class="govuk-heading-m">Before you start</h2>
+      <p>You’ll need to provide:</p>
+      <ul class="govuk-list govuk-list--bullet">
+      <li>your contact details and information about the teacher you are reporting</li>
+      <li>evidence to support your allegation</li>   
+      </ul>
+      <p>If your case is investigated:</p>
+      <ul class="govuk-list govuk-list--bullet">
+      <li>your name and allegation will be shared with the teacher and their employer</li>
+      <li>you might need to give evidence at a hearing</li>
+      <li>your referral will be kept on file for up to 50 years</li>
+      </ul>
+      <p>Once you've signed in, you'll be able to save your answers and come back later to complete the referral.</p>
+
+      {{ govukButton({
+        classes: "govuk-!-margin-top-0 govuk-!-margin-bottom-8",
+        text: "Start now",
+        href: 'has-account',
+        isStartButton: true
+      }) }}
+
+      <nav class="govuk-pagination govuk-pagination--block" role="navigation" aria-label="Pagination">
+        <div class="govuk-pagination__prev">
+          <a class="govuk-link govuk-pagination__link" href="complain" rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Previous<span class="govuk-visually-hidden"> page</span></span><span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Complain to the school, college or council</span></a>
+        </div>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="other-ways" rel="next"> <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg> <span class="govuk-pagination__link-title">Next<span class="govuk-visually-hidden"> page</span></span><span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Other ways to report misconduct</span></a>
+        </div>
+      </nav>
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {{ appRelatedNavigation({
+        sections: [{
+          items: [
+          {
+            text: "Teacher misconduct: regulating the teaching profession",
+            href: "https://www.gov.uk/guidance/teacher-misconduct-regulating-the-teaching-profession"
+          }],
+          subsections: [{
+            title: "Collection",
+            items: [{
+              text: "Teacher misconduct",
+              href: "https://www.gov.uk/government/collections/teacher-misconduct"
+            }]
+          }]
+        }]
+      }) }}
+    </div>
+  </div>
+{% endblock %}

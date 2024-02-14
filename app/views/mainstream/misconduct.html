@@ -1,0 +1,86 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set serviceUrl = '/' %}
+{% set serviceName = '' %}
+{% set title = 'Report serious teacher misconduct in England - GOV.UK' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Report serious teacher misconduct in England
+      </h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body-s">Contents</p>
+      <p class="govuk-body-s">— <a href="index">Overview</a><br>
+        — What counts as serious misconduct<br>
+        — <a href="teacher">Who you can report</a><br>
+        — <a href="complain">Complain to the school, college or council</a><br>
+        — <a href="report">Report serious teacher misconduct online</a><br>
+        — <a href="other-ways">Other ways to report misconduct</a></p>
+        <hr><br>
+
+      <h2 class="govuk-heading-l">What counts as serious misconduct</h2>
+
+      <p>Serious misconduct by a teacher is any behaviour that:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>falls significantly short of what is expected of them</li>
+        <li>could damage people's view of the teaching profession</li>
+        <li>led to the conviction of a criminal offence relevant to their fitness to teach</li>
+      </ul>
+          <p>TRA treats each case on its own merits, but serious misconduct can include:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>sexual misconduct</li>
+            <li>violent behaviour</li>
+            <li>serious failure to protect the safety and wellbeing of pupils</li>
+            <li>alcohol or drug misuse</li>
+            <li>fraud or serious dishonesty</li>
+            <li>discrimination or harassment</li>
+            <li>promoting extreme political or religious views</li>
+          </ul>
+
+          <p>TRA will not investigate cases involving incompetence or underperformance. You should <a href="https://www.gov.uk/complain-about-school">complain to the school</a> instead.</p>
+
+          <nav class="govuk-pagination govuk-pagination--block" role="navigation" aria-label="Pagination">
+            <div class="govuk-pagination__prev">
+              <a class="govuk-link govuk-pagination__link" href="index" rel="prev">
+                <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                  <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                </svg>
+                <span class="govuk-pagination__link-title">Previous<span class="govuk-visually-hidden"> page</span></span><span class="govuk-visually-hidden">:</span>
+                <span class="govuk-pagination__link-label">Overview</span></a>
+            </div>
+            <div class="govuk-pagination__next">
+              <a class="govuk-link govuk-pagination__link" href="teacher" rel="next"> <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                  <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                </svg> <span class="govuk-pagination__link-title">Next<span class="govuk-visually-hidden"> page</span></span><span class="govuk-visually-hidden">:</span>
+                <span class="govuk-pagination__link-label">Who you can report</span></a>
+            </div>
+          </nav>
+
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {{ appRelatedNavigation({
+        sections: [{
+          items: [
+          {
+            text: "Teacher misconduct: regulating the teaching profession",
+            href: "https://www.gov.uk/guidance/teacher-misconduct-regulating-the-teaching-profession"
+          }],
+          subsections: [{
+            title: "Collection",
+            items: [{
+              text: "Teacher misconduct",
+              href: "https://www.gov.uk/government/collections/teacher-misconduct"
+            }]
+          }]
+        }]
+      }) }}
+    </div>
+  </div>
+{% endblock %}
