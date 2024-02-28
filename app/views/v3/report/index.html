@@ -109,21 +109,21 @@
             titleText: "The allegation",
             items: [{
               text: "Details of the allegation",
-              href: 'allegation/allegation',
+              href: 'report/allegation/allegation',
               tag: {
                 colour: allegationTagColour or 'grey',
                 text: data.report.allegation['section-completed'] | capitalize or 'Incomplete'
               }
             }, {
               text: "Previous allegations",
-              href: 'previous-misconduct/any-previous',
+              href: 'report/previous-misconduct/any-previous',
               tag: {
                 colour: previousAllegationsTagColour or 'grey',
                 text: data.report.previousMisconduct['section-completed'] | capitalize or 'Incomplete'
               }
             }, {
               text: "Evidence and supporting information",
-              href: 'evidence/has-evidence',
+              href: 'report/evidence/has-evidence',
               tag: {
                 colour: evidenceTagColour or 'grey',
                 text: data.report.evidence['section-completed'] | capitalize or 'Incomplete'
