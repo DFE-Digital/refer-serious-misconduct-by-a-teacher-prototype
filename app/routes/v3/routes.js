@@ -137,7 +137,7 @@ module.exports = router => {
     // Report
 
     router.all([v + 'report', v + 'report/*'], (req, res, next) => {
-        res.locals.isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public'
+        res.locals.isPublic = _.get(req.session.data, '[type-of-report]') == 'public'
         res.locals.isEmployer = !res.locals.isPublic
         next()
     })
@@ -300,7 +300,7 @@ module.exports = router => {
     })
 
     router.post(v + 'report/allegation/check-answers', (req, res) => {
-        res.redirect(v + 'report/')
+        res.redirect(v + 'report')
     })
 
     // Report evidence
@@ -493,7 +493,7 @@ module.exports = router => {
     })
 
     router.post(v + 'report/teacher-role/duties', (req, res) => {
-        let isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public';
+        let isPublic = _.get(req.session.data, '[type-of-report]') == 'public';
         if(isPublic) {
             res.redirect(v + 'report/teacher-role/know-where-they-worked')
         } else {
@@ -510,7 +510,7 @@ module.exports = router => {
     })
 
     router.post(v + 'report/teacher-role/know-where-they-worked', (req, res) => {
-        let isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public';
+        let isPublic = _.get(req.session.data, '[type-of-report]') == 'public';
         if(isPublic) {
             // public
             if(req.session.data.report.teacherRole.knowWhereTheyWorked === 'Yes') {
@@ -529,7 +529,7 @@ module.exports = router => {
     })
 
     router.post(v + 'report/teacher-role/where-they-worked', (req, res) => {
-        let isPublic = _.get(req.session.data, 'report[type-of-report]') == 'public';
+        let isPublic = _.get(req.session.data, '[type-of-report]') == 'public';
         if(isPublic) {
             // public
             res.redirect(v + 'report/teacher-role/check-answers')

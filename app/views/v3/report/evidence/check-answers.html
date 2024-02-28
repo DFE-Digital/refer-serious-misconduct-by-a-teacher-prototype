@@ -16,11 +16,13 @@
         <span class="govuk-caption-l">Evidence and supporting information</span>
         {{ title }}
       </h1>
+      {% if data.report.evidence.hasEvidence !== 'No' %}
       {{ govukButton({
         text: "Add more evidence",
         classes: 'govuk-button--secondary',
         href: 'upload'
       }) }}
+      {% endif %}
 
       {% include '../evidence/_summary-card.html' %}
     </div>

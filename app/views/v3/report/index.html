@@ -68,14 +68,14 @@
             titleText: "About you",
             items: [{
               text: "Your details",
-              href: yourDetailsHref or 'report/your-details/name',
+              href: 'report/your-details/name',
               tag: {
                 colour: yourDetailsTagColour or 'grey',
                 text: data.report['your-details']['section-completed'] or 'Incomplete'
               }
             }, {
               text: "Your organisation",
-              href: yourOrganisationHref or 'report/your-organisation/organisation',
+              href: 'report/your-organisation/organisation',
               tag: {
                 colour: yourOrganisationTagColour or 'grey',
                 text: data.report.yourOrganisation['section-completed'] or 'Incomplete'
@@ -85,48 +85,48 @@
             titleText: "About the teacher",
             items: [{
               text: "Personal details",
-              href: teacherHref or 'report/teacher/name',
+              href: 'report/teacher/name',
               tag: {
                 colour: teacherTagColour or 'grey',
-                text: data.report.teacherDetails['section-completed'] or 'Incomplete'
+                text: data.report.teacherDetails['section-completed'] | capitalize or 'Incomplete'
               }
             }, {
               text: "Contact details",
-              href: teacherContactDetailsHref or 'report/teacher-contact-details/email',
+              href: 'report/teacher-contact-details/email',
               tag: {
                 colour: teacherContactDetailsTagColour or 'grey',
-                text: data.report.teacherContactDetails['section-completed'] or 'Incomplete'
+                text: data.report.teacherContactDetails['section-completed'] | capitalize or 'Incomplete'
               }
             }, {
               text: "About their role",
-              href: teacherRoleHref or 'report/teacher-role/job-title',
+              href: 'report/teacher-role/job-title',
               tag: {
                 colour: teacherRoleTagColour or 'grey',
-                text: data.report.teacherRole.sectionCompleted or 'Incomplete'
+                text: data.report.teacherRole.sectionCompleted | capitalize or 'Incomplete'
               }
             }]
           }, {
             titleText: "The allegation",
             items: [{
               text: "Details of the allegation",
-              href: allegationHref or 'report/allegation/allegation',
+              href: 'allegation/allegation',
               tag: {
                 colour: allegationTagColour or 'grey',
-                text: data.report.allegation['section-completed'] or 'Incomplete'
+                text: data.report.allegation['section-completed'] | capitalize or 'Incomplete'
               }
             }, {
               text: "Previous allegations",
-              href: previousAllegationsHref or 'report/previous-misconduct/any-previous',
+              href: 'previous-misconduct/any-previous',
               tag: {
                 colour: previousAllegationsTagColour or 'grey',
-                text: data.report.previousMisconduct['section-completed'] or 'Incomplete'
+                text: data.report.previousMisconduct['section-completed'] | capitalize or 'Incomplete'
               }
             }, {
               text: "Evidence and supporting information",
-              href: evidenceHref or 'report/evidence/has-evidence',
+              href: 'evidence/has-evidence',
               tag: {
                 colour: evidenceTagColour or 'grey',
-                text: data.report.evidence['section-completed'] or 'Incomplete'
+                text: data.report.evidence['section-completed'] | capitalize or 'Incomplete'
               }
             }]
           }]
@@ -138,44 +138,44 @@
             titleText: "About you",
             items: [{
               text: "Your details",
-              href: yourDetailsHref or 'report/your-details/name',
+              href: 'report/your-details/name',
               tag: {
                 colour: yourDetailsTagColour or 'grey',
-                text: data.report['your-details']['section-completed'] or 'Incomplete'
+                text: data.report['your-details']['section-completed'] | capitalize or 'Incomplete'
               }
             }]
           }, {
             titleText: "About the teacher",
             items: [{
               text: "Personal details",
-              href: teacherHref or 'report/teacher/name',
+              href: 'report/teacher/name',
               tag: {
                 colour: teacherTagColour or 'grey',
-                text: data.report.teacherDetails['section-completed'] or 'Incomplete'
+                text: data.report.teacherDetails['section-completed'] | capitalize or 'Incomplete'
               }
             }, {
               text: "About their role",
-              href: teacherRoleHref or 'report/teacher-role/job-title',
+              href: 'report/teacher-role/job-title',
               tag: {
                 colour: teacherRoleTagColour or 'grey',
-                text: data.report.teacherRole.sectionCompleted or 'Incomplete'
+                text: data.report.teacherRole.sectionCompleted | capitalize or 'Incomplete'
               }
             }]
           }, {
             titleText: "The allegation",
             items: [{
               text: "Details of the allegation",
-              href: allegationHref or 'report/allegation/allegation',
+              href: 'report/allegation/allegation',
               tag: {
                 colour: allegationTagColour or 'grey',
-                text: data.report.allegation['section-completed'] or 'Incomplete'
+                text: data.report.allegation['section-completed'] | capitalize or 'Incomplete'
               }
             }, {
               text: "Evidence and supporting information",
-              href: evidenceHref or 'report/evidence/has-evidence',
+              href: 'report/evidence/has-evidence',
               tag: {
                 colour: evidenceTagColour or 'grey',
-                text: data.report.evidence['section-completed'] or 'Incomplete'
+                text: data.report.evidence['section-completed'] | capitalize or 'Incomplete'
               }
             }]
           }]
