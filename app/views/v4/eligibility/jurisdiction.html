@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+{% set title = "Who the allegation is about" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "../who"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <p>You can only refer a teacher if their responsibilities include:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>planning, preparing and delivering lessons to pupils</li>
+    <li>assessing and reporting on the development and progress of pupils</li>
+  </ul>
+
+  <p>You can refer a teacher:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>who has resigned or been dismissed</li>
+    <li>for serious misconduct outside of the school</li>
+  </ul>
+  <h2 class="govuk-heading-s">Who you cannot refer</h2>
+  <p>The TRA will not usually consider cases relating to:</p>
+  <ul class="govuk-list govuk-list--bullet">
+  <li>teaching assistants, except if their responsibilities include those of a teacher listed above</li>
+  <li>school support staff, for example caretakers or administrators</li>
+  </ul>
+<p>You should <a href="https://www.gov.uk/complain-about-school">complain to the school</a> instead.</p>
+        {{ govukRadios({
+          idPrefix: "are-they-teacher",
+          name: "are-they-teacher",
+          fieldset: {
+          legend: {
+            classes: "govuk-fieldset__legend--m",
+        text: "Is the allegation about a teacher?"
+          }
+        },
+          hint: {
+            html: teacher
+          },
+          items: [
+            {
+              text: "Yes",
+              value: "Yes"
+            },
+            {
+              text: "No",
+              value: "No"
+            }
+          ],
+        value: data['are-they-teacher']
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

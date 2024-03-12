@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your referrals" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ title | noOrphans | safe }}</h1>
+
+      {{ govukButton({
+        text: "Start new referral",
+        href: "../who"
+      }) }}
+
+      {% set complete %}
+        <p>You have a referral that you have not sent.</p>
+        {{ govukButton({
+          text: "Complete referral",
+          href: "../set-user-type?type=public"
+        }) }}
+      {% endset %}
+
+      {# {{ govukInsetText({
+        html: complete,
+        classes: 'govuk-!-margin-bottom-7'
+      }) }} #}
+
+      <h2 class="govuk-heading-m">
+        Sent referrals
+      </h2>
+
+      <div class="app-list govuk-!-margin-top-6">
+        {% for referral in referrals %}
+          <div class="app-list__item">
+            <h2 class="govuk-heading-m">
+              <a class="govuk-link--no-visited-state" href="show">
+                {{referral.teacherDetails.firstName or "Matt"}}
+                {{referral.teacherDetails.lastName or "Johnson"}}
+              </a>
+            </h2>
+
+            {{ govukSummaryList({
+              classes: 'govuk-summary-list--no-border app-summary-list--compact',
+              rows: [
+                {
+                  key: {
+                    text: "Referral date"
+                  },
+                  value: {
+                    text: referral.sentDate | dateTime
+                  }
+                }
+              ]
+            }) }}
+
+            {{referral | log}}
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

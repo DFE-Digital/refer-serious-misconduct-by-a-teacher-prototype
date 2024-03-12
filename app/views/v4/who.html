@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+{% set title = "Are you making a referral as an employer or member of the public?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "email-code"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        {{ govukRadios({
+          idPrefix: "type-of-report",
+          name: "type-of-report",
+          fieldset: {
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true,
+              text: title
+            }
+          },
+          items: [
+            {
+              text: "I’m referring as an employer",
+              value: "employer"
+            },
+            {
+              text: "I’m referring as a member of the public",
+              value: "public"
+            }
+          ],
+        value: data['type-of-report']
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+{% set title = "Their home address" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "telephone"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">Contact details</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      <form method="post">
+        {{ govukInput({
+          id: "[report][teacherContactDetails][address][line1]",
+          name: "[report][teacherContactDetails][address][line1]",
+          label: {
+            text: 'Address line 1',
+            classes: 'govuk-label--m'
+          },
+          value: data.report.teacherContactDetails.address.line1,
+          autocomplete: "address-line1"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacherContactDetails][address][line2]",
+          name: "[report][teacherContactDetails][address][line2]",
+          label: {
+            text: 'Address line 2 (optional)',
+            classes: 'govuk-label--m'
+          },
+          value: data.report.teacherContactDetails.address.line2,
+          autocomplete: "address-line2"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacherContactDetails][address][town]",
+          name: "[report][teacherContactDetails][address][town]",
+          label: {
+            text: "Town or city",
+            classes: 'govuk-label--m'
+          },
+          classes: "govuk-!-width-two-thirds",
+          value: data.report.teacherContactDetails.address.town,
+          autocomplete: "address-level2"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacherContactDetails][address][postcode]",
+          name: "[report][teacherContactDetails][address][postcode]",
+          label: {
+            text: "Postcode",
+            classes: 'govuk-label--m'
+          },
+          classes: "govuk-input--width-10",
+          value: data.report.teacherContactDetails.address.postcode,
+          autocomplete: "postal-code"
+        }) }}
+
+        {{ govukInput({
+          id: "[report][teacherContactDetails][address][country]",
+          name: "[report][teacherContactDetails][address][country]",
+          label: {
+            text: "Country (optional)",
+            classes: 'govuk-label--m'
+          },
+          classes: "govuk-!-width-two-thirds",
+          value: data.report.teacherContactDetails.address.country,
+          autocomplete: "country"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

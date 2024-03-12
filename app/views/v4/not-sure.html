@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set title = "Check if you have an account" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+      <p>You’ll be sent a confirmation code to your email address.</p>
+      <form method="post">
+        {{ govukInput({
+          id: "[report][email]",
+          name: "[report][email]",
+          label: {
+            text: 'Your email address',
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

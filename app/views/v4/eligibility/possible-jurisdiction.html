@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+{% set title = "What we mean by 'teacher'" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "jurisdiction"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+  <h1 class="govuk-heading-l">{{ title }}</h1>
+
+  <p>The TRA defines a teacher as someone who carries out teaching work in a classroom or online such as:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>planning and preparing lessons for pupils</li>
+    <li>giving lessons to pupils</li>
+    <li>assessing and reporting on the development and progress of pupils</li>
+  </ul>
+  <p>This does not include teaching assistants or other support staff who work under the supervision of teachers.</p>
+
+  {{ govukRadios({
+    idPrefix: "teacher-unsupervised",
+    name: "teacher-unsupervised",
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        text: "Are you referring a teacher?"
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        value: "Yes, they do unsupervised teaching work"
+      },
+      {
+        text: "No",
+        value: "No"
+      }
+    ],
+        value: data['teacher-unsupervised']
+        }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

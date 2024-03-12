@@ -1,0 +1,30 @@
+{% extends "layouts/main.html" %}
+{% set title = "Make a complaint" %}
+{# {% set title = "Complain to the school or the Department for Education" %} #}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+
+      <p>Every school in England must have a complaints policy. It’s usually available on the school’s website or from the school office.</p>
+      <p>You may also be able to complain to your local council or organisations such as the school inspectors Ofsted. This depends on the type of school and what you’re complaining about.</p>
+
+     <p>Find out <a href="https://www.gov.uk/complain-about-school">how to complain to the school or another organisation</a>.</p>
+
+      <p>Your referral may not be investigated if you do not complete the school's complaints procedure.</p>
+
+      <p><a href="you-should-know-public">I still want to refer serious misconduct by a teacher</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}

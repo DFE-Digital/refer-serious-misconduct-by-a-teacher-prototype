@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+{% set title = "Upload evidence" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash and flash.length }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">
+          Evidence and supporting information
+        </span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        {% include "../../shared/_examples.html" %}
+
+        {% if isPublic %}
+
+          <p>Make sure the file names describe the content, for example ‘signed witness statement’.</p>
+
+          {{ govukWarningText({
+            text: "Do not include explicit content, for example indecent photos. You’ll be asked for these separately if needed."
+          }) }}
+        {% endif %}
+
+        {% set input %}
+          {{ govukFileUpload({
+            label: {
+              text: "Upload files",
+              classes: "govuk-label--m"
+            },
+            attributes: {
+              multiple: true
+            },
+            hint: {
+              text: 'You can upload up to 40 files. Each file must be smaller than 100MB. Larger files may take longer to upload. We will let you know when it is done.'
+            }
+          }) }}
+        {% endset %}
+
+        {% set uploaded = false %}
+
+        {% if uploaded %}
+
+          <div class="app-uploaded-file-v2">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
+              Currently uploaded file
+            </h2>
+            <p><a href="#">job-description.pdf (2MB)</a></p>
+
+            {{ govukFileUpload({
+              id: "[report][evidence][file]",
+              name: "[report][evidence][file]",
+              label: {
+                text: "Upload a different file",
+                classes: "govuk-label--m"
+              }
+            }) }}
+          </div>
+        {% else %}
+          {{input | safe}}
+        {% endif %}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

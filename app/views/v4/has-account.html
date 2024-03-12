@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+{% set signedIn = false %}
+{% set title = "Have you used this service before?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+
+        {{ govukRadios({
+          idPrefix: "hasAccount",
+          name: "hasAccount",
+          fieldset: {
+            legend: {
+              html: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes, sign in and continue making a referral",
+              text: "Yes, sign in and continue making a referral"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ],
+          value: data.hasAccount
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
