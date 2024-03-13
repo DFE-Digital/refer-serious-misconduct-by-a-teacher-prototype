@@ -21,17 +21,17 @@
     <li>assessing and reporting on the development and progress of pupils</li>
   </ul>
 
+        <p>You can only refer a teaching assistant if their responsibilities include those of a teacher listed above.</p>
+
   <p>You can refer a teacher:</p>
   <ul class="govuk-list govuk-list--bullet">
     <li>who has resigned or been dismissed</li>
     <li>for serious misconduct outside of the school</li>
   </ul>
+
   <h2 class="govuk-heading-s">Who you cannot refer</h2>
-  <p>The TRA will not usually consider cases relating to:</p>
-  <ul class="govuk-list govuk-list--bullet">
-  <li>teaching assistants, except if their responsibilities include those of a teacher listed above</li>
-  <li>school support staff, for example caretakers or administrators</li>
-  </ul>
+        <p>The TRA will not usually consider cases relating to school support staff, for example caretakers or administrators.</p>
+
 <p>You should <a href="https://www.gov.uk/complain-about-school">complain to the school</a> instead.</p>
         {{ govukRadios({
           idPrefix: "are-they-teacher",
@@ -43,7 +43,7 @@
           }
         },
           hint: {
-            html: teacher
+            html: "This includes teaching assistants who carry out the responsibilities of a teacher."
           },
           items: [
             {
