@@ -57,7 +57,7 @@ module.exports = router => {
 
     router.post(v + 'eligibility/complaint', (req, res) => {
         if (req.session.data['have-you-complained'] === "Yes, and I received an outcome") {
-            res.redirect(v + 'eligibility/you-should-know-public')
+            res.redirect(v + 'eligibility/allegation')
         }
         else if (req.session.data['have-you-complained'] === "Yes, and I'm waiting for an outcome") {
             res.redirect(v + 'eligibility/awaiting-outcome')
@@ -81,7 +81,7 @@ module.exports = router => {
 
 
     router.post(v + 'eligibility/you-should-know-public', (req, res) => {
-        res.redirect(v + 'eligibility/allegation')
+        res.redirect(v + 'eligibility/save-as-you-go')
     })
 
     router.post(v + 'eligibility/allegation', (req, res) => {
@@ -100,7 +100,7 @@ module.exports = router => {
             if(req.session.data['type-of-report'] === 'employer') {
                 res.redirect(v + 'eligibility/serious')
             } else {
-                res.redirect(v + 'eligibility/save-as-you-go')
+                res.redirect(v + 'eligibility/you-should-know-public')
             }
 
         }
